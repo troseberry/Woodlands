@@ -2,16 +2,61 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerSkills : MonoBehaviour 
+public class PlayerSkills 
 {
+	private static EfficiencySkill efficiencySkill = new EfficiencySkill(); 
+	private static MaxContractsSkill contractsSkill = new MaxContractsSkill();
+	private static MaxCurrencySkill currencySkill = new MaxCurrencySkill();
+	private static MaxEnergySkill energySkill = new MaxEnergySkill();
+	private static MaxResourcesSkill resourceSkill = new MaxResourcesSkill();
 
-	void Start () 
-	{
-		
-	}
+
+	public static int GetEfficiencyTier() { return efficiencySkill.GetSkillTier(); }
 	
-	void Update () 
+	public static void SetEfficiencyTier(int newTier) { efficiencySkill.SetSkillTier(newTier); }
+
+	public static int GetMaxEfficiencyValue() 
 	{
-		
+		return efficiencySkill.GetTierValueAtIndex(efficiencySkill.GetSkillTier() - 1);
+	}
+
+
+	public static int GetContractsTier() { return contractsSkill.GetSkillTier(); }
+	
+	public static void SetContractsTier(int newTier) { contractsSkill.SetSkillTier(newTier); }
+
+	public static int GetMaxContractsValue() 
+	{
+		return contractsSkill.GetTierValueAtIndex(contractsSkill.GetSkillTier() - 1);
+	}
+
+
+	public static int GetCurrencyTier() { return currencySkill.GetSkillTier(); }
+	
+	public static void SetCurrencyTier(int newTier) { currencySkill.SetSkillTier(newTier); }
+
+	public static int GetMaxCurrencyValue() 
+	{
+		return currencySkill.GetTierValueAtIndex(currencySkill.GetSkillTier() - 1);
+	}
+
+
+	public static int GetEnergyTier() { return energySkill.GetSkillTier(); }
+	
+	public static void SetEnergyTier(int newTier) { energySkill.SetSkillTier(newTier); }
+
+	public static int GetMaxEnergyValue() 
+	{
+		return energySkill.GetTierValueAtIndex(energySkill.GetSkillTier() - 1);
+	}
+
+
+	public static int GetResourcesTier() { return resourceSkill.GetSkillTier(); }
+	
+	public static void SetResourcesTier(int newTier) { resourceSkill.SetSkillTier(newTier); }
+
+	public static int GetMaxResourcesValue() 
+	{
+		return resourceSkill.GetTierValueAtIndex(resourceSkill.GetSkillTier() - 1);
 	}
 }

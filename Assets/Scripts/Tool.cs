@@ -51,6 +51,20 @@ public class Tool
 
 	public ToolName GetToolName() { return toolName; }
 
+	public string GetToolNameAsString()
+	{
+		switch(toolName)
+		{
+			case ToolName.FELLING_AXE:
+				return "Felling Axe";
+			case ToolName.CROSSCUT_SAW:
+				return "Crosscut Saw";
+			case ToolName.SPLITTING_AXE:
+				return "Splitting Axe";
+		}
+		return "Invalid Tool";
+	}
+
 	public int GetCurrentTier() { return currentTier; }
 
 	public void SetCurrentTier(int newTier) { currentTier = newTier; }
@@ -60,6 +74,11 @@ public class Tool
 	public bool CanPerformAction(LumberContract contract)
 	{
 		return currentTier >= contract.GetDifficultyRating();
+	}
+
+	public override string ToString()
+	{
+		return "Level " + currentTier + " " + GetToolNameAsString();
 	}
 
 }

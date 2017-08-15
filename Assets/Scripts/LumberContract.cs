@@ -42,6 +42,19 @@ public class LumberContract
 		}
 	}
 
+	public string GetContractTypeAsString()
+	{
+		switch(contractType)
+		{
+			case ContractType.FELLING_TREES:
+				return "Felling Trees";
+			case ContractType.LOG_BUCKING:
+				return "Log Bucking";
+			case ContractType.SPLITTING_LOGS:
+				return "Splitting Logs";
+		}
+		return "Invalid Contract";
+	}
 
 	public ContractType GetContractType() { return contractType; }
 
@@ -68,4 +81,9 @@ public class LumberContract
 	public int GetCompletionDeadline() { return completionDeadline; }
 
 	public void SetCompletionDeadline(int deadline) { completionDeadline = deadline;}
+
+	public override string ToString()
+	{
+		return "Level " + difficultyRating + " " + GetContractTypeAsString();
+	}
 }

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerInventory 
 {
-	private static int currentEnergy;
-	private static int currenctCurrency;
-	private static int currentLumber;
-	private static int currentHardware;
+	private static int currentEnergy = 0;
+	private static int currenctCurrency = 0;
+	private static int currentLumber = 0;
+	private static int currentHardware = 0;
 
 
 	public static int GetEnergyValue()
@@ -17,14 +17,12 @@ public class PlayerInventory
 
 	public static void SetEnergyValue(int newValue)
 	{
-		//don't allow grater than max or less than 0
-		currentEnergy = newValue;
+		currentEnergy = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxEnergyValue());
 	}
 
 	public static void UpdateEnergyValue(int changeValue)
 	{
-		//don't allow grater than max or less than 0
-		currentEnergy += changeValue;
+		currentEnergy = Mathf.Clamp((currentEnergy += changeValue), 0, PlayerSkills.GetMaxEnergyValue());
 	}
 
 
@@ -35,14 +33,12 @@ public class PlayerInventory
 
 	public static void SetCurrencyValue(int newValue)
 	{
-		//don't allow grater than max or less than 0
-		currenctCurrency = newValue;
+		currenctCurrency = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxCurrencyValue());
 	}
 
 	public static void UpdateCurrencyValue(int changeValue)
 	{
-		//don't allow grater than max or less than 0
-		currenctCurrency += changeValue;
+		currenctCurrency = Mathf.Clamp((currenctCurrency += changeValue), 0, PlayerSkills.GetMaxCurrencyValue());
 	}
 
 
@@ -53,14 +49,12 @@ public class PlayerInventory
 
 	public static void SetLumberValue(int newValue)
 	{
-		//don't allow grater than max or less than 0
-		currentLumber = newValue;
+		currentLumber = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxResourcesValue());
 	}
 
 	public static void UpdateLumberValue(int changeValue)
 	{
-		//don't allow grater than max or less than 0//check max
-		currentLumber += changeValue;
+		currentLumber = Mathf.Clamp((currentLumber += changeValue), 0, PlayerSkills.GetMaxResourcesValue());
 	}
 
 
@@ -71,13 +65,11 @@ public class PlayerInventory
 
 	public static void SetHardwareValue(int newValue)
 	{
-		//don't allow grater than max or less than 0
-		currentHardware = newValue;
+		currentHardware = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxResourcesValue());
 	}
 
 	public static void UpdateHardwareValue(int changeValue)
 	{
-		//don't allow grater than max or less than 0
-		currentHardware += changeValue;
+		currentHardware = Mathf.Clamp((currentHardware += changeValue), 0, PlayerSkills.GetMaxResourcesValue());
 	}
 }
