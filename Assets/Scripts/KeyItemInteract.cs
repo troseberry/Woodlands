@@ -60,7 +60,7 @@ public class KeyItemInteract : MonoBehaviour
 		isMenuOpen = true;
 	}
 
-	void CloseMenu()
+	public void CloseMenu()
 	{
 		for (int i = 0; i < generalElements.Length; i++)
 		{
