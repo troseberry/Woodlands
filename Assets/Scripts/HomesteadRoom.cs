@@ -2,74 +2,73 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillName {EFFICIENCY, MAX_CONTRACTS, MAX_CURRENCY, MAX_ENERGY, MAX_RESOURCES};
+public enum RoomName {BEDROOM, KITCHEN, OFFICE, STUDY, WORKSHOP}
 
-public class Skill 
+public class HomesteadRoom
 {
-	protected SkillName skillName;
+	protected RoomName roomName;
 	protected int currentTier;
 	protected int[] tierValues;
 	protected ResourceQuantity[] upgradeCosts;
 	protected bool canBeUpgraded;
+	
+	public HomesteadRoom() {}
 
-
-	public Skill() {}
-
-	public Skill(SkillName name, int[] values, ResourceQuantity[] costs)
+	public HomesteadRoom(RoomName name, int[] values, ResourceQuantity[] costs)
 	{
-		skillName = name;
+		roomName = name;
 		currentTier = 1;
 		tierValues = values;
 		upgradeCosts = costs;
 	}
 
-	public Skill(SkillName name, int tier, int[] values, ResourceQuantity[] costs)
+	public HomesteadRoom(RoomName name, int tier, int[] values, ResourceQuantity[] costs)
 	{
-		skillName = name;
+		roomName = name;
 		currentTier = tier;
 		tierValues = values;
 		upgradeCosts = costs;
 	}
 
+	public RoomName GetBuildingName() { return roomName; }
 
-	public SkillName GetSkillName() { return skillName; }
-
-	public void SetSkillName(SkillName name) { skillName = name; }
+	public void SetBuildingName(RoomName name) { roomName = name; }
 
 	public int GetCurrentTier() { return currentTier; }
 
-	public void SetCurrentTier(int newTier)
+	public void SetCurrentTier(int tier)
 	{
-		currentTier = newTier;
+		currentTier = tier;
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 
 	public int[] GetTierValues() { return tierValues; }
 
-	public void SetTierValues(int[] newValues) { tierValues = newValues; }
+	public void SetTierValues(int[] values) { tierValues = values; }
 
 	public int GetTierValueAtIndex(int index) { return tierValues[index]; }
 
 	public void SetTierValueAtIndex(int index, int newValue) { tierValues[index] = newValue; }
 
-	public ResourceQuantity[] GetResourceQuanties() { return upgradeCosts; }
+	public ResourceQuantity[] GetResourceQuantities() { return upgradeCosts; }
 
 	public void SetResourceQuantities(ResourceQuantity[] newCosts) { upgradeCosts = newCosts; }
 
 	public ResourceQuantity GetResourceQuantityAtTier(int tier) { return upgradeCosts[tier - 1]; }
 
-	public void SetResourceQuantityAtTier(int tier, ResourceQuantity newCost) { upgradeCosts[tier - 1] = newCost; } 
+	public void SetResourceQuantityAtTier(int tier, ResourceQuantity newCost) { upgradeCosts[tier - 1] = newCost; }
 
 	public bool CanBeUpgraded() { return canBeUpgraded; }
 }
 
-public class EfficiencySkill : Skill
+public class BedRoom : HomesteadRoom
 {
-	public EfficiencySkill() 
-	{ 
-		skillName = SkillName.EFFICIENCY;
-		tierValues = new int[5] {1, 2, 3, 4, 5};
+	public BedRoom()
+	{
+		roomName = RoomName.BEDROOM;
 		currentTier = 1;
+		//for bunk room, b/c this is sleep duration, this should really be float vals for tiervalues(8, 7.5, 7, 6.5, 6). for now, this is just hours
+		tierValues = new int[5]{9, 8, 7, 6, 5};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
@@ -79,146 +78,153 @@ public class EfficiencySkill : Skill
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public EfficiencySkill(int tier) 
-	{
-		skillName = SkillName.EFFICIENCY;
-		tierValues = new int[5] {1, 2, 3, 4, 5};
-		currentTier = tier; 
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
-		};
-		canBeUpgraded = (currentTier < upgradeCosts.Length);
-	}
-}
 
-public class MaxContractsSkill : Skill
-{
-	public MaxContractsSkill() 
+	public BedRoom(int tier)
 	{
-		skillName = SkillName.MAX_CONTRACTS;
-		tierValues = new int[5] {1, 3, 5, 8, 10};
-		currentTier = 1;
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
-		};
-		canBeUpgraded = (currentTier < upgradeCosts.Length);
-	}
-	public MaxContractsSkill(int tier) 
-	{
-		skillName = SkillName.MAX_CONTRACTS;
-		tierValues = new int[5] {1, 3, 5, 8, 10};	
+		roomName = RoomName.BEDROOM;
 		currentTier = tier;
+		tierValues = new int[5]{9, 8, 7, 6, 5};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
 			new ResourceQuantity(250, 0, 0, 0),
 			new ResourceQuantity(500, 0, 0, 0),
 			new ResourceQuantity(1000, 0, 0, 0)
-		};
+		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 }
 
-public class MaxCurrencySkill : Skill
+public class KitchenRoom : HomesteadRoom
 {
-	public MaxCurrencySkill() 
+	public KitchenRoom()
 	{
-		skillName = SkillName.MAX_CURRENCY;
-		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
-		currentTier = 1; 
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
-		};
-		canBeUpgraded = (currentTier < upgradeCosts.Length);
-	}
-	public MaxCurrencySkill(int tier) 
-	{
-		skillName = SkillName.MAX_CURRENCY;
-		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
-		currentTier = tier;
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
-		};
-		canBeUpgraded = (currentTier < upgradeCosts.Length);
-	}
-}
-
-public class MaxEnergySkill : Skill
-{
-	public MaxEnergySkill() 
-	{
-		skillName = SkillName.MAX_ENERGY;
-		tierValues = new int[5] {20, 40, 60, 80, 100};
+		roomName = RoomName.KITCHEN;
 		currentTier = 1;
+		tierValues = new int[5]{3, 5, 8, 10, 15};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
 			new ResourceQuantity(250, 0, 0, 0),
 			new ResourceQuantity(500, 0, 0, 0),
 			new ResourceQuantity(1000, 0, 0, 0)
-		};
+		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxEnergySkill(int tier) 
+
+	public KitchenRoom(int tier)
 	{
-		skillName = SkillName.MAX_ENERGY;
-		tierValues = new int[5] {20, 40, 60, 80, 100};
-		currentTier = tier; 
+		roomName = RoomName.KITCHEN;
+		currentTier = tier;
+		tierValues = new int[5]{3, 5, 8, 10, 15};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
 			new ResourceQuantity(250, 0, 0, 0),
 			new ResourceQuantity(500, 0, 0, 0),
 			new ResourceQuantity(1000, 0, 0, 0)
-		};
+		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 }
 
-public class MaxResourcesSkill : Skill
+public class OfficeRoom : HomesteadRoom
 {
-	public MaxResourcesSkill() 
+	public OfficeRoom()
 	{
-		skillName = SkillName.MAX_RESOURCES;
-		tierValues = new int[5] {50, 100, 250, 500, 1000};
+		roomName = RoomName.OFFICE;
 		currentTier = 1;
+		//For Office, tiervalues should be an array of Tools eventually
+		tierValues = new int[5]{0, 0, 0, 0, 0};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
 			new ResourceQuantity(250, 0, 0, 0),
 			new ResourceQuantity(500, 0, 0, 0),
 			new ResourceQuantity(1000, 0, 0, 0)
-		};
+		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxResourcesSkill(int tier) 
+
+	public OfficeRoom(int tier)
 	{
-		skillName = SkillName.MAX_RESOURCES;
-		tierValues = new int[5] {50, 100, 250, 500, 1000};
+		roomName = RoomName.OFFICE;
 		currentTier = tier;
+		tierValues = new int[5]{0, 0, 0, 0, 0};
 		upgradeCosts = new ResourceQuantity[5] {
 			new ResourceQuantity(0, 0, 0, 0),
 			new ResourceQuantity(100, 0, 0, 0),
 			new ResourceQuantity(250, 0, 0, 0),
 			new ResourceQuantity(500, 0, 0, 0),
 			new ResourceQuantity(1000, 0, 0, 0)
-		};
+		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 }
+
+public class StudyRoom : HomesteadRoom
+{
+	public StudyRoom()
+	{
+		roomName = RoomName.STUDY;
+		currentTier = 1;
+		tierValues = new int[5]{1, 2, 3, 4, 5};
+		upgradeCosts = new ResourceQuantity[5] {
+			new ResourceQuantity(0, 0, 0, 0),
+			new ResourceQuantity(100, 0, 0, 0),
+			new ResourceQuantity(250, 0, 0, 0),
+			new ResourceQuantity(500, 0, 0, 0),
+			new ResourceQuantity(1000, 0, 0, 0)
+		}; 
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+
+	public StudyRoom(int tier)
+	{
+		roomName = RoomName.STUDY;
+		currentTier = tier;
+		tierValues = new int[5]{1, 2, 3, 4, 5};
+		upgradeCosts = new ResourceQuantity[5] {
+			new ResourceQuantity(0, 0, 0, 0),
+			new ResourceQuantity(100, 0, 0, 0),
+			new ResourceQuantity(250, 0, 0, 0),
+			new ResourceQuantity(500, 0, 0, 0),
+			new ResourceQuantity(1000, 0, 0, 0)
+		}; 
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+}
+
+public class WorkshopRoom : HomesteadRoom
+{
+	public WorkshopRoom()
+	{
+		roomName = RoomName.WORKSHOP;
+		currentTier = 1;
+		tierValues = new int[5]{0, 1, 2, 3, 4};
+		upgradeCosts = new ResourceQuantity[5] {
+			new ResourceQuantity(0, 0, 0, 0),
+			new ResourceQuantity(100, 0, 0, 0),
+			new ResourceQuantity(250, 0, 0, 0),
+			new ResourceQuantity(500, 0, 0, 0),
+			new ResourceQuantity(1000, 0, 0, 0)
+		}; 
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+
+	public WorkshopRoom(int tier)
+	{
+		roomName = RoomName.WORKSHOP;
+		currentTier = tier;
+		tierValues = new int[5]{0, 1, 2, 3, 4};
+		upgradeCosts = new ResourceQuantity[5] {
+			new ResourceQuantity(0, 0, 0, 0),
+			new ResourceQuantity(100, 0, 0, 0),
+			new ResourceQuantity(250, 0, 0, 0),
+			new ResourceQuantity(500, 0, 0, 0),
+			new ResourceQuantity(1000, 0, 0, 0)
+		}; 
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+}
+

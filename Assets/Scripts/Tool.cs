@@ -83,6 +83,8 @@ public class Tool
 		return "Invalid Tool";
 	}
 
+	public void SetToolName(ToolName name) { toolName = name; }
+
 	public int GetCurrentTier() { return currentTier; }
 
 	public void SetCurrentTier(int newTier)

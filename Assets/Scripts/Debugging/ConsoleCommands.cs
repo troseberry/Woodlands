@@ -34,7 +34,7 @@ public class ConsoleCommands : MonoBehaviour
 			}
 			else
 			{
-				CloseCOnsole();
+				CloseConsole();
 			}
 		}
 	}
@@ -46,7 +46,7 @@ public class ConsoleCommands : MonoBehaviour
 		isConsoleOpen = true;
 	}
 
-	void CloseCOnsole()
+	void CloseConsole()
 	{
 		consoleCanvas.enabled = false;
 		cameraControl.enabled = true;
