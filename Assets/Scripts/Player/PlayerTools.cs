@@ -34,6 +34,11 @@ public class PlayerTools
 		ownedTools.Remove(item);
 	}
 
-	public Tool GetToolAtIndex(int index) { return ownedTools[index]; }
+	public static Tool GetToolAtIndex(int index) { return ownedTools[index]; }
+
+	public static Tool GetToolByName(ToolName toFind)
+	{
+		return ownedTools.Find(tool => tool.GetToolName() == toFind);
+	}
 	
 }

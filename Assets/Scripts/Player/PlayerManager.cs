@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour 
 {
-	
 	void Start () 
 	{
 		//eventually, load save data
@@ -21,25 +20,29 @@ public class PlayerManager : MonoBehaviour
 	
 	void Update () 
 	{
-		// DebugPanel.Log("Energy: ", PlayerInventory.GetEnergyValue());
-		// DebugPanel.Log("Currency: ", PlayerInventory.GetCurrencyValue());
-		// DebugPanel.Log("Lumber: ", PlayerInventory.GetLumberValue());
-		// DebugPanel.Log("Hardware: ", PlayerInventory.GetHardwareValue());
+		DebugPanel.Log("Energy: ", PlayerInventory.GetEnergyValue());
+		DebugPanel.Log("Currency: ", PlayerInventory.GetCurrencyValue());
+		DebugPanel.Log("Building Materials: ", PlayerInventory.GetBuildingMaterialsValue());
+		DebugPanel.Log("Tool Parts: ", PlayerInventory.GetToolPartsValue());
+		DebugPanel.Log("Book Pages: ", PlayerInventory.GetBookPagesValue());
+		DebugPanel.Log("Efficiency: ", PlayerSkills.GetMaxEfficiencyValue());
 
 
-		// DebugPanel.Log("Efficiency Tier: ", PlayerSkills.GetEfficiencyTier());
-		// DebugPanel.Log("Efficiency Max: ", PlayerSkills.GetMaxEfficiencyValue());
+		
 
-		// DebugPanel.Log("Contracts Tier: ", PlayerSkills.GetContractsTier());
+		DebugPanel.Log("Contracts Tier: ", PlayerSkills.GetContractsTier());
 		// DebugPanel.Log("Contracts Max: ", PlayerSkills.GetMaxContractsValue());
 
-		// DebugPanel.Log("Currency Tier: ", PlayerSkills.GetCurrencyTier());
+		DebugPanel.Log("Currency Tier: ", PlayerSkills.GetCurrencyTier());
 		// DebugPanel.Log("Currency Max: ", PlayerSkills.GetMaxCurrencyValue());
 
-		// DebugPanel.Log("Energy Tier: ", PlayerSkills.GetEnergyTier());
+		DebugPanel.Log("Efficiency Tier: ", PlayerSkills.GetEfficiencyTier());
+		// DebugPanel.Log("Efficiency Max: ", PlayerSkills.GetMaxEfficiencyValue());
+
+		DebugPanel.Log("Energy Tier: ", PlayerSkills.GetEnergyTier());
 		// DebugPanel.Log("Energy Max: ", PlayerSkills.GetMaxEnergyValue());
 
-		// DebugPanel.Log("Resources Tier: ", PlayerSkills.GetResourcesTier());
+		DebugPanel.Log("Resources Tier: ", PlayerSkills.GetResourcesTier());
 		// DebugPanel.Log("Resources Max: ", PlayerSkills.GetMaxResourcesValue());
 
 
