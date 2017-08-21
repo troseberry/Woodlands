@@ -1261,8 +1261,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 1479344791}
-  generalElements: []
+  popupMenu: {fileID: 1642969323}
+  generalElements:
+  - {fileID: 1479344791}
 --- !u!65 &166571666
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2445,9 +2446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 1244494477}
+  popupMenu: {fileID: 548325126}
   generalElements:
   - {fileID: 2077871933}
+  - {fileID: 1244494477}
 --- !u!65 &256941524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3173,7 +3175,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 354917329}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -4542,7 +4544,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 548325122}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -6214,7 +6216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 0}
+  popupMenu: {fileID: 1642969323}
   generalElements: []
 --- !u!1 &752588631
 GameObject:
@@ -6562,7 +6564,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 0}
+  popupMenu: {fileID: 1642969323}
   generalElements: []
 --- !u!1 &804417263
 GameObject:
@@ -7803,8 +7805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 419569656}
-  generalElements: []
+  popupMenu: {fileID: 354917333}
+  generalElements:
+  - {fileID: 419569656}
 --- !u!65 &914574539
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8231,9 +8234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 674814156}
+  popupMenu: {fileID: 548325126}
   generalElements:
   - {fileID: 2077871933}
+  - {fileID: 674814156}
 --- !u!65 &933772114
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11031,8 +11035,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 2129255920}
-  generalElements: []
+  popupMenu: {fileID: 1642969323}
+  generalElements:
+  - {fileID: 2129255920}
 --- !u!65 &1341133101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11421,9 +11426,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 331236604}
+  popupMenu: {fileID: 548325126}
   generalElements:
   - {fileID: 2077871933}
+  - {fileID: 331236604}
 --- !u!65 &1368268712
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13409,9 +13415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 246894393}
+  popupMenu: {fileID: 548325126}
   generalElements:
   - {fileID: 2077871933}
+  - {fileID: 246894393}
 --- !u!65 &1607019043
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13903,7 +13910,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1642969320}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -15339,9 +15346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 1647368674}
+  popupMenu: {fileID: 548325126}
   generalElements:
   - {fileID: 2077871933}
+  - {fileID: 1647368674}
 --- !u!65 &1803989195
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17383,8 +17391,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 565339994}
-  generalElements: []
+  popupMenu: {fileID: 2102507461}
+  generalElements:
+  - {fileID: 565339994}
 --- !u!65 &2075847808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17414,7 +17423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2077871934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17616,7 +17625,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2102507457}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

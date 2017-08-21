@@ -8,14 +8,14 @@ public class KeyItemInteract : MonoBehaviour
 {
 	private FreeLookCam cameraControl;
 
-	public GameObject popupMenu;
+	public Canvas popupMenu;
 	public GameObject[] generalElements;
 	private bool isMenuOpen = false;
 	private bool canInteract = false;
 
 	void Start () 
 	{
-		popupMenu.SetActive(false);
+		popupMenu.enabled = false;
 		cameraControl = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
 	}
 	
@@ -55,7 +55,7 @@ public class KeyItemInteract : MonoBehaviour
 		{
 			generalElements[i].SetActive(true);
 		}
-		popupMenu.SetActive(true);
+		popupMenu.enabled = true;
 		cameraControl.enabled = false;
 		isMenuOpen = true;
 	}
@@ -66,7 +66,7 @@ public class KeyItemInteract : MonoBehaviour
 		{
 			generalElements[i].SetActive(false);
 		}
-		popupMenu.SetActive(false);
+		popupMenu.enabled = false;
 		cameraControl.enabled = true;
 		isMenuOpen = false;
 	}
