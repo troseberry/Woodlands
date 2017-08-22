@@ -12,9 +12,9 @@ public class PlayerManager : MonoBehaviour
 		PlayerTools.AddTool(new Tool(ToolName.CROSSCUT_SAW));
 		PlayerTools.AddTool(new Tool(ToolName.SPLITTING_AXE));
 
-		PlayerContracts.AddContract(new LumberContract(ContractType.FELLING_TREES, 1, 10, 180f, 100, 3));
-		PlayerContracts.AddContract(new LumberContract(ContractType.LOG_BUCKING, 1, 10, 180f, 100, 3));
-		PlayerContracts.AddContract(new LumberContract(ContractType.SPLITTING_LOGS, 1, 10, 180f, 100, 3));
+		PlayerContracts.AddContract(new LumberContract(ContractType.FELLING_TREES, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
+		PlayerContracts.AddContract(new LumberContract(ContractType.LOG_BUCKING, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
+		PlayerContracts.AddContract(new LumberContract(ContractType.SPLITTING_LOGS, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
 
 	}
 	

@@ -9,17 +9,17 @@ public class LumberContract
 	private ContractType contractType;
 	private int difficultyRating;
 	private int energyRequirement;
-	private ToolName requiredTool;
+	private ToolName requiredToolName;
 	private float duration;
 
-	private int payout;			//for now this is just an int for currency. later should be dictionary of (resource name,count) pairs
+	private ResourceQuantity payout; 
 
 	private int completionDeadline;
 
 
 	public LumberContract() {}
 
-	public LumberContract(ContractType type, int difficulty, int energy, float dur, int pay, int deadline)
+	public LumberContract(ContractType type, int difficulty, int energy, float dur, ResourceQuantity pay, int deadline)
 	{
 		contractType = type;
 		difficultyRating = difficulty;
@@ -31,13 +31,13 @@ public class LumberContract
 		switch(type)
 		{
 			case ContractType.FELLING_TREES:
-				requiredTool = ToolName.FELLING_AXE;
+				requiredToolName = ToolName.FELLING_AXE;
 				break;
 			case ContractType.LOG_BUCKING:
-				requiredTool = ToolName.CROSSCUT_SAW;
+				requiredToolName = ToolName.CROSSCUT_SAW;
 				break;
 			case ContractType.SPLITTING_LOGS:
-				requiredTool = ToolName.SPLITTING_AXE;
+				requiredToolName = ToolName.SPLITTING_AXE;
 				break;
 		}
 	}
@@ -68,15 +68,29 @@ public class LumberContract
 
 	public void SetEnergyRequirement(int energy) { energyRequirement = energy; }
 
-	public ToolName GetRequiredTool() { return requiredTool; }
+	public ToolName GetRequiredToolName() { return requiredToolName; }
+
+	public string GetRequiredToolNameAsString()
+	{
+		switch(requiredToolName)
+		{
+			case ToolName.FELLING_AXE:
+				return "Felling Axe";
+			case ToolName.CROSSCUT_SAW:
+				return "Crosscut Saw";
+			case ToolName.SPLITTING_AXE:
+				return "Splitting Axe";
+		}
+		return "Invalid Tool";
+	}
 
 	public float GetDuration() { return duration; }
 
 	public void SetDuration(float dur) { duration = dur; }
 
-	public int GetPayout() { return payout; }
+	public ResourceQuantity GetPayout() { return payout; }
 
-	public void SetPayout(int pay) { payout = pay; }
+	public void SetPayout(ResourceQuantity pay) { payout = pay; }
 
 	public int GetCompletionDeadline() { return completionDeadline; }
 
