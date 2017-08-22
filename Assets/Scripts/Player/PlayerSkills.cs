@@ -6,7 +6,7 @@ public class PlayerSkills
 {
 	private static EfficiencySkill efficiencySkill = new EfficiencySkill(); 
 	private static MaxContractsSkill contractsSkill = new MaxContractsSkill();
-	private static MaxCurrencySkill currencySkill = new MaxCurrencySkill();
+	private static MaxCurrencySkill currencySkill = new MaxCurrencySkill(5);
 	private static MaxEnergySkill energySkill = new MaxEnergySkill();
 	private static MaxResourcesSkill resourceSkill = new MaxResourcesSkill();
 

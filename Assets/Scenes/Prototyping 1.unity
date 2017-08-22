@@ -2146,6 +2146,16 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Max Resources Tier
       m_Image: {fileID: 0}
+    - m_Text: Bedroom Tier
+      m_Image: {fileID: 0}
+    - m_Text: Kitchen Tier
+      m_Image: {fileID: 0}
+    - m_Text: Office Tier
+      m_Image: {fileID: 0}
+    - m_Text: Study Tier
+      m_Image: {fileID: 0}
+    - m_Text: Workshop Tier
+      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2536,7 +2546,7 @@ GameObject:
   - component: {fileID: 292439904}
   - component: {fileID: 292439903}
   m_Layer: 5
-  m_Name: BunkRoom
+  m_Name: Bedroom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2601,7 +2611,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2129255924}
-        m_MethodName: UpgradeBunkRoom
+        m_MethodName: UpgradeBedroom
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4934,7 +4944,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Upgrade Bunk Room
+  m_Text: Upgrade Bedroom
 --- !u!222 &564542583
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18489,7 +18499,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2129255920}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 605eaa1268ea14de2a6b8a6d330129f8, type: 3}
+  m_Script: {fileID: 11500000, guid: f15af3f1f91ba492781cb11a7630405a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2135688935

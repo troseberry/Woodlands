@@ -95,6 +95,22 @@ public class ConsoleCommands : MonoBehaviour
 			case "Max Resources Tier":
 				PlayerSkills.SetResourcesTier(commandValue);
 				break;
+
+			case "Bedroom Tier":
+				PlayerRooms.SetBedRoomTier(commandValue);
+				break;
+			case "Kitchen Tier":
+				PlayerRooms.SetKitchenRoomTier(commandValue);
+				break;
+			case "Office Tier":
+				PlayerRooms.SetOfficeRoomTier(commandValue);
+				break;
+			case "Study Tier":
+				PlayerRooms.SetStudyRoomTier(commandValue);
+				break;
+			case "Workshop Tier":
+				PlayerRooms.SetWorkshopRoomTier(commandValue);
+				break;
 		}
 	}
 }

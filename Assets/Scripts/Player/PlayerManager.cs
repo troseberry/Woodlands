@@ -50,18 +50,13 @@ public class PlayerManager : MonoBehaviour
 		DebugPanel.Log("Tools 2: ", PlayerTools.GetOwnedToolsList()[1]);
 		DebugPanel.Log("Tools 3: ", PlayerTools.GetOwnedToolsList()[2]);
 
-		// if (Input.GetButtonDown("Debug"))
-		// {
-		// 	Debug.Log("Debug Key Press");
-		// 	PlayerTools.RemoveTool(ToolName.FELLING_AXE);
-		// }
+		DebugPanel.Log("BedRoom Tier: ", PlayerRooms.GetBedRoomTier());
+		DebugPanel.Log("Kitchen Tier: ", PlayerRooms.GetKitchenRoomTier());
+		DebugPanel.Log("Office Tier: ", PlayerRooms.GetOfficeRoomTier());
+		DebugPanel.Log("Study Tier: ", PlayerRooms.GetStudyRoomTier());
+		DebugPanel.Log("Workshop Tier: ", PlayerRooms.GetWorkshopRoomTier());
 
 
 		// DebugPanel.Log("Contracts List: ", PlayerContracts.GetContractAtIndex(0));
-		// if (Input.GetButtonDown("Debug"))
-		// {
-		// 	Debug.Log("Debug Key Press");
-		// 	PlayerContracts.RemoveContractAtIndex(0);
-		// }
 	}
 }
