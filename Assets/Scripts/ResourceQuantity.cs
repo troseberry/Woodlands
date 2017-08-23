@@ -44,6 +44,14 @@ public class ResourceQuantity
 		return hasCurrency && hasMaterials && hasParts && hasPages;
 	}
 
+	public void AddToInventory()
+	{
+		PlayerInventory.UpdateCurrencyValue(currency);
+		PlayerInventory.UpdateBuildingMaterialsValue(buildingMaterials);
+		PlayerInventory.UpdateToolPartsValue(toolParts);
+		PlayerInventory.UpdateBookPagesValue(bookPages);
+	}
+
 	public void SubtractFromInventory()
 	{
 		PlayerInventory.UpdateCurrencyValue(-currency);

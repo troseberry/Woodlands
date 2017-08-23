@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneNavigation : MonoBehaviour 
+public static class SceneNavigation 
 {
 
-	public void ToTreeFelling()
+	public static void ToTreeFelling()
 	{
 		SceneManager.LoadScene("TreeFelling");
 	}
 
-	public void ToHomestead()
+	public static void ToHomestead()
 	{
 		SceneManager.LoadScene("Homestead");
 	}

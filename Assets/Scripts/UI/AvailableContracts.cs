@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class AvailableContracts : MonoBehaviour 
 {
 	int numberToDisplay;
 	List<LumberContract> availableContracts;
 	public GameObject[] canvasObjects;
+
+	public KeyItemInteract newspaperKeyItem;
 
 	void Start () 
 	{
@@ -56,8 +59,20 @@ public class AvailableContracts : MonoBehaviour
 		}
 	}
 
-	public void TransitionToContractScene()
+	public void AssignToCurrentContract()
 	{
-		//SceneManager.LoadScene("TreeFelling");
+		//get button number
+		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+		Debug.Log("Contract Name: " + contractName);
+		int contractNumber = int.Parse(contractName.Substring(9));
+		Debug.Log("Contract Number: " + contractNumber);
+		ContractGameInfo.SetPayout(availableContracts[contractNumber - 1].GetPayout());
+
+		SceneNavigation.ToTreeFelling();
+	}
+
+	public void DeclineContract()
+	{
+		newspaperKeyItem.CloseMenu();
 	}
 }
