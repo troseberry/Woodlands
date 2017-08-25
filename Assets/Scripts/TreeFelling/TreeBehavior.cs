@@ -9,6 +9,7 @@ namespace TreeFelling
 	{
 		int[] sideCutsCount = new int[4] {5, 5, 5, 5};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
+		private bool isMarked = false;
 
 		public bool HasFallen() { return hasFallen; }
 
@@ -40,14 +41,21 @@ namespace TreeFelling
 				SetFallTowardsPosition(side);
 			}
 			hasFallen = true;
+			if (isMarked) 
+			{
+				TreeFellingManager.ManagerReference.IncrementCorrectCount();
+			}
+			else
+			{
+				TreeFellingManager.ManagerReference.IncrementIncorrectCount();
+			}
+
 
 			foreach (SnapSpot snap in transform.GetComponentsInChildren<SnapSpot>())
 			{
 				snap.enabled = false;
 			}
-			
 			PlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
-
 			GetComponent<TreeBehavior>().enabled = false;
 		}
 
@@ -74,5 +82,11 @@ namespace TreeFelling
 			}
 		}
 
+		public void EnableLumberTag()
+		{
+			int randomTag = Random.Range(0, 4);
+			transform.Find("LumberTags").GetChild(randomTag).gameObject.SetActive(true);
+			isMarked = true;
+		}
 	}
 }
