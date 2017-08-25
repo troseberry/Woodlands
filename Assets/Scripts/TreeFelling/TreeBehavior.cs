@@ -41,7 +41,7 @@ public class TreeBehavior : MonoBehaviour
 			}
 		}
 
-		if (playerIsLocked && Input.GetKeyDown(KeyCode.R))
+		if (playerIsLocked && (Input.GetKeyDown(KeyCode.R)) || Input.GetButtonDown("Right Bumper") || Input.GetButtonDown("Left Bumper"))
 		{
 			RotateAroundTree();
 		}
