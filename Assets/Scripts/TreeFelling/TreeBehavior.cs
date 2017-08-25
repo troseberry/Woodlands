@@ -3,103 +3,76 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-public class TreeBehavior : MonoBehaviour 
+namespace TreeFelling
 {
-	
-	private Transform snapLocation;
-	private bool playerIsLocked;
-	private bool canSnapPlayer;
-
-	GameObject playerObj;
-	private Transform playerTransform;
-	private ThirdPersonUserControl userControl;
-
-	private RigidbodyConstraints startingConstraints;
-
-	void Start () 
+	public class TreeBehavior : MonoBehaviour 
 	{
-		
-		playerObj = GameObject.FindGameObjectWithTag("Player");
+		int[] sideCutsCount = new int[4] {5, 5, 5, 5};		//order: x_01, x_02, z_01, z_02
+		private bool hasFallen = false;
 
-		playerTransform = playerObj.transform;
-		userControl = playerObj.GetComponent<ThirdPersonUserControl>();
+		public bool HasFallen() { return hasFallen; }
 
-		startingConstraints = RigidbodyConstraints.FreezeRotation;
-	}
-	
-	void Update () 
-	{
-		if (canSnapPlayer && Input.GetButtonDown("Interact"))
+		public void cutSide(int side)
 		{
-			if (!playerIsLocked)
+			if (sideCutsCount[side] > 0)
 			{
-				SnapPlayer();
-			}
-			else
-			{
-				UnlockPlayer();
+				sideCutsCount[side] --;
+				Debug.Log("Sides: " 
+				+ sideCutsCount[0] + " | " 
+				+ sideCutsCount[1] + " | "
+				+ sideCutsCount[2] + " | "
+				+ sideCutsCount[3]);
+
+				if (sideCutsCount[side] == 0) Fall(side);
 			}
 		}
 
-		if (playerIsLocked && (Input.GetKeyDown(KeyCode.R)) || Input.GetButtonDown("Right Bumper") || Input.GetButtonDown("Left Bumper"))
+		void Fall(int side)
 		{
-			RotateAroundTree();
-		}
-		
-		
-	}
+			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
+			if (sideCutsCount[oppositeSide] <= 2)
+			{
+				//fall away
+				SetFallTowardsPosition(oppositeSide);
+			}
+			else{
+				//fall towards
+				SetFallTowardsPosition(side);
+			}
+			hasFallen = true;
 
-	public void SetSnapInfo(bool canSnap) { canSnapPlayer = canSnap; }
+			foreach (SnapSpot snap in transform.GetComponentsInChildren<SnapSpot>())
+			{
+				snap.enabled = false;
+			}
+			
+			PlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
 
-	public void SetSnapInfo(Transform location, bool canSnap)
-	{
-		snapLocation = location;
-		canSnapPlayer = canSnap;
-	}
-
-	void SnapPlayer()
-	{
-		playerTransform.position = snapLocation.position;
-		playerTransform.rotation = snapLocation.rotation;
-
-		userControl.enabled = false;
-		playerObj.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-
-		playerIsLocked = true;
-	}
-
-	void RotateAroundTree()
-	{
-		if (playerTransform.eulerAngles.y == 0) 
-		{
-			playerTransform.position = new Vector3(playerTransform.position.x - 2, 0 , playerTransform.position.z);playerTransform.eulerAngles = new Vector3(0, 180, 0);
-		}
-		else if (playerTransform.eulerAngles.y == 90)
-		{
-			playerTransform.position = new Vector3(playerTransform.position.x, 0 , playerTransform.position.z + 2);
-			playerTransform.eulerAngles = new Vector3(0, 270, 0);
-		}
-		else if (playerTransform.eulerAngles.y == 180)
-		{
-			playerTransform.position = new Vector3(playerTransform.position.x + 2, 0 , playerTransform.position.z);
-			playerTransform.eulerAngles = new Vector3(0, 0, 0);
-		}
-		else if (playerTransform.eulerAngles.y == 270)
-		{
-			playerTransform.position = new Vector3(playerTransform.position.x, 0 , playerTransform.position.z - 2);
-			playerTransform.eulerAngles = new Vector3(0, 90, 0);
+			GetComponent<TreeBehavior>().enabled = false;
 		}
 
-		
-		Debug.Log("World + Local:" + (playerTransform.position + snapLocation.localPosition));
-		Debug.Log("World - Local:" + (playerTransform.position - snapLocation.localPosition));
-	}
+		void SetFallTowardsPosition(int side)
+		{
+			switch (side)
+			{
+				case 0:
+					transform.eulerAngles = new Vector3(0, 0, 90);
+					transform.position = new Vector3(transform.position.x - 1.5f, .4f, transform.position.z);
+					break;
+				case 1:
+					transform.eulerAngles = new Vector3(0, 0, -90);
+					transform.position = new Vector3(transform.position.x + 1.5f, .4f, transform.position.z);
+					break;
+				case 2:
+					transform.eulerAngles = new Vector3(90, 0, 0);
+					transform.position = new Vector3(transform.position.x, .4f, transform.position.z - 1.5f);
+					break;
+				case 3:
+					transform.eulerAngles = new Vector3(-90, 0, 0);
+					transform.position = new Vector3(transform.position.x, .4f, transform.position.z + 1.5f);
+					break;
+			}
+		}
 
-	void UnlockPlayer()
-	{
-		userControl.enabled = true;
-		playerObj.GetComponent<Rigidbody>().constraints = startingConstraints;
-
-		playerIsLocked = false;
 	}
 }
