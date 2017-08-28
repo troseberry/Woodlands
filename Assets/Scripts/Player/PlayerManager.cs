@@ -20,12 +20,6 @@ public class PlayerManager : MonoBehaviour
 	
 	void Update () 
 	{
-		DebugPanel.Log("Energy: ", PlayerInventory.GetEnergyValue());
-		DebugPanel.Log("Currency: ", PlayerInventory.GetCurrencyValue());
-		DebugPanel.Log("Building Materials: ", PlayerInventory.GetBuildingMaterialsValue());
-		DebugPanel.Log("Tool Parts: ", PlayerInventory.GetToolPartsValue());
-		DebugPanel.Log("Book Pages: ", PlayerInventory.GetBookPagesValue());
-		DebugPanel.Log("Efficiency: ", PlayerSkills.GetMaxEfficiencyValue());
 
 
 		
@@ -45,18 +39,10 @@ public class PlayerManager : MonoBehaviour
 		DebugPanel.Log("Resources Tier: ", PlayerSkills.GetResourcesTier());
 		// DebugPanel.Log("Resources Max: ", PlayerSkills.GetMaxResourcesValue());
 
-
-		DebugPanel.Log("Tools 1: ", PlayerTools.GetOwnedToolsList()[0]);
-		DebugPanel.Log("Tools 2: ", PlayerTools.GetOwnedToolsList()[1]);
-		DebugPanel.Log("Tools 3: ", PlayerTools.GetOwnedToolsList()[2]);
-
 		DebugPanel.Log("BedRoom Tier: ", PlayerRooms.GetBedRoomTier());
 		DebugPanel.Log("Kitchen Tier: ", PlayerRooms.GetKitchenRoomTier());
 		DebugPanel.Log("Office Tier: ", PlayerRooms.GetOfficeRoomTier());
 		DebugPanel.Log("Study Tier: ", PlayerRooms.GetStudyRoomTier());
 		DebugPanel.Log("Workshop Tier: ", PlayerRooms.GetWorkshopRoomTier());
-
-
-		// DebugPanel.Log("Contracts List: ", PlayerContracts.GetContractAtIndex(0));
 	}
 }

@@ -47,11 +47,11 @@ public class LumberContract
 		switch(contractType)
 		{
 			case ContractType.FELLING_TREES:
-				return "Felling Trees";
+				return "Tree Felling";
 			case ContractType.LOG_BUCKING:
 				return "Log Bucking";
 			case ContractType.SPLITTING_LOGS:
-				return "Splitting Logs";
+				return "Log Splitting";
 		}
 		return "Invalid Contract";
 	}

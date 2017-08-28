@@ -116,4 +116,20 @@ public class Tool
 		return "Level " + currentTier + " " + GetToolNameAsString();
 	}
 
+	public string GetLevelString(int abbreviated)
+	{
+		if (abbreviated == 0)
+		{
+			return "Level: " + currentTier;
+		}
+		else if (abbreviated == 1)
+		{
+			return "LVL: " + currentTier;
+		}
+		else
+		{
+			return "Tool Lvl Err";
+		}
+	}
+
 }

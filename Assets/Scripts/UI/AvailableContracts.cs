@@ -48,18 +48,32 @@ public class AvailableContracts : MonoBehaviour
 		for (int i = 0; i < canvasObjects.Length; i++)
 		{
 			Transform contract = canvasObjects[i].transform;
+
+			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDifficultyRating();
+
+			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetContractTypeAsString();
 			
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetContractTypeAsString();
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDifficultyRating();
 			contract.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetEnergyRequirement();
-			contract.GetChild(3).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetRequiredToolNameAsString();
-			contract.GetChild(4).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDuration();
-			contract.GetChild(5).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetPayout().ToString();
-			contract.GetChild(6).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetCompletionDeadline();
+
+			// contract.GetChild(3).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetRequiredToolNameAsString();
+
+			contract.GetChild(3).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDuration();
+
+			contract.GetChild(4).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetPayout().ToString();
+
+			// only show deadline in player's active contracts menu
+			// contract.GetChild(5).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetCompletionDeadline() + " Day(s)";
 		}
 	}
 
-	public void AssignToCurrentContract()
+	void RemoveFromAvailableContracts(int index)
+	{
+		//ideally don't remove contract obj from available contracts list until a new batch is generated.
+		//want to disable/hide the buttons and visually cross out the ui object
+	}
+
+
+	public void StartContract()
 	{
 		//get button number
 		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
@@ -71,8 +85,21 @@ public class AvailableContracts : MonoBehaviour
 		SceneNavigation.ToTreeFelling();
 	}
 
+	public void SaveToPlayerContracts()
+	{
+		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+		int contractNumber = int.Parse(contractName.Substring(9));
+
+		PlayerContracts.AddContract(availableContracts[contractNumber - 1]);
+	}
+
 	public void DeclineContract()
 	{
+		// string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+		// int contractNumber = int.Parse(contractName.Substring(9));
+
+		// RemoveFromAvailableContracts(contractNumber);
+
 		newspaperKeyItem.CloseMenu();
 	}
 }
