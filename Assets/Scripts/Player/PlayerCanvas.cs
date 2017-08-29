@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class PlayerCanvas : MonoBehaviour 
 {
@@ -76,11 +77,30 @@ public class PlayerCanvas : MonoBehaviour
 
 	public void StartContract()
 	{
+		List<LumberContract> activeContracts = PlayerContracts.GetActiveContractsList();
 
+		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
+		Debug.Log("Contract Name: " + contractName);
+		int contractNumber = int.Parse(contractName.Substring(9));
+		Debug.Log("Contract Number: " + contractNumber);
+		ContractGameInfo.SetPayout(activeContracts[contractNumber - 1].GetPayout());
+
+		switch(activeContracts[contractNumber - 1].GetContractType())
+		{
+			case ContractType.FELLING_TREES:
+				SceneNavigation.ToTreeFelling();
+				break;
+			case ContractType.LOG_BUCKING:
+				SceneNavigation.ToLogBucking();
+				break;
+			case ContractType.SPLITTING_LOGS:
+				SceneNavigation.ToLogSplitting();
+				break;
+		}
 	}
 
 	public void AbandonContract()
 	{
-		
+		ToggleContractsMenu();
 	}
 }

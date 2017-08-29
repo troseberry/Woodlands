@@ -6,13 +6,23 @@ using UnityEngine.SceneManagement;
 public static class SceneNavigation 
 {
 
+	public static void ToHomestead()
+	{
+		SceneManager.LoadScene("Homestead");
+	}
+
 	public static void ToTreeFelling()
 	{
 		SceneManager.LoadScene("TreeFelling");
 	}
 
-	public static void ToHomestead()
+	public static void ToLogBucking()
 	{
-		SceneManager.LoadScene("Homestead");
+		SceneManager.LoadScene("LogBucking");
+	}
+
+	public static void ToLogSplitting()
+	{
+		SceneManager.LoadScene("LogSplitting");
 	}
 }
