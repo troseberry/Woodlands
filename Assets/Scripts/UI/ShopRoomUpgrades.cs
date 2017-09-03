@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpgradeRooms : MonoBehaviour 
+public class ShopRoomUpgrades : MonoBehaviour 
 {
 
 	public void UpgradeBedroom()

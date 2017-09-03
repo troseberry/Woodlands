@@ -10,6 +10,7 @@ public class KeyItemInteract : MonoBehaviour
 
 	public Canvas popupMenu;
 	public GameObject[] generalElements;
+	public GameObject[] elementsToDisable;
 	private bool isMenuOpen = false;
 	private bool canInteract = false;
 
@@ -55,6 +56,13 @@ public class KeyItemInteract : MonoBehaviour
 		{
 			generalElements[i].SetActive(true);
 		}
+
+		for (int i = 0; i < elementsToDisable.Length; i++)
+		{
+			elementsToDisable[i].SetActive(false);
+		}
+
+
 		popupMenu.enabled = true;
 		cameraControl.enabled = false;
 		isMenuOpen = true;
