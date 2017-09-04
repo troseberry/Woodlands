@@ -12,14 +12,14 @@ public class LumberContract
 	private ToolName requiredToolName;
 	private float duration;
 
-	private ResourceQuantity payout; 
+	private DevResourceQuantity payout;
 
 	private int completionDeadline;
 
 
 	public LumberContract() {}
 
-	public LumberContract(ContractType type, int difficulty, int energy, float dur, ResourceQuantity pay, int deadline)
+	public LumberContract(ContractType type, int difficulty, int energy, float dur, DevResourceQuantity pay, int deadline)
 	{
 		contractType = type;
 		difficultyRating = difficulty;
@@ -88,9 +88,9 @@ public class LumberContract
 
 	public void SetDuration(float dur) { duration = dur; }
 
-	public ResourceQuantity GetPayout() { return payout; }
+	public DevResourceQuantity GetPayout() { return payout; }
 
-	public void SetPayout(ResourceQuantity pay) { payout = pay; }
+	public void SetPayout(DevResourceQuantity pay) { payout = pay; }
 
 	public int GetCompletionDeadline() { return completionDeadline; }
 

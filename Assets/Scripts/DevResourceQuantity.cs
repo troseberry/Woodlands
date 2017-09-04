@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceQuantity 
+public class DevResourceQuantity 
 {
 	int currency;
 	int buildingMaterials;
 	int toolParts;
 	int bookPages;
 
-	public ResourceQuantity(int cur, int mat, int parts, int pages)
+	public DevResourceQuantity(int cur, int mat, int parts, int pages)
 	{
 		currency = cur;
 		buildingMaterials = mat;

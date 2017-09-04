@@ -10,7 +10,7 @@ public class Tool
 	private ToolName toolName;
 	private int currentTier;
 	private ContractType associatedContractType;
-	private ResourceQuantity[] upgradeCosts;
+	private DevResourceQuantity[] upgradeCosts;
 	private bool canBeUpgraded;
 
 	public Tool() {}
@@ -31,12 +31,12 @@ public class Tool
 				associatedContractType = ContractType.SPLITTING_LOGS;
 				break;
 		}
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
@@ -57,12 +57,12 @@ public class Tool
 				associatedContractType = ContractType.SPLITTING_LOGS;
 				break;
 		}
-		upgradeCosts = new ResourceQuantity[5] {
-			new ResourceQuantity(0, 0, 0, 0),
-			new ResourceQuantity(100, 0, 0, 0),
-			new ResourceQuantity(250, 0, 0, 0),
-			new ResourceQuantity(500, 0, 0, 0),
-			new ResourceQuantity(1000, 0, 0, 0)
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
@@ -95,13 +95,13 @@ public class Tool
 
 	public ContractType GetAssociatedContractType() { return associatedContractType; }
 
-	public ResourceQuantity[] GetResourceQuanties() { return upgradeCosts; }
+	public DevResourceQuantity[] GetDevResourceQuanties() { return upgradeCosts; }
 
-	public void SetResourceQuantities(ResourceQuantity[] newCosts) { upgradeCosts = newCosts; }
+	public void SetDevResourceQuantities(DevResourceQuantity[] newCosts) { upgradeCosts = newCosts; }
 
-	public ResourceQuantity GetResourceQuantityAtTier(int tier) { return upgradeCosts[tier - 1]; }
+	public DevResourceQuantity GetDevResourceQuantityAtTier(int tier) { return upgradeCosts[tier - 1]; }
 
-	public void SetResourceQuantityAtTier(int tier, ResourceQuantity newCost) { upgradeCosts[tier - 1] = newCost; } 
+	public void SetDevResourceQuantityAtTier(int tier, DevResourceQuantity newCost) { upgradeCosts[tier - 1] = newCost; } 
 
 	public bool CanBeUpgraded() { return canBeUpgraded; }
 	

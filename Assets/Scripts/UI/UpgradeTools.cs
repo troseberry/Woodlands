@@ -12,15 +12,15 @@ public class UpgradeTools : MonoBehaviour
 
 		if (fellingAxe.CanBeUpgraded())
 		{
-			if (fellingAxe.GetResourceQuantityAtTier(currentTier + 1).HasInInventory())
+			if (fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
 				//might need to reference actual PlayerTools object
 				fellingAxe.SetCurrentTier(currentTier + 1);
-				fellingAxe.GetResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
 			{
-				Debug.Log("Insufficient Resources: " + fellingAxe.GetResourceQuantityAtTier(currentTier + 1));
+				Debug.Log("Insufficient Resources: " + fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1));
 			}
 		}
 		else
@@ -36,15 +36,15 @@ public class UpgradeTools : MonoBehaviour
 
 		if (crosscutSaw.CanBeUpgraded())
 		{
-			if (crosscutSaw.GetResourceQuantityAtTier(currentTier + 1).HasInInventory())
+			if (crosscutSaw.GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
 				//might need to reference actual PlayerTools object
 				crosscutSaw.SetCurrentTier(currentTier + 1);
-				crosscutSaw.GetResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				crosscutSaw.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
 			{
-				Debug.Log("Insufficient Resources: " + crosscutSaw.GetResourceQuantityAtTier(currentTier + 1));
+				Debug.Log("Insufficient Resources: " + crosscutSaw.GetDevResourceQuantityAtTier(currentTier + 1));
 			}
 		}
 		else
@@ -60,15 +60,15 @@ public class UpgradeTools : MonoBehaviour
 
 		if (splittingAxe.CanBeUpgraded())
 		{
-			if (splittingAxe.GetResourceQuantityAtTier(currentTier + 1).HasInInventory())
+			if (splittingAxe.GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
 				//might need to reference actual PlayerTools object
 				splittingAxe.SetCurrentTier(currentTier + 1);
-				splittingAxe.GetResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				splittingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
 			{
-				Debug.Log("Insufficient Resources: " + splittingAxe.GetResourceQuantityAtTier(currentTier + 1));
+				Debug.Log("Insufficient Resources: " + splittingAxe.GetDevResourceQuantityAtTier(currentTier + 1));
 			}
 		}
 		else

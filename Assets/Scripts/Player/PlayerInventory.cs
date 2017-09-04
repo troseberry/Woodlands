@@ -50,12 +50,12 @@ public class PlayerInventory
 
 	public static void SetBuildingMaterialsValue(int newValue)
 	{
-		currentBuildingMaterials = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxResourcesValue());
+		currentBuildingMaterials = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 
 	public static void UpdateBuildingMaterialsValue(int changeValue)
 	{
-		currentBuildingMaterials = Mathf.Clamp((currentBuildingMaterials += changeValue), 0, PlayerSkills.GetMaxResourcesValue());
+		currentBuildingMaterials = Mathf.Clamp((currentBuildingMaterials += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 
 
@@ -66,12 +66,12 @@ public class PlayerInventory
 
 	public static void SetToolPartsValue(int newValue)
 	{
-		currentToolParts = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxResourcesValue());
+		currentToolParts = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 
 	public static void UpdateToolPartsValue(int changeValue)
 	{
-		currentToolParts = Mathf.Clamp((currentToolParts += changeValue), 0, PlayerSkills.GetMaxResourcesValue());
+		currentToolParts = Mathf.Clamp((currentToolParts += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 
 
@@ -82,11 +82,11 @@ public class PlayerInventory
 
 	public static void SetBookPagesValue(int newValue)
 	{
-		currentBookPages = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxResourcesValue());
+		currentBookPages = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 
 	public static void UpdateBookPagesValue(int changeValue)
 	{
-		currentBookPages = Mathf.Clamp((currentBookPages += changeValue), 0, PlayerSkills.GetMaxResourcesValue());
+		currentBookPages = Mathf.Clamp((currentBookPages += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
 	}
 }

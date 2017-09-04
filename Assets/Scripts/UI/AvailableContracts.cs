@@ -36,7 +36,7 @@ public class AvailableContracts : MonoBehaviour
 				1, 
 				25, 
 				10f,
-				new ResourceQuantity(50, 0, 0, 0), 3);
+				new DevResourceQuantity(50, 0, 0, 0), 3);
 
 			availableContracts.Add(toAdd);
 		}

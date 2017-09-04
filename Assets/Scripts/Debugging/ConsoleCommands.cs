@@ -93,7 +93,7 @@ public class ConsoleCommands : MonoBehaviour
 				PlayerSkills.SetEnergyTier(commandValue);
 				break;
 			case "Max Resources Tier":
-				PlayerSkills.SetResourcesTier(commandValue);
+				PlayerSkills.SetDevResourcesTier(commandValue);
 				break;
 
 			case "Bedroom Tier":

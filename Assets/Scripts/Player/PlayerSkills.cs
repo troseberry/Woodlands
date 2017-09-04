@@ -8,7 +8,7 @@ public class PlayerSkills
 	private static MaxContractsSkill contractsSkill = new MaxContractsSkill();
 	private static MaxCurrencySkill currencySkill = new MaxCurrencySkill(5);
 	private static MaxEnergySkill energySkill = new MaxEnergySkill();
-	private static MaxResourcesSkill resourceSkill = new MaxResourcesSkill();
+	private static MaxDevResourcesSkill resourceSkill = new MaxDevResourcesSkill();
 
 
 	public static EfficiencySkill GetEfficiencySkill() { return efficiencySkill; }
@@ -59,13 +59,13 @@ public class PlayerSkills
 	}
 
 
-	public static MaxResourcesSkill GetResourcesSkill() { return resourceSkill; }
+	public static MaxDevResourcesSkill GetDevResourcesSkill() { return resourceSkill; }
 
-	public static int GetResourcesTier() { return resourceSkill.GetCurrentTier(); }
+	public static int GetDevResourcesTier() { return resourceSkill.GetCurrentTier(); }
 	
-	public static void SetResourcesTier(int newTier) { resourceSkill.SetCurrentTier(newTier); }
+	public static void SetDevResourcesTier(int newTier) { resourceSkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxResourcesValue() 
+	public static int GetMaxDevResourcesValue() 
 	{
 		return resourceSkill.GetTierValueAtIndex(resourceSkill.GetCurrentTier() - 1);
 	}

@@ -14,9 +14,9 @@ public class PlayerManager : MonoBehaviour
 
 		if (PlayerContracts.GetActiveContractsList().Count == 0)
 		{
-			PlayerContracts.AddContract(new LumberContract(ContractType.FELLING_TREES, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
-			PlayerContracts.AddContract(new LumberContract(ContractType.LOG_BUCKING, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
-			PlayerContracts.AddContract(new LumberContract(ContractType.SPLITTING_LOGS, 1, 10, 180f, new ResourceQuantity(100, 0, 0, 0), 3));
+			PlayerContracts.AddContract(new LumberContract(ContractType.FELLING_TREES, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
+			PlayerContracts.AddContract(new LumberContract(ContractType.LOG_BUCKING, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
+			PlayerContracts.AddContract(new LumberContract(ContractType.SPLITTING_LOGS, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
 		}
 
 	}
@@ -39,8 +39,8 @@ public class PlayerManager : MonoBehaviour
 		DebugPanel.Log("Energy Tier: ", PlayerSkills.GetEnergyTier());
 		// DebugPanel.Log("Energy Max: ", PlayerSkills.GetMaxEnergyValue());
 
-		DebugPanel.Log("Resources Tier: ", PlayerSkills.GetResourcesTier());
-		// DebugPanel.Log("Resources Max: ", PlayerSkills.GetMaxResourcesValue());
+		DebugPanel.Log("Resources Tier: ", PlayerSkills.GetDevResourcesTier());
+		// DebugPanel.Log("Resources Max: ", PlayerSkills.GetMaxDevResourcesValue());
 
 		DebugPanel.Log("BedRoom Tier: ", PlayerRooms.GetBedRoomTier());
 		DebugPanel.Log("Kitchen Tier: ", PlayerRooms.GetKitchenRoomTier());

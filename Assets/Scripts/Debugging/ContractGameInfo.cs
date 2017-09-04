@@ -4,11 +4,11 @@ using UnityEngine;
 
 public static class ContractGameInfo 
 {
-	private static ResourceQuantity payout;
+	private static DevResourceQuantity payout;
 
 
-	public static ResourceQuantity GetPayout() { return payout; }
+	public static DevResourceQuantity GetPayout() { return payout; }
 
-	public static void SetPayout(ResourceQuantity newPayout ) { payout = newPayout; }
+	public static void SetPayout(DevResourceQuantity newPayout ) { payout = newPayout; }
 
 }
