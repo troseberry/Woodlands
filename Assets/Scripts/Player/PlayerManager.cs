@@ -14,9 +14,18 @@ public class PlayerManager : MonoBehaviour
 
 		if (PlayerContracts.GetActiveContractsList().Count == 0)
 		{
-			PlayerContracts.AddContract(new LumberContract(ContractType.FELLING_TREES, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
-			PlayerContracts.AddContract(new LumberContract(ContractType.LOG_BUCKING, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
-			PlayerContracts.AddContract(new LumberContract(ContractType.SPLITTING_LOGS, 1, 10, 180f, new DevResourceQuantity(100, 0, 0, 0), 3));
+			PlayerContracts.AddContract(new LumberContract(
+				new LumberResourceQuantity(1, QualityGrade.F, 0, QualityGrade.F, 0, QualityGrade.F), 
+				new DevResourceQuantity(100, 0, 0, 0), 
+				3));
+			PlayerContracts.AddContract(new LumberContract(
+				new LumberResourceQuantity(0, QualityGrade.F, 4, QualityGrade.F, 0, QualityGrade.F), 
+				new DevResourceQuantity(100, 0, 0, 0), 
+				3));
+			PlayerContracts.AddContract(new LumberContract(
+				new LumberResourceQuantity(1, QualityGrade.F, 0, QualityGrade.F, 8, QualityGrade.F), 
+				new DevResourceQuantity(100, 0, 0, 0), 
+				3));
 		}
 
 	}

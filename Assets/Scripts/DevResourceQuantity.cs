@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class DevResourceQuantity 
 {
-	int currency;
-	int buildingMaterials;
-	int toolParts;
-	int bookPages;
+	private int currency;
+	private int buildingMaterials;
+	private int toolParts;
+	private int bookPages;
 
 	public DevResourceQuantity(int cur, int mat, int parts, int pages)
 	{

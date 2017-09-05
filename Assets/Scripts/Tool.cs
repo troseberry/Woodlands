@@ -9,7 +9,6 @@ public class Tool
 {	
 	private ToolName toolName;
 	private int currentTier;
-	private ContractType associatedContractType;
 	private DevResourceQuantity[] upgradeCosts;
 	private bool canBeUpgraded;
 
@@ -19,18 +18,6 @@ public class Tool
 	{
 		toolName = name;
 		currentTier = 1;
-		switch(name)
-		{
-			case ToolName.FELLING_AXE:
-				associatedContractType = ContractType.FELLING_TREES;
-				break;
-			case ToolName.CROSSCUT_SAW:
-				associatedContractType = ContractType.LOG_BUCKING;
-				break;
-			case ToolName.SPLITTING_AXE:
-				associatedContractType = ContractType.SPLITTING_LOGS;
-				break;
-		}
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -45,18 +32,6 @@ public class Tool
 	{
 		toolName = name;
 		currentTier = tier;
-		switch(name)
-		{
-			case ToolName.FELLING_AXE:
-				associatedContractType = ContractType.FELLING_TREES;
-				break;
-			case ToolName.CROSSCUT_SAW:
-				associatedContractType = ContractType.LOG_BUCKING;
-				break;
-			case ToolName.SPLITTING_AXE:
-				associatedContractType = ContractType.SPLITTING_LOGS;
-				break;
-		}
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -93,8 +68,6 @@ public class Tool
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 
-	public ContractType GetAssociatedContractType() { return associatedContractType; }
-
 	public DevResourceQuantity[] GetDevResourceQuanties() { return upgradeCosts; }
 
 	public void SetDevResourceQuantities(DevResourceQuantity[] newCosts) { upgradeCosts = newCosts; }
@@ -105,11 +78,6 @@ public class Tool
 
 	public bool CanBeUpgraded() { return canBeUpgraded; }
 	
-	
-	public bool CanPerformAction(LumberContract contract)
-	{
-		return currentTier >= contract.GetDifficultyRating();
-	}
 
 	public override string ToString()
 	{

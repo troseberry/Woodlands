@@ -32,12 +32,9 @@ public class AvailableContracts : MonoBehaviour
 			// float randDuration;
 
 			LumberContract toAdd = new LumberContract(
-				ContractType.FELLING_TREES, 
-				1, 
-				25, 
-				10f,
-				new DevResourceQuantity(50, 0, 0, 0), 3);
-
+				new LumberResourceQuantity(1, QualityGrade.F, 0, QualityGrade.F, 0, QualityGrade.F), 
+				new DevResourceQuantity(50, 0, 0, 0),
+				3);
 			availableContracts.Add(toAdd);
 		}
 	}
@@ -49,17 +46,8 @@ public class AvailableContracts : MonoBehaviour
 		{
 			Transform contract = canvasObjects[i].transform;
 
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDifficultyRating();
-
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetContractTypeAsString();
-			
-			contract.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetEnergyRequirement();
-
-			// contract.GetChild(3).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetRequiredToolNameAsString();
-
-			contract.GetChild(3).GetChild(0).GetComponent<Text>().text = "" + availableContracts[i].GetDuration();
-
-			contract.GetChild(4).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetPayout().ToString();
+			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetRequiredLumber().ToString();
+			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetPayout().ToString();
 
 			// only show deadline in player's active contracts menu
 			// contract.GetChild(5).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetCompletionDeadline() + " Day(s)";
@@ -73,6 +61,7 @@ public class AvailableContracts : MonoBehaviour
 	}
 
 
+	//make this CompleteContract - enabled if the player has the right lumber resources. on click it removes them from the stockpile and gives payout
 	public void StartContract()
 	{
 		//get button number

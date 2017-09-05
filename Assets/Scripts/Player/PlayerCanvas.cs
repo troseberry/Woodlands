@@ -9,8 +9,7 @@ public class PlayerCanvas : MonoBehaviour
 	private Canvas playerCanvas;
 
 	//HUD Elements
-	public Text energyText, currencyText, buildingMaterialsText, toolPartsText, bookPagesText;
-	public Text fellinAxeText, crosscutSawText, splittingAxeText;
+	public Text currencyText, buildingMaterialsText, toolPartsText, bookPagesText;
 
 
 	//Player Contracts
@@ -25,15 +24,10 @@ public class PlayerCanvas : MonoBehaviour
 	
 	void Update () 
 	{
-		energyText.text = PlayerInventory.GetEnergyValue().ToString();
 		currencyText.text = PlayerInventory.GetCurrencyValue().ToString();
 		buildingMaterialsText.text = PlayerInventory.GetBuildingMaterialsValue().ToString();
 		toolPartsText.text = PlayerInventory.GetToolPartsValue().ToString();
 		bookPagesText.text = PlayerInventory.GetBookPagesValue().ToString();
-
-		fellinAxeText.text = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetLevelString(1);
-		crosscutSawText.text = PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetLevelString(1);
-		splittingAxeText.text = PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetLevelString(1);
 
 		
 		if (Input.GetButtonDown("Menu Button"))
@@ -63,18 +57,18 @@ public class PlayerCanvas : MonoBehaviour
 			Transform contract = contracts[i].transform;
 
 			contract.gameObject.SetActive(true);
-			
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = "" + lcList[i].GetDifficultyRating();
 
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = lcList[i].GetContractTypeAsString();
+			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = lcList[i].GetRequiredLumber().ToString();
+			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = lcList[i].GetPayout().ToString();
 			
-			contract.GetChild(2).GetChild(0).GetComponent<Text>().text = "" + lcList[i].GetEnergyRequirement();
-			contract.GetChild(3).GetChild(0).GetComponent<Text>().text = "" + lcList[i].GetDuration();
-
-			contract.GetChild(4).GetChild(0).GetComponent<Text>().text = lcList[i].GetPayout().ToString();
 		}
 	}
 
+	public void CompleteContract()
+	{
+
+	}
+	//make this CompleteContract - enabled if the player has the right lumber resources. on click it removes them from the stockpile and gives payout
 	public void StartContract()
 	{
 		List<LumberContract> activeContracts = PlayerContracts.GetActiveContractsList();
@@ -85,18 +79,8 @@ public class PlayerCanvas : MonoBehaviour
 		Debug.Log("Contract Number: " + contractNumber);
 		ContractGameInfo.SetPayout(activeContracts[contractNumber - 1].GetPayout());
 
-		switch(activeContracts[contractNumber - 1].GetContractType())
-		{
-			case ContractType.FELLING_TREES:
-				SceneNavigation.ToTreeFelling();
-				break;
-			case ContractType.LOG_BUCKING:
-				SceneNavigation.ToLogBucking();
-				break;
-			case ContractType.SPLITTING_LOGS:
-				SceneNavigation.ToLogSplitting();
-				break;
-		}
+		//don't need this anymore
+		SceneNavigation.ToTreeFelling();
 	}
 
 	public void AbandonContract()
