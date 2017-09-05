@@ -54,6 +54,24 @@ public class LumberResourceQuantity
 
 	public QualityGrade GetFirewoodGrade() { return firewoodGrade; }
 
+
+	public bool HasInStockpile()
+	{
+		bool hasTrees = HomesteadStockpile.GetTreesCountAtGrade(treeGrade) >= trees;
+		bool hasLogs = HomesteadStockpile.GetLogsCountAtGrade(logGrade) >= logs;
+		bool hasFirewood = HomesteadStockpile.GetFirewoodCountAtGrade(firewoodGrade) >= firewood;
+
+		return hasTrees && hasLogs && hasFirewood;
+	}
+
+	public void SubtractFromStockpile()
+	{
+		HomesteadStockpile.UpdateTreesCountAtGrade(treeGrade, -trees);
+		HomesteadStockpile.UpdateLogsCountAtGrade(logGrade, -logs);
+		HomesteadStockpile.UpdateFirewoodCountAtGrade(firewoodGrade, -firewood);
+	}
+
+
 	public override string ToString()
 	{
 		return "T: " + trees + " (" + treeGrade + ")"
