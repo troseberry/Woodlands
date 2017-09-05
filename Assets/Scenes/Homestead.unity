@@ -2180,7 +2180,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Lumber Logs Value
       m_Image: {fileID: 0}
-    - m_Text: Lumber FIrewood Value
+    - m_Text: Lumber Firewood Value
       m_Image: {fileID: 0}
     - m_Text: Active Contracts Tier
       m_Image: {fileID: 0}
@@ -3541,7 +3541,7 @@ Canvas:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 338168626}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

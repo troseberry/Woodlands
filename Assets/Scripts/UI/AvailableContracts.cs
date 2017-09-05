@@ -61,25 +61,14 @@ public class AvailableContracts : MonoBehaviour
 	}
 
 
-	//make this CompleteContract - enabled if the player has the right lumber resources. on click it removes them from the stockpile and gives payout
-	public void StartContract()
-	{
-		//get button number
-		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
-		Debug.Log("Contract Name: " + contractName);
-		int contractNumber = int.Parse(contractName.Substring(9));
-		Debug.Log("Contract Number: " + contractNumber);
-		ContractGameInfo.SetPayout(availableContracts[contractNumber - 1].GetPayout());
-
-		SceneNavigation.ToTreeFelling();
-	}
-
 	public void SaveToPlayerContracts()
 	{
 		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
 		int contractNumber = int.Parse(contractName.Substring(9));
 
 		PlayerContracts.AddContract(availableContracts[contractNumber - 1]);
+
+		//visually circle the object. disable/hide the ui buttons
 	}
 
 	public void DeclineContract()

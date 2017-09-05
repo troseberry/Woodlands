@@ -68,6 +68,7 @@ public class EfficiencySkill : Skill
 	public EfficiencySkill() 
 	{ 
 		skillName = SkillName.EFFICIENCY;
+		//speed/time multiplier
 		tierValues = new int[5] {1, 2, 3, 4, 5};
 		currentTier = 1;
 		upgradeCosts = new DevResourceQuantity[5] {

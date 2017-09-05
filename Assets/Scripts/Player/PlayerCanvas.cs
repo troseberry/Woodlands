@@ -13,6 +13,8 @@ public class PlayerCanvas : MonoBehaviour
 
 
 	//Player Contracts
+	List<LumberContract> activeContracts;
+
 	public GameObject contractsElement;
 	public GameObject[] contracts;
 
@@ -20,6 +22,7 @@ public class PlayerCanvas : MonoBehaviour
 	void Start () 
 	{
 		playerCanvas = GetComponent<Canvas>();
+		activeContracts = PlayerContracts.GetActiveContractsList();
 	}
 	
 	void Update () 
@@ -50,37 +53,37 @@ public class PlayerCanvas : MonoBehaviour
 
 	void PopulateContractsMenu()
 	{
-		List<LumberContract> lcList = PlayerContracts.GetActiveContractsList();
+		activeContracts = PlayerContracts.GetActiveContractsList();
 
-		for (int i = 0; i < lcList.Count; i++)
+		for (int i = 0; i < activeContracts.Count; i++)
 		{
 			Transform contract = contracts[i].transform;
 
 			contract.gameObject.SetActive(true);
 
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = lcList[i].GetRequiredLumber().ToString();
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = lcList[i].GetPayout().ToString();
+			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = activeContracts[i].GetRequiredLumber().ToString();
+			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = activeContracts[i].GetPayout().ToString();
 			
 		}
 	}
 
 	public void CompleteContract()
 	{
-
-	}
-	//make this CompleteContract - enabled if the player has the right lumber resources. on click it removes them from the stockpile and gives payout
-	public void StartContract()
-	{
-		List<LumberContract> activeContracts = PlayerContracts.GetActiveContractsList();
+		activeContracts = PlayerContracts.GetActiveContractsList();
 
 		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
 		Debug.Log("Contract Name: " + contractName);
-		int contractNumber = int.Parse(contractName.Substring(9));
-		Debug.Log("Contract Number: " + contractNumber);
-		ContractGameInfo.SetPayout(activeContracts[contractNumber - 1].GetPayout());
+		int contractIndex = int.Parse(contractName.Substring(9)) - 1;
+		Debug.Log("Contract Index: " + contractIndex);
+		LumberContract currentContract = activeContracts[contractIndex];
 
-		//don't need this anymore
-		SceneNavigation.ToTreeFelling();
+		if (currentContract.GetRequiredLumber().HasInStockpile())
+		{
+			Debug.Log("Has In Stockpile: True");
+			currentContract.GetRequiredLumber().SubtractFromStockpile();
+			currentContract.GetPayout().AddToInventory();
+			contracts[contractIndex].SetActive(false);
+		}	
 	}
 
 	public void AbandonContract()

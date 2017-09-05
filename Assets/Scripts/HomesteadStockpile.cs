@@ -19,6 +19,11 @@ public class HomesteadStockpile
 		return trees[grade.GetHashCode()];
 	}
 
+	public static int GetTreesCountAtIndex(int index)
+	{
+		return trees[index];
+	}
+
 	public static void SetTreesCountAtGrade(QualityGrade grade, int newValue)
 	{
 		trees[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberTreesValue());
@@ -45,6 +50,11 @@ public class HomesteadStockpile
 		return logs[grade.GetHashCode()];
 	}
 
+	public static int GetLogsCountAtIndex(int index)
+	{
+		return logs[index];
+	}
+
 	public static void SetLogsCountAtGrade(QualityGrade grade, int newValue)
 	{
 		logs[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberLogsValue());
@@ -69,6 +79,11 @@ public class HomesteadStockpile
 	public static int GetFirewoodCountAtGrade(QualityGrade grade)
 	{
 		return firewood[grade.GetHashCode()];
+	}
+
+	public static int GetFirewoodCountAtIndex(int index)
+	{
+		return firewood[index];
 	}
 
 	public static void SetFirewoodCountAtGrade(QualityGrade grade, int newValue)
