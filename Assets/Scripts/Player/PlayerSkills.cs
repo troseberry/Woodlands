@@ -21,7 +21,7 @@ public class PlayerSkills
 	
 	public static void SetEfficiencyTier(int newTier) { efficiencySkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxEfficiencyValue()
+	public static int GetEfficiencyValue()
 	{
 		return efficiencySkill.GetTierValueAtIndex(efficiencySkill.GetCurrentTier() - 1);
 	}
@@ -33,7 +33,7 @@ public class PlayerSkills
 	
 	public static void SetContractsTier(int newTier) { contractsSkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxContractsValue() 
+	public static int GetActiveContractsValue() 
 	{
 		return contractsSkill.GetTierValueAtIndex(contractsSkill.GetCurrentTier() - 1);
 	}
@@ -45,7 +45,7 @@ public class PlayerSkills
 	
 	public static void SetCurrencyTier(int newTier) { currencySkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxCurrencyValue() 
+	public static int GetCurrencyValue() 
 	{
 		return currencySkill.GetTierValueAtIndex(currencySkill.GetCurrentTier() - 1);
 	}
@@ -57,7 +57,7 @@ public class PlayerSkills
 	
 	public static void SetEnergyTier(int newTier) { energySkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxEnergyValue() 
+	public static int GetEnergyValue() 
 	{
 		return energySkill.GetTierValueAtIndex(energySkill.GetCurrentTier() - 1);
 	}
@@ -69,7 +69,7 @@ public class PlayerSkills
 	
 	public static void SetDevResourcesTier(int newTier) { devResourceSkill.SetCurrentTier(newTier); }
 
-	public static int GetMaxDevResourcesValue() 
+	public static int GetDevResourcesValue() 
 	{
 		return devResourceSkill.GetTierValueAtIndex(devResourceSkill.GetCurrentTier() - 1);
 	}

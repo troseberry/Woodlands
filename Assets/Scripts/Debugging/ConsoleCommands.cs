@@ -13,9 +13,11 @@ public class ConsoleCommands : MonoBehaviour
 
 	public  Dropdown commandDropdown;
 	public InputField commandInputField;
+	public InputField secondaryCommmandInputField;
 
 	private string command = "";
 	private int commandValue = 0;
+	private int secondaryCommandValue = 0;
 	
 
 	void Start()
@@ -57,6 +59,7 @@ public class ConsoleCommands : MonoBehaviour
 	{
 		command = commandDropdown.options[commandDropdown.value].text;
 		commandValue = int.Parse(commandInputField.text);
+		secondaryCommandValue = int.Parse(secondaryCommmandInputField.text);
 
 		Debug.Log("Command: " + command);
 		Debug.Log("Value: " + commandValue);
@@ -80,21 +83,22 @@ public class ConsoleCommands : MonoBehaviour
 				break;
 
 
-			case "Max Contracts Tier":
+			case "Active Contracts Tier":
 				PlayerSkills.SetContractsTier(commandValue);
 				break;
-			case "Max Currency Tier":
+			case "Currency Tier":
 				PlayerSkills.SetCurrencyTier(commandValue);
 				break;
 			case "Efficiency Tier":
 				PlayerSkills.SetEfficiencyTier(commandValue);
 				break;
-			case "Max Energy Tier":
+			case "Energy Tier":
 				PlayerSkills.SetEnergyTier(commandValue);
 				break;
-			case "Max Resources Tier":
+			case "Dev Resources Tier":
 				PlayerSkills.SetDevResourcesTier(commandValue);
 				break;
+
 
 			case "Bedroom Tier":
 				PlayerRooms.SetBedRoomTier(commandValue);
@@ -110,6 +114,28 @@ public class ConsoleCommands : MonoBehaviour
 				break;
 			case "Workshop Tier":
 				PlayerRooms.SetWorkshopRoomTier(commandValue);
+				break;
+
+
+			case "Lumber Trees Value":
+				HomesteadStockpile.SetTreesCountAtIndex(secondaryCommandValue, commandValue);
+				break;
+			case "Lumber Logs Value":
+				HomesteadStockpile.SetLogsCountAtIndex(secondaryCommandValue, commandValue);
+				break;
+			case "Lumber Firewood Value":
+				HomesteadStockpile.SetFirewoodCountAtIndex(secondaryCommandValue, commandValue);
+				break;
+
+
+			case "Lumber Trees Tier":
+				PlayerSkills.SetLumberTreesTier(commandValue);
+				break;
+			case "Lumber Logs Tier":
+				PlayerSkills.SetLumberLogsTier(commandValue);
+				break;
+			case "Lumber Firewood Tier":
+				PlayerSkills.SetLumberFirewoodTier(commandValue);
 				break;
 		}
 	}

@@ -21,12 +21,17 @@ public class HomesteadStockpile
 
 	public static void SetTreesCountAtGrade(QualityGrade grade, int newValue)
 	{
-		trees[grade.GetHashCode()] = newValue;
+		trees[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberTreesValue());
+	}
+
+	public static void SetTreesCountAtIndex(int index, int newValue)
+	{
+		trees[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberTreesValue());
 	}
 
 	public static void UpdateTreesCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		trees[grade.GetHashCode()] += changeValue;
+		trees[grade.GetHashCode()] = Mathf.Clamp((trees[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberTreesValue());
 	}
 
 
@@ -42,12 +47,17 @@ public class HomesteadStockpile
 
 	public static void SetLogsCountAtGrade(QualityGrade grade, int newValue)
 	{
-		logs[grade.GetHashCode()] = newValue;
+		logs[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberLogsValue());
+	}
+
+	public static void SetLogsCountAtIndex(int index, int newValue)
+	{
+		logs[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberLogsValue());
 	}
 
 	public static void UpdateLogsCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		logs[grade.GetHashCode()] += changeValue;
+		logs[grade.GetHashCode()] = Mathf.Clamp((logs[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberLogsValue());
 	}
 
 
@@ -63,11 +73,16 @@ public class HomesteadStockpile
 
 	public static void SetFirewoodCountAtGrade(QualityGrade grade, int newValue)
 	{
-		firewood[grade.GetHashCode()] = newValue;
+		firewood[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberFirewoodValue());
+	}
+
+	public static void SetFirewoodCountAtIndex(int index, int newValue)
+	{
+		firewood[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberFirewoodValue());
 	}
 
 	public static void UpdateFirewoodCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		firewood[grade.GetHashCode()] += changeValue;
+		firewood[grade.GetHashCode()] = Mathf.Clamp((firewood[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberFirewoodValue());
 	}
 }

@@ -18,12 +18,12 @@ public class PlayerInventory
 
 	public static void SetEnergyValue(int newValue)
 	{
-		currentEnergy = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxEnergyValue());
+		currentEnergy = Mathf.Clamp(newValue, 0, PlayerSkills.GetEnergyValue());
 	}
 
 	public static void UpdateEnergyValue(int changeValue)
 	{
-		currentEnergy = Mathf.Clamp((currentEnergy += changeValue), 0, PlayerSkills.GetMaxEnergyValue());
+		currentEnergy = Mathf.Clamp((currentEnergy += changeValue), 0, PlayerSkills.GetEnergyValue());
 	}
 
 
@@ -34,12 +34,12 @@ public class PlayerInventory
 
 	public static void SetCurrencyValue(int newValue)
 	{
-		currenctCurrency = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxCurrencyValue());
+		currenctCurrency = Mathf.Clamp(newValue, 0, PlayerSkills.GetCurrencyValue());
 	}
 
 	public static void UpdateCurrencyValue(int changeValue)
 	{
-		currenctCurrency = Mathf.Clamp((currenctCurrency += changeValue), 0, PlayerSkills.GetMaxCurrencyValue());
+		currenctCurrency = Mathf.Clamp((currenctCurrency += changeValue), 0, PlayerSkills.GetCurrencyValue());
 	}
 
 
@@ -50,12 +50,12 @@ public class PlayerInventory
 
 	public static void SetBuildingMaterialsValue(int newValue)
 	{
-		currentBuildingMaterials = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentBuildingMaterials = Mathf.Clamp(newValue, 0, PlayerSkills.GetDevResourcesValue());
 	}
 
 	public static void UpdateBuildingMaterialsValue(int changeValue)
 	{
-		currentBuildingMaterials = Mathf.Clamp((currentBuildingMaterials += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentBuildingMaterials = Mathf.Clamp((currentBuildingMaterials += changeValue), 0, PlayerSkills.GetDevResourcesValue());
 	}
 
 
@@ -66,12 +66,12 @@ public class PlayerInventory
 
 	public static void SetToolPartsValue(int newValue)
 	{
-		currentToolParts = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentToolParts = Mathf.Clamp(newValue, 0, PlayerSkills.GetDevResourcesValue());
 	}
 
 	public static void UpdateToolPartsValue(int changeValue)
 	{
-		currentToolParts = Mathf.Clamp((currentToolParts += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentToolParts = Mathf.Clamp((currentToolParts += changeValue), 0, PlayerSkills.GetDevResourcesValue());
 	}
 
 
@@ -82,11 +82,11 @@ public class PlayerInventory
 
 	public static void SetBookPagesValue(int newValue)
 	{
-		currentBookPages = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentBookPages = Mathf.Clamp(newValue, 0, PlayerSkills.GetDevResourcesValue());
 	}
 
 	public static void UpdateBookPagesValue(int changeValue)
 	{
-		currentBookPages = Mathf.Clamp((currentBookPages += changeValue), 0, PlayerSkills.GetMaxDevResourcesValue());
+		currentBookPages = Mathf.Clamp((currentBookPages += changeValue), 0, PlayerSkills.GetDevResourcesValue());
 	}
 }
