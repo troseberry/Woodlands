@@ -95,9 +95,9 @@ public class EfficiencySkill : Skill
 	}
 }
 
-public class MaxContractsSkill : Skill
+public class ActiveContractsSkill : Skill
 {
-	public MaxContractsSkill() 
+	public ActiveContractsSkill() 
 	{
 		skillName = SkillName.ACTIVE_CONTRACTS;
 		tierValues = new int[5] {1, 3, 5, 8, 10};
@@ -111,7 +111,7 @@ public class MaxContractsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxContractsSkill(int tier) 
+	public ActiveContractsSkill(int tier) 
 	{
 		skillName = SkillName.ACTIVE_CONTRACTS;
 		tierValues = new int[5] {1, 3, 5, 8, 10};	
@@ -127,9 +127,9 @@ public class MaxContractsSkill : Skill
 	}
 }
 
-public class MaxCurrencySkill : Skill
+public class CurrencySkill : Skill
 {
-	public MaxCurrencySkill() 
+	public CurrencySkill() 
 	{
 		skillName = SkillName.CURRENCY;
 		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
@@ -143,7 +143,7 @@ public class MaxCurrencySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxCurrencySkill(int tier) 
+	public CurrencySkill(int tier) 
 	{
 		skillName = SkillName.CURRENCY;
 		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
@@ -159,9 +159,9 @@ public class MaxCurrencySkill : Skill
 	}
 }
 
-public class MaxEnergySkill : Skill
+public class EnergySkill : Skill
 {
-	public MaxEnergySkill() 
+	public EnergySkill() 
 	{
 		skillName = SkillName.ENERGY;
 		tierValues = new int[5] {20, 40, 60, 80, 100};
@@ -175,7 +175,7 @@ public class MaxEnergySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxEnergySkill(int tier) 
+	public EnergySkill(int tier) 
 	{
 		skillName = SkillName.ENERGY;
 		tierValues = new int[5] {20, 40, 60, 80, 100};
@@ -191,9 +191,9 @@ public class MaxEnergySkill : Skill
 	}
 }
 
-public class MaxDevResourcesSkill : Skill
+public class DevResourcesSkill : Skill
 {
-	public MaxDevResourcesSkill() 
+	public DevResourcesSkill() 
 	{
 		skillName = SkillName.DEV_RESOURCES;
 		tierValues = new int[5] {50, 100, 250, 500, 1000};
@@ -207,7 +207,7 @@ public class MaxDevResourcesSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
-	public MaxDevResourcesSkill(int tier) 
+	public DevResourcesSkill(int tier) 
 	{
 		skillName = SkillName.DEV_RESOURCES;
 		tierValues = new int[5] {50, 100, 250, 500, 1000};

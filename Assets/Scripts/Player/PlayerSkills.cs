@@ -5,10 +5,14 @@ using UnityEngine;
 public class PlayerSkills 
 {
 	private static EfficiencySkill efficiencySkill = new EfficiencySkill(); 
-	private static MaxContractsSkill contractsSkill = new MaxContractsSkill();
-	private static MaxCurrencySkill currencySkill = new MaxCurrencySkill(5);
-	private static MaxEnergySkill energySkill = new MaxEnergySkill();
-	private static MaxDevResourcesSkill resourceSkill = new MaxDevResourcesSkill();
+	private static ActiveContractsSkill contractsSkill = new ActiveContractsSkill();
+	private static CurrencySkill currencySkill = new CurrencySkill(5);
+	private static EnergySkill energySkill = new EnergySkill();
+	private static DevResourcesSkill devResourceSkill = new DevResourcesSkill();
+	private static LumberTreesSkill lumberTreesSkill = new LumberTreesSkill();
+	private static LumberLogsSkill lumberLogsSkill = new LumberLogsSkill();
+	private static LumberFirewoodSkill lumberFirewoodSkill = new LumberFirewoodSkill();
+
 
 
 	public static EfficiencySkill GetEfficiencySkill() { return efficiencySkill; }
@@ -23,7 +27,7 @@ public class PlayerSkills
 	}
 
 
-	public static MaxContractsSkill GetContractsSkill() { return contractsSkill; }
+	public static ActiveContractsSkill GetContractsSkill() { return contractsSkill; }
 
 	public static int GetContractsTier() { return contractsSkill.GetCurrentTier(); }
 	
@@ -35,7 +39,7 @@ public class PlayerSkills
 	}
 
 
-	public static MaxCurrencySkill GetCurrencySkill() { return currencySkill; }
+	public static CurrencySkill GetCurrencySkill() { return currencySkill; }
 
 	public static int GetCurrencyTier() { return currencySkill.GetCurrentTier(); }
 	
@@ -47,7 +51,7 @@ public class PlayerSkills
 	}
 
 
-	public static MaxEnergySkill GetEnergySkill() { return energySkill; }
+	public static EnergySkill GetEnergySkill() { return energySkill; }
 
 	public static int GetEnergyTier() { return energySkill.GetCurrentTier(); }
 	
@@ -59,14 +63,50 @@ public class PlayerSkills
 	}
 
 
-	public static MaxDevResourcesSkill GetDevResourcesSkill() { return resourceSkill; }
+	public static DevResourcesSkill GetDevResourcesSkill() { return devResourceSkill; }
 
-	public static int GetDevResourcesTier() { return resourceSkill.GetCurrentTier(); }
+	public static int GetDevResourcesTier() { return devResourceSkill.GetCurrentTier(); }
 	
-	public static void SetDevResourcesTier(int newTier) { resourceSkill.SetCurrentTier(newTier); }
+	public static void SetDevResourcesTier(int newTier) { devResourceSkill.SetCurrentTier(newTier); }
 
 	public static int GetMaxDevResourcesValue() 
 	{
-		return resourceSkill.GetTierValueAtIndex(resourceSkill.GetCurrentTier() - 1);
+		return devResourceSkill.GetTierValueAtIndex(devResourceSkill.GetCurrentTier() - 1);
+	}
+
+
+	public static LumberTreesSkill GetLumberTreesSkill() { return lumberTreesSkill; }
+
+	public static int GetLumberTreesTier() { return lumberTreesSkill.GetCurrentTier(); }
+	
+	public static void SetLumberTreesTier(int newTier) { lumberTreesSkill.SetCurrentTier(newTier); }
+
+	public static int GetLumberTreesValue() 
+	{
+		return lumberTreesSkill.GetTierValueAtIndex(lumberTreesSkill.GetCurrentTier() - 1);
+	}
+
+
+	public static LumberLogsSkill GetLumberLogsSkill() { return lumberLogsSkill; }
+
+	public static int GetLumberLogsTier() { return lumberLogsSkill.GetCurrentTier(); }
+	
+	public static void SetLumberLogsTier(int newTier) { lumberLogsSkill.SetCurrentTier(newTier); }
+
+	public static int GetLumberLogsValue() 
+	{
+		return lumberLogsSkill.GetTierValueAtIndex(lumberLogsSkill.GetCurrentTier() - 1);
+	}
+
+
+	public static LumberFirewoodSkill GetLumberFirewoodSkill() { return lumberFirewoodSkill; }
+
+	public static int GetLumberFirewoodTier() { return lumberFirewoodSkill.GetCurrentTier(); }
+	
+	public static void SetLumberFirewoodTier(int newTier) { lumberFirewoodSkill.SetCurrentTier(newTier); }
+
+	public static int GetLumberFirewoodValue() 
+	{
+		return lumberFirewoodSkill.GetTierValueAtIndex(lumberFirewoodSkill.GetCurrentTier() - 1);
 	}
 }
