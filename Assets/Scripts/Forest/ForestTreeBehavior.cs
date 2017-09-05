@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace TreeFelling
+namespace Forest
 {
-	public class TreeBehavior : MonoBehaviour 
+	public class ForestTreeBehavior : MonoBehaviour 
 	{
 		int[] sideCutsCount = new int[4] {5, 5, 5, 5};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
@@ -30,6 +30,8 @@ namespace TreeFelling
 
 		void Fall(int side)
 		{
+			//wanna change this to be physics based. and give trees rigidbodies
+
 			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
 			if (sideCutsCount[oppositeSide] <= 2)
 			{
@@ -41,22 +43,16 @@ namespace TreeFelling
 				SetFallTowardsPosition(side);
 			}
 			hasFallen = true;
-			if (isMarked) 
-			{
-				TreeFellingManager.ManagerReference.IncrementCorrectCount();
-			}
-			else
-			{
-				TreeFellingManager.ManagerReference.IncrementIncorrectCount();
-			}
 
 
 			foreach (SnapSpot snap in transform.GetComponentsInChildren<SnapSpot>())
 			{
 				snap.enabled = false;
 			}
-			PlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
-			GetComponent<TreeBehavior>().enabled = false;
+			ForestPlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
+			GetComponent<ForestTreeBehavior>().enabled = false;
+
+			//add to homestead stockpile
 		}
 
 		void SetFallTowardsPosition(int side)

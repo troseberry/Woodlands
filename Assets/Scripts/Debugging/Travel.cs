@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LogBuckingManager : MonoBehaviour 
+public class Travel : MonoBehaviour 
 {
 
-	public void PayoutAndReturn()
+	public void ToHomestead()
 	{
 		SceneNavigation.ToHomestead();
+	}
+
+	public void ToForest()
+	{
+		SceneNavigation.ToForest();
 	}
 }

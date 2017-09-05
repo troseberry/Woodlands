@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TreeFelling
+namespace Forest
 {
 	public class SnapSpot : MonoBehaviour 
 	{
-		private TreeBehavior parentTree;
+		private ForestTreeBehavior parentTree;
 
 		void Start()
 		{
-			parentTree = transform.parent.GetComponent<TreeBehavior>();
+			parentTree = transform.parent.GetComponent<ForestTreeBehavior>();
 		}
 
 		void OnTriggerEnter()
@@ -32,12 +32,12 @@ namespace TreeFelling
 					break;
 			}
 			
-			PlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
+			ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
 		}
 
 		void OnTriggerExit()
 		{
-			PlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+			ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
 		}
 	}
 }

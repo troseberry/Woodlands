@@ -72,14 +72,11 @@ public class PlayerCanvas : MonoBehaviour
 		activeContracts = PlayerContracts.GetActiveContractsList();
 
 		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
-		Debug.Log("Contract Name: " + contractName);
 		int contractIndex = int.Parse(contractName.Substring(9)) - 1;
-		Debug.Log("Contract Index: " + contractIndex);
 		LumberContract currentContract = activeContracts[contractIndex];
 
 		if (currentContract.GetRequiredLumber().HasInStockpile())
 		{
-			Debug.Log("Has In Stockpile: True");
 			currentContract.GetRequiredLumber().SubtractFromStockpile();
 			currentContract.GetPayout().AddToInventory();
 			contracts[contractIndex].SetActive(false);

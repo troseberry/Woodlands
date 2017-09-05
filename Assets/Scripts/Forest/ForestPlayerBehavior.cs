@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
 
-namespace TreeFelling 
+namespace Forest 
 {	
-	public class PlayerBehavior : MonoBehaviour 
+	public class ForestPlayerBehavior : MonoBehaviour 
 	{
-		public static PlayerBehavior PlayerBehaviorReference;
+		public static ForestPlayerBehavior PlayerBehaviorReference;
 
 		private ThirdPersonUserControl userControl;
 
@@ -16,7 +16,7 @@ namespace TreeFelling
 		private bool playerIsLocked;
 		private bool canSnapPlayer;
 
-		private TreeBehavior treeToCut;
+		private ForestTreeBehavior treeToCut;
 		private Transform snapLocation;
 		private int sideToCut;
 
@@ -72,7 +72,7 @@ namespace TreeFelling
 
 		public void SetSnapInfo(bool canSnap) { canSnapPlayer = canSnap; }
 
-		public void SetSnapInfo(TreeBehavior tree, Transform location, bool canSnap, int side)
+		public void SetSnapInfo(ForestTreeBehavior tree, Transform location, bool canSnap, int side)
 		{
 			treeToCut = tree;
 			snapLocation = location;
