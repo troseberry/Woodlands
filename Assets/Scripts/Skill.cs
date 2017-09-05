@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillName {EFFICIENCY, MAX_CONTRACTS, MAX_CURRENCY, MAX_ENERGY, MAX_RESOURCES};
+public enum SkillName {EFFICIENCY, ACTIVE_CONTRACTS, CURRENCY, ENERGY, DEV_RESOURCES, LUMBER_TREES, LUMBER_LOGS, LUMBER_FIREWOOD};
 
 public class Skill 
 {
@@ -99,7 +99,7 @@ public class MaxContractsSkill : Skill
 {
 	public MaxContractsSkill() 
 	{
-		skillName = SkillName.MAX_CONTRACTS;
+		skillName = SkillName.ACTIVE_CONTRACTS;
 		tierValues = new int[5] {1, 3, 5, 8, 10};
 		currentTier = 1;
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -113,7 +113,7 @@ public class MaxContractsSkill : Skill
 	}
 	public MaxContractsSkill(int tier) 
 	{
-		skillName = SkillName.MAX_CONTRACTS;
+		skillName = SkillName.ACTIVE_CONTRACTS;
 		tierValues = new int[5] {1, 3, 5, 8, 10};	
 		currentTier = tier;
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -131,7 +131,7 @@ public class MaxCurrencySkill : Skill
 {
 	public MaxCurrencySkill() 
 	{
-		skillName = SkillName.MAX_CURRENCY;
+		skillName = SkillName.CURRENCY;
 		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
 		currentTier = 1; 
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -145,7 +145,7 @@ public class MaxCurrencySkill : Skill
 	}
 	public MaxCurrencySkill(int tier) 
 	{
-		skillName = SkillName.MAX_CURRENCY;
+		skillName = SkillName.CURRENCY;
 		tierValues = new int[5] {500, 1000, 2500, 5000, 10000};
 		currentTier = tier;
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -163,7 +163,7 @@ public class MaxEnergySkill : Skill
 {
 	public MaxEnergySkill() 
 	{
-		skillName = SkillName.MAX_ENERGY;
+		skillName = SkillName.ENERGY;
 		tierValues = new int[5] {20, 40, 60, 80, 100};
 		currentTier = 1;
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -177,7 +177,7 @@ public class MaxEnergySkill : Skill
 	}
 	public MaxEnergySkill(int tier) 
 	{
-		skillName = SkillName.MAX_ENERGY;
+		skillName = SkillName.ENERGY;
 		tierValues = new int[5] {20, 40, 60, 80, 100};
 		currentTier = tier; 
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -195,7 +195,7 @@ public class MaxDevResourcesSkill : Skill
 {
 	public MaxDevResourcesSkill() 
 	{
-		skillName = SkillName.MAX_RESOURCES;
+		skillName = SkillName.DEV_RESOURCES;
 		tierValues = new int[5] {50, 100, 250, 500, 1000};
 		currentTier = 1;
 		upgradeCosts = new DevResourceQuantity[5] {
@@ -209,7 +209,106 @@ public class MaxDevResourcesSkill : Skill
 	}
 	public MaxDevResourcesSkill(int tier) 
 	{
-		skillName = SkillName.MAX_RESOURCES;
+		skillName = SkillName.DEV_RESOURCES;
+		tierValues = new int[5] {50, 100, 250, 500, 1000};
+		currentTier = tier;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+}
+
+
+public class LumberTreesSkill : Skill
+{
+	public LumberTreesSkill() 
+	{
+		skillName = SkillName.LUMBER_TREES;
+		tierValues = new int[5] {5, 10, 25, 50, 100};
+		currentTier = 1;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+	public LumberTreesSkill(int tier) 
+	{
+		skillName = SkillName.LUMBER_TREES;
+		tierValues = new int[5] {5, 10, 25, 50, 100};
+		currentTier = tier;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+}
+
+
+public class LumberLogsSkill : Skill
+{
+	public LumberLogsSkill() 
+	{
+		skillName = SkillName.LUMBER_LOGS;
+		tierValues = new int[5] {25, 50, 100, 250, 500};
+		currentTier = 1;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+	public LumberLogsSkill(int tier) 
+	{
+		skillName = SkillName.LUMBER_LOGS;
+		tierValues = new int[5] {25, 50, 100, 250, 500};
+		currentTier = tier;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+}
+
+
+public class LumberFirewoodSkill : Skill
+{
+	public LumberFirewoodSkill() 
+	{
+		skillName = SkillName.LUMBER_FIREWOOD;
+		tierValues = new int[5] {50, 100, 250, 500, 1000};
+		currentTier = 1;
+		upgradeCosts = new DevResourceQuantity[5] {
+			new DevResourceQuantity(0, 0, 0, 0),
+			new DevResourceQuantity(100, 0, 0, 0),
+			new DevResourceQuantity(250, 0, 0, 0),
+			new DevResourceQuantity(500, 0, 0, 0),
+			new DevResourceQuantity(1000, 0, 0, 0)
+		};
+		canBeUpgraded = (currentTier < upgradeCosts.Length);
+	}
+	public LumberFirewoodSkill(int tier) 
+	{
+		skillName = SkillName.LUMBER_FIREWOOD;
 		tierValues = new int[5] {50, 100, 250, 500, 1000};
 		currentTier = tier;
 		upgradeCosts = new DevResourceQuantity[5] {
