@@ -27,6 +27,7 @@ public class PlayerSkills
 	}
 
 
+	//change these to get/set activeContracts in method names
 	public static ActiveContractsSkill GetContractsSkill() { return contractsSkill; }
 
 	public static int GetContractsTier() { return contractsSkill.GetCurrentTier(); }

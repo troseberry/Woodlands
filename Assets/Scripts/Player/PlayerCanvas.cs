@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//Change this to PlayerHud
+//Change unity _PlayerCanvas to just be PlayerHud
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,8 +16,7 @@ public class PlayerCanvas : MonoBehaviour
 
 
 	//Player Contracts
-	List<LumberContract> activeContracts;
-
+	private List<LumberContract> activeContracts;
 	public GameObject contractsElement;
 	public GameObject[] contracts;
 
@@ -31,60 +33,5 @@ public class PlayerCanvas : MonoBehaviour
 		buildingMaterialsText.text = PlayerInventory.GetBuildingMaterialsValue().ToString();
 		toolPartsText.text = PlayerInventory.GetToolPartsValue().ToString();
 		bookPagesText.text = PlayerInventory.GetBookPagesValue().ToString();
-
-		
-		if (Input.GetButtonDown("Menu Button"))
-		{
-			ToggleContractsMenu();
-		}
-	}
-
-
-	public void ToggleContractsMenu()
-	{
-		contractsElement.SetActive(!contractsElement.activeSelf);
-		if (contractsElement.activeSelf)
-		{
-			//probably don't need to populate every time this is opened?
-			//or maybe do, to get updates from active contracts list
-			PopulateContractsMenu();
-		}
-	}
-
-	void PopulateContractsMenu()
-	{
-		activeContracts = PlayerContracts.GetActiveContractsList();
-
-		for (int i = 0; i < activeContracts.Count; i++)
-		{
-			Transform contract = contracts[i].transform;
-
-			contract.gameObject.SetActive(true);
-
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = activeContracts[i].GetRequiredLumber().ToString();
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = activeContracts[i].GetPayout().ToString();
-			
-		}
-	}
-
-	public void CompleteContract()
-	{
-		activeContracts = PlayerContracts.GetActiveContractsList();
-
-		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.name;
-		int contractIndex = int.Parse(contractName.Substring(9)) - 1;
-		LumberContract currentContract = activeContracts[contractIndex];
-
-		if (currentContract.GetRequiredLumber().HasInStockpile())
-		{
-			currentContract.GetRequiredLumber().SubtractFromStockpile();
-			currentContract.GetPayout().AddToInventory();
-			contracts[contractIndex].SetActive(false);
-		}	
-	}
-
-	public void AbandonContract()
-	{
-		ToggleContractsMenu();
 	}
 }
