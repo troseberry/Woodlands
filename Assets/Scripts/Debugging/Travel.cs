@@ -5,13 +5,23 @@ using UnityEngine;
 public class Travel : MonoBehaviour 
 {
 
+	public void ToForest()
+	{
+		SceneNavigation.ToForest();
+	}
+	
 	public void ToHomestead()
 	{
 		SceneNavigation.ToHomestead();
 	}
 
-	public void ToForest()
+	public void ToMainCabin()
 	{
-		SceneNavigation.ToForest();
+		SceneNavigation.ToMainCabin();
+	}
+
+	public void ToWorkshop()
+	{
+		SceneNavigation.ToWorkshop();
 	}
 }
