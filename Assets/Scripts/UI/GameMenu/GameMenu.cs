@@ -11,6 +11,7 @@ public class GameMenu : MonoBehaviour
 	public RoomsMenu roomsMenu;
 	public ToolsMenu toolsMenu;
 	public ContractsMenu contractsMenu;
+	public ResourcesMenu resourcesMenu;
 
 	void Start () 
 	{
@@ -66,6 +67,12 @@ public class GameMenu : MonoBehaviour
 		contractsMenu.OpenMenu();
 	}
 
+	public void SelectResourcesTab()
+	{
+		CloseMenuTabs();
+		resourcesMenu.OpenMenu();
+	}
+
 
 	void CloseMenuTabs()
 	{
@@ -73,5 +80,6 @@ public class GameMenu : MonoBehaviour
 		roomsMenu.CloseMenu();
 		toolsMenu.CloseMenu();
 		contractsMenu.CloseMenu();
+		resourcesMenu.CloseMenu();
 	}
 }

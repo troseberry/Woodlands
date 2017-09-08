@@ -32,13 +32,6 @@ public class PlayerManager : MonoBehaviour
 	
 	void Update () 
 	{	
-		DebugPanel.Log("Lumber Trees (F): ", HomesteadStockpile.GetTreesCountAtIndex(0));
-		DebugPanel.Log("Lumber Logs (F): ", HomesteadStockpile.GetLogsCountAtIndex(0));
-		DebugPanel.Log("Lumber Firewood (F): ", HomesteadStockpile.GetFirewoodCountAtIndex(0));
-
-
-		DebugPanel.Log("Lumber Trees Tier: ", PlayerSkills.GetLumberTreesTier());
-		DebugPanel.Log("Lumber Logs Tier: ", PlayerSkills.GetLumberLogsTier());
-		DebugPanel.Log("Lumber Firewood Tier: ", PlayerSkills.GetLumberFirewoodTier());
+		
 	}
 }
