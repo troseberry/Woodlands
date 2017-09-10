@@ -59,7 +59,7 @@ public class ConsoleCommands : MonoBehaviour
 	{
 		command = commandDropdown.options[commandDropdown.value].text;
 		commandValue = int.Parse(commandInputField.text);
-		secondaryCommandValue = int.Parse(secondaryCommmandInputField.text);
+		if (secondaryCommmandInputField.text.Length != 0) secondaryCommandValue = int.Parse(secondaryCommmandInputField.text);
 
 		Debug.Log("Command: " + command);
 		Debug.Log("Value: " + commandValue);
