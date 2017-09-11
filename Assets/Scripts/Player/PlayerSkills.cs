@@ -26,6 +26,18 @@ public class PlayerSkills
 		return efficiencySkill.GetTierValueAtIndex(efficiencySkill.GetCurrentTier() - 1);
 	}
 
+	public static DevResourceQuantity GetNextEfficiencyUpgradeCosts() 
+	{ 
+		return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1); 
+	}
+
+	public static string GetNextEfficiencyUpgradeCostsAsString() 
+	{ 
+		return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1).ToString(); 
+	}
+
+
+
 
 	//change these to get/set activeContracts in method names
 	public static ActiveContractsSkill GetContractsSkill() { return contractsSkill; }
@@ -39,6 +51,18 @@ public class PlayerSkills
 		return contractsSkill.GetTierValueAtIndex(contractsSkill.GetCurrentTier() - 1);
 	}
 
+	public static DevResourceQuantity GetNextContractsUpgradeCosts() 
+	{
+		return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1);
+	}
+
+	public static string GetNextContractsUpgradeCostsAsString()
+	{
+		return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1).ToString();
+	}
+
+
+
 
 	public static CurrencySkill GetCurrencySkill() { return currencySkill; }
 
@@ -50,6 +74,18 @@ public class PlayerSkills
 	{
 		return currencySkill.GetTierValueAtIndex(currencySkill.GetCurrentTier() - 1);
 	}
+
+	public static DevResourceQuantity GetNextCurrencyUpgradeCosts()
+	{
+		return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1);
+	}
+
+	public static string GetNextCurrencyUpgradeCostsAsString()
+	{
+		return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1).ToString(); 
+	}
+
+
 
 
 	public static EnergySkill GetEnergySkill() { return energySkill; }
@@ -63,6 +99,18 @@ public class PlayerSkills
 		return energySkill.GetTierValueAtIndex(energySkill.GetCurrentTier() - 1);
 	}
 
+	public static DevResourceQuantity GetNextEnergyUpgradeCosts() 
+	{ 
+		return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1);
+	}
+
+	public static string GetNextEnergyUpgradeCostsAsString() 
+	{
+		return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1).ToString();
+	}
+
+
+
 
 	public static DevResourcesSkill GetDevResourcesSkill() { return devResourceSkill; }
 
@@ -74,6 +122,18 @@ public class PlayerSkills
 	{
 		return devResourceSkill.GetTierValueAtIndex(devResourceSkill.GetCurrentTier() - 1);
 	}
+
+	public static DevResourceQuantity GetNextDevResourcesUpgradeCosts() 
+	{ 
+		return devResourceSkill.GetDevResourceQuantityAtTier(GetDevResourcesTier() + 1);
+	}
+
+	public static string GetNextDevResourcesUpgradeCostsAsString() 
+	{
+		return devResourceSkill.GetDevResourceQuantityAtTier(GetDevResourcesTier() + 1).ToString();
+	}
+
+
 
 
 	public static LumberTreesSkill GetLumberTreesSkill() { return lumberTreesSkill; }
@@ -87,6 +147,18 @@ public class PlayerSkills
 		return lumberTreesSkill.GetTierValueAtIndex(lumberTreesSkill.GetCurrentTier() - 1);
 	}
 
+	public static DevResourceQuantity GetNextLumberTreesUpgradeCosts() 
+	{ 
+		return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1);
+	}
+
+	public static string GetNextLumberTreesUpgradeCostsAsString() 
+	{
+		return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1).ToString();
+	}
+
+
+
 
 	public static LumberLogsSkill GetLumberLogsSkill() { return lumberLogsSkill; }
 
@@ -99,6 +171,18 @@ public class PlayerSkills
 		return lumberLogsSkill.GetTierValueAtIndex(lumberLogsSkill.GetCurrentTier() - 1);
 	}
 
+	public static DevResourceQuantity GetNextLumberLogsUpgradeCosts() 
+	{ 
+		return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1);
+	}
+
+	public static string GetNextLumberLogsUpgradeCostsAsString() 
+	{
+		return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1).ToString();
+	}
+
+
+
 
 	public static LumberFirewoodSkill GetLumberFirewoodSkill() { return lumberFirewoodSkill; }
 
@@ -109,5 +193,15 @@ public class PlayerSkills
 	public static int GetLumberFirewoodValue() 
 	{
 		return lumberFirewoodSkill.GetTierValueAtIndex(lumberFirewoodSkill.GetCurrentTier() - 1);
+	}
+
+	public static DevResourceQuantity GetNextLumberFirewoodUpgradeCosts() 
+	{ 
+		return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1);
+	}
+
+	public static string GetNextLumberFirewoodUpgradeCostsAsString() 
+	{
+		return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1).ToString();
 	}
 }

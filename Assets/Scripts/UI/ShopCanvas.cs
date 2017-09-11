@@ -10,6 +10,22 @@ public class ShopCanvas : MonoBehaviour
 	public GameObject homeImprovementsGroup;
 	public GameObject clothesGroup;
 
+	private Text bedroomResources, kitchenResources, officeResources,studyResources, workshopResources;
+
+
+	void Start()
+	{
+		bedroomResources = roomUpgradesGroup.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+		kitchenResources = roomUpgradesGroup.transform.GetChild(1).GetChild(1).GetComponent<Text>();
+		officeResources = roomUpgradesGroup.transform.GetChild(2).GetChild(1).GetComponent<Text>();
+		studyResources = roomUpgradesGroup.transform.GetChild(3).GetChild(1).GetComponent<Text>();
+		workshopResources = roomUpgradesGroup.transform.GetChild(4).GetChild(1).GetComponent<Text>();
+
+		SelectRoomUpgrades();
+	}
+
+
+
 	void TurnOffAll()
 	{
 		toolsGroup.SetActive(false);
@@ -28,6 +44,7 @@ public class ShopCanvas : MonoBehaviour
 	{
 		TurnOffAll();
 		roomUpgradesGroup.SetActive(true);
+		UpdateRoomResources();
 	}
 
 	public void SelectHomeImprovements()
@@ -40,5 +57,15 @@ public class ShopCanvas : MonoBehaviour
 	{
 		TurnOffAll();
 		clothesGroup.SetActive(true);
+	}
+
+	
+	void UpdateRoomResources()
+	{
+		bedroomResources.text = PlayerRooms.GetNextBedRoomUpgradeCostsAsString();
+		kitchenResources.text = PlayerRooms.GetNextKitchenUpgradeCostsAsString();
+		officeResources.text = PlayerRooms.GetNextOfficeUpgradeCostsAsString();
+		studyResources.text = PlayerRooms.GetNextStudyUpgradeCostsAsString();
+		workshopResources.text = PlayerRooms.GetNextWorkshopUpgradeCostsAsString();
 	}
 }

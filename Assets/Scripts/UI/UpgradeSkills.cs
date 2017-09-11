@@ -1,9 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeSkills : MonoBehaviour 
 {
+
+	private Text contractsCosts, currencyCosts, devResourcesCosts, efficiencyCosts, energyCosts, lumberResourcesCosts;
+
+	void Start()
+	{
+		contractsCosts = transform.GetChild(0).GetChild(1).GetComponent<Text>();
+		currencyCosts = transform.GetChild(1).GetChild(1).GetComponent<Text>();
+		devResourcesCosts = transform.GetChild(2).GetChild(1).GetComponent<Text>();
+		efficiencyCosts = transform.GetChild(3).GetChild(1).GetComponent<Text>();
+		energyCosts = transform.GetChild(4).GetChild(1).GetComponent<Text>();
+		lumberResourcesCosts = transform.GetChild(5).GetChild(1).GetComponent<Text>();
+
+		UpdateSkillsResources();
+		
+	}
+
+	public void UpdateSkillsResources()
+	{
+		contractsCosts.text = PlayerSkills.GetNextContractsUpgradeCostsAsString();
+		currencyCosts.text = PlayerSkills.GetNextCurrencyUpgradeCostsAsString();
+		devResourcesCosts.text = PlayerSkills.GetNextDevResourcesUpgradeCostsAsString();
+		efficiencyCosts.text = PlayerSkills.GetNextEfficiencyUpgradeCostsAsString();
+		energyCosts.text = PlayerSkills.GetNextEnergyUpgradeCostsAsString();
+		// lumberResourcesCosts.text
+	}
 
 	public void UpgradeEfficiency()
 	{
@@ -93,7 +119,8 @@ public class UpgradeSkills : MonoBehaviour
 		}
 	}
 
-	public void UpgradeResources()
+	//change to upgrade dev resources
+	public void UpgradeDevResources()
 	{
 		if (PlayerSkills.GetDevResourcesSkill().CanBeUpgraded())
 		{
@@ -111,7 +138,14 @@ public class UpgradeSkills : MonoBehaviour
 		}
 		else
 		{
-			Debug.Log("Max Tier Reached: MAX RESOURCES");
+			Debug.Log("Max Tier Reached: MAX DEV RESOURCES");
 		}
+	}
+
+
+	//will probably split these up into 3 for each lumber resources
+	public void UpgradeLumberResources()
+	{
+
 	}
 }
