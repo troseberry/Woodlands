@@ -640,6 +640,11 @@ Prefab:
       propertyPath: m_Name
       value: ToWorkshop
       objectReference: {fileID: 0}
+    - target: {fileID: 223918637566970740, guid: b58f82503f4fe4303b7014709c2e4435,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
   m_IsPrefabParent: 0
@@ -860,6 +865,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: CloseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 223918637566970740, guid: b58f82503f4fe4303b7014709c2e4435,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
@@ -1378,6 +1388,11 @@ Prefab:
       propertyPath: m_Name
       value: ToForest
       objectReference: {fileID: 0}
+    - target: {fileID: 223918637566970740, guid: b58f82503f4fe4303b7014709c2e4435,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
   m_IsPrefabParent: 0
@@ -1647,6 +1662,11 @@ Prefab:
     - target: {fileID: 224089988385066154, guid: 687d53a06c4c74a9692e8913b538e0d5,
         type: 2}
       propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223883865987049208, guid: 687d53a06c4c74a9692e8913b538e0d5,
+        type: 2}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
