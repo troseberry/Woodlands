@@ -1,9 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UpgradeTools : MonoBehaviour 
 {
+	private Text fellingAxeCosts, crosscutSawCosts, splittingAxeCosts;
+
+
+	void Start()
+	{
+		fellingAxeCosts = transform.GetChild(0).GetChild(1).GetComponent<Text>();
+		crosscutSawCosts = transform.GetChild(1).GetChild(1).GetComponent<Text>();
+		splittingAxeCosts = transform.GetChild(2).GetChild(1).GetComponent<Text>();
+
+		UpdateToolsResources();
+	}
+
+	void UpdateToolsResources()
+	{
+		fellingAxeCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.FELLING_AXE);
+		crosscutSawCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.CROSSCUT_SAW);
+		splittingAxeCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.SPLITTING_AXE);
+	}
 
 	public void UpgradeFellingAxe()
 	{

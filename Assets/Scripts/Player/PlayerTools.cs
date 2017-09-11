@@ -40,5 +40,18 @@ public class PlayerTools
 	{
 		return ownedTools.Find(tool => tool.GetToolName() == toFind);
 	}
+
+
+	public static DevResourceQuantity GetNextUpgradeCosts(ToolName name)
+	{
+		Tool toUpgrade = GetToolByName(name);
+		return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1);
+	}
+
+	public static string GetNextUpgradeCostsAsString(ToolName name)
+	{
+		Tool toUpgrade = GetToolByName(name);
+		return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1).ToString();
+	}
 	
 }

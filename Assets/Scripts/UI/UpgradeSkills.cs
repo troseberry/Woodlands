@@ -21,7 +21,7 @@ public class UpgradeSkills : MonoBehaviour
 		
 	}
 
-	public void UpdateSkillsResources()
+	void UpdateSkillsResources()
 	{
 		contractsCosts.text = PlayerSkills.GetNextContractsUpgradeCostsAsString();
 		currencyCosts.text = PlayerSkills.GetNextCurrencyUpgradeCostsAsString();
