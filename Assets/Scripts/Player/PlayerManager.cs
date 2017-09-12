@@ -1,11 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour 
 {
+	private static bool playerCreated;
+	private static Transform playerTransform;
+	
+
+	void Awake()
+	{
+		if (!playerCreated)
+		{
+			DontDestroyOnLoad(transform.gameObject);
+			playerCreated = true;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}
+	}
+
 	void Start () 
 	{
+		playerTransform = this.transform;
 		//eventually, load save data
 
 		PlayerTools.AddTool(new Tool(ToolName.FELLING_AXE, 2));
@@ -33,5 +52,10 @@ public class PlayerManager : MonoBehaviour
 	void Update () 
 	{	
 		
+	}
+
+	public static void SetSpawnLocation(int start, int destination)
+	{
+		playerTransform.position = SpawnLocations.ReturnSpawnVector(start, destination);
 	}
 }
