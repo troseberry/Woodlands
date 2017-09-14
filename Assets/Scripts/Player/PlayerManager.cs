@@ -13,7 +13,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		if (!playerCreated)
 		{
-			DontDestroyOnLoad(transform.gameObject);
+			DontDestroyOnLoad(gameObject);
 			playerCreated = true;
 		}
 		else
@@ -56,6 +56,10 @@ public class PlayerManager : MonoBehaviour
 
 	public static void SetSpawnLocation(int start, int destination)
 	{
+		Debug.Log("Player Start Pos: " + playerTransform.position);
+		Debug.Log("Spawn Location Pos: " + SpawnLocations.ReturnSpawnVector(start, destination));
 		playerTransform.position = SpawnLocations.ReturnSpawnVector(start, destination);
+
+		Debug.Log("Player End Pos: " + playerTransform.position);
 	}
 }

@@ -2155,6 +2155,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c0598630d8b405daa849c297e803f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ToHomesteadTrigger: {fileID: 758992537}
+  ToMainCabinTrigger: {fileID: 0}
+  ToWorkshopTrigger: {fileID: 0}
+  ToForestTrigger: {fileID: 0}
 --- !u!1 &275915996
 GameObject:
   m_ObjectHideFlags: 0

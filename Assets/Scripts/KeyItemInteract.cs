@@ -66,6 +66,8 @@ public class KeyItemInteract : MonoBehaviour
 		popupMenu.enabled = true;
 		cameraControl.enabled = false;
 		isMenuOpen = true;
+
+		Debug.Log("Camera Script: " + cameraControl.enabled);
 	}
 
 	public void CloseMenu()
@@ -77,5 +79,7 @@ public class KeyItemInteract : MonoBehaviour
 		popupMenu.enabled = false;
 		cameraControl.enabled = true;
 		isMenuOpen = false;
+
+		Debug.Log("Camera Script: " + cameraControl.enabled);
 	}
 }
