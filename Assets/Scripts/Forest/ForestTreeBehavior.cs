@@ -7,9 +7,24 @@ namespace Forest
 {
 	public class ForestTreeBehavior : MonoBehaviour 
 	{
+		private Rigidbody treeRigidbody;
+
+		Vector3 fallForcePosition;
+
+		//generate this at runtime
+		private QualityGrade qualityGrade = QualityGrade.F;
+
 		int[] sideCutsCount = new int[4] {5, 5, 5, 5};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
 		private bool isMarked = false;
+
+
+		void Start()
+		{
+			treeRigidbody = GetComponent<Rigidbody>();
+			fallForcePosition = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+		}
+
 
 		public bool HasFallen() { return hasFallen; }
 
@@ -18,11 +33,11 @@ namespace Forest
 			if (sideCutsCount[side] > 0)
 			{
 				sideCutsCount[side] --;
-				Debug.Log("Sides: " 
-				+ sideCutsCount[0] + " | " 
-				+ sideCutsCount[1] + " | "
-				+ sideCutsCount[2] + " | "
-				+ sideCutsCount[3]);
+				// Debug.Log("Sides: " 
+				// + sideCutsCount[0] + " | " 
+				// + sideCutsCount[1] + " | "
+				// + sideCutsCount[2] + " | "
+				// + sideCutsCount[3]);
 
 				if (sideCutsCount[side] == 0) Fall(side);
 			}
@@ -30,17 +45,15 @@ namespace Forest
 
 		void Fall(int side)
 		{
-			//wanna change this to be physics based. and give trees rigidbodies
-
 			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
 			if (sideCutsCount[oppositeSide] <= 2)
 			{
 				//fall away
-				SetFallTowardsPosition(oppositeSide);
+				ApplyFallingForce(oppositeSide);
 			}
 			else{
 				//fall towards
-				SetFallTowardsPosition(side);
+				ApplyFallingForce(side);
 			}
 			hasFallen = true;
 
@@ -52,28 +65,29 @@ namespace Forest
 			ForestPlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
-			//add to homestead stockpile
+			HomesteadStockpile.UpdateTreesCountAtGrade(qualityGrade, 1);
+
+			//Visually phase tree out
+			Invoke("PhaseOutTree", 5);
 		}
 
-		void SetFallTowardsPosition(int side)
+		void ApplyFallingForce(int side)
 		{
+			
+			treeRigidbody.constraints = RigidbodyConstraints.None;
 			switch (side)
 			{
 				case 0:
-					transform.eulerAngles = new Vector3(0, 0, 90);
-					transform.position = new Vector3(transform.position.x - 1.5f, .4f, transform.position.z);
+					treeRigidbody.AddForceAtPosition(transform.right * -1, fallForcePosition, ForceMode.Impulse);
 					break;
 				case 1:
-					transform.eulerAngles = new Vector3(0, 0, -90);
-					transform.position = new Vector3(transform.position.x + 1.5f, .4f, transform.position.z);
+					treeRigidbody.AddForceAtPosition(transform.right * 1, fallForcePosition, ForceMode.Impulse);
 					break;
 				case 2:
-					transform.eulerAngles = new Vector3(90, 0, 0);
-					transform.position = new Vector3(transform.position.x, .4f, transform.position.z - 1.5f);
+					treeRigidbody.AddForceAtPosition(transform.forward * -1, fallForcePosition, ForceMode.Impulse);
 					break;
 				case 3:
-					transform.eulerAngles = new Vector3(-90, 0, 0);
-					transform.position = new Vector3(transform.position.x, .4f, transform.position.z + 1.5f);
+					treeRigidbody.AddForceAtPosition(transform.forward * 1, fallForcePosition, ForceMode.Impulse);
 					break;
 			}
 		}
@@ -83,6 +97,12 @@ namespace Forest
 			int randomTag = Random.Range(0, 4);
 			transform.Find("LumberTags").GetChild(randomTag).gameObject.SetActive(true);
 			isMarked = true;
+		}
+
+
+		void PhaseOutTree()
+		{
+			Destroy(gameObject);
 		}
 	}
 }

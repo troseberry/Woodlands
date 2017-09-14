@@ -31,5 +31,6 @@ public class Travel : MonoBehaviour
 	{
 		ToForestTrigger.CloseMenu();
 		SceneNavigation.ToForest();
+		//enabled ForestPlayerBehavior script on player object
 	}
 }

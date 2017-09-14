@@ -59,11 +59,22 @@ namespace Forest
 					RotateAroundTree();
 				}
 
+				//Controller Input
 				if (Input.GetAxis("Left Trigger") == 1)
 				{
 					SwingForward();
 				}
 				else if (Input.GetAxis("Right Trigger") == 1)
+				{
+					SwingBackward();
+				}
+
+				//Mouse & Keyboard Input
+				if (Input.GetMouseButtonDown(0))
+				{
+					SwingForward();
+				}
+				else if (Input.GetMouseButtonDown(1))
 				{
 					SwingBackward();
 				}
