@@ -8,6 +8,8 @@ namespace Forest
 	public class ForestTreeBehavior : MonoBehaviour 
 	{
 		private Rigidbody treeRigidbody;
+		public ShowTreeCuts upperCutBlock;
+		public ShowTreeCuts lowerCutBlock;
 
 		Vector3 fallForcePosition;
 
@@ -32,13 +34,14 @@ namespace Forest
 		{
 			if (sideCutsCount[side] > 0)
 			{
+				//prevents visual overcutting (vertices of any one side extending past 0 to their opposite side)
+				if (sideCutsCount[side] > 1)
+				{
+					upperCutBlock.CutFace(side);
+					lowerCutBlock.CutFace(side);
+				}
 				sideCutsCount[side] --;
-				// Debug.Log("Sides: " 
-				// + sideCutsCount[0] + " | " 
-				// + sideCutsCount[1] + " | "
-				// + sideCutsCount[2] + " | "
-				// + sideCutsCount[3]);
-
+				
 				if (sideCutsCount[side] == 0) Fall(side);
 			}
 		}
