@@ -22,6 +22,22 @@ public class PlayerManager : MonoBehaviour
 		}
 	}
 
+	void OnEnable()
+		{
+			SceneManager.sceneLoaded += OnSceneLoaded;
+		}
+
+		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+		{
+			//Enabled ForestPlayerBehavior script when player enters forest scene
+			GetComponent<Forest.ForestPlayerBehavior>().enabled = (SceneManager.GetActiveScene().buildIndex == 3) ? true : false;
+		}
+
+		void OnDisable()
+		{
+			SceneManager.sceneLoaded -= OnSceneLoaded;
+		}
+
 	void Start () 
 	{
 		playerTransform = this.transform;

@@ -13,31 +13,37 @@ namespace Forest
 			parentTree = transform.parent.GetComponent<ForestTreeBehavior>();
 		}
 
-		void OnTriggerEnter()
+		void OnTriggerEnter(Collider other)
 		{	
-			int side = 0;
-			switch(name)
+			if (other.tag.Equals("Player"))
 			{
-				case "xSnap_01":
-					side = 0;
-					break;
-				case "xSnap_02":
-					side = 1;
-					break;
-				case "zSnap_01":
-					side = 2;
-					break;
-				case "zSnap_02":
-					side = 3;
-					break;
+				int side = 0;
+				switch(name)
+				{
+					case "xSnap_01":
+						side = 0;
+						break;
+					case "xSnap_02":
+						side = 1;
+						break;
+					case "zSnap_01":
+						side = 2;
+						break;
+					case "zSnap_02":
+						side = 3;
+						break;
+				}
+				
+				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
 			}
-			
-			ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
 		}
 
-		void OnTriggerExit()
+		void OnTriggerExit(Collider other)
 		{
-			ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+			if (other.tag.Equals("Player"))
+			{
+				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+			}
 		}
 	}
 }

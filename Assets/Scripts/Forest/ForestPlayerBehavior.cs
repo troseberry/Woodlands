@@ -23,6 +23,7 @@ namespace Forest
 		private bool inForwardPosition = false;
 		private bool inBackwardPosition = true;
 
+		
 
 		void Start () 
 		{
@@ -36,7 +37,6 @@ namespace Forest
 		{
 			DebugPanel.Log("Forward: ", inForwardPosition);
 			DebugPanel.Log("Backward: ", inBackwardPosition);
-
 
 			if (Input.GetButtonDown("Interact") && canSnapPlayer && !treeToCut.HasFallen())
 			{
