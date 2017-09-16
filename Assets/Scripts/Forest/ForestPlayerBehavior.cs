@@ -36,8 +36,6 @@ namespace Forest
 		{
 			DebugPanel.Log("Forward: ", inForwardPosition);
 			DebugPanel.Log("Backward: ", inBackwardPosition);
-			// DebugPanel.Log("Tree: ", treeToCut);
-			// DebugPanel.Log("Side: ", sideToCut);
 
 
 			if (Input.GetButtonDown("Interact") && canSnapPlayer && !treeToCut.HasFallen())
@@ -149,7 +147,7 @@ namespace Forest
 			if (inBackwardPosition)
 			{
 				Debug.Log("Swing Forward");
-				treeToCut.cutSide(sideToCut);
+				treeToCut.CutSide(sideToCut);
 				inForwardPosition = true;
 				inBackwardPosition = false;
 			}

@@ -6,7 +6,7 @@ public class ShowTreeCuts : MonoBehaviour
 {
 	public bool rotatedCube;
 
-	private float cutInc = 1f/8f;
+	private float cutInc = 1f/9f;
 
 	Vector3[] newVertices;
 	Vector2[] newUV;

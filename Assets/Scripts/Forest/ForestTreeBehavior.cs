@@ -16,7 +16,7 @@ namespace Forest
 		//generate this at runtime
 		private QualityGrade qualityGrade = QualityGrade.F;
 
-		int[] sideCutsCount = new int[4] {5, 5, 5, 5};		//order: x_01, x_02, z_01, z_02
+		int[] sideCutsCount = new int[4] {0, 0, 0, 0};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
 		private bool isMarked = false;
 
@@ -30,36 +30,31 @@ namespace Forest
 
 		public bool HasFallen() { return hasFallen; }
 
-		public void cutSide(int side)
+		public void CutSide(int side)
 		{
-			if (sideCutsCount[side] > 0)
+			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
+			int axisCount = sideCutsCount[side] + sideCutsCount[oppositeSide];
+
+			if (axisCount < 9)
 			{
 				//prevents visual overcutting (vertices of any one side extending past 0 to their opposite side)
-				if (sideCutsCount[side] > 1)
-				{
-					upperCutBlock.CutFace(side);
-					lowerCutBlock.CutFace(side);
-				}
-				sideCutsCount[side] --;
-				
-				if (sideCutsCount[side] == 0) Fall(side);
+				upperCutBlock.CutFace(side);
+				lowerCutBlock.CutFace(side);
+				sideCutsCount[side] ++;
+			}
+			else
+			{
+				Fall(side);
 			}
 		}
 
 		void Fall(int side)
 		{
 			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
-			if (sideCutsCount[oppositeSide] <= 2)
-			{
-				//fall away
-				ApplyFallingForce(oppositeSide);
-			}
-			else{
-				//fall towards
-				ApplyFallingForce(side);
-			}
-			hasFallen = true;
 
+			int sideToFall = (sideCutsCount[side] >= sideCutsCount[oppositeSide]) ? side : oppositeSide;
+			ApplyFallingForce(sideToFall);
+			hasFallen = true;
 
 			foreach (SnapSpot snap in transform.GetComponentsInChildren<SnapSpot>())
 			{

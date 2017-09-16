@@ -2570,6 +2570,16 @@ Prefab:
       propertyPath: m_Name
       value: Tree_01
       objectReference: {fileID: 0}
+    - target: {fileID: 65351227679099726, guid: 73c0617b4d7024aab86728fe98ad5cfa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65508841366116374, guid: 73c0617b4d7024aab86728fe98ad5cfa,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
   m_IsPrefabParent: 0
