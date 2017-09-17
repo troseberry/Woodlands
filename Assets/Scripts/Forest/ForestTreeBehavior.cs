@@ -14,7 +14,8 @@ namespace Forest
 		Vector3 fallForcePosition;
 
 		//generate this at runtime
-		private QualityGrade qualityGrade = QualityGrade.F;
+		private float randomQuality;
+		private QualityGrade qualityGrade;
 
 		int[] sideCutsCount = new int[4] {0, 0, 0, 0};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
@@ -25,6 +26,28 @@ namespace Forest
 		{
 			treeRigidbody = GetComponent<Rigidbody>();
 			fallForcePosition = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+
+			randomQuality = Random.value;
+			if (randomQuality < .4)
+			{
+				qualityGrade = QualityGrade.F;
+			}
+			else if (randomQuality < .65)
+			{
+				qualityGrade = QualityGrade.D;
+			}
+			else if (randomQuality < .85)
+			{
+				qualityGrade = QualityGrade.C;
+			}
+			else if (randomQuality < .95)
+			{
+				qualityGrade = QualityGrade.B;
+			}
+			else
+			{
+				qualityGrade = QualityGrade.A;
+			}
 		}
 
 
