@@ -8,7 +8,9 @@ public class PlayerSkills
 	private static ActiveContractsSkill contractsSkill = new ActiveContractsSkill();
 	private static CurrencySkill currencySkill = new CurrencySkill(5);
 	private static EnergySkill energySkill = new EnergySkill();
-	private static DevResourcesSkill devResourceSkill = new DevResourcesSkill();
+	private static BuildingMaterialsSkill buildingMaterialsSkill = new BuildingMaterialsSkill();
+	private static ToolPartsSkill toolPartsSkill = new ToolPartsSkill();
+	private static BookPagesSkill bookPagesSkill = new BookPagesSkill();
 	private static LumberTreesSkill lumberTreesSkill = new LumberTreesSkill();
 	private static LumberLogsSkill lumberLogsSkill = new LumberLogsSkill();
 	private static LumberFirewoodSkill lumberFirewoodSkill = new LumberFirewoodSkill();
@@ -28,12 +30,20 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextEfficiencyUpgradeCosts() 
 	{ 
-		return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1); 
+		if (efficiencySkill.CanBeUpgraded())
+		{
+			return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1); 
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextEfficiencyUpgradeCostsAsString() 
 	{ 
-		return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1).ToString(); 
+		if (efficiencySkill.CanBeUpgraded())
+		{
+			return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1).ToString(); 
+		}
+		return "MAXED";
 	}
 
 
@@ -53,12 +63,20 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextContractsUpgradeCosts() 
 	{
-		return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1);
+		if (contractsSkill.CanBeUpgraded())
+		{
+			return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextContractsUpgradeCostsAsString()
 	{
-		return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1).ToString();
+		if (contractsSkill.CanBeUpgraded())
+		{
+			return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
@@ -77,12 +95,20 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextCurrencyUpgradeCosts()
 	{
-		return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1);
+		if (currencySkill.CanBeUpgraded())
+		{
+			return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextCurrencyUpgradeCostsAsString()
 	{
-		return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1).ToString(); 
+		if (currencySkill.CanBeUpgraded())
+		{
+			return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1).ToString(); 
+		}
+		return "MAXED";
 	}
 
 
@@ -101,36 +127,116 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextEnergyUpgradeCosts() 
 	{ 
-		return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1);
+		if (energySkill.CanBeUpgraded())
+		{
+			return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextEnergyUpgradeCostsAsString() 
 	{
-		return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1).ToString();
+		if (energySkill.CanBeUpgraded())
+		{
+			return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
 
 
-	public static DevResourcesSkill GetDevResourcesSkill() { return devResourceSkill; }
+	public static BuildingMaterialsSkill GetBuildingMaterialsSkill() { return buildingMaterialsSkill; }
 
-	public static int GetDevResourcesTier() { return devResourceSkill.GetCurrentTier(); }
+	public static int GetBuildingMaterialsTier() { return buildingMaterialsSkill.GetCurrentTier(); }
 	
-	public static void SetDevResourcesTier(int newTier) { devResourceSkill.SetCurrentTier(newTier); }
+	public static void SetBuildingMaterialsTier(int newTier) { buildingMaterialsSkill.SetCurrentTier(newTier); }
 
-	public static int GetDevResourcesValue() 
+	public static int GetBuildingMaterialsValue() 
 	{
-		return devResourceSkill.GetTierValueAtIndex(devResourceSkill.GetCurrentTier() - 1);
+		return buildingMaterialsSkill.GetTierValueAtIndex(buildingMaterialsSkill.GetCurrentTier() - 1);
 	}
 
-	public static DevResourceQuantity GetNextDevResourcesUpgradeCosts() 
+	public static DevResourceQuantity GetNextBuildingMaterialsUpgradeCosts() 
 	{ 
-		return devResourceSkill.GetDevResourceQuantityAtTier(GetDevResourcesTier() + 1);
+		if (buildingMaterialsSkill.CanBeUpgraded())
+		{
+			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetBuildingMaterialsTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
-	public static string GetNextDevResourcesUpgradeCostsAsString() 
+	public static string GetNextBuildingMaterialsUpgradeCostsAsString() 
 	{
-		return devResourceSkill.GetDevResourceQuantityAtTier(GetDevResourcesTier() + 1).ToString();
+		if (buildingMaterialsSkill.CanBeUpgraded())
+		{
+			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetBuildingMaterialsTier() + 1).ToString();
+		}
+		return "MAXED";
+	}
+
+
+
+
+	public static ToolPartsSkill GetToolPartsSkill() { return toolPartsSkill; }
+
+	public static int GetToolPartsTier() { return toolPartsSkill.GetCurrentTier(); }
+	
+	public static void SetToolPartsTier(int newTier) { toolPartsSkill.SetCurrentTier(newTier); }
+
+	public static int GetToolPartsValue() 
+	{
+		return toolPartsSkill.GetTierValueAtIndex(toolPartsSkill.GetCurrentTier() - 1);
+	}
+
+	public static DevResourceQuantity GetNextToolPartsUpgradeCosts() 
+	{ 
+		if (toolPartsSkill.CanBeUpgraded())
+		{
+			return toolPartsSkill.GetDevResourceQuantityAtTier(GetToolPartsTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
+	}
+
+	public static string GetNextToolPartsUpgradeCostsAsString() 
+	{
+		if (toolPartsSkill.CanBeUpgraded())
+		{
+			return toolPartsSkill.GetDevResourceQuantityAtTier(GetToolPartsTier() + 1).ToString();
+		}
+		return "MAXED";
+	}
+
+
+
+
+	public static BookPagesSkill GetBookPagesSkill() { return bookPagesSkill; }
+
+	public static int GetBookPagesTier() { return bookPagesSkill.GetCurrentTier(); }
+	
+	public static void SetBookPagesTier(int newTier) { bookPagesSkill.SetCurrentTier(newTier); }
+
+	public static int GetBookPagesValue() 
+	{
+		return bookPagesSkill.GetTierValueAtIndex(bookPagesSkill.GetCurrentTier() - 1);
+	}
+
+	public static DevResourceQuantity GetNextBookPagesUpgradeCosts() 
+	{ 
+		if (bookPagesSkill.CanBeUpgraded())
+		{
+			return bookPagesSkill.GetDevResourceQuantityAtTier(GetBookPagesTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
+	}
+
+	public static string GetNextBookPagesUpgradeCostsAsString() 
+	{
+		if (bookPagesSkill.CanBeUpgraded())
+		{
+			return bookPagesSkill.GetDevResourceQuantityAtTier(GetBookPagesTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
@@ -148,13 +254,21 @@ public class PlayerSkills
 	}
 
 	public static DevResourceQuantity GetNextLumberTreesUpgradeCosts() 
-	{ 
-		return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1);
+	{
+		if (lumberTreesSkill.CanBeUpgraded()) 
+		{
+			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextLumberTreesUpgradeCostsAsString() 
 	{
-		return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1).ToString();
+		if (lumberTreesSkill.CanBeUpgraded())
+		{
+			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
@@ -173,12 +287,20 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextLumberLogsUpgradeCosts() 
 	{ 
-		return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1);
+		if (lumberLogsSkill.CanBeUpgraded())
+		{
+			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextLumberLogsUpgradeCostsAsString() 
 	{
-		return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1).ToString();
+		if (lumberLogsSkill.CanBeUpgraded())
+		{
+			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
@@ -197,11 +319,19 @@ public class PlayerSkills
 
 	public static DevResourceQuantity GetNextLumberFirewoodUpgradeCosts() 
 	{ 
-		return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1);
+		if (lumberFirewoodSkill.CanBeUpgraded())
+		{
+			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextLumberFirewoodUpgradeCostsAsString() 
 	{
-		return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1).ToString();
+		if (lumberFirewoodSkill.CanBeUpgraded())
+		{
+			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 }

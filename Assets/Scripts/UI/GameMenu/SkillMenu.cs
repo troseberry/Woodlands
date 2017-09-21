@@ -7,11 +7,11 @@ public class SkillMenu : MonoBehaviour
 {
 	private bool menuActive = false;
 
-	private Text efficiencyTier, contractsTier, currencyTier, energyTier, devResourceTier, lumberTreesTier, lumberLogsTier, lumberFirewoodTier;
+	private Text efficiencyTier, contractsTier, currencyTier, energyTier, buildingMaterialsTier, toolPartsTier, bookPagesTier, lumberTreesTier, lumberLogsTier, lumberFirewoodTier;
 
-	private Text efficiencyValue, contractsValue, currencyValue, energyValue, devResourceValue, lumberTreesValue, lumberLogsValue, lumberFirewoodValue;
+	private Text efficiencyValue, contractsValue, currencyValue, energyValue, buildingMaterialsValue, toolPartsValue, bookPagesValue, lumberTreesValue, lumberLogsValue, lumberFirewoodValue;
 
-	public GameObject efficiencyGroup, contractsGroup, currencyGroup, energyGroup, devResourceGroup, lumberTreesGroup, lumberLogsGroup, lumberFirewoodGroup;
+	public GameObject efficiencyGroup, contractsGroup, currencyGroup, energyGroup, buildingMaterialsGroup, toolPartsGroup, bookPagesGroup, lumberTreesGroup, lumberLogsGroup, lumberFirewoodGroup;
 
 
 	void Start () 
@@ -28,8 +28,14 @@ public class SkillMenu : MonoBehaviour
 		energyTier = energyGroup.transform.GetChild(1).GetComponent<Text>();
 		energyValue = energyGroup.transform.GetChild(2).GetComponent<Text>();
 
-		devResourceTier = devResourceGroup.transform.GetChild(1).GetComponent<Text>();
-		devResourceValue = devResourceGroup.transform.GetChild(2).GetComponent<Text>();
+		buildingMaterialsTier = buildingMaterialsGroup.transform.GetChild(1).GetComponent<Text>();
+		buildingMaterialsValue = buildingMaterialsGroup.transform.GetChild(2).GetComponent<Text>();
+
+		toolPartsTier = toolPartsGroup.transform.GetChild(1).GetComponent<Text>();
+		toolPartsValue = toolPartsGroup.transform.GetChild(2).GetComponent<Text>();
+
+		bookPagesTier = bookPagesGroup.transform.GetChild(1).GetComponent<Text>();
+		bookPagesValue = bookPagesGroup.transform.GetChild(2).GetComponent<Text>();
 
 		lumberTreesTier = lumberTreesGroup.transform.GetChild(1).GetComponent<Text>();
 		lumberTreesValue = lumberTreesGroup.transform.GetChild(2).GetComponent<Text>();
@@ -57,8 +63,14 @@ public class SkillMenu : MonoBehaviour
 			energyTier.text = "Tier: " + PlayerSkills.GetEnergyTier();
 			energyValue.text = "Capacity: " + PlayerSkills.GetEnergyValue();
 			
-			devResourceTier.text = "Tier: " + PlayerSkills.GetDevResourcesTier();
-			devResourceValue.text = "Capacity: " + PlayerSkills.GetDevResourcesValue();
+			buildingMaterialsTier.text = "Tier: " + PlayerSkills.GetBuildingMaterialsTier();
+			buildingMaterialsValue.text = "Capacity: " + PlayerSkills.GetBuildingMaterialsValue();
+
+			toolPartsTier.text = "Tier: " + PlayerSkills.GetToolPartsTier();
+			toolPartsValue.text = "Capacity: " + PlayerSkills.GetToolPartsValue();
+
+			bookPagesTier.text = "Tier: " + PlayerSkills.GetBookPagesTier();
+			bookPagesValue.text = "Capacity: " + PlayerSkills.GetBookPagesValue();
 
 			lumberTreesTier.text = "Tier: " + PlayerSkills.GetLumberTreesTier();
 			lumberTreesValue.text = "Capacity: " + PlayerSkills.GetLumberTreesValue();

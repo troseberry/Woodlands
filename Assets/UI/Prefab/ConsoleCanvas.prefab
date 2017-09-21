@@ -1376,7 +1376,11 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Energy Tier
       m_Image: {fileID: 0}
-    - m_Text: Dev Resources Tier
+    - m_Text: Building Materials Tier
+      m_Image: {fileID: 0}
+    - m_Text: Tool Parts Tier
+      m_Image: {fileID: 0}
+    - m_Text: Book Pages Tier
       m_Image: {fileID: 0}
     - m_Text: Bedroom Tier
       m_Image: {fileID: 0}

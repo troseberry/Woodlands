@@ -95,8 +95,14 @@ public class ConsoleCommands : MonoBehaviour
 			case "Energy Tier":
 				PlayerSkills.SetEnergyTier(commandValue);
 				break;
-			case "Dev Resources Tier":
-				PlayerSkills.SetDevResourcesTier(commandValue);
+			case "Building Materials Tier":
+				PlayerSkills.SetBuildingMaterialsTier(commandValue);
+				break;
+			case "Tool Parts Tier":
+				PlayerSkills.SetToolPartsTier(commandValue);
+				break;
+			case "Book Pages Tier":
+				PlayerSkills.SetBookPagesTier(commandValue);
 				break;
 
 
