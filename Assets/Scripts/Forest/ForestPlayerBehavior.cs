@@ -1,4 +1,7 @@
-﻿using System.Collections;
+﻿//try and make this work for all logging activities
+//so you don't need a separate one for tree felling, log bucking, and log splitting
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;

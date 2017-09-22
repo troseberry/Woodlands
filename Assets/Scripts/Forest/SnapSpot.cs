@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Forest
 {
@@ -17,24 +18,31 @@ namespace Forest
 		{	
 			if (other.tag.Equals("Player"))
 			{
-				int side = 0;
-				switch(name)
+				if (name.Contains("TreeSnap"))
 				{
-					case "xSnap_01":
-						side = 0;
-						break;
-					case "xSnap_02":
-						side = 1;
-						break;
-					case "zSnap_01":
-						side = 2;
-						break;
-					case "zSnap_02":
-						side = 3;
-						break;
+					int side = 0;
+					switch(name)
+					{
+						case "xSnap_01":
+							side = 0;
+							break;
+						case "xSnap_02":
+							side = 1;
+							break;
+						case "zSnap_01":
+							side = 2;
+							break;
+						case "zSnap_02":
+							side = 3;
+							break;
+					}
+					
+					ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
 				}
-				
-				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
+				else if (name.Contains("LogSnap"))
+				{
+					LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(transform, true);
+				}
 			}
 		}
 
@@ -42,7 +50,14 @@ namespace Forest
 		{
 			if (other.tag.Equals("Player"))
 			{
-				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+				if (name.Contains("TreeSnap"))
+				{
+					ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+				}
+				else if (name.Contains("LogSnap"))
+				{
+					LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(false);
+				}
 			}
 		}
 	}

@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 136143192607491676}
   - component: {fileID: 114266427232244336}
   m_Layer: 2
-  m_Name: zSnap_02
+  m_Name: zTreeSnap_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 136278807725352564}
   - component: {fileID: 114179342541540654}
   m_Layer: 2
-  m_Name: xSnap_01
+  m_Name: xTreeSnap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 136547424708483678}
   - component: {fileID: 114445449158513558}
   m_Layer: 2
-  m_Name: xSnap_02
+  m_Name: xTreeSnap_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,7 @@ GameObject:
   - component: {fileID: 136684277627036238}
   - component: {fileID: 114610515934810534}
   m_Layer: 2
-  m_Name: zSnap_01
+  m_Name: zTreeSnap_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,7 +358,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1242235767684612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10, y: 0.375, z: 0}
+  m_LocalPosition: {x: 7.726235, y: -0.5, z: -15.820202}
   m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 4249071070971976}
