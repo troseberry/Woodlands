@@ -85,6 +85,8 @@ public class LogBuckingPlayerBehavior : MonoBehaviour
 		inBackwardPosition = true;
 
 		playerIsLocked = true;
+
+		LogBuckingGradeSelect.LogBuckingUIRef.ToggleSelectionUI();
 	}
 
 	public void UnsnapPlayer()
@@ -96,6 +98,8 @@ public class LogBuckingPlayerBehavior : MonoBehaviour
 		inBackwardPosition = true;
 
 		playerIsLocked = false;
+
+		LogBuckingGradeSelect.LogBuckingUIRef.ToggleSelectionUI();
 	}
 
 	void PushForward()

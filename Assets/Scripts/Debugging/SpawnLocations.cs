@@ -12,7 +12,7 @@ public class SpawnLocations
 	private static Vector3 homestead_forest = new Vector3(0, 0, -8);
 
 
-	private static Vector3 mainCabin_homestead = new Vector3(0, 0, -7);
+	private static Vector3 mainCabin_homestead = new Vector3(-2.5f, 0, 8);
 	//mainCabin_mainCabin
 	//mainCabin_workshop
 	//mainCabin_forest
