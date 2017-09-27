@@ -39,10 +39,6 @@ namespace Forest
 					
 					ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
 				}
-				else if (name.Contains("LogSnap"))
-				{
-					LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(transform, true);
-				}
 			}
 		}
 
@@ -53,10 +49,6 @@ namespace Forest
 				if (name.Contains("TreeSnap"))
 				{
 					ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
-				}
-				else if (name.Contains("LogSnap"))
-				{
-					LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(false);
 				}
 			}
 		}

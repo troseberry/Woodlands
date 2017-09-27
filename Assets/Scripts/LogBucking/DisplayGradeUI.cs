@@ -1,0 +1,43 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace LogBucking
+{
+	public class DisplayGradeUI : MonoBehaviour 
+	{
+		public static DisplayGradeUI LogBuckingUIRef;
+
+		public Canvas gradeSelectCanvas;
+		private string grade;
+
+		void Start () 
+		{
+			gradeSelectCanvas.enabled = false;
+			grade = gradeSelectCanvas.gameObject.transform.GetChild(1).name;
+		}
+		
+		void OnEnable () 
+		{
+			grade = gradeSelectCanvas.gameObject.transform.GetChild(1).name;
+		}
+		
+		void OnTriggerEnter(Collider other)
+		{
+			if (other.tag == "Player") gradeSelectCanvas.enabled = !gradeSelectCanvas.enabled;
+		}
+
+		void OnTriggerExit(Collider other)
+		{
+			if (other.tag == "Player") gradeSelectCanvas.enabled = !gradeSelectCanvas.enabled;
+		}
+
+		public string GetGradeString() { return grade; }
+
+		public void HideUI()
+		{
+			gradeSelectCanvas.enabled = false;
+		}
+	}
+}

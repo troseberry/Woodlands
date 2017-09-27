@@ -60,7 +60,6 @@ namespace Forest
 
 			if (axisCount < 9)
 			{
-				//prevents visual overcutting (vertices of any one side extending past 0 to their opposite side)
 				upperCutBlock.CutFace(side);
 				lowerCutBlock.CutFace(side);
 				sideCutsCount[side] ++;
