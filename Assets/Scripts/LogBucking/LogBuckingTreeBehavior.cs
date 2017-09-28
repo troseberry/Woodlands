@@ -11,7 +11,8 @@ namespace LogBucking
 
 		private TreePileBehavior associatedTreePile;
 
-		// public ShowTreeCuts[] sawProgressCuts;
+		public ShowTreeCuts[] sawProgressCuts;
+		public GameObject[] logMarks;
 
 		//left most side first
 		int[] locationStrokeCounts = new int[2] {0, 0,};
@@ -38,16 +39,27 @@ namespace LogBucking
 					break;
 			}
 			snapSpots = transform.GetComponentsInChildren<LogBucking.LogSnapSpot>();
-
 			associatedTreePile = transform.GetComponentInParent<TreePileBehavior>();
+			
+			
 		}
 		
 		public void SawLocation(int loc)
 		{
-			if (locationStrokeCounts[loc] < 4)
+			if (locationStrokeCounts[loc] == 0)
 			{
+				logMarks[loc].SetActive(false);
+			}
+
+
+			if (locationStrokeCounts[loc] < 9)
+			{
+				int cut01 = loc == 0 ? 0 : 2;
+				int cut02 = loc== 0 ? 1 : 3;
+
 				locationStrokeCounts[loc] ++;
-				// sawProgressCuts[loc].CutFace(1);
+				sawProgressCuts[cut01].CutFace(3);
+				sawProgressCuts[cut02].CutFace(3);
 			}
 			else
 			{
@@ -63,21 +75,41 @@ namespace LogBucking
 
 			if (locationFullySawed[0] && locationFullySawed[1])
 			{
-				HomesteadStockpile.UpdateLogsCountAtGrade(qualityGrade, 2);
+				HomesteadStockpile.UpdateLogsCountAtGrade(qualityGrade, 3);
 				HomesteadStockpile.UpdateTreesCountAtGrade(qualityGrade, -1);
-				associatedTreePile.UpdateTreePile();
-				ResetInteractableVarialbes();
-			}
-			else
-			{
-				HomesteadStockpile.UpdateLogsCountAtGrade(qualityGrade, 1);
+				
+				Invoke("PhaseOutLogs", 1.0f);
 			}
 		}
 
-		public void ResetInteractableVarialbes()
+		void PhaseOutLogs()
 		{
+			if (HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) > 0)
+			{
+				Invoke("ResetInteractableTree", 1.0f);
+			}
+			else
+			{
+				transform.parent.GetComponentInChildren<DisplayGradeUI>().HideUI();
+			}
+			gameObject.SetActive(false);
+		}
+
+		public void ResetInteractableTree()
+		{
+			for (int i = 0; i < 4; i++)
+			{
+				sawProgressCuts[i].ResetToDefault();
+			}
 			locationStrokeCounts = new int[2] {0, 0,};
 			locationFullySawed = new bool[2] {false, false};
+
+			logMarks[0].SetActive(true);
+			logMarks[1].SetActive(true);
+
+			associatedTreePile.UpdateTreePile();
+
+			gameObject.SetActive(true);
 		}
 
 		public bool IsLocationFullyCut(int loc)

@@ -203,4 +203,21 @@ public class ShowTreeCuts : MonoBehaviour
 		}
 		Redraw();
 	}
+
+	public void ResetToDefault()
+	{
+		vertLeftBottomFront = new Vector3(-0.5f, -0.5f, 0.5f);
+		vertRightBottomFront = new Vector3(0.5f, -0.5f, 0.5f);
+
+		vertLeftBottomBack = new Vector3(-0.5f, -0.5f, -0.5f);
+		vertRightBottomBack = new Vector3(0.5f, -0.5f, -0.5f);
+
+		vertLeftTopFront = new Vector3(-0.5f, 0.5f, 0.5f);
+		vertRightTopFront = new Vector3(0.5f, 0.5f, 0.5f);
+
+		vertLeftTopBack = new Vector3(-0.5f, 0.5f, -0.5f);
+		vertRightTopBack = new Vector3(0.5f, 0.5f, -0.5f);
+
+		Redraw();
+	}
 }

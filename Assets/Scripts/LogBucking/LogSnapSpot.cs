@@ -14,11 +14,6 @@ namespace LogBucking
 			location = name.Contains("01") ? 0 : 1;
 			parentLog = transform.parent.GetComponent<LogBuckingTreeBehavior>();
 		}
-		
-		void Update () 
-		{
-			
-		}
 
 		void OnTriggerEnter(Collider other)
 		{
@@ -35,5 +30,7 @@ namespace LogBucking
 				LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(false);
 			}
 		}
+
+		
 	}
 }

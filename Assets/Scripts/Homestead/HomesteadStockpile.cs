@@ -5,7 +5,7 @@ using UnityEngine;
 public class HomesteadStockpile 
 {
 	//0 - 5 = F - A
-	private static int[] trees = new int[5];
+	private static int[] trees = new int[5]{2, 1, 8, 1, 5};
 	private static int[] logs = new int[5];
 	private static int[] firewood = new int[5];
 

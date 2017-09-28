@@ -10,42 +10,35 @@ namespace LogBucking
 
 		public GameObject interactableTree;
 		public Transform treePileGroup;
-		// public DisplayGradeUI gradeUI;
+		private DisplayGradeUI gradeUI;
 
 		void Start () 
 		{
 			switch(name)
 			{
-				case "LogBucking_GradeA":
+				case "GradeA":
 					qualityGrade = QualityGrade.A;
 					break;
-				case "LogBucking_GradeB":
+				case "GradeB":
 					qualityGrade = QualityGrade.B;
 					break;
-				case "LogBucking_GradeC":
+				case "GradeC":
 					qualityGrade = QualityGrade.C;
 					break;
-				case "LogBucking_GradeD":
+				case "GradeD":
 					qualityGrade = QualityGrade.D;
 					break;
-				case "LogBucking_GradeF":
+				case "GradeF":
 					qualityGrade = QualityGrade.F;
 					break;
 			}
-
+			gradeUI = GetComponentInChildren<DisplayGradeUI>();
 			UpdateTreePile();
-		}
-		
-		void Update () 
-		{
-			
 		}
 
 		public void UpdateTreePile()
 		{
 			int treesCount = HomesteadStockpile.GetTreesCountAtGrade(qualityGrade);
-
-			if (treesCount == 0 && interactableTree.activeSelf) GetComponentInChildren<DisplayGradeUI>().HideUI();
 
 			interactableTree.SetActive(treesCount > 0);
 

@@ -25,12 +25,12 @@ namespace LogBucking
 		
 		void OnTriggerEnter(Collider other)
 		{
-			if (other.tag == "Player") gradeSelectCanvas.enabled = !gradeSelectCanvas.enabled;
+			if (other.tag == "Player") gradeSelectCanvas.enabled = true;
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag == "Player") gradeSelectCanvas.enabled = !gradeSelectCanvas.enabled;
+			if (other.tag == "Player") gradeSelectCanvas.enabled = false;
 		}
 
 		public string GetGradeString() { return grade; }
