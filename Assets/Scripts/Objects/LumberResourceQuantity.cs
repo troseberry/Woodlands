@@ -7,7 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum QualityGrade {F, D, C, B, A};
+public enum QualityGrade {A, B, C, D, F};
 public class LumberResourceQuantity 
 {
 	private int trees;
