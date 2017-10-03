@@ -33,6 +33,10 @@ public class LoggerAnimator : MonoBehaviour
 		ProcessMovementState();
 	}
 
+	public static AnimState GetMovementState() { return movementState; }
+
+	public static AnimState GetActionState() { return actionState; }
+
 
 	#region MOVEMENT METHODS
 		public static void Idle() { loggerAnimator.SetInteger("MovementSpeed", 0); }
@@ -70,30 +74,30 @@ public class LoggerAnimator : MonoBehaviour
 		
 		}
 
-		public static void SetWalkDirection(float vertDir, float horzDir)
-		{	
-			//0 - no dir
-			//1 - pos dir (forward or right)
-			//-1 - neg dir (backward or left)
-			if (vertDir == -1f)
-			{
-				walkDirectionValue = (horzDir == 0)
-					? 4
-					: (horzDir > 0f) ? 5f : 3f;
-			}
-			else if (vertDir == 0f)
-			{
-				walkDirectionValue = (horzDir == 0)
-				? 0
-				: (horzDir > 0f) ? 6f : 2f;
-			}
-			else if (vertDir == 1f)
-			{
-				walkDirectionValue = (horzDir == 0)
-				? 0
-				: (horzDir > 0f) ? 7f : 1f;
-			}
-			loggerAnimator.SetFloat("WalkDirection", walkDirectionValue);
-		}
+		// public static void SetWalkDirection(float vertDir, float horzDir)
+		// {	
+		// 	//0 - no dir
+		// 	//1 - pos dir (forward or right)
+		// 	//-1 - neg dir (backward or left)
+		// 	if (vertDir == -1f)
+		// 	{
+		// 		walkDirectionValue = (horzDir == 0)
+		// 			? 0 //4 - use 4 if don't want character to face camera and walk forward when pressing 'S'
+		// 			: (horzDir > 0f) ? 5f : 3f;
+		// 	}
+		// 	else if (vertDir == 0f)
+		// 	{
+		// 		walkDirectionValue = (horzDir == 0)
+		// 		? 0
+		// 		: (horzDir > 0f) ? 6f : 2f;
+		// 	}
+		// 	else if (vertDir == 1f)
+		// 	{
+		// 		walkDirectionValue = (horzDir == 0)
+		// 		? 0
+		// 		: (horzDir > 0f) ? 7f : 1f;
+		// 	}
+		// 	loggerAnimator.SetFloat("WalkDirection", walkDirectionValue);
+		// }
 	#endregion
 }
