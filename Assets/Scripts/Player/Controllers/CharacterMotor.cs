@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoggerCamera : MonoBehaviour 
+public class CharacterMotor : MonoBehaviour 
 {
 
-	
 	void Start () 
 	{
 		

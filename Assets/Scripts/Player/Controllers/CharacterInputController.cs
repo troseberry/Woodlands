@@ -1,8 +1,12 @@
-﻿using System.Collections;
+﻿// Input Controller: Handles input from player to character. Calls methods in
+// 			         character Animator and Motor scripts. 
+// 			         Should not be applying any forces or using FixedUpdate here
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoggerController : MonoBehaviour 
+public class CharacterInputController : MonoBehaviour 
 {
 
 	float vertInput;
@@ -24,17 +28,38 @@ public class LoggerController : MonoBehaviour
 		DebugPanel.Log("Vertical: ", "Controller", vertInput);
 		DebugPanel.Log("Horizontal: ", "Controller", horzInput);
 
-		// LoggerAnimator.SetWalkDirection(vertInput, horzInput);
+		// CharacterAnimator.SetWalkDirection(vertInput, horzInput);
+
+
+
+		/* MOVEMENT INPUT */
 		if (vertInput != 0 || horzInput != 0)
 		{
-			LoggerAnimator.SetMovementState(AnimState.WALK);
+			CharacterAnimator.SetMovementState(AnimState.WALK);
 		}
 		else if (vertInput == 0 && horzInput == 0)
 		{
-			LoggerAnimator.SetMovementState(AnimState.IDLE);
+			CharacterAnimator.SetMovementState(AnimState.IDLE);
 		}
 
 		DetermineCharacterRotation();
+
+		if (Input.GetButtonDown("Jump"))
+		{
+			CharacterAnimator.SetJumpAsAction();
+		}
+	}
+
+	void FixedUpdate()
+	{
+		if (vertInput != 0 || horzInput != 0)
+		{
+			//apply movement force
+		}
+		else if (vertInput == 0 && horzInput == 0)
+		{
+			//set velocity back to 0
+		}
 	}
 
 
@@ -42,7 +67,7 @@ public class LoggerController : MonoBehaviour
 	public void DetermineCharacterRotation()
     {
         //player rotation follows camera direction when moving. if stationary, player can rotate camera 360 around character
-        if (LoggerAnimator.GetMovementState() != AnimState.IDLE)
+        if (CharacterAnimator.GetMovementState() != AnimState.IDLE)
         {
             if (vertInput == 1f)
             {

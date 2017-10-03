@@ -6,31 +6,34 @@ using UnityEngine;
 public enum AnimState {NONE, IDLE, IDLE_FELLING, IDLE_BUCKING, IDLE_SPLITTING, WALK, RUN, JUMP_STATIONARY, JUMP_WALK, JUMP_RUN, CHOP_FORWARD, CHOP_BACKWARD, SAW_FORWARD, SAW_BACWARD, UPGRADE_TOOL, UPGRADE_SKILL, UPGRADE_ROOM, INTERACT_NEWSPAPER, INTERACT_BED, INTERACT_SHOP, INTERACT_WORKBENCH, INTERACT_BOOKSHELF};
 
 
-public class LoggerAnimator : MonoBehaviour 
+public class CharacterAnimator : MonoBehaviour 
 {
+	private static CharacterAnimator Instance;
 
 	private static AnimState movementState;
 	private static AnimState actionState;
 
 	private static Animator loggerAnimator;
 
-	private static float walkDirectionValue = 0f;
+	private static bool isGrounded = true;
 
 	void Start () 
 	{
+		Instance = this;
+
 		movementState = AnimState.IDLE;
 		actionState = AnimState.NONE;
 		loggerAnimator = GetComponent<Animator>();
-
-		walkDirectionValue = 0f;
 	}
 
 	void Update()
 	{
-		DebugPanel.Log("Movement Speed: ", "Animation", loggerAnimator.GetFloat("MovementSpeed"));
+		DebugPanel.Log("Movement Speed: ", "Animation", loggerAnimator.GetInteger("MovementSpeed"));
 		DebugPanel.Log("Movement State: ", "Animation", movementState);
 		DebugPanel.Log("Action State: ", "Animation", actionState);
+
 		ProcessMovementState();
+		ProcessActionState();
 	}
 
 	public static AnimState GetMovementState() { return movementState; }
@@ -73,31 +76,61 @@ public class LoggerAnimator : MonoBehaviour
 			}
 		
 		}
-
-		// public static void SetWalkDirection(float vertDir, float horzDir)
-		// {	
-		// 	//0 - no dir
-		// 	//1 - pos dir (forward or right)
-		// 	//-1 - neg dir (backward or left)
-		// 	if (vertDir == -1f)
-		// 	{
-		// 		walkDirectionValue = (horzDir == 0)
-		// 			? 0 //4 - use 4 if don't want character to face camera and walk forward when pressing 'S'
-		// 			: (horzDir > 0f) ? 5f : 3f;
-		// 	}
-		// 	else if (vertDir == 0f)
-		// 	{
-		// 		walkDirectionValue = (horzDir == 0)
-		// 		? 0
-		// 		: (horzDir > 0f) ? 6f : 2f;
-		// 	}
-		// 	else if (vertDir == 1f)
-		// 	{
-		// 		walkDirectionValue = (horzDir == 0)
-		// 		? 0
-		// 		: (horzDir > 0f) ? 7f : 1f;
-		// 	}
-		// 	loggerAnimator.SetFloat("WalkDirection", walkDirectionValue);
-		// }
 	#endregion
+
+	public static void Jump() 
+	{ 
+		//Need to do real grounded checks. Add to motor script
+		if (isGrounded)
+		{
+			loggerAnimator.SetBool("JumpBool", true);
+			isGrounded = false;
+
+			Instance.Invoke("ResetJump", 0.9f);
+		}
+	}
+
+	public static void SetJumpAsAction()
+	{
+		if (movementState == AnimState.IDLE)
+		{
+			actionState = AnimState.JUMP_STATIONARY; 
+		}
+		else if (movementState == AnimState.WALK)
+		{
+			actionState = AnimState.JUMP_WALK;
+		}
+		else if (movementState == AnimState.RUN)
+		{
+			actionState = AnimState.JUMP_RUN;
+		}
+		else
+		{
+			actionState = AnimState.NONE;
+		}
+	}
+
+	public static void ProcessActionState()
+	{
+		switch(actionState)
+		{
+			case AnimState.JUMP_STATIONARY:
+				Jump();
+				break;
+			case AnimState.JUMP_WALK:
+				Jump();
+				break;
+			case AnimState.JUMP_RUN:
+				Jump();
+				break;
+		}
+	}
+
+
+	void ResetJump()
+	{
+		actionState = AnimState.NONE;
+		loggerAnimator.SetBool("JumpBool", false);
+		isGrounded = true;
+	}
 }
