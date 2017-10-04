@@ -25,8 +25,8 @@ public class CharacterInputController : MonoBehaviour
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
 
-		DebugPanel.Log("Vertical: ", "Controller", vertInput);
-		DebugPanel.Log("Horizontal: ", "Controller", horzInput);
+		DebugPanel.Log("Vertical Input: ", "Controller", vertInput);
+		DebugPanel.Log("Horizontal Input: ", "Controller", horzInput);
 
 		// CharacterAnimator.SetWalkDirection(vertInput, horzInput);
 
@@ -46,6 +46,7 @@ public class CharacterInputController : MonoBehaviour
 
 		if (Input.GetButtonDown("Jump"))
 		{
+			CharacterMotor.ExecuteJump();
 			CharacterAnimator.SetJumpAsAction();
 		}
 	}

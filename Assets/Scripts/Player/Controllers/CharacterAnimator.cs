@@ -81,12 +81,10 @@ public class CharacterAnimator : MonoBehaviour
 	public static void Jump() 
 	{ 
 		//Need to do real grounded checks. Add to motor script
-		if (isGrounded)
+		if (CharacterMotor.IsGrounded())
 		{
 			loggerAnimator.SetBool("JumpBool", true);
-			isGrounded = false;
-
-			Instance.Invoke("ResetJump", 0.9f);
+			Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
 		}
 	}
 
@@ -124,13 +122,17 @@ public class CharacterAnimator : MonoBehaviour
 				Jump();
 				break;
 		}
+
+		// if (CharacterMotor.IsGrounded() && loggerAnimator.GetBool("JumpBool"))
+		// {
+		// 	// ResetJump();
+		// }
 	}
 
 
-	void ResetJump()
+	public static void ResetJump()
 	{
 		actionState = AnimState.NONE;
 		loggerAnimator.SetBool("JumpBool", false);
-		isGrounded = true;
 	}
 }
