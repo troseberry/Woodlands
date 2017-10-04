@@ -361,7 +361,7 @@ Transform:
   m_GameObject: {fileID: 401740297}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 1, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -884,6 +884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ba114edd194b47c8999de9253c9ba58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  walkSpeed: 14
+  runSpeed: 18
 --- !u!1 &1120383133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,7 +1106,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.5
+      value: -2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49a0e923d39ec3c4c8bb97699e2f2903, type: 2}

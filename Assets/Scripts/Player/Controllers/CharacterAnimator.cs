@@ -122,15 +122,10 @@ public class CharacterAnimator : MonoBehaviour
 				Jump();
 				break;
 		}
-
-		// if (CharacterMotor.IsGrounded() && loggerAnimator.GetBool("JumpBool"))
-		// {
-		// 	// ResetJump();
-		// }
 	}
 
 
-	public static void ResetJump()
+	void ResetJump()
 	{
 		actionState = AnimState.NONE;
 		loggerAnimator.SetBool("JumpBool", false);

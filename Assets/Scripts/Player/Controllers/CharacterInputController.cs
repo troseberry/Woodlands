@@ -35,7 +35,15 @@ public class CharacterInputController : MonoBehaviour
 		/* MOVEMENT INPUT */
 		if (vertInput != 0 || horzInput != 0)
 		{
-			CharacterAnimator.SetMovementState(AnimState.WALK);
+			if (Input.GetButton("Move Speed"))
+			{
+				CharacterAnimator.SetMovementState(AnimState.RUN);
+			}
+			else
+			{
+				CharacterAnimator.SetMovementState(AnimState.WALK);
+			}
+			
 		}
 		else if (vertInput == 0 && horzInput == 0)
 		{
@@ -53,14 +61,7 @@ public class CharacterInputController : MonoBehaviour
 
 	void FixedUpdate()
 	{
-		if (vertInput != 0 || horzInput != 0)
-		{
-			//apply movement force
-		}
-		else if (vertInput == 0 && horzInput == 0)
-		{
-			//set velocity back to 0
-		}
+		CharacterMotor.ProcessLocomotionInput(vertInput, horzInput);
 	}
 
 

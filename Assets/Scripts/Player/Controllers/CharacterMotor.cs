@@ -15,9 +15,13 @@ public class CharacterMotor : MonoBehaviour
 	public float walkSpeed;
 	public float runSpeed;
 
+	private static Vector3 moveVector;
+
+
 	void Start () 
 	{
 		Instance = this;
+		
 		characterCollider = GetComponent<CapsuleCollider>();
 		characterRigidbody = GetComponent<Rigidbody>();
 	}
@@ -59,5 +63,33 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
-	
+
+	public static void ProcessLocomotionInput(float vertInput, float horzInput)
+	{
+		Transform cameraReference = Camera.main.transform;
+		Vector3 cameraForward = Vector3.Scale(cameraReference.forward, new Vector3(1, 0, 1)).normalized;
+
+		moveVector =  Vector3.zero;
+		moveVector = (vertInput * cameraForward) + (horzInput * cameraReference.right);
+
+		if (moveVector.magnitude > 1) moveVector = Vector3.Normalize(moveVector);
+
+		moveVector *= GetMoveSpeed();		//for new vector magnitude after being normalized
+
+		characterRigidbody.AddForce(moveVector * GetMoveSpeed());
+	}
+
+	static float GetMoveSpeed()
+	{
+		switch(CharacterAnimator.GetMovementState())
+		{
+			case AnimState.IDLE:
+				return 0f;
+			case AnimState.WALK:
+				return Instance.walkSpeed;
+			case AnimState.RUN:
+				return Instance.runSpeed;
+		}
+		return 0f;
+	}
 }
