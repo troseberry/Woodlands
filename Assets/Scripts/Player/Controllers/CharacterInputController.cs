@@ -14,6 +14,8 @@ public class CharacterInputController : MonoBehaviour
 
 	private float rotationOffset;
 
+	private static bool canTurn = true;
+
 	void Start () 
 	{
 		vertInput = Input.GetAxisRaw("Vertical");
@@ -65,32 +67,41 @@ public class CharacterInputController : MonoBehaviour
 	}
 
 
+	public static void SetCanTurn(bool turn) { canTurn = turn; }
 
 	public void DetermineCharacterRotation()
     {
-        //player rotation follows camera direction when moving. if stationary, player can rotate camera 360 around character
-        if (CharacterAnimator.GetMovementState() != AnimState.IDLE)
-        {
-            if (vertInput == 1f)
-            {
-                rotationOffset = (horzInput == 0)
-				? 0f
-				: (horzInput > 0) ? 45f : -45f;
-            }
-            else if (vertInput == -1f)
-            {
-				rotationOffset = (horzInput == 0)
-				? 180f
-				: (horzInput > 0) ? -225f : 225f;
-            }
-			else if (vertInput == 0f)
+		if (canTurn)
+		{
+			//player rotation follows camera direction when moving. if stationary, player can rotate camera 360 around character
+			if (CharacterAnimator.GetMovementState() != AnimState.IDLE)
 			{
-				rotationOffset = (horzInput == 0)
-				? 0f
-				: (horzInput > 0) ? 90f : -90f;
-			}
+				if (vertInput == 1f)
+				{
+					rotationOffset = (horzInput == 0)
+					? 0f
+					: (horzInput > 0) ? 45f : -45f;
+				}
+				else if (vertInput == -1f)
+				{
+					rotationOffset = (horzInput == 0)
+					? 180f
+					: (horzInput > 0) ? -225f : 225f;
+				}
+				else if (vertInput == 0f)
+				{
+					rotationOffset = (horzInput == 0)
+					? 0f
+					: (horzInput > 0) ? 90f : -90f;
+				}
 
-			transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + rotationOffset, transform.eulerAngles.z);
-        }  
+				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + rotationOffset, transform.eulerAngles.z);
+			}
+		}
     }
+
+	public static void InitiateLoggingState(AnimState activity)
+	{
+		CharacterAnimator.SetLoggingAsAction(activity);
+	}
 }

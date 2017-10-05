@@ -12,7 +12,7 @@ namespace Forest
 	{
 		public static ForestPlayerBehavior PlayerBehaviorReference;
 
-		private ThirdPersonUserControl userControl;
+		// private ThirdPersonUserControl userControl;
 
 		private RigidbodyConstraints startingConstraints;
 
@@ -32,7 +32,7 @@ namespace Forest
 		{
 			PlayerBehaviorReference = this;
 
-			userControl = GetComponent<ThirdPersonUserControl>();
+			// userControl = GetComponent<ThirdPersonUserControl>();
 			startingConstraints = RigidbodyConstraints.FreezeRotation;
 		}
 		
@@ -95,10 +95,14 @@ namespace Forest
 
 		void SnapPlayer()
 		{
+			CharacterMotor.SetCanMove(false);
+			CharacterInputController.SetCanTurn(false);
+			CharacterInputController.InitiateLoggingState(AnimState.IDLE_FELLING);
+
 			transform.position = snapLocation.position;
 			transform.rotation = snapLocation.rotation;
 
-			userControl.enabled = false;
+			// userControl.enabled = false;
 			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 			inForwardPosition = false;
@@ -109,7 +113,11 @@ namespace Forest
 
 		public void UnsnapPlayer()
 		{
-			userControl.enabled = true;
+			CharacterMotor.SetCanMove(true);
+			CharacterInputController.SetCanTurn(true);
+			CharacterInputController.InitiateLoggingState(AnimState.NONE);
+
+			// userControl.enabled = true;
 			GetComponent<Rigidbody>().constraints = startingConstraints;
 			
 			inForwardPosition = false;
@@ -149,6 +157,7 @@ namespace Forest
 		{
 			if (inBackwardPosition)
 			{
+				CharacterAnimator.ChopForward();
 				Debug.Log("Swing Forward");
 				treeToCut.CutSide(sideToCut);
 				inForwardPosition = true;
@@ -160,6 +169,7 @@ namespace Forest
 		{
 			if (inForwardPosition)
 			{
+				CharacterAnimator.ChopBackward();
 				Debug.Log("Swing Backward");
 				inBackwardPosition = true;
 				inForwardPosition = false;

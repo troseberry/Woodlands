@@ -78,36 +78,6 @@ public class CharacterAnimator : MonoBehaviour
 		}
 	#endregion
 
-	public static void Jump() 
-	{ 
-		//Need to do real grounded checks. Add to motor script
-		if (CharacterMotor.IsGrounded())
-		{
-			loggerAnimator.SetBool("JumpBool", true);
-			Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
-		}
-	}
-
-	public static void SetJumpAsAction()
-	{
-		if (movementState == AnimState.IDLE)
-		{
-			actionState = AnimState.JUMP_STATIONARY; 
-		}
-		else if (movementState == AnimState.WALK)
-		{
-			actionState = AnimState.JUMP_WALK;
-		}
-		else if (movementState == AnimState.RUN)
-		{
-			actionState = AnimState.JUMP_RUN;
-		}
-		else
-		{
-			actionState = AnimState.NONE;
-		}
-	}
-
 	public static void ProcessActionState()
 	{
 		switch(actionState)
@@ -121,13 +91,89 @@ public class CharacterAnimator : MonoBehaviour
 			case AnimState.JUMP_RUN:
 				Jump();
 				break;
+			case AnimState.IDLE_FELLING:
+				IdleTreeFelling();
+				break;
+			case AnimState.IDLE_BUCKING:
+				IdleLogBucking();
+				break;
+			case AnimState.IDLE_SPLITTING:
+				IdleFirewoodSplitting();
+				break;
 		}
 	}
 
 
-	void ResetJump()
-	{
-		actionState = AnimState.NONE;
-		loggerAnimator.SetBool("JumpBool", false);
-	}
+	#region JUMP METHODS
+		public static void Jump() 
+		{ 
+			if (CharacterMotor.IsGrounded())
+			{
+				loggerAnimator.SetBool("JumpBool", true);
+				Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
+			}
+		}
+
+		public static void SetJumpAsAction()
+		{
+			if (movementState == AnimState.IDLE)
+			{
+				actionState = AnimState.JUMP_STATIONARY; 
+			}
+			else if (movementState == AnimState.WALK)
+			{
+				actionState = AnimState.JUMP_WALK;
+			}
+			else if (movementState == AnimState.RUN)
+			{
+				actionState = AnimState.JUMP_RUN;
+			}
+			else
+			{
+				actionState = AnimState.NONE;
+			}
+		}
+
+		void ResetJump()
+		{
+			actionState = AnimState.NONE;
+			loggerAnimator.SetBool("JumpBool", false);
+		}
+	#endregion
+
+	#region LOGGING ACTIVITY METHODS
+		public static void IdleTreeFelling() 
+		{ 
+			loggerAnimator.SetInteger("LoggingActivity", 1); 
+		}
+
+		public static void IdleLogBucking() 
+		{ 
+			loggerAnimator.SetInteger("LoggingActivity", 2); 
+		}		
+
+		public static void IdleFirewoodSplitting() 
+		{ 
+			loggerAnimator.SetInteger("LoggingActivity", 3); 
+		}
+
+		public static void SetLoggingAsAction(AnimState newState)
+		{
+			if (newState == AnimState.IDLE_FELLING || newState == AnimState.IDLE_BUCKING || newState == AnimState.IDLE_SPLITTING)
+			{
+				actionState = newState;
+			}
+			else
+			{
+				loggerAnimator.SetInteger("LoggingActivity", 0);
+				actionState = AnimState.NONE;
+			}
+		}
+
+		public static void ChopFull()  { loggerAnimator.SetTrigger("ChopFull"); }
+
+		public static void ChopForward() { loggerAnimator.SetTrigger("ChopForward"); }
+
+		public static void ChopBackward()  { loggerAnimator.SetTrigger("ChopBackward"); }
+	#endregion
 }

@@ -9,7 +9,7 @@ namespace LogBucking
 	{	
 		public static LogBuckingPlayerBehavior LogBuckingPBRef;
 
-		private ThirdPersonUserControl userControl;
+		// private ThirdPersonUserControl userControl;
 
 		private RigidbodyConstraints startingConstraints;
 
@@ -27,7 +27,7 @@ namespace LogBucking
 		{
 			LogBuckingPBRef = this;
 
-			userControl = GetComponent<ThirdPersonUserControl>();
+			// userControl = GetComponent<ThirdPersonUserControl>();
 			startingConstraints = RigidbodyConstraints.FreezeRotation;
 		}
 		
@@ -81,10 +81,14 @@ namespace LogBucking
 
 		void SnapPlayer()
 		{
+			CharacterMotor.SetCanMove(false);
+			CharacterInputController.SetCanTurn(false);
+			CharacterInputController.InitiateLoggingState(AnimState.IDLE_BUCKING);
+
 			transform.position = snapLocation.position;
 			transform.rotation = snapLocation.rotation;
 
-			userControl.enabled = false;
+			// userControl.enabled = false;
 			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 			inForwardPosition = false;
@@ -95,7 +99,11 @@ namespace LogBucking
 
 		public void UnsnapPlayer()
 		{
-			userControl.enabled = true;
+			CharacterMotor.SetCanMove(true);
+			CharacterInputController.SetCanTurn(true);
+			CharacterInputController.InitiateLoggingState(AnimState.NONE);
+
+			// userControl.enabled = true;
 			GetComponent<Rigidbody>().constraints = startingConstraints;
 			
 			inForwardPosition = false;

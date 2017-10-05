@@ -11,6 +11,7 @@ public class CharacterMotor : MonoBehaviour
 
 	private static bool isGrounded = true;
 	private static bool doJump = false;
+	private static bool canMove = true;
 
 	public float walkSpeed;
 	public float runSpeed;
@@ -21,7 +22,7 @@ public class CharacterMotor : MonoBehaviour
 	void Start () 
 	{
 		Instance = this;
-		
+
 		characterCollider = GetComponent<CapsuleCollider>();
 		characterRigidbody = GetComponent<Rigidbody>();
 	}
@@ -63,20 +64,27 @@ public class CharacterMotor : MonoBehaviour
 		}
 	}
 
+	public static void SetCanMove(bool move)
+	{
+		canMove = move;
+	}
 
 	public static void ProcessLocomotionInput(float vertInput, float horzInput)
 	{
-		Transform cameraReference = Camera.main.transform;
-		Vector3 cameraForward = Vector3.Scale(cameraReference.forward, new Vector3(1, 0, 1)).normalized;
+		if (canMove)
+		{
+			Transform cameraReference = Camera.main.transform;
+			Vector3 cameraForward = Vector3.Scale(cameraReference.forward, new Vector3(1, 0, 1)).normalized;
 
-		moveVector =  Vector3.zero;
-		moveVector = (vertInput * cameraForward) + (horzInput * cameraReference.right);
+			moveVector =  Vector3.zero;
+			moveVector = (vertInput * cameraForward) + (horzInput * cameraReference.right);
 
-		if (moveVector.magnitude > 1) moveVector = Vector3.Normalize(moveVector);
+			if (moveVector.magnitude > 1) moveVector = Vector3.Normalize(moveVector);
 
-		moveVector *= GetMoveSpeed();		//for new vector magnitude after being normalized
+			moveVector *= GetMoveSpeed();		//for new vector magnitude after being normalized
 
-		characterRigidbody.AddForce(moveVector * GetMoveSpeed());
+			characterRigidbody.AddForce(moveVector * GetMoveSpeed());
+		}
 	}
 
 	static float GetMoveSpeed()
