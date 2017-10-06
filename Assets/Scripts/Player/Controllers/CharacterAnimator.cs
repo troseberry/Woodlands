@@ -108,7 +108,8 @@ public class CharacterAnimator : MonoBehaviour
 		public static void Jump() 
 		{ 
 			if (CharacterMotor.IsGrounded())
-			{
+			{	
+				//change this to be a trigger. with transition with exit time
 				loggerAnimator.SetBool("JumpBool", true);
 				Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
 			}
@@ -172,13 +173,13 @@ public class CharacterAnimator : MonoBehaviour
 
 		public static void ChopFull()  { loggerAnimator.SetTrigger("ChopFull"); }
 
-		public static void ChopForward() { loggerAnimator.SetTrigger("ChopForward"); }
+		public static void ChopForward() { loggerAnimator.SetTrigger("SwingForward"); }
 
-		public static void ChopBackward()  { loggerAnimator.SetTrigger("ChopBackward"); }
+		public static void ChopBackward()  { loggerAnimator.SetTrigger("SwingBackward"); }
 
-		public static void SawForward() { loggerAnimator.SetTrigger("SawForward"); }
+		public static void SawForward() { loggerAnimator.SetTrigger("PushForward"); }
 
-		public static void SawBackward() { loggerAnimator.SetTrigger("SawBackward"); }
+		public static void SawBackward() { loggerAnimator.SetTrigger("PullBackward"); }
 
 	#endregion
 }
