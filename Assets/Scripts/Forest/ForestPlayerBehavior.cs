@@ -23,8 +23,8 @@ namespace Forest
 		private Transform snapLocation;
 		private int sideToCut;
 
-		private bool inForwardPosition = false;
-		private bool inBackwardPosition = true;
+		private bool inForwardPosition = true;
+		private bool inBackwardPosition = false;
 
 		
 
@@ -105,8 +105,8 @@ namespace Forest
 			// userControl.enabled = false;
 			GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
-			inForwardPosition = false;
-			inBackwardPosition = true;
+			inForwardPosition = true;
+			inBackwardPosition = false;
 
 			playerIsLocked = true;
 		}
@@ -120,8 +120,8 @@ namespace Forest
 			// userControl.enabled = true;
 			GetComponent<Rigidbody>().constraints = startingConstraints;
 			
-			inForwardPosition = false;
-			inBackwardPosition = true;
+			inForwardPosition = true;
+			inBackwardPosition = false;
 
 			playerIsLocked = false;
 		}
@@ -148,8 +148,8 @@ namespace Forest
 				transform.eulerAngles = new Vector3(0, 90, 0);
 			}
 
-			inForwardPosition = false;
-			inBackwardPosition = true;
+			inForwardPosition = true;
+			inBackwardPosition = false;
 		}
 
 		
