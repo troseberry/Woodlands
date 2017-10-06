@@ -38,9 +38,6 @@ namespace Forest
 		
 		void Update () 
 		{
-			DebugPanel.Log("Forward: ", inForwardPosition);
-			DebugPanel.Log("Backward: ", inBackwardPosition);
-
 			if (Input.GetButtonDown("Interact") && canSnapPlayer && !treeToCut.HasFallen())
 			{
 				if (!playerIsLocked)
@@ -158,7 +155,6 @@ namespace Forest
 			if (inBackwardPosition)
 			{
 				CharacterAnimator.ChopForward();
-				Debug.Log("Swing Forward");
 				treeToCut.CutSide(sideToCut);
 				inForwardPosition = true;
 				inBackwardPosition = false;
@@ -170,7 +166,6 @@ namespace Forest
 			if (inForwardPosition)
 			{
 				CharacterAnimator.ChopBackward();
-				Debug.Log("Swing Backward");
 				inBackwardPosition = true;
 				inForwardPosition = false;
 			}

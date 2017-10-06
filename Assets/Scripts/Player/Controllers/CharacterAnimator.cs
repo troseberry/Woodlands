@@ -175,5 +175,10 @@ public class CharacterAnimator : MonoBehaviour
 		public static void ChopForward() { loggerAnimator.SetTrigger("ChopForward"); }
 
 		public static void ChopBackward()  { loggerAnimator.SetTrigger("ChopBackward"); }
+
+		public static void SawForward() { loggerAnimator.SetTrigger("SawForward"); }
+
+		public static void SawBackward() { loggerAnimator.SetTrigger("SawBackward"); }
+
 	#endregion
 }

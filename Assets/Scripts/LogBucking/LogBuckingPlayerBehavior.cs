@@ -116,7 +116,7 @@ namespace LogBucking
 		{
 			if (inBackwardPosition)
 			{
-				// Debug.Log("Push Forward");
+				CharacterAnimator.SawForward();
 				logToSaw.SawLocation(locationToSaw);
 				inForwardPosition = true;
 				inBackwardPosition = false;
@@ -127,7 +127,7 @@ namespace LogBucking
 		{
 			if (inForwardPosition)
 			{
-				// Debug.Log("Pull Backward");
+				CharacterAnimator.SawBackward();
 				inBackwardPosition = true;
 				inForwardPosition = false;
 			}
