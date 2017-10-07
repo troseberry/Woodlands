@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace LogBucking
 {
-	public class TreePileBehavior : MonoBehaviour 
+	public class FelledTreePileBehavior : MonoBehaviour 
 	{
 		QualityGrade qualityGrade;
 
-		public GameObject interactableTree;
-		public Transform treePileGroup;
+		public GameObject interactableFelledTree;
+		public Transform felledTreePileGroup;
 		private DisplayGradeUI gradeUI;
 
 		void Start () 
@@ -33,21 +33,21 @@ namespace LogBucking
 					break;
 			}
 			gradeUI = GetComponentInChildren<DisplayGradeUI>();
-			UpdateTreePile();
+			UpdateFelledTreePile();
 		}
 
-		public void UpdateTreePile()
+		public void UpdateFelledTreePile()
 		{
 			int treesCount = HomesteadStockpile.GetTreesCountAtGrade(qualityGrade);
 
-			interactableTree.SetActive(treesCount > 0);
+			interactableFelledTree.SetActive(treesCount > 0);
 
-			treePileGroup.GetChild(0).gameObject.SetActive(treesCount > 6);
-			treePileGroup.GetChild(1).gameObject.SetActive(treesCount > 5);
-			treePileGroup.GetChild(2).gameObject.SetActive(treesCount > 4);
-			treePileGroup.GetChild(3).gameObject.SetActive(treesCount > 3);
-			treePileGroup.GetChild(4).gameObject.SetActive(treesCount > 2);
-			treePileGroup.GetChild(5).gameObject.SetActive(treesCount > 1);
+			felledTreePileGroup.GetChild(0).gameObject.SetActive(treesCount > 6);
+			felledTreePileGroup.GetChild(1).gameObject.SetActive(treesCount > 5);
+			felledTreePileGroup.GetChild(2).gameObject.SetActive(treesCount > 4);
+			felledTreePileGroup.GetChild(3).gameObject.SetActive(treesCount > 3);
+			felledTreePileGroup.GetChild(4).gameObject.SetActive(treesCount > 2);
+			felledTreePileGroup.GetChild(5).gameObject.SetActive(treesCount > 1);
 		}
 	}
 }

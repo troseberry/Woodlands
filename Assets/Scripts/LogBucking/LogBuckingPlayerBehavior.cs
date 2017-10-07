@@ -16,7 +16,7 @@ namespace LogBucking
 		private bool playerIsLocked = false;
 		private bool canSnapPlayer = false;
 
-		private LogBuckingTreeBehavior logToSaw;
+		private FelledTreeBehavior felledTreeToSaw;
 		private Transform snapLocation;
 		private int locationToSaw;
 
@@ -33,7 +33,7 @@ namespace LogBucking
 		
 		void Update () 
 		{
-			if (Input.GetButtonDown("Interact") && canSnapPlayer && !logToSaw.IsLocationFullyCut(locationToSaw))
+			if (Input.GetButtonDown("Interact") && canSnapPlayer && !felledTreeToSaw.IsLocationFullyCut(locationToSaw))
 			{
 				if (!playerIsLocked)
 				{
@@ -71,9 +71,9 @@ namespace LogBucking
 
 		public void SetSnapInfo(bool canSnap) { canSnapPlayer = canSnap; }
 
-		public void SetSnapInfo(LogBuckingTreeBehavior log, Transform location, bool canSnap, int loc)
+		public void SetSnapInfo(FelledTreeBehavior tree, Transform location, bool canSnap, int loc)
 		{
-			logToSaw = log;
+			felledTreeToSaw = tree;
 			snapLocation = location;
 			canSnapPlayer = canSnap;
 			locationToSaw = loc;
@@ -117,7 +117,7 @@ namespace LogBucking
 			if (inBackwardPosition)
 			{
 				CharacterAnimator.SawForward();
-				logToSaw.SawLocation(locationToSaw);
+				felledTreeToSaw.SawLocation(locationToSaw);
 				inForwardPosition = true;
 				inBackwardPosition = false;
 			}

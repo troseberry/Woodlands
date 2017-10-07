@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace LogBucking
 {
-	public class LogSnapSpot : MonoBehaviour 
+	public class FelledTreeSnapSpot : MonoBehaviour 
 	{
-		private LogBuckingTreeBehavior parentLog;
+		private FelledTreeBehavior parentFelledTree;
 		int location;
 
 		void Start () 
 		{
 			location = name.Contains("01") ? 0 : 1;
-			parentLog = transform.parent.GetComponent<LogBuckingTreeBehavior>();
+			parentFelledTree = transform.parent.GetComponent<FelledTreeBehavior>();
 		}
 
 		void OnTriggerEnter(Collider other)
 		{
 			if (other.tag.Equals("Player"))
 			{
-				LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(parentLog, transform, true, location);
+				LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(parentFelledTree, transform, true, location);
 			}
 		}
 

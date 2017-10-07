@@ -78,7 +78,7 @@ namespace Forest
 			ApplyFallingForce(sideToFall);
 			hasFallen = true;
 
-			foreach (SnapSpot snap in transform.GetComponentsInChildren<SnapSpot>())
+			foreach (ForestTreeSnapSpot snap in transform.GetComponentsInChildren<ForestTreeSnapSpot>())
 			{
 				snap.enabled = false;
 			}

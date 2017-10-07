@@ -19,7 +19,7 @@ namespace Forest
 		private bool playerIsLocked;
 		private bool canSnapPlayer;
 
-		private ForestTreeBehavior treeToCut;
+		private ForestTreeBehavior forestTreeToCut;
 		private Transform snapLocation;
 		private int sideToCut;
 
@@ -38,7 +38,7 @@ namespace Forest
 		
 		void Update () 
 		{
-			if (Input.GetButtonDown("Interact") && canSnapPlayer && !treeToCut.HasFallen())
+			if (Input.GetButtonDown("Interact") && canSnapPlayer && !forestTreeToCut.HasFallen())
 			{
 				if (!playerIsLocked)
 				{
@@ -83,7 +83,7 @@ namespace Forest
 
 		public void SetSnapInfo(ForestTreeBehavior tree, Transform location, bool canSnap, int side)
 		{
-			treeToCut = tree;
+			forestTreeToCut = tree;
 			snapLocation = location;
 			canSnapPlayer = canSnap;
 			sideToCut = side;
@@ -155,7 +155,7 @@ namespace Forest
 			if (inBackwardPosition)
 			{
 				CharacterAnimator.ChopForward();
-				treeToCut.CutSide(sideToCut);
+				forestTreeToCut.CutSide(sideToCut);
 				inForwardPosition = true;
 				inBackwardPosition = false;
 			}

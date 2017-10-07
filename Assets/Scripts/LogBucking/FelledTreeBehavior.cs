@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace LogBucking
 {
-	public class LogBuckingTreeBehavior : MonoBehaviour 
+	public class FelledTreeBehavior : MonoBehaviour 
 	{
 		private QualityGrade qualityGrade;
-		private LogBucking.LogSnapSpot[] snapSpots;
+		private FelledTreeSnapSpot[] snapSpots;
 
-		private TreePileBehavior associatedTreePile;
+		private FelledTreePileBehavior associatedFelledTreePile;
 
 		public ShowTreeCuts[] sawProgressCuts;
 		public GameObject[] logMarks;
@@ -38,8 +38,8 @@ namespace LogBucking
 					qualityGrade = QualityGrade.F;
 					break;
 			}
-			snapSpots = transform.GetComponentsInChildren<LogBucking.LogSnapSpot>();
-			associatedTreePile = transform.GetComponentInParent<TreePileBehavior>();
+			snapSpots = transform.GetComponentsInChildren<FelledTreeSnapSpot>();
+			associatedFelledTreePile = transform.GetComponentInParent<FelledTreePileBehavior>();
 			
 			
 		}
@@ -86,7 +86,7 @@ namespace LogBucking
 		{
 			if (HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) > 0)
 			{
-				Invoke("ResetInteractableTree", 1.0f);
+				Invoke("ResetInteractableFelledTree", 1.0f);
 			}
 			else
 			{
@@ -95,7 +95,7 @@ namespace LogBucking
 			gameObject.SetActive(false);
 		}
 
-		public void ResetInteractableTree()
+		public void ResetInteractableFelledTree()
 		{
 			for (int i = 0; i < 4; i++)
 			{
@@ -107,7 +107,7 @@ namespace LogBucking
 			logMarks[0].SetActive(true);
 			logMarks[1].SetActive(true);
 
-			associatedTreePile.UpdateTreePile();
+			associatedFelledTreePile.UpdateFelledTreePile();
 
 			gameObject.SetActive(true);
 		}

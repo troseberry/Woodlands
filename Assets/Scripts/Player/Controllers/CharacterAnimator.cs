@@ -109,7 +109,7 @@ public class CharacterAnimator : MonoBehaviour
 		{ 
 			if (CharacterMotor.IsGrounded())
 			{	
-				//change this to be a trigger. with transition with exit time
+				//change this to be a trigger? with transition with exit time
 				loggerAnimator.SetBool("JumpBool", true);
 				Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
 			}
