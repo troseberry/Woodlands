@@ -26,6 +26,7 @@ namespace Forest
 		private bool inForwardPosition = true;
 		private bool inBackwardPosition = false;
 
+		private int animRotOffset = 30;
 		
 
 		void Start () 
@@ -38,6 +39,8 @@ namespace Forest
 		
 		void Update () 
 		{
+			DebugPanel.Log("Euler Y: ", transform.eulerAngles.y);
+
 			if (Input.GetButtonDown("Interact") && canSnapPlayer && !forestTreeToCut.HasFallen())
 			{
 				if (!playerIsLocked)
@@ -54,6 +57,7 @@ namespace Forest
 			{
 				if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Right Bumper") || Input.GetButtonDown("Left Bumper"))
 				{
+					Debug.Log("Rotate Call");
 					RotateAroundTree();
 				}
 
@@ -125,24 +129,32 @@ namespace Forest
 
 		void RotateAroundTree()
 		{
-			if (transform.eulerAngles.y == 0) 
+			Debug.Log("Euler: " + transform.eulerAngles.y);
+			float eulerValY = transform.eulerAngles.y;
+
+			if (Mathf.Approximately(transform.eulerAngles.y, 30f)) 
 			{
-				transform.position = new Vector3(transform.position.x - 2, 0 , transform.position.z);transform.eulerAngles = new Vector3(0, 180, 0);
-			}
-			else if (transform.eulerAngles.y == 90)
-			{
+				Debug.Log("30");
 				transform.position = new Vector3(transform.position.x, 0 , transform.position.z + 2);
-				transform.eulerAngles = new Vector3(0, 270, 0);
+				transform.eulerAngles = new Vector3(0, 210, 0);
 			}
-			else if (transform.eulerAngles.y == 180)
+			else if (Mathf.Approximately(transform.eulerAngles.y, 120f)) 
 			{
+				Debug.Log("120");
 				transform.position = new Vector3(transform.position.x + 2, 0 , transform.position.z);
-				transform.eulerAngles = new Vector3(0, 0, 0);
+				transform.eulerAngles = new Vector3(0, 300, 0);
 			}
-			else if (transform.eulerAngles.y == 270)
+			else if (Mathf.Approximately(transform.eulerAngles.y, 210f)) 
 			{
+				Debug.Log("210");
 				transform.position = new Vector3(transform.position.x, 0 , transform.position.z - 2);
-				transform.eulerAngles = new Vector3(0, 90, 0);
+				transform.eulerAngles = new Vector3(0, 30, 0);
+			}
+			else if (Mathf.Approximately(transform.eulerAngles.y, 300f)) 
+			{
+				Debug.Log("300");
+				transform.position = new Vector3(transform.position.x - 2, 0 , transform.position.z);
+				transform.eulerAngles = new Vector3(0, 120, 0);
 			}
 
 			inForwardPosition = true;
