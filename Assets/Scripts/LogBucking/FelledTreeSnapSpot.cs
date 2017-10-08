@@ -19,7 +19,7 @@ namespace LogBucking
 		{
 			if (other.tag.Equals("Player"))
 			{
-				LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(parentFelledTree, transform, true, location);
+				LoggingActivityPlayerBehavior.SetSnapInfo(parentFelledTree, transform, true, location);
 			}
 		}
 
@@ -27,7 +27,7 @@ namespace LogBucking
 		{
 			if (other.tag.Equals("Player"))
 			{
-				LogBuckingPlayerBehavior.LogBuckingPBRef.SetSnapInfo(false);
+				LoggingActivityPlayerBehavior.SetSnapInfo(false);
 			}
 		}
 

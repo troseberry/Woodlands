@@ -30,7 +30,7 @@ public class PlayerManager : MonoBehaviour
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
 			//Enabled ForestPlayerBehavior script when player enters forest scene
-			GetComponent<Forest.ForestPlayerBehavior>().enabled = (SceneManager.GetActiveScene().buildIndex == 3) ? true : false;
+			// GetComponent<Forest.ForestPlayerBehavior>().enabled = (SceneManager.GetActiveScene().buildIndex == 3) ? true : false;
 		}
 
 		void OnDisable()

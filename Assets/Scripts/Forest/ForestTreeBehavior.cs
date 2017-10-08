@@ -82,7 +82,7 @@ namespace Forest
 			{
 				snap.enabled = false;
 			}
-			ForestPlayerBehavior.PlayerBehaviorReference.UnsnapPlayer();
+			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
 			HomesteadStockpile.UpdateTreesCountAtGrade(qualityGrade, 1);

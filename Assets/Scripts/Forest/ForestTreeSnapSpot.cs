@@ -35,7 +35,7 @@ namespace Forest
 						break;
 				}
 				
-				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(parentTree, transform, true, side);
+				LoggingActivityPlayerBehavior.SetSnapInfo(parentTree, transform, true, side);
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace Forest
 		{
 			if (other.tag.Equals("Player"))
 			{
-				ForestPlayerBehavior.PlayerBehaviorReference.SetSnapInfo(false);
+				LoggingActivityPlayerBehavior.SetSnapInfo(false);
 			}
 		}
 	}

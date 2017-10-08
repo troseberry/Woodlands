@@ -70,7 +70,7 @@ namespace LogBucking
 		void SawThrough(int loc)
 		{
 			snapSpots[loc].enabled = false;
-			LogBuckingPlayerBehavior.LogBuckingPBRef.UnsnapPlayer();
+			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			locationFullySawed[loc] = true;
 
 			if (locationFullySawed[0] && locationFullySawed[1])
