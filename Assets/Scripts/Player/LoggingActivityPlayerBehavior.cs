@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Forest;
 using LogBucking;
+using FirewoodSplitting;
 
 public enum LoggingActivity {NONE, FELLING, BUCKING, SPLITTING};
 
@@ -24,6 +25,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	private static FelledTreeBehavior felledTreeToSaw;
 	private static int markToSaw;
+
+	private static LogBehavior logToSplit;
 
 	// defaults for Tree Felling
 	private static bool inForwardPosition = true;
@@ -67,10 +70,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		markToSaw = mark;
 	}
 
-	// public static void SetSnapInfo(LogBehavior log, Transform snapLoc, bool canSnap)
-	// {
-
-	// }
+	public static void SetSnapInfo(LogBehavior log, Transform snapLoc, bool canSnap)
+	{
+		currentActivity = LoggingActivity.SPLITTING;
+		logToSplit = log;
+		snapLocation = snapLoc;
+		canSnapPlayer = canSnap;
+	}
 
 	void SnapPlayer()
 	{
@@ -92,6 +98,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				break;
 			case LoggingActivity.SPLITTING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_SPLITTING);
+
+				inForwardPosition = true;
+				inBackwardPosition = false;
 				break;
 		}
 
@@ -120,9 +129,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		bool buckingCondition = (currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw));
 
+		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && !logToSplit.HasBeenSplit());
+
 		if (Input.GetButtonDown("Interact") && canSnapPlayer)
 		{
-			if (fellingCondition || buckingCondition)
+			if (fellingCondition || buckingCondition || splittingCondition)
 			{
 				if (!playerIsLocked)
 				{
@@ -155,6 +166,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 					case LoggingActivity.BUCKING:
 						PushForward();
 						break;
+					case LoggingActivity.SPLITTING:
+						SwingDownward();
+						break;
 				}
 			}
 			else if (Input.GetAxis("Right Trigger") == 1 || Input.GetMouseButtonDown(1))
@@ -166,6 +180,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						break;
 					case LoggingActivity.BUCKING:
 						PullBackward();
+						break;
+					case LoggingActivity.SPLITTING:
+						SwingUpward();
 						break;
 				}
 			}
@@ -201,7 +218,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				CharacterAnimator.ChopForward();
+				CharacterAnimator.SwingForward();
 				forestTreeToCut.CutSide(sideToCut);
 				inForwardPosition = true;
 				inBackwardPosition = false;
@@ -212,9 +229,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inForwardPosition)
 			{
-				CharacterAnimator.ChopBackward();
-				inBackwardPosition = true;
+				CharacterAnimator.SwingBackward();
 				inForwardPosition = false;
+				inBackwardPosition = true;
 			}
 		}
 	#endregion
@@ -224,7 +241,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				CharacterAnimator.SawForward();
+				CharacterAnimator.PushForward();
 				felledTreeToSaw.SawLocation(markToSaw);
 				inForwardPosition = true;
 				inBackwardPosition = false;
@@ -235,9 +252,32 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inForwardPosition)
 			{
-				CharacterAnimator.SawBackward();
-				inBackwardPosition = true;
+				CharacterAnimator.PullBackward();
 				inForwardPosition = false;
+				inBackwardPosition = true;
+			}
+		}
+	#endregion
+
+	#region SPLLITTING METHODS
+		void SwingDownward()
+		{
+			if (inBackwardPosition)
+			{
+				CharacterAnimator.SwingDownward();
+				logToSplit.Split();
+				inForwardPosition = true;
+				inBackwardPosition = false;
+			}
+		}
+
+		void SwingUpward()
+		{
+			if (inForwardPosition)
+			{
+				CharacterAnimator.SwingUpward();
+				inForwardPosition = false;
+				inBackwardPosition = true;
 			}
 		}
 	#endregion

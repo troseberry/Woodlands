@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 1b61f4c038967484bb40d26059021d27
 ModelImporter:
-  serializedVersion: 19
+  serializedVersion: 21
   fileIDToRecycleName:
     100000: Axe
     100002: B_Head
@@ -179,6 +179,7 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: ChopVertical_Full
@@ -321,8 +322,8 @@ ModelImporter:
     - serializedVersion: 16
       name: ChopVertical_Forward
       takeName: Take 001
-      firstFrame: 0
-      lastFrame: 20
+      firstFrame: 13
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -459,8 +460,8 @@ ModelImporter:
     - serializedVersion: 16
       name: ChopVertical_Backward
       takeName: Take 001
-      firstFrame: 20
-      lastFrame: 40
+      firstFrame: 0
+      lastFrame: 12
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -600,7 +601,10 @@ ModelImporter:
     globalScale: 0.01
     meshCompression: 0
     addColliders: 0
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
@@ -616,6 +620,7 @@ ModelImporter:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 4
+    normalCalculationMode: 0
   importAnimation: 1
   copyAvatar: 1
   humanDescription:
