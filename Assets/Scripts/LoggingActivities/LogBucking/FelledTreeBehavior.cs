@@ -10,6 +10,7 @@ namespace LogBucking
 		private FelledTreeSnapSpot[] snapSpots;
 
 		private FelledTreePileBehavior associatedFelledTreePile;
+		public FirewoodSplitting.LogPileBehavior associatedLogPile;
 
 		public ShowTreeCuts[] sawProgressCuts;
 		public GameObject[] logMarks;
@@ -92,6 +93,7 @@ namespace LogBucking
 			{
 				transform.parent.GetComponentInChildren<DisplayGradeUI>().HideUI();
 			}
+			associatedLogPile.UpdateLogPile();
 			gameObject.SetActive(false);
 		}
 

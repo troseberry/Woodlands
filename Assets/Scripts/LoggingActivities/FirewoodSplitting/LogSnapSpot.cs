@@ -7,17 +7,19 @@ namespace FirewoodSplitting
 	public class LogSnapSpot : MonoBehaviour 
 	{
 		private LogBehavior parentLog;
+		int index;
 
 		void Start () 
 		{
 			parentLog = transform.parent.GetComponent<LogBehavior>();
+			index = transform.parent.parent.GetSiblingIndex();
 		}
 		
 		void OnTriggerEnter(Collider other)
 		{
 			if (other.tag.Equals("Player"))
 			{
-				LoggingActivityPlayerBehavior.SetSnapInfo(parentLog, transform, true);
+				LoggingActivityPlayerBehavior.SetSnapInfo(parentLog, transform, true, index);
 			}	
 		}
 

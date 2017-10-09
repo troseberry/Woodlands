@@ -44,6 +44,12 @@ namespace FirewoodSplitting
 			HomesteadStockpile.UpdateFirewoodCountAtGrade(qualityGrade, 2);
 			HomesteadStockpile.UpdateLogsCountAtGrade(qualityGrade, -1);
 
+			if (HomesteadStockpile.GetLogsCountAtGrade(qualityGrade) <= 0)
+			{
+				LoggingActivityPlayerBehavior.SetLogsRemaining(HomesteadStockpile.GetLogsCountAtGrade(qualityGrade));
+				LoggingActivityPlayerBehavior.UnsnapPlayer();
+			}
+
 			Invoke("PhaseOutFirewood", 1.0f);
 		}
 

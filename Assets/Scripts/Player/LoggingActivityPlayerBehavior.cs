@@ -27,6 +27,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	private static int markToSaw;
 
 	private static LogBehavior logToSplit;
+	private static int logsRemaining;
 
 	// defaults for Tree Felling
 	private static bool inForwardPosition = true;
@@ -39,6 +40,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	void Update () 
 	{
+		DebugPanel.Log("Current: ", "Logging Activities", currentActivity);
+		DebugPanel.Log("Logs: ", "Logging Activities", logsRemaining);
 		if (currentActivity != LoggingActivity.NONE && canSnapPlayer)
 		{
 			HandleSnapLogic();
@@ -70,12 +73,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		markToSaw = mark;
 	}
 
-	public static void SetSnapInfo(LogBehavior log, Transform snapLoc, bool canSnap)
+	public static void SetSnapInfo(LogBehavior log, Transform snapLoc, bool canSnap, int qualityIndex)
 	{
 		currentActivity = LoggingActivity.SPLITTING;
 		logToSplit = log;
 		snapLocation = snapLoc;
 		canSnapPlayer = canSnap;
+		logsRemaining = HomesteadStockpile.GetLogsCountAtIndex(qualityIndex);
 	}
 
 	void SnapPlayer()
@@ -118,6 +122,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterInputController.SetCanTurn(true);
 		CharacterInputController.InitiateLoggingState(AnimState.NONE);
 
+		currentActivity = LoggingActivity.NONE;
+
 		Instance.GetComponent<Rigidbody>().constraints = startingConstraints;
 
 		playerIsLocked = false;
@@ -129,7 +135,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		bool buckingCondition = (currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw));
 
-		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && !logToSplit.HasBeenSplit());
+		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0);
 
 		if (Input.GetButtonDown("Interact") && canSnapPlayer)
 		{
@@ -264,6 +270,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
+				Debug.Log("Stack Trace");
 				CharacterAnimator.SwingDownward();
 				logToSplit.Split();
 				inForwardPosition = true;
@@ -280,5 +287,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				inBackwardPosition = true;
 			}
 		}
+		
+		public static void SetLogsRemaining(int logs) { logsRemaining = logs; }
+		
+		public static int GetLogsRemaining() { return logsRemaining; }
 	#endregion
 }
