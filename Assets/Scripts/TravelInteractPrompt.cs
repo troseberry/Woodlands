@@ -13,7 +13,7 @@ public class TravelInteractPrompt : MonoBehaviour
 	
 	void Update () 
 	{
-		if (Input.GetButtonDown("Interact"))
+		if (Input.GetButtonDown("Interact") && canInteract)
 		{
 			CallTravelMethod();
 		}
@@ -21,16 +21,22 @@ public class TravelInteractPrompt : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		canInteract = true;
-		uiPrompt.enabled = true;
-		triggerName = gameObject.name;
+		if (other.tag == "Player")
+		{
+			canInteract = true;
+			uiPrompt.enabled = true;
+			triggerName = gameObject.name;
+		}
 	}
 
 	public void OnTriggerExit(Collider other)
 	{
-		canInteract = false;
-		uiPrompt.enabled = false;
-		triggerName = "none";
+		if (other.tag == "Player")
+		{
+			canInteract = false;
+			uiPrompt.enabled = false;
+			triggerName = "none";
+		}
 	}
 
 	void CallTravelMethod()
@@ -53,6 +59,5 @@ public class TravelInteractPrompt : MonoBehaviour
 				Debug.Log("No Valid Travel Scene");
 				break;
 		}
-		Debug.Log(triggerName);
 	}
 }

@@ -9,6 +9,7 @@ public class KeyItemInteract : MonoBehaviour
 	private FreeLookCam cameraControl;
 
 	public Canvas popupMenu;
+	public Canvas interactPrompt;
 	public GameObject[] generalElements;
 	public GameObject[] elementsToDisable;
 	private bool isMenuOpen = false;
@@ -37,7 +38,11 @@ public class KeyItemInteract : MonoBehaviour
 
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player") canInteract = true;
+		if (other.tag == "Player") 
+		{
+			canInteract = true;
+			interactPrompt.enabled = true;
+		}
 	}
 
 	void OnTriggerExit(Collider other)
@@ -45,6 +50,7 @@ public class KeyItemInteract : MonoBehaviour
 		if (other.tag == "Player") 
 		{
 			canInteract = false;
+			interactPrompt.enabled = false;
 			isMenuOpen = false;
 			CloseMenu();
 		}
@@ -62,7 +68,7 @@ public class KeyItemInteract : MonoBehaviour
 			elementsToDisable[i].SetActive(false);
 		}
 
-
+	
 		popupMenu.enabled = true;
 		cameraControl.enabled = false;
 		isMenuOpen = true;
