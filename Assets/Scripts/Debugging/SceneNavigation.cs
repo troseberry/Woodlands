@@ -34,11 +34,4 @@ public static class SceneNavigation
 		SceneManager.LoadScene("Forest");
 		PlayerManager.SetSpawnLocation(currentScene, 3);
 	}
-
-	// static void HandleSpawning(int destinationScene)
-	// {
-	// 	// 0 - 4: homestead, maincabin, workshop, forest
-	// 	currentScene = SceneManager.GetActiveScene().buildIndex;
-	// 	PlayerManager.SetSpawnLocation(currentScene, destinationScene);
-	// }
 }

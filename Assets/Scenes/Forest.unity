@@ -438,51 +438,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &385209285
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 385209287}
-  - component: {fileID: 385209286}
-  m_Layer: 0
-  m_Name: TravelMenu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &385209286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 385209285}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77c0598630d8b405daa849c297e803f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ToHomesteadTrigger: {fileID: 387497737}
-  ToMainCabinTrigger: {fileID: 0}
-  ToWorkshopTrigger: {fileID: 0}
-  ToForestTrigger: {fileID: 0}
---- !u!4 &385209287
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 385209285}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 487196491}
-  m_Father: {fileID: 0}
-  m_RootOrder: 17
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &387497735
 Prefab:
   m_ObjectHideFlags: 0
@@ -535,6 +490,26 @@ Prefab:
       propertyPath: m_Text
       value: To Homestead
       objectReference: {fileID: 0}
+    - target: {fileID: 114613389466328938, guid: b16af8c1f7f714b22ab92d038b1f60a1,
+        type: 2}
+      propertyPath: m_Text
+      value: GO TO HOMESTEAD
+      objectReference: {fileID: 0}
+    - target: {fileID: 223320877388620612, guid: b16af8c1f7f714b22ab92d038b1f60a1,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114613389466328938, guid: b16af8c1f7f714b22ab92d038b1f60a1,
+        type: 2}
+      propertyPath: m_FontData.m_FontSize
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 114613389466328938, guid: b16af8c1f7f714b22ab92d038b1f60a1,
+        type: 2}
+      propertyPath: m_FontData.m_MinSize
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
   m_IsPrefabParent: 0
@@ -554,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popupMenu: {fileID: 1395321546}
+  popupMenu: {fileID: 0}
   generalElements: []
   elementsToDisable: []
 --- !u!1001 &389147209
@@ -851,149 +826,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
   m_IsPrefabParent: 0
---- !u!1001 &487196490
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 385209287}
-    m_Modifications:
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1039486066191208, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
-      propertyPath: m_Name
-      value: ToHomesteadMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 1069915762168096, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
-      propertyPath: m_Name
-      value: ToHomestead
-      objectReference: {fileID: 0}
-    - target: {fileID: 114104266624174760, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_Text
-      value: Travel to the Homestead?
-      objectReference: {fileID: 0}
-    - target: {fileID: 114065191274161444, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 387497737}
-    - target: {fileID: 114065191274161444, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: CloseMenu
-      objectReference: {fileID: 0}
-    - target: {fileID: 114634538533198084, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 385209286}
-    - target: {fileID: 114634538533198084, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ToHomestead
-      objectReference: {fileID: 0}
-    - target: {fileID: 223918637566970740, guid: b58f82503f4fe4303b7014709c2e4435,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: b58f82503f4fe4303b7014709c2e4435, type: 2}
-  m_IsPrefabParent: 0
---- !u!224 &487196491 stripped
-RectTransform:
-  m_PrefabParentObject: {fileID: 224570578437282670, guid: b58f82503f4fe4303b7014709c2e4435,
-    type: 2}
-  m_PrefabInternal: {fileID: 487196490}
 --- !u!4 &531848524 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4540835642591528, guid: 73c0617b4d7024aab86728fe98ad5cfa,
@@ -2049,11 +1881,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
   m_IsPrefabParent: 0
---- !u!223 &1395321546 stripped
-Canvas:
-  m_PrefabParentObject: {fileID: 223918637566970740, guid: b58f82503f4fe4303b7014709c2e4435,
-    type: 2}
-  m_PrefabInternal: {fileID: 487196490}
 --- !u!4 &1459746843 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4540835642591528, guid: 73c0617b4d7024aab86728fe98ad5cfa,
