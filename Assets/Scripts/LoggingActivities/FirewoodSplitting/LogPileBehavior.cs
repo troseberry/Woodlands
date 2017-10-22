@@ -10,7 +10,6 @@ namespace FirewoodSplitting
 
 		public GameObject interactableLog;
 		public Transform logPileGroup;
-		private DisplayGradeUI gradeUI;
 
 		void Start () 
 		{
@@ -32,7 +31,6 @@ namespace FirewoodSplitting
 					qualityGrade = QualityGrade.F;
 					break;
 			}
-			gradeUI = GetComponentInChildren<DisplayGradeUI>();
 			UpdateLogPile();
 		}
 

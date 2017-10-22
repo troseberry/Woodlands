@@ -21,7 +21,7 @@ namespace LogBucking
 
 		void Start()
 		{
-			switch(GetComponent<DisplayGradeUI>().GetGradeString())
+			switch(transform.parent.name)
 			{
 				case "GradeA":
 					qualityGrade = QualityGrade.A;
@@ -91,7 +91,7 @@ namespace LogBucking
 			}
 			else
 			{
-				transform.parent.GetComponentInChildren<DisplayGradeUI>().HideUI();
+				transform.parent.GetComponentInChildren<LoggingActivityInteractPrompt>().HideUI();
 			}
 			associatedLogPile.UpdateLogPile();
 			gameObject.SetActive(false);

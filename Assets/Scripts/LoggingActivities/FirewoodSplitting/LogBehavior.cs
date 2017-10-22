@@ -13,7 +13,7 @@ namespace FirewoodSplitting
 
 		void Start () 
 		{
-			switch(GetComponent<DisplayGradeUI>().GetGradeString())
+			switch(transform.parent.name)
 			{
 				case "GradeA":
 					qualityGrade = QualityGrade.A;
@@ -66,7 +66,7 @@ namespace FirewoodSplitting
 			}
 			else
 			{
-				transform.parent.GetComponentInChildren<DisplayGradeUI>().HideUI();
+				transform.parent.GetComponentInChildren<LoggingActivityInteractPrompt>().HideUI();
 			}
 			gameObject.SetActive(false);
 		}

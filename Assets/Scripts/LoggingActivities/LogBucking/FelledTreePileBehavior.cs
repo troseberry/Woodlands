@@ -10,7 +10,6 @@ namespace LogBucking
 
 		public GameObject interactableFelledTree;
 		public Transform felledTreePileGroup;
-		private DisplayGradeUI gradeUI;
 
 		void Start () 
 		{
@@ -32,7 +31,6 @@ namespace LogBucking
 					qualityGrade = QualityGrade.F;
 					break;
 			}
-			gradeUI = GetComponentInChildren<DisplayGradeUI>();
 			UpdateFelledTreePile();
 		}
 

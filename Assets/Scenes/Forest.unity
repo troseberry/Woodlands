@@ -513,25 +513,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &387497736 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1027130512319988, guid: b16af8c1f7f714b22ab92d038b1f60a1,
-    type: 2}
-  m_PrefabInternal: {fileID: 387497735}
---- !u!114 &387497737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 387497736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4891add9743d24357b4dacf105216191, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupMenu: {fileID: 0}
-  generalElements: []
-  elementsToDisable: []
 --- !u!1001 &389147209
 Prefab:
   m_ObjectHideFlags: 0
@@ -2328,21 +2309,6 @@ Prefab:
     - target: {fileID: 1242235767684612, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
       propertyPath: m_Name
       value: Tree_01
-      objectReference: {fileID: 0}
-    - target: {fileID: 65351227679099726, guid: 73c0617b4d7024aab86728fe98ad5cfa,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 65508841366116374, guid: 73c0617b4d7024aab86728fe98ad5cfa,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 23351796073830196, guid: 73c0617b4d7024aab86728fe98ad5cfa,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73c0617b4d7024aab86728fe98ad5cfa, type: 2}
