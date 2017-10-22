@@ -225,9 +225,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			if (inBackwardPosition)
 			{
 				CharacterAnimator.SwingForward();
-				forestTreeToCut.CutSide(sideToCut);
-				inForwardPosition = true;
-				inBackwardPosition = false;
+				StartCoroutine(SwingForwardAfterAnim());
 			}
 		}
 
@@ -240,6 +238,14 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				inBackwardPosition = true;
 			}
 		}
+
+		IEnumerator SwingForwardAfterAnim()
+		{
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+			forestTreeToCut.CutSide(sideToCut);
+			inForwardPosition = true;
+			inBackwardPosition = false;
+		}
 	#endregion
 
 	#region BUCKING METHODS
@@ -248,9 +254,12 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			if (inBackwardPosition)
 			{
 				CharacterAnimator.PushForward();
+
 				felledTreeToSaw.SawLocation(markToSaw);
 				inForwardPosition = true;
 				inBackwardPosition = false;
+
+				// StartCoroutine(PushForwardAfterAnim());
 			}
 		}
 
@@ -259,10 +268,31 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			if (inForwardPosition)
 			{
 				CharacterAnimator.PullBackward();
+				felledTreeToSaw.SawLocation(markToSaw);
 				inForwardPosition = false;
 				inBackwardPosition = true;
+
+				// StartCoroutine(PullBackwardAfterAnim());
 			}
 		}
+
+		// Having no delay looks okay for log bucking animations
+		// IEnumerator PushForwardAfterAnim()
+		// {
+		// 	yield return new WaitUntil(() => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_ForwardIdle"));
+		// 	felledTreeToSaw.SawLocation(markToSaw);
+		// 	inForwardPosition = true;
+		// 	inBackwardPosition = false;
+		// }
+
+		// IEnumerator PullBackwardAfterAnim()
+		// {
+		// 	yield return new WaitUntil(() => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle"));
+		// 	inForwardPosition = false;
+		// 	inBackwardPosition = true;
+		// }
+
+		
 	#endregion
 
 	#region SPLLITTING METHODS
@@ -270,11 +300,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				Debug.Log("Stack Trace");
 				CharacterAnimator.SwingDownward();
-				logToSplit.Split();
-				inForwardPosition = true;
-				inBackwardPosition = false;
+				StartCoroutine(SwingDownwardAfterAnim());
 			}
 		}
 
@@ -286,6 +313,14 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				inForwardPosition = false;
 				inBackwardPosition = true;
 			}
+		}
+
+		IEnumerator SwingDownwardAfterAnim()
+		{
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Forward"));
+			logToSplit.Split();
+			inForwardPosition = true;
+			inBackwardPosition = false;
 		}
 		
 		public static void SetLogsRemaining(int logs) { logsRemaining = logs; }

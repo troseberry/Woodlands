@@ -17,6 +17,8 @@ public class CharacterAnimator : MonoBehaviour
 
 	private static bool isGrounded = true;
 
+	private static AnimatorStateInfo currentAnimState;
+
 	void Start () 
 	{
 		Instance = this;
@@ -34,6 +36,11 @@ public class CharacterAnimator : MonoBehaviour
 
 		ProcessMovementState();
 		ProcessActionState();
+	}
+
+	public static AnimatorStateInfo GetCurrentAnimState()
+	{
+		return loggerAnimator.GetCurrentAnimatorStateInfo(0);
 	}
 
 	public static AnimState GetMovementState() { return movementState; }

@@ -67,7 +67,8 @@ public class PlayerManager : MonoBehaviour
 	
 	void Update () 
 	{	
-		
+		DebugPanel.Log("Chop Forward: ", "Animator", CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+		DebugPanel.Log("Chop Forward TIme: ", "Animator", CharacterAnimator.GetCurrentAnimState().length);
 	}
 
 	public static void SetSpawnLocation(int start, int destination)
