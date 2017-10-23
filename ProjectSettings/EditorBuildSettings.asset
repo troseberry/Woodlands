@@ -17,3 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Forest.unity
     guid: 0de1d1bbe09384e158d7129c1f1bd36e
+  - enabled: 1
+    path: Assets/Scenes/LumberYard.unity
+    guid: 94627370c542748dc95a2025da07db80

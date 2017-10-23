@@ -34,4 +34,11 @@ public static class SceneNavigation
 		SceneManager.LoadScene("Forest");
 		PlayerManager.SetSpawnLocation(currentScene, 3);
 	}
+
+	public static void ToLumberYard()
+	{
+		currentScene = SceneManager.GetActiveScene().buildIndex;
+		SceneManager.LoadScene("LumberYard");
+		PlayerManager.SetSpawnLocation(currentScene, 4);
+	}
 }

@@ -55,6 +55,9 @@ public class TravelInteractPrompt : MonoBehaviour
 			case "ToForestTrigger":
 				SceneNavigation.ToForest();
 				break;
+			case "ToLumberYardTrigger":
+				SceneNavigation.ToLumberYard();
+				break;
 			default:
 				Debug.Log("No Valid Travel Scene");
 				break;
