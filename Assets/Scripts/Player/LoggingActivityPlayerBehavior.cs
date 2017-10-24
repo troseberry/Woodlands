@@ -21,7 +21,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	private static Transform snapLocation;
 
 	private static ForestTreeBehavior forestTreeToCut;
-	private static int sideToCut;
+	private static int sideToCut = -1;
 
 	private static FelledTreeBehavior felledTreeToSaw;
 	private static int markToSaw;
@@ -42,11 +42,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	{
 		DebugPanel.Log("Current: ", "Logging Activities", currentActivity);
 		DebugPanel.Log("Logs: ", "Logging Activities", logsRemaining);
+		DebugPanel.Log("Can Snap: ", "Logging Activities", canSnapPlayer);
+		DebugPanel.Log("Is Locked: ", "Logging Activities", playerIsLocked);
 		if (currentActivity != LoggingActivity.NONE && canSnapPlayer)
 		{
 			HandleSnapLogic();
 			ProcessInput();
-		}	
+		}
 	}
 
 	public static void SetSnapInfo(bool canSnap) 
@@ -93,24 +95,29 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 				inForwardPosition = true;
 				inBackwardPosition = false;
+
+				Vector3 toLookAt = new Vector3 (forestTreeToCut.transform.position.x, transform.position.y, forestTreeToCut.transform.position.z);
+				transform.LookAt(toLookAt);
 				break;
 			case LoggingActivity.BUCKING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_BUCKING);
 				
 				inForwardPosition = false;
 				inBackwardPosition = true;
+
+				transform.position = snapLocation.position;
+				transform.rotation = snapLocation.rotation;
 				break;
 			case LoggingActivity.SPLITTING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_SPLITTING);
 
 				inForwardPosition = true;
 				inBackwardPosition = false;
+
+				transform.position = snapLocation.position;
+				transform.rotation = snapLocation.rotation;
 				break;
 		}
-
-		transform.position = snapLocation.position;
-		transform.rotation = snapLocation.rotation;
-		
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
@@ -121,8 +128,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterMotor.SetCanMove(true);
 		CharacterInputController.SetCanTurn(true);
 		CharacterInputController.InitiateLoggingState(AnimState.NONE);
-
-		currentActivity = LoggingActivity.NONE;
 
 		Instance.GetComponent<Rigidbody>().constraints = startingConstraints;
 

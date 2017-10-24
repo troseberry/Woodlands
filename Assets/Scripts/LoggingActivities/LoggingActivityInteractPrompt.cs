@@ -8,6 +8,7 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 {
 	public Canvas interactPrompt;
 	private string grade;
+	bool permenantlyDisabled = false;
 
 	void Start () 
 	{
@@ -16,7 +17,7 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if (other.tag == "Player") 
+		if (other.tag == "Player" && !permenantlyDisabled) 
 		{
 			interactPrompt.enabled = true;
 		}
@@ -24,7 +25,7 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 
 	void OnTriggerExit(Collider other)
 	{
-		if (other.tag == "Player") 
+		if (other.tag == "Player" && !permenantlyDisabled) 
 		{
 			interactPrompt.enabled = false;
 		}
@@ -32,6 +33,7 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 
 	public void HideUI()
 	{
+		permenantlyDisabled = true;
 		interactPrompt.enabled = false;
 	}
 }

@@ -8,42 +8,43 @@ namespace Forest
 	public class ForestTreeSnapSpot : MonoBehaviour 
 	{
 		private ForestTreeBehavior parentTree;
+		private Transform playerTransform;
 
 		void Start()
 		{
-			parentTree = transform.parent.GetComponent<ForestTreeBehavior>();
+			parentTree = transform.parent.GetComponent<ForestTreeBehavior>();;
 		}
 
 		void OnTriggerEnter(Collider other)
 		{	
-			if (other.tag.Equals("Player"))
+			if (other.tag.Equals("Player") && !name.Equals("ProximityTrigger"))
 			{
 				int side = 0;
 				switch(name)
 				{
-					case "xSnap_01":
+					case "snap_01":
 						side = 0;
 						break;
-					case "xSnap_02":
-						side = 1;
-						break;
-					case "zSnap_01":
-						side = 2;
-						break;
-					case "zSnap_02":
+					case "snap_02":
 						side = 3;
 						break;
+					case "snap_03":
+						side = 1;
+						break;
+					case "snap_04":
+						side = 2;
+						break;
 				}
-				
 				LoggingActivityPlayerBehavior.SetSnapInfo(parentTree, transform, true, side);
 			}
 		}
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag.Equals("Player"))
+			if (other.tag.Equals("Player") && name.Equals("ProximityTrigger"))
 			{
 				LoggingActivityPlayerBehavior.SetSnapInfo(false);
+
 			}
 		}
 	}
