@@ -26,6 +26,16 @@ public class PlayerInventory
 		currentEnergy = Mathf.Clamp((currentEnergy += changeValue), 0, PlayerSkills.GetEnergyValue());
 	}
 
+	public static bool CanPerformAction()
+	{
+		return false;
+	}
+
+	// public static void ConsumeEnergy(int actionEnergyRequired)
+	// {
+	// 	//look at current energy, if current is greater than or equal to actionEnergyRequired, subtract energy and perform action
+	// }
+
 
 	public static int GetCurrencyValue()
 	{
