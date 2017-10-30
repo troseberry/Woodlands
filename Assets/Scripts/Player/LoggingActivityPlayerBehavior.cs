@@ -172,13 +172,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				switch(currentActivity)
 				{
 					case LoggingActivity.FELLING:
-						SwingForward();
+						if (EnergyManager.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) SwingForward();
 						break;
 					case LoggingActivity.BUCKING:
-						PushForward();
+						if (EnergyManager.ConsumeEnergy(EnergyAction.SAW_PUSH)) PushForward();
 						break;
 					case LoggingActivity.SPLITTING:
-						SwingDownward();
+						if (EnergyManager.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) SwingDownward();
 						break;
 				}
 			}
@@ -190,7 +190,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						SwingBackward();
 						break;
 					case LoggingActivity.BUCKING:
-						PullBackward();
+						if (EnergyManager.ConsumeEnergy(EnergyAction.SAW_PULL)) PullBackward();
 						break;
 					case LoggingActivity.SPLITTING:
 						SwingUpward();

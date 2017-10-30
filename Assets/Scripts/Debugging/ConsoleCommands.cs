@@ -70,7 +70,7 @@ public class ConsoleCommands : MonoBehaviour
 				PlayerInventory.SetCurrencyValue(commandValue);
 				break;
 			case "Energy Value":
-				PlayerInventory.SetEnergyValue(commandValue);
+				EnergyManager.SetCurrentEnergyValue(commandValue);
 				break;	
 			case "Building Materials Value":
 				PlayerInventory.SetBuildingMaterialsValue(commandValue);

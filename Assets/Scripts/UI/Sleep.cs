@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Sleep : MonoBehaviour 
 {
+	public KeyItemInteract sleepPrompt;
 
 	public void SleepToMorning()
 	{
-
+		sleepPrompt.CloseMenu();
+		EnergyManager.FullyRestoreEnergy();
 	}
 }

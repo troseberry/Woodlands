@@ -2,19 +2,53 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EnergyAction {HORIZONTAL_CHOP, SAW_PUSH, SAW_PULL, VERTICAL_CHOP, UPKEEP_KITCHEN, UPKEEP_BEDROOM,
+UPKEEP_STUDY, UPKEEP_OFFICE, UPKEEP_WORKSHOP};
+
 public class EnergyManager : MonoBehaviour 
 {
-
-	private static Dictionary<string, int> ActionEnergyCosts = new Dictionary<string, int>()
+	private static int currentEnergyValue = 100;
+	private static Dictionary<EnergyAction, int> ActionEnergyCosts = new Dictionary<EnergyAction, int>()
 	{
-		{"FellingAxeChop", 5},
-		{"CrosscutSawPush", 5},
-		{"CrosscutSawPull", 5},
-		{"SplittingAxeChop", 5},
-		{"UpkeepTask_Kitchen", 5},
-		{"UpkeepTask_Bedroom", 5},
-		{"UpkeepTask_Study", 5},
-		{"UpkeepTask_Office", 5},
-		{"UpkeepTask_Workshop", 5}
+		{EnergyAction.HORIZONTAL_CHOP, 1},
+		{EnergyAction.SAW_PUSH, 1},
+		{EnergyAction.SAW_PULL, 1},
+		{EnergyAction.VERTICAL_CHOP, 1},
+		{EnergyAction.UPKEEP_KITCHEN, 1},
+		{EnergyAction.UPKEEP_BEDROOM, 1},
+		{EnergyAction.UPKEEP_STUDY, 1},
+		{EnergyAction.UPKEEP_OFFICE, 1},
+		{EnergyAction.UPKEEP_WORKSHOP, 1}
 	};
+
+	public static int GetCurrentEnergyValue()
+	{
+		return currentEnergyValue;
+	}
+
+	public static void SetCurrentEnergyValue(int newValue)
+	{
+		currentEnergyValue = Mathf.Clamp(newValue, 0, PlayerSkills.GetEnergyValue());
+	}
+
+	public static void UpdateCurrentEnergyValue(int changeValue)
+	{
+		currentEnergyValue = Mathf.Clamp((currentEnergyValue += changeValue), 0, PlayerSkills.GetEnergyValue());
+	}
+
+	public static bool ConsumeEnergy(EnergyAction actionToPerform)
+	{
+		int actionEnergyValue = ActionEnergyCosts[actionToPerform];
+		if (currentEnergyValue >= actionEnergyValue)
+		{
+			currentEnergyValue -= actionEnergyValue;
+			return true;
+		}
+		return false;
+	}
+
+	public static void FullyRestoreEnergy()
+	{
+		currentEnergyValue = PlayerSkills.GetEnergyValue();
+	}
 }

@@ -4,37 +4,10 @@ using UnityEngine;
 
 public class PlayerInventory 
 {
-	private static int currentEnergy = 0;
 	private static int currenctCurrency = 0;
 	private static int currentBuildingMaterials = 0;
 	private static int currentToolParts = 0;
 	private static int currentBookPages = 0;
-
-
-	public static int GetEnergyValue()
-	{
-		return currentEnergy;
-	}
-
-	public static void SetEnergyValue(int newValue)
-	{
-		currentEnergy = Mathf.Clamp(newValue, 0, PlayerSkills.GetEnergyValue());
-	}
-
-	public static void UpdateEnergyValue(int changeValue)
-	{
-		currentEnergy = Mathf.Clamp((currentEnergy += changeValue), 0, PlayerSkills.GetEnergyValue());
-	}
-
-	public static bool CanPerformAction()
-	{
-		return false;
-	}
-
-	// public static void ConsumeEnergy(int actionEnergyRequired)
-	// {
-	// 	//look at current energy, if current is greater than or equal to actionEnergyRequired, subtract energy and perform action
-	// }
 
 
 	public static int GetCurrencyValue()
