@@ -15,18 +15,13 @@ public class Clock : MonoBehaviour
 	//72 real-time seconds = 1 hour of game time
 
 	float maxTime = 1440;
-	float currentClock = 0;
+	float currentClock = 720;
 
 	public Text clockText;
 	private string formattedClock = "";
 	
 	private float testClock = 0;
 	private string testClockString = "";
-
-	void Start () 
-	{
-		
-	}
 	
 	void Update () 
 	{
