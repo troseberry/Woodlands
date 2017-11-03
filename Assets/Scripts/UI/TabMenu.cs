@@ -11,7 +11,7 @@ public class TabMenu : MonoBehaviour
 
 	private float moveTime = 0f;
 	Vector3 openPosition = new Vector3(-665, 0, 0);
-	Vector3 closedPosition = new Vector3(-1265, 0, 0);
+	Vector3 closedPosition = new Vector3(-1365, 0, 0);
 
 
 	public Transform resourcesGroup;
@@ -21,6 +21,8 @@ public class TabMenu : MonoBehaviour
 	Text felledTreesCount;
 	Text logsCount;
 	Text firewoodCount;
+
+	public Transform skillsGroup;
 
 	void Start () 
 	{
@@ -58,7 +60,7 @@ public class TabMenu : MonoBehaviour
 		moveTime += Time.deltaTime/0.15f;
 		menuObject.transform.localPosition = Vector3.Lerp(closedPosition, openPosition, moveTime);
 
-		if(menuObject.transform.localPosition.x >= -715)
+		if(menuObject.transform.localPosition.x >= -665)
 		{
 			moveTime = 0f;
 			menuOpen = true;
@@ -73,7 +75,7 @@ public class TabMenu : MonoBehaviour
 		moveTime += Time.deltaTime/0.15f;
 		menuObject.transform.localPosition = Vector3.Lerp(openPosition, closedPosition, moveTime);
 
-		if(menuObject.transform.localPosition.x <= -1215)
+		if(menuObject.transform.localPosition.x <= -1365)
 		{
 			moveTime = 0f;
 			menuOpen = false;
@@ -91,5 +93,23 @@ public class TabMenu : MonoBehaviour
 		felledTreesCount.text = HomesteadStockpile.GetTreesCountAsString();
 		logsCount.text = HomesteadStockpile.GetLogsCountAsString();
 		firewoodCount.text = HomesteadStockpile.GetFirewoodCountAsString();
+	}
+
+	void CloseAllTabs()
+	{
+		resourcesGroup.gameObject.SetActive(false);
+		skillsGroup.gameObject.SetActive(false);
+	}
+
+	public void OpenResourcesTab()
+	{
+		CloseAllTabs();
+		resourcesGroup.gameObject.SetActive(true);
+	}
+
+	public void OpenSkillsTab()
+	{
+		CloseAllTabs();
+		skillsGroup.gameObject.SetActive(true);
 	}
 }
