@@ -12,13 +12,15 @@ public class PlayerHud : MonoBehaviour
 	public Image energyRadial;
 	public Text energyText;
 
-	private int toolEquipIndex = 0;
+	private int toolEquipIndex;
 	public Transform toolIconGroup;
 
 	
 	void Start () 
 	{
 		playerCanvas = GetComponent<Canvas>();
+		toolEquipIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
+		ChangeToolImage();
 	}
 	
 	void Update () 

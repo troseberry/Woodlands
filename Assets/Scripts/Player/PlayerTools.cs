@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerTools 
 {
 	private static List<Tool> ownedTools = new List<Tool>();
-	private static Tool currentlyEquippedTool;
+	private static Tool currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);
 
 
 
@@ -67,10 +67,23 @@ public class PlayerTools
 	public static void SetCurrentlyEquippedTool(ToolName name) 
 	{ 
 		Tool toEquip = ownedTools.Find(tool => tool.GetToolName() == name);
-		if (!ownedTools.Contains(toEquip))
+		currentlyEquippedTool = toEquip;
+	}
+
+	public static int GetCurrentlyEquippedToolIndex()
+	{
+		switch(currentlyEquippedTool.GetToolName())
 		{
-			currentlyEquippedTool = toEquip;
+			case ToolName.EMPTY_HANDS:
+				return 0;
+			case ToolName.FELLING_AXE:
+				return 1;
+			case ToolName.CROSSCUT_SAW:
+				return 2;
+			case ToolName.SPLITTING_AXE:
+				return 3;
 		}
+		return -1;
 	}
 	
 }

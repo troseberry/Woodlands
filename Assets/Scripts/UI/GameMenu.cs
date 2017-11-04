@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Cameras;
 
-public class TabMenu : MonoBehaviour 
+public class GameMenu : MonoBehaviour 
 {
 	private CharacterInputController characterInputController;
 	private FreeLookCam characterCameraController;
@@ -46,7 +46,7 @@ public class TabMenu : MonoBehaviour
 	
 	void Update () 
 	{
-		if (Input.GetButtonDown("Tab Menu"))
+		if (Input.GetButtonDown("Game Menu"))
 		{
 			doMove = true;
 		}
