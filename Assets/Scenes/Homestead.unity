@@ -5169,41 +5169,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: currencyText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: buildingMaterialsText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: toolPartsText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: bookPagesText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: treesText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: logsText
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
-        type: 2}
-      propertyPath: firewoodText
-      value: 
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ce6fc492db4514a0b976034fc1367de3, type: 2}
   m_IsPrefabParent: 0

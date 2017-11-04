@@ -6,6 +6,8 @@ using UnityEngine;
 public class PlayerTools 
 {
 	private static List<Tool> ownedTools = new List<Tool>();
+	private static Tool currentlyEquippedTool;
+
 
 
 	public static List<Tool> GetOwnedToolsList() { return ownedTools; }
@@ -52,6 +54,23 @@ public class PlayerTools
 	{
 		Tool toUpgrade = GetToolByName(name);
 		return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1).ToString();
+	}
+
+
+	public static Tool GetCurrentlyEquippedTool() { return currentlyEquippedTool; }
+
+	public static void SetCurrentlyEquippedTool(int toolIndex) 
+	{ 
+		if (toolIndex < ownedTools.Count) currentlyEquippedTool = ownedTools[toolIndex];
+	}
+
+	public static void SetCurrentlyEquippedTool(ToolName name) 
+	{ 
+		Tool toEquip = ownedTools.Find(tool => tool.GetToolName() == name);
+		if (!ownedTools.Contains(toEquip))
+		{
+			currentlyEquippedTool = toEquip;
+		}
 	}
 	
 }

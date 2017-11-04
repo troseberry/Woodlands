@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ToolName {FELLING_AXE, CROSSCUT_SAW, SPLITTING_AXE};
+public enum ToolName {EMPTY_HANDS, FELLING_AXE, CROSSCUT_SAW, SPLITTING_AXE};
 
 
 public class Tool 
@@ -25,7 +25,14 @@ public class Tool
 			new DevResourceQuantity(500, 0, 0, 0),
 			new DevResourceQuantity(1000, 0, 0, 0)
 		};
-		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		if (!name.Equals(ToolName.EMPTY_HANDS)) 
+		{
+			canBeUpgraded = (currentTier < upgradeCosts.Length);
+		}
+		else
+		{
+			canBeUpgraded = false;
+		}
 	}
 
 	public Tool(ToolName name, int tier)
@@ -54,6 +61,8 @@ public class Tool
 				return "Crosscut Saw";
 			case ToolName.SPLITTING_AXE:
 				return "Splitting Axe";
+			case ToolName.EMPTY_HANDS:
+				return "None";
 		}
 		return "Invalid Tool";
 	}

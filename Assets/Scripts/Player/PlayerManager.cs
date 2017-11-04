@@ -43,6 +43,7 @@ public class PlayerManager : MonoBehaviour
 		playerTransform = this.transform;
 		//eventually, load save data
 
+		PlayerTools.AddTool(new Tool(ToolName.EMPTY_HANDS));
 		PlayerTools.AddTool(new Tool(ToolName.FELLING_AXE, 2));
 		PlayerTools.AddTool(new Tool(ToolName.CROSSCUT_SAW));
 		PlayerTools.AddTool(new Tool(ToolName.SPLITTING_AXE));
