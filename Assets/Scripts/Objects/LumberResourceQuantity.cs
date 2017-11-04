@@ -78,4 +78,9 @@ public class LumberResourceQuantity
 		+ " | L: " + logs + " (" + logGrade + ")"
 		+ " | F: "  + firewood + " (" + firewoodGrade + ")";
 	}
+
+	public string StringWithoutQuality()
+	{
+		return "T: " + trees + " | L: " + logs + " | F: "  + firewood;
+	}
 }

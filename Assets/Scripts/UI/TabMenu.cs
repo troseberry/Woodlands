@@ -13,6 +13,11 @@ public class TabMenu : MonoBehaviour
 	Vector3 openPosition = new Vector3(-665, 0, 0);
 	Vector3 closedPosition = new Vector3(-1365, 0, 0);
 
+	public Transform contractsGroup;
+	public Transform resourcesGroup;
+	public Transform skillsGroup;
+	public Transform roomsGroup;
+
 	Text buildingMaterialsCount;
 	Text toolPartsCount;
 	Text bookPagesCount;
@@ -20,9 +25,7 @@ public class TabMenu : MonoBehaviour
 	Text logsCount;
 	Text firewoodCount;
 
-	public Transform resourcesGroup;
-	public Transform skillsGroup;
-	public Transform roomsGroup;
+	public Transform contractsContent;
 
 	void Start () 
 	{
@@ -56,7 +59,8 @@ public class TabMenu : MonoBehaviour
 
 	IEnumerator OpenMenu()
 	{
-		UpdateResources();
+		UpdateContracts();
+		
 		moveTime += Time.deltaTime/0.15f;
 		menuObject.transform.localPosition = Vector3.Lerp(closedPosition, openPosition, moveTime);
 
@@ -84,6 +88,25 @@ public class TabMenu : MonoBehaviour
 		yield return null;
 	}
 
+	void UpdateContracts()
+	{
+		List<LumberContract> activeContracts = PlayerContracts.GetActiveContractsList();
+		int activeCount = activeContracts.Count;
+
+		for (int i = activeCount; i < contractsContent.childCount; i++)
+		{
+			contractsContent.GetChild(i).gameObject.SetActive(false);
+		}
+
+		for (int j = 0; j < activeCount; j++)
+		{
+			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = activeContracts[j].GetCompletionDeadline().ToString();
+			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: ?";
+			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = activeContracts[j].GetRequiredLumber().StringWithoutQuality();
+			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = activeContracts[j].GetPayout().ToString();
+		}
+	}
+
 	void UpdateResources()
 	{
 		buildingMaterialsCount.text = PlayerInventory.GetBuildingMaterialsValue().ToString();
@@ -97,14 +120,23 @@ public class TabMenu : MonoBehaviour
 
 	void CloseAllTabs()
 	{
+		contractsGroup.gameObject.SetActive(false);
 		resourcesGroup.gameObject.SetActive(false);
 		skillsGroup.gameObject.SetActive(false);
 		roomsGroup.gameObject.SetActive(false);
 	}
 
+	public void OpenContractsTab()
+	{
+		CloseAllTabs();
+		UpdateContracts();
+		contractsGroup.gameObject.SetActive(true);
+	}
+
 	public void OpenResourcesTab()
 	{
 		CloseAllTabs();
+		UpdateResources();
 		resourcesGroup.gameObject.SetActive(true);
 	}
 
