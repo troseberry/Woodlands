@@ -13,8 +13,6 @@ public class TabMenu : MonoBehaviour
 	Vector3 openPosition = new Vector3(-665, 0, 0);
 	Vector3 closedPosition = new Vector3(-1365, 0, 0);
 
-
-	public Transform resourcesGroup;
 	Text buildingMaterialsCount;
 	Text toolPartsCount;
 	Text bookPagesCount;
@@ -22,7 +20,9 @@ public class TabMenu : MonoBehaviour
 	Text logsCount;
 	Text firewoodCount;
 
+	public Transform resourcesGroup;
 	public Transform skillsGroup;
+	public Transform roomsGroup;
 
 	void Start () 
 	{
@@ -99,6 +99,7 @@ public class TabMenu : MonoBehaviour
 	{
 		resourcesGroup.gameObject.SetActive(false);
 		skillsGroup.gameObject.SetActive(false);
+		roomsGroup.gameObject.SetActive(false);
 	}
 
 	public void OpenResourcesTab()
@@ -111,5 +112,11 @@ public class TabMenu : MonoBehaviour
 	{
 		CloseAllTabs();
 		skillsGroup.gameObject.SetActive(true);
+	}
+
+	public void OpenRoomsTab()
+	{
+		CloseAllTabs();
+		roomsGroup.gameObject.SetActive(true);
 	}
 }

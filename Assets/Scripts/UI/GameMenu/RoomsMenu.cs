@@ -36,6 +36,7 @@ public class RoomsMenu : MonoBehaviour
 	{
 		if (menuActive)
 		{
+			//These should not all say Capacity
 			bedRoomTier.text = "Tier: " + PlayerRooms.GetBedRoomTier();
 			bedRoomValue.text = "Capacity: " + PlayerRooms.GetBedRoomValue();
 

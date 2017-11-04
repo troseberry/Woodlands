@@ -11,6 +11,8 @@ public class HomesteadRoom
 	protected int[] tierValues;
 	protected DevResourceQuantity[] upgradeCosts;
 	protected bool canBeUpgraded;
+	protected string description;
+	protected string tierDescriptiveString;
 	
 	public HomesteadRoom() {}
 
@@ -30,9 +32,9 @@ public class HomesteadRoom
 		upgradeCosts = costs;
 	}
 
-	public RoomName GetBuildingName() { return roomName; }
+	public RoomName GetRoomName() { return roomName; }
 
-	public void SetBuildingName(RoomName name) { roomName = name; }
+	public void SetRoomName(RoomName name) { roomName = name; }
 
 	public int GetCurrentTier() { return currentTier; }
 
@@ -50,6 +52,8 @@ public class HomesteadRoom
 
 	public void SetTierValueAtIndex(int index, int newValue) { tierValues[index] = newValue; }
 
+	public string GetTierDescriptiveString() { return tierDescriptiveString; }
+
 	public DevResourceQuantity[] GetDevResourceQuantities() { return upgradeCosts; }
 
 	public void SetDevResourceQuantities(DevResourceQuantity[] newCosts) { upgradeCosts = newCosts; }
@@ -59,6 +63,8 @@ public class HomesteadRoom
 	public void SetDevResourceQuantityAtTier(int tier, DevResourceQuantity newCost) { upgradeCosts[tier - 1] = newCost; }
 
 	public bool CanBeUpgraded() { return canBeUpgraded; }
+
+	public string GetRoomDescription() { return description; }
 }
 
 public class BedRoom : HomesteadRoom
@@ -77,6 +83,8 @@ public class BedRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Sleep duration required to completely restore energy.";
+		tierDescriptiveString = tierValues[currentTier - 1] + " hours for a full rest.";
 	}
 
 	public BedRoom(int tier)
@@ -92,6 +100,8 @@ public class BedRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Sleep duration required to completely restore energy.";
+		tierDescriptiveString = tierValues[currentTier - 1] + " hours for a full rest.";
 	}
 }
 
@@ -110,6 +120,8 @@ public class KitchenRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "The maximum number of Lumber Contracts that can be displayed in the newspaper.";
+		tierDescriptiveString = tierValues[currentTier - 1] + " available contracts";
 	}
 
 	public KitchenRoom(int tier)
@@ -125,6 +137,8 @@ public class KitchenRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "The maximum number of Lumber Contracts that can be displayed in the newspaper.";
+		tierDescriptiveString = tierValues[currentTier - 1] + " available contracts";
 	}
 }
 
@@ -134,8 +148,8 @@ public class OfficeRoom : HomesteadRoom
 	{
 		roomName = RoomName.OFFICE;
 		currentTier = 1;
-		//For Office, tiervalues should be an array of Tools eventually
-		tierValues = new int[5]{0, 0, 0, 0, 0};
+		//tiervalues represent the max level (quality grade equivalent) of the tools available to puchase
+		tierValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -144,13 +158,15 @@ public class OfficeRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Highest level of Tools available in the store.";
+		tierDescriptiveString = "Level " + currentTier + " tools available for purchase";
 	}
 
 	public OfficeRoom(int tier)
 	{
 		roomName = RoomName.OFFICE;
 		currentTier = tier;
-		tierValues = new int[5]{0, 0, 0, 0, 0};
+		tierValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -159,6 +175,8 @@ public class OfficeRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Highest level of Tools available in the store.";
+		tierDescriptiveString = "Level " + currentTier + " tools available for purchase";
 	}
 }
 
@@ -177,6 +195,8 @@ public class StudyRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Highest level of Books available in the Study";
+		tierDescriptiveString = "Level " + currentTier + " books available for reading";
 	}
 
 	public StudyRoom(int tier)
@@ -192,6 +212,8 @@ public class StudyRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Highest level of Books available in the Study";
+		tierDescriptiveString = "Level " + currentTier + " books available for reading";
 	}
 }
 
@@ -201,7 +223,7 @@ public class WorkshopRoom : HomesteadRoom
 	{
 		roomName = RoomName.WORKSHOP;
 		currentTier = 1;
-		tierValues = new int[5]{0, 1, 2, 3, 4};
+		tierValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -210,13 +232,15 @@ public class WorkshopRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Maximum level of Tool that can be upgraded in the Workshop";
+		tierDescriptiveString = "Able to upgrade level " + currentTier + " tools";
 	}
 
 	public WorkshopRoom(int tier)
 	{
 		roomName = RoomName.WORKSHOP;
 		currentTier = tier;
-		tierValues = new int[5]{0, 1, 2, 3, 4};
+		tierValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -225,6 +249,8 @@ public class WorkshopRoom : HomesteadRoom
 			new DevResourceQuantity(1000, 0, 0, 0)
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
+		description = "Maximum level of Tool that can be upgraded in the Workshop";
+		tierDescriptiveString = "Able to upgrade level " + currentTier + " tools";
 	}
 }
 
