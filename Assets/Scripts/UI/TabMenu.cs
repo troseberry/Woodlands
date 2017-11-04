@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityStandardAssets.Cameras;
 
 public class TabMenu : MonoBehaviour 
 {
+	private CharacterInputController characterInputController;
+	private FreeLookCam characterCameraController;
+
 	public GameObject menuObject;
 	private bool menuOpen = false;
 	private bool doMove = false;
@@ -29,6 +33,9 @@ public class TabMenu : MonoBehaviour
 
 	void Start () 
 	{
+		characterInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInputController>();
+		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
+
 		buildingMaterialsCount = resourcesGroup.GetChild(0).GetChild(0).GetComponent<Text>();
 		toolPartsCount = resourcesGroup.GetChild(1).GetChild(0).GetComponent<Text>();
 		bookPagesCount = resourcesGroup.GetChild(2).GetChild(0).GetComponent<Text>();
@@ -59,6 +66,9 @@ public class TabMenu : MonoBehaviour
 
 	IEnumerator OpenMenu()
 	{
+		characterInputController.enabled = false;
+		characterCameraController.enabled = false;
+
 		UpdateContracts();
 		
 		moveTime += Time.deltaTime/0.15f;
@@ -76,6 +86,9 @@ public class TabMenu : MonoBehaviour
 
 	IEnumerator CloseMenu()
 	{
+		characterInputController.enabled = true;
+		characterCameraController.enabled = true;
+
 		moveTime += Time.deltaTime/0.15f;
 		menuObject.transform.localPosition = Vector3.Lerp(openPosition, closedPosition, moveTime);
 
