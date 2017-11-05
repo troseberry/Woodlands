@@ -36,28 +36,28 @@ public class DevResourceQuantity
 	//returns true if inventory quanitites are greater than or equal to the resource quantity
 	public bool HasInInventory()
 	{
-		bool hasCurrency = PlayerInventory.GetCurrencyValue() >= currency;
-		bool hasMaterials = PlayerInventory.GetBuildingMaterialsValue() >= buildingMaterials;
-		bool hasParts = PlayerInventory.GetToolPartsValue() >= toolParts;
-		bool hasPages = PlayerInventory.GetBookPagesValue() >= bookPages;
+		bool hasCurrency = PlayerInventory.GetCurrentCurrencyValue() >= currency;
+		bool hasMaterials = PlayerInventory.GetCurrentBuildingMaterialsValue() >= buildingMaterials;
+		bool hasParts = PlayerInventory.GetCurrentToolPartsValue() >= toolParts;
+		bool hasPages = PlayerInventory.GetCurrentBookPagesValue() >= bookPages;
 
 		return hasCurrency && hasMaterials && hasParts && hasPages;
 	}
 
 	public void AddToInventory()
 	{
-		PlayerInventory.UpdateCurrencyValue(currency);
-		PlayerInventory.UpdateBuildingMaterialsValue(buildingMaterials);
-		PlayerInventory.UpdateToolPartsValue(toolParts);
-		PlayerInventory.UpdateBookPagesValue(bookPages);
+		PlayerInventory.UpdateCurrentCurrencyValue(currency);
+		PlayerInventory.UpdateCurrentBuildingMaterialsValue(buildingMaterials);
+		PlayerInventory.UpdateCurrentToolPartsValue(toolParts);
+		PlayerInventory.UpdateCurrentBookPagesValue(bookPages);
 	}
 
 	public void SubtractFromInventory()
 	{
-		PlayerInventory.UpdateCurrencyValue(-currency);
-		PlayerInventory.UpdateBuildingMaterialsValue(-buildingMaterials);
-		PlayerInventory.UpdateToolPartsValue(-toolParts);
-		PlayerInventory.UpdateBookPagesValue(-bookPages);
+		PlayerInventory.UpdateCurrentCurrencyValue(-currency);
+		PlayerInventory.UpdateCurrentBuildingMaterialsValue(-buildingMaterials);
+		PlayerInventory.UpdateCurrentToolPartsValue(-toolParts);
+		PlayerInventory.UpdateCurrentBookPagesValue(-bookPages);
 	}
 
 

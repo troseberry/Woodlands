@@ -67,42 +67,42 @@ public class ConsoleCommands : MonoBehaviour
 		switch(command)
 		{
 			case "Currency Value":
-				PlayerInventory.SetCurrencyValue(commandValue);
+				PlayerInventory.SetCurrentCurrencyValue(commandValue);
 				break;
 			case "Energy Value":
 				EnergyManager.SetCurrentEnergyValue(commandValue);
 				break;	
 			case "Building Materials Value":
-				PlayerInventory.SetBuildingMaterialsValue(commandValue);
+				PlayerInventory.SetCurrentBuildingMaterialsValue(commandValue);
 				break;
 			case "Tool Parts Value":
-				PlayerInventory.SetToolPartsValue(commandValue);
+				PlayerInventory.SetCurrentToolPartsValue(commandValue);
 				break;
 			case "Book Pages Value":
-				PlayerInventory.SetBookPagesValue(commandValue);
+				PlayerInventory.SetCurrentBookPagesValue(commandValue);
 				break;
 
 
 			case "Active Contracts Tier":
-				PlayerSkills.SetContractsTier(commandValue);
+				PlayerSkills.SetCurrentContractsTier(commandValue);
 				break;
 			case "Currency Tier":
-				PlayerSkills.SetCurrencyTier(commandValue);
+				PlayerSkills.SetCurrentCurrencyTier(commandValue);
 				break;
 			case "Efficiency Tier":
-				PlayerSkills.SetEfficiencyTier(commandValue);
+				PlayerSkills.SetCurrentEfficiencyTier(commandValue);
 				break;
 			case "Energy Tier":
-				PlayerSkills.SetEnergyTier(commandValue);
+				PlayerSkills.SetCurrentEnergyTier(commandValue);
 				break;
 			case "Building Materials Tier":
-				PlayerSkills.SetBuildingMaterialsTier(commandValue);
+				PlayerSkills.SetCurrentBuildingMaterialsTier(commandValue);
 				break;
 			case "Tool Parts Tier":
-				PlayerSkills.SetToolPartsTier(commandValue);
+				PlayerSkills.SetCurrentToolPartsTier(commandValue);
 				break;
 			case "Book Pages Tier":
-				PlayerSkills.SetBookPagesTier(commandValue);
+				PlayerSkills.SetCurrentBookPagesTier(commandValue);
 				break;
 
 
@@ -135,13 +135,13 @@ public class ConsoleCommands : MonoBehaviour
 
 
 			case "Lumber Trees Tier":
-				PlayerSkills.SetLumberTreesTier(commandValue);
+				PlayerSkills.SetCurrentLumberTreesTier(commandValue);
 				break;
 			case "Lumber Logs Tier":
-				PlayerSkills.SetLumberLogsTier(commandValue);
+				PlayerSkills.SetCurrentLumberLogsTier(commandValue);
 				break;
 			case "Lumber Firewood Tier":
-				PlayerSkills.SetLumberFirewoodTier(commandValue);
+				PlayerSkills.SetCurrentLumberFirewoodTier(commandValue);
 				break;
 		}
 	}

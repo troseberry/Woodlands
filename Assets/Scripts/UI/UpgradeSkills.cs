@@ -46,11 +46,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetEfficiencySkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetEfficiencyTier();
+			int currentTier = PlayerSkills.GetCurrentEfficiencyTier();
 
 			if (PlayerSkills.GetEfficiencySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetEfficiencyTier(currentTier + 1);
+				PlayerSkills.SetCurrentEfficiencyTier(currentTier + 1);
 				PlayerSkills.GetEfficiencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -68,11 +68,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetContractsSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetContractsTier();
+			int currentTier = PlayerSkills.GetCurrentContractsTier();
 
 			if (PlayerSkills.GetContractsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetContractsTier(currentTier + 1);
+				PlayerSkills.SetCurrentContractsTier(currentTier + 1);
 				PlayerSkills.GetContractsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -90,11 +90,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if(PlayerSkills.GetCurrencySkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetCurrencyTier();
+			int currentTier = PlayerSkills.GetCurrentCurrencyTier();
 
 			if (PlayerSkills.GetCurrencySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetCurrencyTier(currentTier + 1);
+				PlayerSkills.SetCurrentCurrencyTier(currentTier + 1);
 				PlayerSkills.GetCurrencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -112,11 +112,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetEnergySkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetEnergyTier();
+			int currentTier = PlayerSkills.GetCurrentEnergyTier();
 
 			if (PlayerSkills.GetEnergySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetEnergyTier(currentTier + 1);
+				PlayerSkills.SetCurrentEnergyTier(currentTier + 1);
 				PlayerSkills.GetEnergySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -134,11 +134,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetBuildingMaterialsSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetBuildingMaterialsTier();
+			int currentTier = PlayerSkills.GetCurrentBuildingMaterialsTier();
 
 			if (PlayerSkills.GetBuildingMaterialsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetBuildingMaterialsTier(currentTier + 1);
+				PlayerSkills.SetCurrentBuildingMaterialsTier(currentTier + 1);
 				PlayerSkills.GetBuildingMaterialsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -156,11 +156,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetToolPartsSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetToolPartsTier();
+			int currentTier = PlayerSkills.GetCurrentToolPartsTier();
 
 			if (PlayerSkills.GetToolPartsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetToolPartsTier(currentTier + 1);
+				PlayerSkills.SetCurrentToolPartsTier(currentTier + 1);
 				PlayerSkills.GetToolPartsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -178,11 +178,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetBookPagesSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetBookPagesTier();
+			int currentTier = PlayerSkills.GetCurrentBookPagesTier();
 
 			if (PlayerSkills.GetBookPagesSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetBookPagesTier(currentTier + 1);
+				PlayerSkills.SetCurrentBookPagesTier(currentTier + 1);
 				PlayerSkills.GetBookPagesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -201,11 +201,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetLumberTreesSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetLumberTreesTier();
+			int currentTier = PlayerSkills.GetCurrentLumberTreesTier();
 
 			if (PlayerSkills.GetLumberTreesSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetLumberTreesTier(currentTier + 1);
+				PlayerSkills.SetCurrentLumberTreesTier(currentTier + 1);
 				PlayerSkills.GetLumberTreesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -223,11 +223,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetLumberLogsSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetLumberLogsTier();
+			int currentTier = PlayerSkills.GetCurrentLumberLogsTier();
 
 			if (PlayerSkills.GetLumberLogsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetLumberLogsTier(currentTier + 1);
+				PlayerSkills.SetCurrentLumberLogsTier(currentTier + 1);
 				PlayerSkills.GetLumberLogsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else
@@ -245,11 +245,11 @@ public class UpgradeSkills : MonoBehaviour
 	{
 		if (PlayerSkills.GetLumberFirewoodSkill().CanBeUpgraded())
 		{
-			int currentTier = PlayerSkills.GetLumberFirewoodTier();
+			int currentTier = PlayerSkills.GetCurrentLumberFirewoodTier();
 
 			if (PlayerSkills.GetLumberFirewoodSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
-				PlayerSkills.SetLumberFirewoodTier(currentTier + 1);
+				PlayerSkills.SetCurrentLumberFirewoodTier(currentTier + 1);
 				PlayerSkills.GetLumberFirewoodSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 			}
 			else

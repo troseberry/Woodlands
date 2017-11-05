@@ -122,9 +122,9 @@ public class GameMenu : MonoBehaviour
 
 	void UpdateResources()
 	{
-		buildingMaterialsCount.text = PlayerInventory.GetBuildingMaterialsValue().ToString();
-		toolPartsCount.text = PlayerInventory.GetToolPartsValue().ToString();
-		bookPagesCount.text = PlayerInventory.GetBookPagesValue().ToString();
+		buildingMaterialsCount.text = PlayerInventory.GetCurrentBuildingMaterialsValue().ToString();
+		toolPartsCount.text = PlayerInventory.GetCurrentToolPartsValue().ToString();
+		bookPagesCount.text = PlayerInventory.GetCurrentBookPagesValue().ToString();
 
 		felledTreesCount.text = HomesteadStockpile.GetTreesCountAsString();
 		logsCount.text = HomesteadStockpile.GetLogsCountAsString();

@@ -31,17 +31,17 @@ public class HomesteadStockpile
 
 	public static void SetTreesCountAtGrade(QualityGrade grade, int newValue)
 	{
-		trees[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberTreesValue());
+		trees[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberTreesValue());
 	}
 
 	public static void SetTreesCountAtIndex(int index, int newValue)
 	{
-		trees[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberTreesValue());
+		trees[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberTreesValue());
 	}
 
 	public static void UpdateTreesCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		trees[grade.GetHashCode()] = Mathf.Clamp((trees[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberTreesValue());
+		trees[grade.GetHashCode()] = Mathf.Clamp((trees[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetMaxLumberTreesValue());
 	}
 
 
@@ -67,17 +67,17 @@ public class HomesteadStockpile
 
 	public static void SetLogsCountAtGrade(QualityGrade grade, int newValue)
 	{
-		logs[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberLogsValue());
+		logs[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberLogsValue());
 	}
 
 	public static void SetLogsCountAtIndex(int index, int newValue)
 	{
-		logs[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberLogsValue());
+		logs[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberLogsValue());
 	}
 
 	public static void UpdateLogsCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		logs[grade.GetHashCode()] = Mathf.Clamp((logs[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberLogsValue());
+		logs[grade.GetHashCode()] = Mathf.Clamp((logs[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetMaxLumberLogsValue());
 	}
 
 
@@ -103,16 +103,16 @@ public class HomesteadStockpile
 
 	public static void SetFirewoodCountAtGrade(QualityGrade grade, int newValue)
 	{
-		firewood[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberFirewoodValue());
+		firewood[grade.GetHashCode()] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberFirewoodValue());
 	}
 
 	public static void SetFirewoodCountAtIndex(int index, int newValue)
 	{
-		firewood[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetLumberFirewoodValue());
+		firewood[index] = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxLumberFirewoodValue());
 	}
 
 	public static void UpdateFirewoodCountAtGrade(QualityGrade grade, int changeValue)
 	{
-		firewood[grade.GetHashCode()] = Mathf.Clamp((firewood[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetLumberFirewoodValue());
+		firewood[grade.GetHashCode()] = Mathf.Clamp((firewood[grade.GetHashCode()] += changeValue), 0, PlayerSkills.GetMaxLumberFirewoodValue());
 	}
 }

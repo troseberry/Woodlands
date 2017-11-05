@@ -19,11 +19,11 @@ public class PlayerSkills
 
 	public static EfficiencySkill GetEfficiencySkill() { return efficiencySkill; }
 
-	public static int GetEfficiencyTier() { return efficiencySkill.GetCurrentTier(); }
+	public static int GetCurrentEfficiencyTier() { return efficiencySkill.GetCurrentTier(); }
 	
-	public static void SetEfficiencyTier(int newTier) { efficiencySkill.SetCurrentTier(newTier); }
+	public static void SetCurrentEfficiencyTier(int newTier) { efficiencySkill.SetCurrentTier(newTier); }
 
-	public static int GetEfficiencyValue()
+	public static int GetMaxEfficiencyValue()
 	{
 		return efficiencySkill.GetTierValueAtIndex(efficiencySkill.GetCurrentTier() - 1);
 	}
@@ -32,7 +32,7 @@ public class PlayerSkills
 	{ 
 		if (efficiencySkill.CanBeUpgraded())
 		{
-			return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1); 
+			return efficiencySkill.GetDevResourceQuantityAtTier(GetCurrentEfficiencyTier() + 1); 
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -41,7 +41,7 @@ public class PlayerSkills
 	{ 
 		if (efficiencySkill.CanBeUpgraded())
 		{
-			return efficiencySkill.GetDevResourceQuantityAtTier(GetEfficiencyTier() + 1).ToString(); 
+			return efficiencySkill.GetDevResourceQuantityAtTier(GetCurrentEfficiencyTier() + 1).ToString(); 
 		}
 		return "MAXED";
 	}
@@ -52,11 +52,11 @@ public class PlayerSkills
 	//change these to get/set activeContracts in method names
 	public static ActiveContractsSkill GetContractsSkill() { return contractsSkill; }
 
-	public static int GetContractsTier() { return contractsSkill.GetCurrentTier(); }
+	public static int GetCurrentContractsTier() { return contractsSkill.GetCurrentTier(); }
 	
-	public static void SetContractsTier(int newTier) { contractsSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentContractsTier(int newTier) { contractsSkill.SetCurrentTier(newTier); }
 
-	public static int GetActiveContractsValue() 
+	public static int GetMaxActiveContractsValue() 
 	{
 		return contractsSkill.GetTierValueAtIndex(contractsSkill.GetCurrentTier() - 1);
 	}
@@ -65,7 +65,7 @@ public class PlayerSkills
 	{
 		if (contractsSkill.CanBeUpgraded())
 		{
-			return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1);
+			return contractsSkill.GetDevResourceQuantityAtTier(GetCurrentContractsTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -74,7 +74,7 @@ public class PlayerSkills
 	{
 		if (contractsSkill.CanBeUpgraded())
 		{
-			return contractsSkill.GetDevResourceQuantityAtTier(GetContractsTier() + 1).ToString();
+			return contractsSkill.GetDevResourceQuantityAtTier(GetCurrentContractsTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -84,11 +84,11 @@ public class PlayerSkills
 
 	public static CurrencySkill GetCurrencySkill() { return currencySkill; }
 
-	public static int GetCurrencyTier() { return currencySkill.GetCurrentTier(); }
+	public static int GetCurrentCurrencyTier() { return currencySkill.GetCurrentTier(); }
 	
-	public static void SetCurrencyTier(int newTier) { currencySkill.SetCurrentTier(newTier); }
+	public static void SetCurrentCurrencyTier(int newTier) { currencySkill.SetCurrentTier(newTier); }
 
-	public static int GetCurrencyValue() 
+	public static int GetMaxCurrencyValue() 
 	{
 		return currencySkill.GetTierValueAtIndex(currencySkill.GetCurrentTier() - 1);
 	}
@@ -97,7 +97,7 @@ public class PlayerSkills
 	{
 		if (currencySkill.CanBeUpgraded())
 		{
-			return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1);
+			return currencySkill.GetDevResourceQuantityAtTier(GetCurrentCurrencyTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -106,7 +106,7 @@ public class PlayerSkills
 	{
 		if (currencySkill.CanBeUpgraded())
 		{
-			return currencySkill.GetDevResourceQuantityAtTier(GetCurrencyTier() + 1).ToString(); 
+			return currencySkill.GetDevResourceQuantityAtTier(GetCurrentCurrencyTier() + 1).ToString(); 
 		}
 		return "MAXED";
 	}
@@ -116,11 +116,11 @@ public class PlayerSkills
 
 	public static EnergySkill GetEnergySkill() { return energySkill; }
 
-	public static int GetEnergyTier() { return energySkill.GetCurrentTier(); }
+	public static int GetCurrentEnergyTier() { return energySkill.GetCurrentTier(); }
 	
-	public static void SetEnergyTier(int newTier) { energySkill.SetCurrentTier(newTier); }
+	public static void SetCurrentEnergyTier(int newTier) { energySkill.SetCurrentTier(newTier); }
 
-	public static int GetEnergyValue() 
+	public static int GetMaxEnergyValue() 
 	{
 		return energySkill.GetTierValueAtIndex(energySkill.GetCurrentTier() - 1);
 	}
@@ -129,7 +129,7 @@ public class PlayerSkills
 	{ 
 		if (energySkill.CanBeUpgraded())
 		{
-			return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1);
+			return energySkill.GetDevResourceQuantityAtTier(GetCurrentEnergyTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -138,7 +138,7 @@ public class PlayerSkills
 	{
 		if (energySkill.CanBeUpgraded())
 		{
-			return energySkill.GetDevResourceQuantityAtTier(GetEnergyTier() + 1).ToString();
+			return energySkill.GetDevResourceQuantityAtTier(GetCurrentEnergyTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -148,11 +148,11 @@ public class PlayerSkills
 
 	public static BuildingMaterialsSkill GetBuildingMaterialsSkill() { return buildingMaterialsSkill; }
 
-	public static int GetBuildingMaterialsTier() { return buildingMaterialsSkill.GetCurrentTier(); }
+	public static int GetCurrentBuildingMaterialsTier() { return buildingMaterialsSkill.GetCurrentTier(); }
 	
-	public static void SetBuildingMaterialsTier(int newTier) { buildingMaterialsSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentBuildingMaterialsTier(int newTier) { buildingMaterialsSkill.SetCurrentTier(newTier); }
 
-	public static int GetBuildingMaterialsValue() 
+	public static int GetMaxBuildingMaterialsValue() 
 	{
 		return buildingMaterialsSkill.GetTierValueAtIndex(buildingMaterialsSkill.GetCurrentTier() - 1);
 	}
@@ -161,7 +161,7 @@ public class PlayerSkills
 	{ 
 		if (buildingMaterialsSkill.CanBeUpgraded())
 		{
-			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetBuildingMaterialsTier() + 1);
+			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetCurrentBuildingMaterialsTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -170,7 +170,7 @@ public class PlayerSkills
 	{
 		if (buildingMaterialsSkill.CanBeUpgraded())
 		{
-			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetBuildingMaterialsTier() + 1).ToString();
+			return buildingMaterialsSkill.GetDevResourceQuantityAtTier(GetCurrentBuildingMaterialsTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -180,11 +180,11 @@ public class PlayerSkills
 
 	public static ToolPartsSkill GetToolPartsSkill() { return toolPartsSkill; }
 
-	public static int GetToolPartsTier() { return toolPartsSkill.GetCurrentTier(); }
+	public static int GetCurrentToolPartsTier() { return toolPartsSkill.GetCurrentTier(); }
 	
-	public static void SetToolPartsTier(int newTier) { toolPartsSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentToolPartsTier(int newTier) { toolPartsSkill.SetCurrentTier(newTier); }
 
-	public static int GetToolPartsValue() 
+	public static int GetMaxToolPartsValue() 
 	{
 		return toolPartsSkill.GetTierValueAtIndex(toolPartsSkill.GetCurrentTier() - 1);
 	}
@@ -193,7 +193,7 @@ public class PlayerSkills
 	{ 
 		if (toolPartsSkill.CanBeUpgraded())
 		{
-			return toolPartsSkill.GetDevResourceQuantityAtTier(GetToolPartsTier() + 1);
+			return toolPartsSkill.GetDevResourceQuantityAtTier(GetCurrentToolPartsTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -202,7 +202,7 @@ public class PlayerSkills
 	{
 		if (toolPartsSkill.CanBeUpgraded())
 		{
-			return toolPartsSkill.GetDevResourceQuantityAtTier(GetToolPartsTier() + 1).ToString();
+			return toolPartsSkill.GetDevResourceQuantityAtTier(GetCurrentToolPartsTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -212,11 +212,11 @@ public class PlayerSkills
 
 	public static BookPagesSkill GetBookPagesSkill() { return bookPagesSkill; }
 
-	public static int GetBookPagesTier() { return bookPagesSkill.GetCurrentTier(); }
+	public static int GetCurrentBookPagesTier() { return bookPagesSkill.GetCurrentTier(); }
 	
-	public static void SetBookPagesTier(int newTier) { bookPagesSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentBookPagesTier(int newTier) { bookPagesSkill.SetCurrentTier(newTier); }
 
-	public static int GetBookPagesValue() 
+	public static int GetMaxBookPagesValue() 
 	{
 		return bookPagesSkill.GetTierValueAtIndex(bookPagesSkill.GetCurrentTier() - 1);
 	}
@@ -225,7 +225,7 @@ public class PlayerSkills
 	{ 
 		if (bookPagesSkill.CanBeUpgraded())
 		{
-			return bookPagesSkill.GetDevResourceQuantityAtTier(GetBookPagesTier() + 1);
+			return bookPagesSkill.GetDevResourceQuantityAtTier(GetCurrentBookPagesTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -234,7 +234,7 @@ public class PlayerSkills
 	{
 		if (bookPagesSkill.CanBeUpgraded())
 		{
-			return bookPagesSkill.GetDevResourceQuantityAtTier(GetBookPagesTier() + 1).ToString();
+			return bookPagesSkill.GetDevResourceQuantityAtTier(GetCurrentBookPagesTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -244,11 +244,11 @@ public class PlayerSkills
 
 	public static LumberTreesSkill GetLumberTreesSkill() { return lumberTreesSkill; }
 
-	public static int GetLumberTreesTier() { return lumberTreesSkill.GetCurrentTier(); }
+	public static int GetCurrentLumberTreesTier() { return lumberTreesSkill.GetCurrentTier(); }
 	
-	public static void SetLumberTreesTier(int newTier) { lumberTreesSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentLumberTreesTier(int newTier) { lumberTreesSkill.SetCurrentTier(newTier); }
 
-	public static int GetLumberTreesValue() 
+	public static int GetMaxLumberTreesValue() 
 	{
 		return lumberTreesSkill.GetTierValueAtIndex(lumberTreesSkill.GetCurrentTier() - 1);
 	}
@@ -257,7 +257,7 @@ public class PlayerSkills
 	{
 		if (lumberTreesSkill.CanBeUpgraded()) 
 		{
-			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1);
+			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetCurrentLumberTreesTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -266,7 +266,7 @@ public class PlayerSkills
 	{
 		if (lumberTreesSkill.CanBeUpgraded())
 		{
-			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetLumberTreesTier() + 1).ToString();
+			return lumberTreesSkill.GetDevResourceQuantityAtTier(GetCurrentLumberTreesTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -276,11 +276,11 @@ public class PlayerSkills
 
 	public static LumberLogsSkill GetLumberLogsSkill() { return lumberLogsSkill; }
 
-	public static int GetLumberLogsTier() { return lumberLogsSkill.GetCurrentTier(); }
+	public static int GetCurrentLumberLogsTier() { return lumberLogsSkill.GetCurrentTier(); }
 	
-	public static void SetLumberLogsTier(int newTier) { lumberLogsSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentLumberLogsTier(int newTier) { lumberLogsSkill.SetCurrentTier(newTier); }
 
-	public static int GetLumberLogsValue() 
+	public static int GetMaxLumberLogsValue() 
 	{
 		return lumberLogsSkill.GetTierValueAtIndex(lumberLogsSkill.GetCurrentTier() - 1);
 	}
@@ -289,7 +289,7 @@ public class PlayerSkills
 	{ 
 		if (lumberLogsSkill.CanBeUpgraded())
 		{
-			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1);
+			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetCurrentLumberLogsTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -298,7 +298,7 @@ public class PlayerSkills
 	{
 		if (lumberLogsSkill.CanBeUpgraded())
 		{
-			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetLumberLogsTier() + 1).ToString();
+			return lumberLogsSkill.GetDevResourceQuantityAtTier(GetCurrentLumberLogsTier() + 1).ToString();
 		}
 		return "MAXED";
 	}
@@ -308,11 +308,11 @@ public class PlayerSkills
 
 	public static LumberFirewoodSkill GetLumberFirewoodSkill() { return lumberFirewoodSkill; }
 
-	public static int GetLumberFirewoodTier() { return lumberFirewoodSkill.GetCurrentTier(); }
+	public static int GetCurrentLumberFirewoodTier() { return lumberFirewoodSkill.GetCurrentTier(); }
 	
-	public static void SetLumberFirewoodTier(int newTier) { lumberFirewoodSkill.SetCurrentTier(newTier); }
+	public static void SetCurrentLumberFirewoodTier(int newTier) { lumberFirewoodSkill.SetCurrentTier(newTier); }
 
-	public static int GetLumberFirewoodValue() 
+	public static int GetMaxLumberFirewoodValue() 
 	{
 		return lumberFirewoodSkill.GetTierValueAtIndex(lumberFirewoodSkill.GetCurrentTier() - 1);
 	}
@@ -321,7 +321,7 @@ public class PlayerSkills
 	{ 
 		if (lumberFirewoodSkill.CanBeUpgraded())
 		{
-			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1);
+			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetCurrentLumberFirewoodTier() + 1);
 		}
 		return new DevResourceQuantity(0, 0, 0, 0);
 	}
@@ -330,7 +330,7 @@ public class PlayerSkills
 	{
 		if (lumberFirewoodSkill.CanBeUpgraded())
 		{
-			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetLumberFirewoodTier() + 1).ToString();
+			return lumberFirewoodSkill.GetDevResourceQuantityAtTier(GetCurrentLumberFirewoodTier() + 1).ToString();
 		}
 		return "MAXED";
 	}

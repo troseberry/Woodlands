@@ -28,12 +28,12 @@ public class EnergyManager : MonoBehaviour
 
 	public static void SetCurrentEnergyValue(int newValue)
 	{
-		currentEnergyValue = Mathf.Clamp(newValue, 0, PlayerSkills.GetEnergyValue());
+		currentEnergyValue = Mathf.Clamp(newValue, 0, PlayerSkills.GetMaxEnergyValue());
 	}
 
 	public static void UpdateCurrentEnergyValue(int changeValue)
 	{
-		currentEnergyValue = Mathf.Clamp((currentEnergyValue += changeValue), 0, PlayerSkills.GetEnergyValue());
+		currentEnergyValue = Mathf.Clamp((currentEnergyValue += changeValue), 0, PlayerSkills.GetMaxEnergyValue());
 	}
 
 	public static bool ConsumeEnergy(EnergyAction actionToPerform)
@@ -49,6 +49,6 @@ public class EnergyManager : MonoBehaviour
 
 	public static void FullyRestoreEnergy()
 	{
-		currentEnergyValue = PlayerSkills.GetEnergyValue();
+		currentEnergyValue = PlayerSkills.GetMaxEnergyValue();
 	}
 }
