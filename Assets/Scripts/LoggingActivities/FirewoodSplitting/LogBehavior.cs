@@ -99,8 +99,8 @@ namespace FirewoodSplitting
 			firewoodPieces[0].transform.localPosition = new Vector3(-0.0625f, 0, 0);
 			firewoodPieces[1].transform.localPosition = new Vector3(0.0625f, 0, 0);
 
-			firewoodPieces[0].transform.eulerAngles = new Vector3(-180, 180, 0);
-			firewoodPieces[1].transform.eulerAngles = new Vector3(-180, 180, 0);
+			firewoodPieces[0].transform.eulerAngles = new Vector3(-180, 270, 0);
+			firewoodPieces[1].transform.eulerAngles = new Vector3(-180, 270, 0);
 
 			gameObject.SetActive(true);
 		}
