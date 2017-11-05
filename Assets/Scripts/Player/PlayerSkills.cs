@@ -7,7 +7,7 @@ public class PlayerSkills
 	private static EfficiencySkill efficiencySkill = new EfficiencySkill(); 
 	private static ActiveContractsSkill contractsSkill = new ActiveContractsSkill();
 	private static CurrencySkill currencySkill = new CurrencySkill(5);
-	private static EnergySkill energySkill = new EnergySkill(5);
+	private static EnergySkill energySkill = new EnergySkill(2);
 	private static BuildingMaterialsSkill buildingMaterialsSkill = new BuildingMaterialsSkill();
 	private static ToolPartsSkill toolPartsSkill = new ToolPartsSkill();
 	private static BookPagesSkill bookPagesSkill = new BookPagesSkill();

@@ -8,7 +8,8 @@ public class PlayerHud : MonoBehaviour
 {
 	private Canvas playerCanvas;
 
-	private float energyValue = 0f;
+	private float currentEnergyValue = 0f;
+	private float maxEnergyValue;
 	public Image energyRadial;
 	public Text energyText;
 
@@ -19,16 +20,19 @@ public class PlayerHud : MonoBehaviour
 	void Start () 
 	{
 		playerCanvas = GetComponent<Canvas>();
+
+		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
+
 		toolEquipIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 		ChangeToolImage();
 	}
 	
 	void Update () 
 	{
-		energyValue = (float) EnergyManager.GetCurrentEnergyValue()/100f;
-		energyRadial.fillAmount = energyValue;
-		energyRadial.color = Color.Lerp(Color.red, Color.green, energyValue);
-		energyText.text = (energyValue * 100).ToString();
+		currentEnergyValue = (float) EnergyManager.GetCurrentEnergyValue()/maxEnergyValue;
+		energyRadial.fillAmount = currentEnergyValue;
+		energyRadial.color = Color.Lerp(Color.red, Color.green, currentEnergyValue);
+		energyText.text = (currentEnergyValue * maxEnergyValue).ToString();
 
 		CheckSwitchToolsInput();
 	}

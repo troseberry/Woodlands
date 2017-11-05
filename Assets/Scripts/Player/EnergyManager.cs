@@ -7,7 +7,8 @@ UPKEEP_STUDY, UPKEEP_OFFICE, UPKEEP_WORKSHOP};
 
 public class EnergyManager : MonoBehaviour 
 {
-	private static int currentEnergyValue = 100;
+	//should eventually pull from save data
+	private static int currentEnergyValue = PlayerSkills.GetMaxEnergyValue();
 	private static Dictionary<EnergyAction, int> ActionEnergyCosts = new Dictionary<EnergyAction, int>()
 	{
 		{EnergyAction.HORIZONTAL_CHOP, 1},

@@ -62,6 +62,12 @@ public class GameMenu : MonoBehaviour
 				StartCoroutine(CloseMenu());
 			}
 		}
+
+		if (menuOpen)
+		{
+			//probably also update contracts as well
+			UpdateResources();
+		}
 	}
 
 	IEnumerator OpenMenu()
