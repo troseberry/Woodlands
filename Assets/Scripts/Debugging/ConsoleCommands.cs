@@ -67,19 +67,19 @@ public class ConsoleCommands : MonoBehaviour
 		switch(command)
 		{
 			case "Currency Value":
-				PlayerInventory.SetCurrentCurrencyValue(commandValue);
+				PlayerResources.SetCurrentCurrencyValue(commandValue);
 				break;
 			case "Energy Value":
-				EnergyManager.SetCurrentEnergyValue(commandValue);
+				PlayerEnergy.SetCurrentEnergyValue(commandValue);
 				break;	
 			case "Building Materials Value":
-				PlayerInventory.SetCurrentBuildingMaterialsValue(commandValue);
+				PlayerResources.SetCurrentBuildingMaterialsValue(commandValue);
 				break;
 			case "Tool Parts Value":
-				PlayerInventory.SetCurrentToolPartsValue(commandValue);
+				PlayerResources.SetCurrentToolPartsValue(commandValue);
 				break;
 			case "Book Pages Value":
-				PlayerInventory.SetCurrentBookPagesValue(commandValue);
+				PlayerResources.SetCurrentBookPagesValue(commandValue);
 				break;
 
 

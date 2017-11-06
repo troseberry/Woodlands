@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInventory 
+public class PlayerResources 
 {
 	private static int currenctCurrency = 0;
 	private static int currentBuildingMaterials = 0;

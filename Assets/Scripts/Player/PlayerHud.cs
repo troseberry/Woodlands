@@ -15,6 +15,7 @@ public class PlayerHud : MonoBehaviour
 
 	private int toolEquipIndex;
 	public Transform toolIconGroup;
+	private bool doChangeTool = false;
 
 	
 	void Start () 
@@ -29,44 +30,42 @@ public class PlayerHud : MonoBehaviour
 	
 	void Update () 
 	{
-		currentEnergyValue = (float) EnergyManager.GetCurrentEnergyValue()/maxEnergyValue;
+		currentEnergyValue = (float) PlayerEnergy.GetCurrentEnergyValue()/maxEnergyValue;
 		energyRadial.fillAmount = currentEnergyValue;
 		energyRadial.color = Color.Lerp(Color.red, Color.green, currentEnergyValue);
 		energyText.text = (currentEnergyValue * maxEnergyValue).ToString();
 
 		CheckSwitchToolsInput();
+		if (doChangeTool) ChangeToolImage();
 	}
 
 	void CheckSwitchToolsInput()
 	{
 		if (Input.GetButtonDown("Tool_01"))
 		{
-			PlayerTools.SetCurrentlyEquippedTool(ToolName.EMPTY_HANDS);
 			toolEquipIndex = 0;
-			ChangeToolImage();
+			doChangeTool = true;
 		}
 		else if (Input.GetButtonDown("Tool_02"))
 		{
-			PlayerTools.SetCurrentlyEquippedTool(ToolName.FELLING_AXE);
 			toolEquipIndex = 1;
-			ChangeToolImage();
+			doChangeTool = true;
 		}
 		else if (Input.GetButtonDown("Tool_03"))
 		{
-			PlayerTools.SetCurrentlyEquippedTool(ToolName.CROSSCUT_SAW);
 			toolEquipIndex = 2;
-			ChangeToolImage();
+			doChangeTool = true;
 		}
 		else if (Input.GetButtonDown("Tool_04"))
 		{
-			PlayerTools.SetCurrentlyEquippedTool(ToolName.SPLITTING_AXE);
 			toolEquipIndex = 3;
-			ChangeToolImage();
+			doChangeTool = true;
 		}
 	}
 
 	void ChangeToolImage()
 	{
+		ToolManager.SwitchTool(toolEquipIndex);
 		for (int i = 0; i < toolIconGroup.childCount; i++)
 		{
 			toolIconGroup.GetChild(i).gameObject.SetActive(false);

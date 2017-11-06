@@ -136,11 +136,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	void HandleSnapLogic()
 	{
-		bool fellingCondition = (currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen());
+		bool fellingCondition = (currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
 
-		bool buckingCondition = (currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw));
+		bool buckingCondition = (currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
 
-		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0);
+		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0 && PlayerTools.GetCurrentlyEquippedToolIndex() == 3);
 
 		if (Input.GetButtonDown("Interact") && canSnapPlayer)
 		{
@@ -172,13 +172,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				switch(currentActivity)
 				{
 					case LoggingActivity.FELLING:
-						if (EnergyManager.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) SwingForward();
+						if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) SwingForward();
 						break;
 					case LoggingActivity.BUCKING:
-						if (EnergyManager.ConsumeEnergy(EnergyAction.SAW_PUSH)) PushForward();
+						if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH)) PushForward();
 						break;
 					case LoggingActivity.SPLITTING:
-						if (EnergyManager.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) SwingDownward();
+						if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) SwingDownward();
 						break;
 				}
 			}
@@ -190,7 +190,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						SwingBackward();
 						break;
 					case LoggingActivity.BUCKING:
-						if (EnergyManager.ConsumeEnergy(EnergyAction.SAW_PULL)) PullBackward();
+						if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PULL)) PullBackward();
 						break;
 					case LoggingActivity.SPLITTING:
 						SwingUpward();

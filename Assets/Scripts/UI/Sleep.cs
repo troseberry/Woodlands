@@ -9,6 +9,6 @@ public class Sleep : MonoBehaviour
 	public void SleepToMorning()
 	{
 		sleepPrompt.CloseMenu();
-		EnergyManager.FullyRestoreEnergy();
+		PlayerEnergy.FullyRestoreEnergy();
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public enum EnergyAction {HORIZONTAL_CHOP, SAW_PUSH, SAW_PULL, VERTICAL_CHOP, UPKEEP_KITCHEN, UPKEEP_BEDROOM,
 UPKEEP_STUDY, UPKEEP_OFFICE, UPKEEP_WORKSHOP};
 
-public class EnergyManager : MonoBehaviour 
+public class PlayerEnergy 
 {
 	//should eventually pull from save data
 	private static int currentEnergyValue = PlayerSkills.GetMaxEnergyValue();
