@@ -59,6 +59,8 @@ public class CharacterInputController : MonoBehaviour
 			CharacterMotor.ExecuteJump();
 			CharacterAnimator.SetJumpAsAction();
 		}
+
+		
 	}
 
 	void FixedUpdate()
@@ -104,4 +106,13 @@ public class CharacterInputController : MonoBehaviour
 	{
 		CharacterAnimator.SetLoggingAsAction(activity);
 	}
+
+	// public static void ProcessToolSwitchLogic()
+	// {
+	// 	if (Input.GetButtonDown("Tool_01") || Input.GetButtonDown("Tool_02") || Input.GetButtonDown("Tool_03") || Input.GetButtonDown("Tool_04"))
+	// 	{
+	// 		CharacterAnimator.SetEquipLocations();
+	// 		CharacterAnimator.SetSwitchToolAsAction();
+	// 	}
+	// }
 }

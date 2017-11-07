@@ -5,12 +5,13 @@ using UnityEngine;
 public class ToolManager : MonoBehaviour 
 {
 	public Transform toolGroup;
+	private static int currentToolIndex;
 	private static int toolEquipIndex;
 	private static bool doSwitch = false;
 
 	void Start () 
 	{
-		
+		currentToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();	
 	}
 	
 	void Update () 
@@ -25,6 +26,9 @@ public class ToolManager : MonoBehaviour
 	{
 		toolEquipIndex = selectedTool;
 		doSwitch = true;
+
+		
+
 
 		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
 	}
@@ -41,6 +45,12 @@ public class ToolManager : MonoBehaviour
 	{
 		HideAllTools();
 		toolGroup.GetChild(toolEquipIndex).gameObject.SetActive(true);
+
+		// CharacterAnimator.SetEquipLocations(currentToolIndex, toolEquipIndex);
+		// CharacterAnimator.SetSwitchToolAsAction();
+
+
 		doSwitch = false;
+		currentToolIndex = toolEquipIndex;
 	}
 }

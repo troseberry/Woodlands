@@ -65,11 +65,17 @@ public class PlayerHud : MonoBehaviour
 
 	void ChangeToolImage()
 	{
+		CharacterAnimator.SetEquipLocations(toolEquipIndex, PlayerTools.GetCurrentlyEquippedToolIndex());
+		CharacterAnimator.SetSwitchToolAsAction();
+
+
 		ToolManager.SwitchTool(toolEquipIndex);
 		for (int i = 0; i < toolIconGroup.childCount; i++)
 		{
 			toolIconGroup.GetChild(i).gameObject.SetActive(false);
 		}
 		toolIconGroup.GetChild(toolEquipIndex).gameObject.SetActive(true);
+		
+		doChangeTool = false;
 	}
 }

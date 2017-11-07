@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum AnimState {NONE, IDLE, IDLE_FELLING, IDLE_BUCKING, IDLE_SPLITTING, WALK, RUN, JUMP_STATIONARY, JUMP_WALK, JUMP_RUN, CHOP_FORWARD, CHOP_BACKWARD, SAW_FORWARD, SAW_BACWARD, UPGRADE_TOOL, UPGRADE_SKILL, UPGRADE_ROOM, INTERACT_NEWSPAPER, INTERACT_BED, INTERACT_SHOP, INTERACT_WORKBENCH, INTERACT_BOOKSHELF};
+public enum AnimState {NONE, IDLE, IDLE_FELLING, IDLE_BUCKING, IDLE_SPLITTING, WALK, RUN, JUMP_STATIONARY, JUMP_WALK, JUMP_RUN, CHOP_FORWARD, CHOP_BACKWARD, SAW_FORWARD, SAW_BACWARD, UPGRADE_TOOL, UPGRADE_SKILL, UPGRADE_ROOM, INTERACT_NEWSPAPER, INTERACT_BED, INTERACT_SHOP, INTERACT_WORKBENCH, INTERACT_BOOKSHELF, SWITCH_TOOL};
 
 
 public class CharacterAnimator : MonoBehaviour 
@@ -107,6 +107,9 @@ public class CharacterAnimator : MonoBehaviour
 			case AnimState.IDLE_SPLITTING:
 				IdleFirewoodSplitting();
 				break;
+			case AnimState.SWITCH_TOOL:
+				SwitchTool();
+				break;
 		}
 	}
 
@@ -189,6 +192,24 @@ public class CharacterAnimator : MonoBehaviour
 		public static void SwingDownward() { loggerAnimator.SetTrigger("SwingDownward"); }
 
 		public static void SwingUpward() { loggerAnimator.SetTrigger("SwingUpward"); }
+	#endregion
 
+	#region TOOL METHODS
+		public static void SetEquipLocations(int startingLocation, int endingLocation)
+		{
+			loggerAnimator.SetInteger("StartingToolLocation", startingLocation);
+			loggerAnimator.SetInteger("EndingToolLocation", endingLocation);
+		}
+
+		public static void SwitchTool()
+		{
+			loggerAnimator.SetTrigger("SwitchTool");
+			actionState = AnimState.NONE;
+		}
+
+		public static void SetSwitchToolAsAction()
+		{
+			actionState = AnimState.SWITCH_TOOL;
+		}
 	#endregion
 }
