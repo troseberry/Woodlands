@@ -27,8 +27,21 @@ public class ToolManager : MonoBehaviour
 		toolEquipIndex = selectedTool;
 		doSwitch = true;
 
-		
+		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
+	}
 
+	public static void EquipTool(int toolIndex)
+	{
+		toolEquipIndex = toolIndex;
+		doSwitch = true;
+
+		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
+	}
+
+	public static void UnequipTool()
+	{
+		toolEquipIndex = 0;
+		doSwitch = true;
 
 		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
 	}
@@ -45,10 +58,6 @@ public class ToolManager : MonoBehaviour
 	{
 		HideAllTools();
 		toolGroup.GetChild(toolEquipIndex).gameObject.SetActive(true);
-
-		// CharacterAnimator.SetEquipLocations(currentToolIndex, toolEquipIndex);
-		// CharacterAnimator.SetSwitchToolAsAction();
-
 
 		doSwitch = false;
 		currentToolIndex = toolEquipIndex;
