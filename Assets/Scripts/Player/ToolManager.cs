@@ -6,12 +6,14 @@ public class ToolManager : MonoBehaviour
 {
 	public Transform toolGroup;
 	private static int currentToolIndex;
-	private static int toolEquipIndex;
+	private static int toolToEquipIndex;
 	private static bool doSwitch = false;
+	private static bool doUnequipOnly = false;
 
 	void Start () 
 	{
-		currentToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();	
+		currentToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
+		EquipTool(currentToolIndex);
 	}
 	
 	void Update () 
@@ -19,31 +21,46 @@ public class ToolManager : MonoBehaviour
 		if (doSwitch)
 		{
 			EnableTool();
-		}	
-	}
+		}
+		else if (doUnequipOnly)
+		{
+			HideAllTools();
+		}
 
-	public static void SwitchTool(int selectedTool)
-	{
-		toolEquipIndex = selectedTool;
-		doSwitch = true;
-
-		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
+		HandleToolAnimatorChecks();
 	}
 
 	public static void EquipTool(int toolIndex)
 	{
-		toolEquipIndex = toolIndex;
+		toolToEquipIndex = toolIndex;
 		doSwitch = true;
 
-		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
+		PlayerTools.SetCurrentlyEquippedTool(toolToEquipIndex);
 	}
 
 	public static void UnequipTool()
 	{
-		toolEquipIndex = 0;
+		doUnequipOnly = true;
+
+		PlayerTools.SetCurrentlyEquippedTool(0);
+	}
+
+	public static IEnumerator DelayedEquipTool(int toolIndex)
+	{
+		yield return new WaitForSeconds(CharacterAnimator.GetCurrentAnimState().length);
+		toolToEquipIndex = toolIndex;
 		doSwitch = true;
 
-		PlayerTools.SetCurrentlyEquippedTool(toolEquipIndex);
+		PlayerTools.SetCurrentlyEquippedTool(toolToEquipIndex);
+	}
+
+	void EnableTool()
+	{
+		HideAllTools();
+		toolGroup.GetChild(toolToEquipIndex).gameObject.SetActive(true);
+
+		doSwitch = false;
+		currentToolIndex = toolToEquipIndex;
 	}
 
 	void HideAllTools()
@@ -52,14 +69,36 @@ public class ToolManager : MonoBehaviour
 		{
 			toolGroup.GetChild(i).gameObject.SetActive(false);
 		}
+
+		if (doUnequipOnly) doUnequipOnly = false;
 	}
 
-	void EnableTool()
-	{
-		HideAllTools();
-		toolGroup.GetChild(toolEquipIndex).gameObject.SetActive(true);
+	public static bool GetDoSwitch() { return doSwitch; }
 
-		doSwitch = false;
-		currentToolIndex = toolEquipIndex;
+	public static void SetToolToEquipIndex(int index) { toolToEquipIndex = index; }
+
+	public static int GetToolToEquipIndex() { return toolToEquipIndex; }
+
+	void HandleToolAnimatorChecks()
+	{
+		if (CharacterAnimator.GetCurrentAnimState().IsName("Back_Equip") || CharacterAnimator.GetCurrentAnimState().IsName("Waist_Equip"))
+		{
+			EquipTool(toolToEquipIndex);
+		}
+		else if (CharacterAnimator.GetCurrentAnimState().IsName("Back_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("Waist_Unequip"))
+		{
+			toolToEquipIndex = 0;
+			UnequipTool();
+		}
+		else if (CharacterAnimator.GetCurrentAnimState().IsName("BackToBack_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("WaistToWaist_Unequip"))
+		{
+			UnequipTool();
+			StartCoroutine(DelayedEquipTool(toolToEquipIndex));
+		}
+		else if (CharacterAnimator.GetCurrentAnimState().IsName("BackToWaist_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("WaistToBack_Unequip"))
+		{
+			UnequipTool();
+			StartCoroutine(DelayedEquipTool(toolToEquipIndex));
+		}
 	}
 }

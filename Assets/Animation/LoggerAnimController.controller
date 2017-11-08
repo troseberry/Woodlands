@@ -2415,7 +2415,7 @@ AnimatorStateTransition:
   serializedVersion: 3
   m_TransitionDuration: 0.25
   m_TransitionOffset: 0
-  m_ExitTime: 0.5588236
+  m_ExitTime: 1.25
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -2520,7 +2520,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_ToolToEmpty
+  m_Name: BackToWaist_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2544,7 +2544,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_ToolEquip_Half
+  m_Name: BackToBack_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2592,7 +2592,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_ToolUnequip_Half
+  m_Name: BackToBack_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2666,7 +2666,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_EmptyToTool
+  m_Name: BackToWaist_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -2989,7 +2989,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_ToolToEmpty
+  m_Name: WaistToBack_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3233,7 +3233,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_EmptyToTool
+  m_Name: Waist_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3283,7 +3283,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_ToolEquip_Half
+  m_Name: WaistToWaist_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3331,7 +3331,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_ToolToEmpty
+  m_Name: Back_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3696,7 +3696,7 @@ AnimatorState:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_EmptyToTool
+  m_Name: Back_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3768,7 +3768,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Back_EmptyToTool
+  m_Name: WaistToBack_Equip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3839,7 +3839,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_ToolUnequip_Half
+  m_Name: WaistToWaist_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3912,7 +3912,7 @@ AnimatorState:
   m_ObjectHideFlags: 3
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Waist_ToolToEmpty
+  m_Name: Waist_Unequip
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

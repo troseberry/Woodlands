@@ -16,6 +16,8 @@ public class CharacterInputController : MonoBehaviour
 
 	private static bool canTurn = true;
 
+	private static bool doChangeTool = false;
+
 	void Start () 
 	{
 		vertInput = Input.GetAxisRaw("Vertical");
@@ -34,7 +36,7 @@ public class CharacterInputController : MonoBehaviour
 
 
 
-		/* MOVEMENT INPUT */
+		#region MOVEMENT INPUT
 		if (vertInput != 0 || horzInput != 0)
 		{
 			if (Input.GetButton("Move Speed"))
@@ -51,6 +53,7 @@ public class CharacterInputController : MonoBehaviour
 		{
 			CharacterAnimator.SetMovementState(AnimState.IDLE);
 		}
+		#endregion
 
 		DetermineCharacterRotation();
 
@@ -60,6 +63,30 @@ public class CharacterInputController : MonoBehaviour
 			CharacterAnimator.SetJumpAsAction();
 		}
 
+		
+		if (Input.GetButtonDown("Tool_01") && ToolManager.GetToolToEquipIndex() != 0)
+		{
+			ToolManager.SetToolToEquipIndex(0);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_02") && ToolManager.GetToolToEquipIndex() != 1)
+		{
+			ToolManager.SetToolToEquipIndex(1);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_03") && ToolManager.GetToolToEquipIndex() != 2)
+		{
+			ToolManager.SetToolToEquipIndex(2);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_04") && ToolManager.GetToolToEquipIndex() != 3)
+		{
+			ToolManager.SetToolToEquipIndex(3);
+			doChangeTool = true;
+		}
+
+		
+		if (doChangeTool) ChangeTool();
 		
 	}
 
@@ -107,12 +134,25 @@ public class CharacterInputController : MonoBehaviour
 		CharacterAnimator.SetLoggingAsAction(activity);
 	}
 
-	// public static void ProcessToolSwitchLogic()
-	// {
-	// 	if (Input.GetButtonDown("Tool_01") || Input.GetButtonDown("Tool_02") || Input.GetButtonDown("Tool_03") || Input.GetButtonDown("Tool_04"))
-	// 	{
-	// 		CharacterAnimator.SetEquipLocations();
-	// 		CharacterAnimator.SetSwitchToolAsAction();
-	// 	}
-	// }
+	void ChangeTool()
+	{
+		if (doChangeTool)
+		{
+			Debug.Log("Current Tool: " + PlayerTools.GetCurrentlyEquippedToolIndex());
+			Debug.Log("To Equip Tool: " + ToolManager.GetToolToEquipIndex());
+			
+			int startLoc = 0;
+			if (PlayerTools.GetCurrentlyEquippedToolIndex() > 0) startLoc = (PlayerTools.GetCurrentlyEquippedToolIndex() == 2) ? 2 : 1;
+
+			int endLoc = 0;
+			if (ToolManager.GetToolToEquipIndex() > 0) endLoc = (ToolManager.GetToolToEquipIndex() == 2) ? 2 : 1;
+
+			CharacterAnimator.SetEquipLocations(startLoc, endLoc);
+			CharacterAnimator.SetSwitchToolAsAction();
+
+			PlayerHud.PlayerHudReference.ChangeToolIcon();
+
+			doChangeTool = false;
+		}
+	}
 }
