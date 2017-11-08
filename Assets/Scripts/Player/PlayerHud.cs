@@ -16,6 +16,7 @@ public class PlayerHud : MonoBehaviour
 	public Text energyText;
 
 	public Transform toolIconGroup;
+	public Transform toolWheelGroup;
 
 	
 	void Start () 
@@ -33,6 +34,8 @@ public class PlayerHud : MonoBehaviour
 		energyRadial.fillAmount = currentEnergyValue;
 		energyRadial.color = Color.Lerp(Color.red, Color.green, currentEnergyValue);
 		energyText.text = (currentEnergyValue * maxEnergyValue).ToString();
+
+		if (Input.GetButtonDown("ToolWheel")) ToggleToolWheel();
 	}
 
 	public void ChangeToolIcon()
@@ -42,5 +45,29 @@ public class PlayerHud : MonoBehaviour
 			toolIconGroup.GetChild(i).gameObject.SetActive(false);
 		}
 		toolIconGroup.GetChild(ToolManager.GetToolToEquipIndex()).gameObject.SetActive(true);
+	}
+
+	void ToggleToolWheel()
+	{
+		toolWheelGroup.gameObject.SetActive(!toolWheelGroup.gameObject.activeSelf);
+	}
+
+	public void CallForToolSwitch()
+	{
+		string buttonName = EventSystem.current.currentSelectedGameObject.name;
+		int toolToEquipIndex = 0;
+		switch(buttonName)
+		{
+			case "Tool_02":
+				toolToEquipIndex = 1;
+				break;
+			case "Tool_03":
+				toolToEquipIndex = 2;
+				break;
+			case "Tool_04":
+				toolToEquipIndex = 3;
+				break;
+		}
+		CharacterInputController.HandleToolInput(toolToEquipIndex);
 	}
 }

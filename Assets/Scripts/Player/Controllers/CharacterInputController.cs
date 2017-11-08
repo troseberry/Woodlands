@@ -63,29 +63,7 @@ public class CharacterInputController : MonoBehaviour
 			CharacterAnimator.SetJumpAsAction();
 		}
 
-		
-		if (Input.GetButtonDown("Tool_01") && ToolManager.GetToolToEquipIndex() != 0)
-		{
-			ToolManager.SetToolToEquipIndex(0);
-			doChangeTool = true;
-		}
-		else if (Input.GetButtonDown("Tool_02") && ToolManager.GetToolToEquipIndex() != 1)
-		{
-			ToolManager.SetToolToEquipIndex(1);
-			doChangeTool = true;
-		}
-		else if (Input.GetButtonDown("Tool_03") && ToolManager.GetToolToEquipIndex() != 2)
-		{
-			ToolManager.SetToolToEquipIndex(2);
-			doChangeTool = true;
-		}
-		else if (Input.GetButtonDown("Tool_04") && ToolManager.GetToolToEquipIndex() != 3)
-		{
-			ToolManager.SetToolToEquipIndex(3);
-			doChangeTool = true;
-		}
-
-		
+		HandleToolInput();		
 		if (doChangeTool) ChangeTool();
 		
 	}
@@ -132,6 +110,39 @@ public class CharacterInputController : MonoBehaviour
 	public static void InitiateLoggingState(AnimState activity)
 	{
 		CharacterAnimator.SetLoggingAsAction(activity);
+	}
+
+	void HandleToolInput()
+	{
+		if (Input.GetButtonDown("Tool_01") && ToolManager.GetToolToEquipIndex() != 0)
+		{
+			ToolManager.SetToolToEquipIndex(0);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_02") && ToolManager.GetToolToEquipIndex() != 1)
+		{
+			ToolManager.SetToolToEquipIndex(1);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_03") && ToolManager.GetToolToEquipIndex() != 2)
+		{
+			ToolManager.SetToolToEquipIndex(2);
+			doChangeTool = true;
+		}
+		else if (Input.GetButtonDown("Tool_04") && ToolManager.GetToolToEquipIndex() != 3)
+		{
+			ToolManager.SetToolToEquipIndex(3);
+			doChangeTool = true;
+		}
+	}
+
+	public static void HandleToolInput(int inputToolIndex)
+	{
+		if (ToolManager.GetToolToEquipIndex() != inputToolIndex)
+		{
+			ToolManager.SetToolToEquipIndex(inputToolIndex);
+			doChangeTool = true;
+		}
 	}
 
 	void ChangeTool()
