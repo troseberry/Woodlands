@@ -134,6 +134,22 @@ public class CharacterInputController : MonoBehaviour
 			ToolManager.SetToolToEquipIndex(3);
 			doChangeTool = true;
 		}
+
+		if (!ToolManager.GetScrollSwitch())
+		{
+			if (Input.GetAxis("Mouse ScrollWheel") > 0.35f)
+			{
+				ToolManager.SetToolToEquipIndex((PlayerTools.GetCurrentlyEquippedToolIndex() + 1) % 4);
+				doChangeTool = true;
+				ToolManager.SetScrollSwitch(true);
+			}
+			else if (Input.GetAxis("Mouse ScrollWheel") < -0.35f)
+			{
+				ToolManager.SetToolToEquipIndex((PlayerTools.GetCurrentlyEquippedToolIndex() + 3) % 4);
+				doChangeTool = true;
+				ToolManager.SetScrollSwitch(true);
+			}
+		}
 	}
 
 	public static void HandleToolInput(int inputToolIndex)

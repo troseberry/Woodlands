@@ -9,6 +9,7 @@ public class ToolManager : MonoBehaviour
 	private static int toolToEquipIndex;
 	private static bool doSwitch = false;
 	private static bool doUnequipOnly = false;
+	private static bool doScrollSwitch = false;
 
 	void Start () 
 	{
@@ -61,6 +62,8 @@ public class ToolManager : MonoBehaviour
 
 		doSwitch = false;
 		currentToolIndex = toolToEquipIndex;
+		
+		if (doScrollSwitch) doScrollSwitch = false;
 	}
 
 	void HideAllTools()
@@ -71,6 +74,7 @@ public class ToolManager : MonoBehaviour
 		}
 
 		if (doUnequipOnly) doUnequipOnly = false;
+		if (doScrollSwitch) doScrollSwitch = false;
 	}
 
 	public static bool GetDoSwitch() { return doSwitch; }
@@ -78,6 +82,10 @@ public class ToolManager : MonoBehaviour
 	public static void SetToolToEquipIndex(int index) { toolToEquipIndex = index; }
 
 	public static int GetToolToEquipIndex() { return toolToEquipIndex; }
+
+	public static bool GetScrollSwitch() { return doScrollSwitch; }
+
+	public static void SetScrollSwitch(bool doSwitch) { doScrollSwitch = doSwitch; }
 
 	void HandleToolAnimatorChecks()
 	{
