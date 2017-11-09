@@ -5,23 +5,22 @@ using UnityEngine.UI;
 
 public class UpgradeTools : MonoBehaviour 
 {
-	private Text fellingAxeCosts, crosscutSawCosts, splittingAxeCosts;
-
-
+	
 	void Start()
 	{
-		fellingAxeCosts = transform.GetChild(0).GetChild(1).GetComponent<Text>();
-		crosscutSawCosts = transform.GetChild(1).GetChild(1).GetComponent<Text>();
-		splittingAxeCosts = transform.GetChild(2).GetChild(1).GetComponent<Text>();
-
 		UpdateToolsResources();
 	}
 
 	void UpdateToolsResources()
 	{
-		fellingAxeCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.FELLING_AXE);
-		crosscutSawCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.CROSSCUT_SAW);
-		splittingAxeCosts.text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.SPLITTING_AXE);
+		transform.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier().ToString();
+		transform.GetChild(0).GetChild(1).GetComponent<Text>().text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.FELLING_AXE);
+
+		transform.GetChild(1).GetChild(0).GetComponent<Text>().text = PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetCurrentTier().ToString();
+		transform.GetChild(1).GetChild(1).GetComponent<Text>().text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.CROSSCUT_SAW);
+
+		transform.GetChild(2).GetChild(0).GetComponent<Text>().text = PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetCurrentTier().ToString();
+		transform.GetChild(2).GetChild(1).GetComponent<Text>().text = PlayerTools.GetNextUpgradeCostsAsString(ToolName.SPLITTING_AXE);
 	}
 
 	public void UpgradeFellingAxe()
@@ -36,6 +35,7 @@ public class UpgradeTools : MonoBehaviour
 				//might need to reference actual PlayerTools object
 				fellingAxe.SetCurrentTier(currentTier + 1);
 				fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateToolsResources();
 			}
 			else
 			{
@@ -60,6 +60,7 @@ public class UpgradeTools : MonoBehaviour
 				//might need to reference actual PlayerTools object
 				crosscutSaw.SetCurrentTier(currentTier + 1);
 				crosscutSaw.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateToolsResources();
 			}
 			else
 			{
@@ -84,6 +85,7 @@ public class UpgradeTools : MonoBehaviour
 				//might need to reference actual PlayerTools object
 				splittingAxe.SetCurrentTier(currentTier + 1);
 				splittingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateToolsResources();
 			}
 			else
 			{

@@ -5,41 +5,44 @@ using UnityEngine.UI;
 
 public class UpgradeSkills : MonoBehaviour 
 {
-
-	private Text contractsCosts, currencyCosts, efficiencyCosts, energyCosts, buildingMaterialsCosts, toolPartsCosts, bookPagesCosts, lumberTreesCosts, lumberLogsCosts, lumberFirewoodCosts;
+	public Transform skillsGroup;
 
 	void Start()
 	{
-		contractsCosts = transform.GetChild(0).GetChild(1).GetComponent<Text>();
-		currencyCosts = transform.GetChild(1).GetChild(1).GetComponent<Text>();
-		efficiencyCosts = transform.GetChild(2).GetChild(1).GetComponent<Text>();
-		energyCosts = transform.GetChild(3).GetChild(1).GetComponent<Text>();
-		buildingMaterialsCosts = transform.GetChild(4).GetChild(1).GetComponent<Text>();
-		toolPartsCosts = transform.GetChild(5).GetChild(1).GetComponent<Text>();
-		bookPagesCosts = transform.GetChild(6).GetChild(1).GetComponent<Text>();
-		lumberTreesCosts = transform.GetChild(7).GetChild(1).GetComponent<Text>();
-		lumberLogsCosts = transform.GetChild(8).GetChild(1).GetComponent<Text>();
-		lumberFirewoodCosts = transform.GetChild(9).GetChild(1).GetComponent<Text>();
-
-		UpdateSkillsResources();
-		
+		UpdateSkillsResources();	
 	}
 
 	void UpdateSkillsResources()
 	{
-		contractsCosts.text = PlayerSkills.GetNextContractsUpgradeCostsAsString();
-		currencyCosts.text = PlayerSkills.GetNextCurrencyUpgradeCostsAsString();
-		efficiencyCosts.text = PlayerSkills.GetNextEfficiencyUpgradeCostsAsString();
-		energyCosts.text = PlayerSkills.GetNextEnergyUpgradeCostsAsString();
+		skillsGroup.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentContractsTier().ToString();
+		skillsGroup.GetChild(0).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextContractsUpgradeCostsAsString();
 
+		skillsGroup.GetChild(1).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentCurrencyTier().ToString();
+		skillsGroup.GetChild(1).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextCurrencyUpgradeCostsAsString();
 
-		buildingMaterialsCosts.text = PlayerSkills.GetNextBuildingMaterialsUpgradeCostsAsString();
-		toolPartsCosts.text = PlayerSkills.GetNextToolPartsUpgradeCostsAsString();
-		bookPagesCosts.text = PlayerSkills.GetNextBookPagesUpgradeCostsAsString();
+		skillsGroup.GetChild(2).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentEfficiencyTier().ToString();
+		skillsGroup.GetChild(2).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextEfficiencyUpgradeCostsAsString();
+		
+		skillsGroup.GetChild(3).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentEnergyTier().ToString();
+		skillsGroup.GetChild(3).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextEnergyUpgradeCostsAsString();
 
-		lumberTreesCosts.text = PlayerSkills.GetNextLumberTreesUpgradeCostsAsString();
-		lumberLogsCosts.text = PlayerSkills.GetNextLumberLogsUpgradeCostsAsString();
-		lumberFirewoodCosts.text = PlayerSkills.GetNextLumberFirewoodUpgradeCostsAsString();
+		skillsGroup.GetChild(4).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentBuildingMaterialsTier().ToString();
+		skillsGroup.GetChild(4).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextBuildingMaterialsUpgradeCostsAsString();
+
+		skillsGroup.GetChild(5).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentToolPartsTier().ToString();
+		skillsGroup.GetChild(5).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextToolPartsUpgradeCostsAsString();
+
+		skillsGroup.GetChild(6).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentBookPagesTier().ToString();
+		skillsGroup.GetChild(6).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextBookPagesUpgradeCostsAsString();
+
+		skillsGroup.GetChild(7).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentLumberTreesTier().ToString();
+		skillsGroup.GetChild(7).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextLumberTreesUpgradeCostsAsString();
+
+		skillsGroup.GetChild(8).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentLumberLogsTier().ToString();
+		skillsGroup.GetChild(8).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextLumberLogsUpgradeCostsAsString();
+
+		skillsGroup.GetChild(9).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentLumberFirewoodTier().ToString();
+		skillsGroup.GetChild(9).GetChild(1).GetComponent<Text>().text = PlayerSkills.GetNextLumberFirewoodUpgradeCostsAsString();
 	}
 
 	public void UpgradeEfficiency()
@@ -52,6 +55,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentEfficiencyTier(currentTier + 1);
 				PlayerSkills.GetEfficiencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -74,6 +78,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentContractsTier(currentTier + 1);
 				PlayerSkills.GetContractsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -96,6 +101,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentCurrencyTier(currentTier + 1);
 				PlayerSkills.GetCurrencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -118,6 +124,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentEnergyTier(currentTier + 1);
 				PlayerSkills.GetEnergySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -140,6 +147,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentBuildingMaterialsTier(currentTier + 1);
 				PlayerSkills.GetBuildingMaterialsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -162,6 +170,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentToolPartsTier(currentTier + 1);
 				PlayerSkills.GetToolPartsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -184,6 +193,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentBookPagesTier(currentTier + 1);
 				PlayerSkills.GetBookPagesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -207,6 +217,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentLumberTreesTier(currentTier + 1);
 				PlayerSkills.GetLumberTreesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -229,6 +240,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentLumberLogsTier(currentTier + 1);
 				PlayerSkills.GetLumberLogsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{
@@ -251,6 +263,7 @@ public class UpgradeSkills : MonoBehaviour
 			{
 				PlayerSkills.SetCurrentLumberFirewoodTier(currentTier + 1);
 				PlayerSkills.GetLumberFirewoodSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				UpdateSkillsResources();
 			}
 			else
 			{

@@ -47,13 +47,23 @@ public class PlayerTools
 	public static DevResourceQuantity GetNextUpgradeCosts(ToolName name)
 	{
 		Tool toUpgrade = GetToolByName(name);
-		return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1);
+
+		if (toUpgrade.CanBeUpgraded())
+		{
+			return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1);
+		}
+		return new DevResourceQuantity(0, 0, 0, 0);
 	}
 
 	public static string GetNextUpgradeCostsAsString(ToolName name)
 	{
 		Tool toUpgrade = GetToolByName(name);
-		return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1).ToString();
+
+		if (toUpgrade.CanBeUpgraded())
+		{
+			return toUpgrade.GetDevResourceQuantityAtTier(toUpgrade.GetCurrentTier() + 1).ToString();
+		}
+		return "MAXED";
 	}
 
 
