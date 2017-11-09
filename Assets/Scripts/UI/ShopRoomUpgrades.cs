@@ -16,6 +16,7 @@ public class ShopRoomUpgrades : MonoBehaviour
 			{
 				PlayerRooms.SetBedRoomTier(currentTier + 1);
 				bedroom.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				ShopCanvas.TriggerRoomsInfoUpdate();
 			}
 			else
 			{

@@ -5,46 +5,38 @@ using UnityEngine.UI;
 
 public class ShopCanvas : MonoBehaviour 
 {
-	public GameObject toolsGroup;
-	public GameObject roomUpgradesGroup;
+	public Transform roomUpgradesGroup;
 	public GameObject homeImprovementsGroup;
 	public GameObject clothesGroup;
 
-	private Text bedroomResources, kitchenResources, officeResources,studyResources, workshopResources;
+	private static bool updateRooms = false;
+	private static bool updateClothes = false;
+	private static bool updateHomesteadImprovements = false;
 
 
 	void Start()
 	{
-		bedroomResources = roomUpgradesGroup.transform.GetChild(0).GetChild(1).GetComponent<Text>();
-		kitchenResources = roomUpgradesGroup.transform.GetChild(1).GetChild(1).GetComponent<Text>();
-		officeResources = roomUpgradesGroup.transform.GetChild(2).GetChild(1).GetComponent<Text>();
-		studyResources = roomUpgradesGroup.transform.GetChild(3).GetChild(1).GetComponent<Text>();
-		workshopResources = roomUpgradesGroup.transform.GetChild(4).GetChild(1).GetComponent<Text>();
-
+		UpdateRoomsInfo();
 		SelectRoomUpgrades();
 	}
 
+	void Update()
+	{
+		if (updateRooms) UpdateRoomsInfo();
+	}
 
 
 	void TurnOffAll()
 	{
-		toolsGroup.SetActive(false);
-		roomUpgradesGroup.SetActive(false);
+		roomUpgradesGroup.gameObject.SetActive(false);
 		homeImprovementsGroup.SetActive(false);
 		clothesGroup.SetActive(false);
-	}
-
-	public void SelectTools()
-	{
-		TurnOffAll();
-		toolsGroup.SetActive(true);
 	}
 
 	public void SelectRoomUpgrades()
 	{
 		TurnOffAll();
-		roomUpgradesGroup.SetActive(true);
-		UpdateRoomResources();
+		roomUpgradesGroup.gameObject.SetActive(true);
 	}
 
 	public void SelectHomeImprovements()
@@ -60,12 +52,25 @@ public class ShopCanvas : MonoBehaviour
 	}
 
 	
-	void UpdateRoomResources()
+	public static void TriggerRoomsInfoUpdate() { updateRooms = true; }
+	
+	void UpdateRoomsInfo()
 	{
-		bedroomResources.text = PlayerRooms.GetNextBedRoomUpgradeCostsAsString();
-		kitchenResources.text = PlayerRooms.GetNextKitchenUpgradeCostsAsString();
-		officeResources.text = PlayerRooms.GetNextOfficeUpgradeCostsAsString();
-		studyResources.text = PlayerRooms.GetNextStudyUpgradeCostsAsString();
-		workshopResources.text = PlayerRooms.GetNextWorkshopUpgradeCostsAsString();
+		roomUpgradesGroup.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerRooms.GetBedRoomTier().ToString();
+		roomUpgradesGroup.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextBedRoomUpgradeCostsAsString();
+
+		roomUpgradesGroup.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = PlayerRooms.GetKitchenRoomTier().ToString();
+		roomUpgradesGroup.transform.GetChild(1).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextKitchenUpgradeCostsAsString();
+
+		roomUpgradesGroup.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = PlayerRooms.GetOfficeRoomTier().ToString();
+		roomUpgradesGroup.transform.GetChild(2).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextOfficeUpgradeCostsAsString();
+
+		roomUpgradesGroup.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = PlayerRooms.GetStudyRoomTier().ToString();
+		roomUpgradesGroup.transform.GetChild(3).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextStudyUpgradeCostsAsString();
+
+		roomUpgradesGroup.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = PlayerRooms.GetWorkshopRoomTier().ToString();
+		roomUpgradesGroup.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextWorkshopUpgradeCostsAsString();
+
+		updateRooms = false;
 	}
 }
