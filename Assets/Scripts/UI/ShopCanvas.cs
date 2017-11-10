@@ -23,8 +23,14 @@ public class ShopCanvas : MonoBehaviour
 	void Update()
 	{
 		if (updateRooms) UpdateRoomsInfo();
+
+		if (GetComponent<Canvas>().enabled) UpdatePlayerResources();
 	}
 
+	void UpdatePlayerResources()
+	{
+		transform.GetChild(5).GetComponent<Text>().text = PlayerResources.GetPlayerResourcesAsString();
+	}
 
 	void TurnOffAll()
 	{

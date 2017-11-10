@@ -12,6 +12,19 @@ public class UpgradeSkills : MonoBehaviour
 		UpdateSkillsResources();	
 	}
 
+	void Update()
+	{
+		if (transform.parent.GetComponent<Canvas>().enabled)
+		{
+			UpdatePlayerResources();
+		}
+	}
+
+	void UpdatePlayerResources()
+	{
+		transform.GetChild(1).GetComponent<Text>().text = PlayerResources.GetPlayerResourcesAsString();
+	}
+
 	void UpdateSkillsResources()
 	{
 		skillsGroup.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerSkills.GetCurrentContractsTier().ToString();

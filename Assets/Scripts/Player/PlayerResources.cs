@@ -72,4 +72,10 @@ public class PlayerResources
 	{
 		currentBookPages = Mathf.Clamp((currentBookPages += changeValue), 0, PlayerSkills.GetMaxBookPagesValue());
 	}
+
+
+	public static string GetPlayerResourcesAsString()
+	{
+		return "C: " + currenctCurrency + " | BM: " + currentBuildingMaterials + " | TP: " + currentToolParts + " | BP: " + currentBookPages;
+	}
 }

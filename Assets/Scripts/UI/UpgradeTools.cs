@@ -11,6 +11,19 @@ public class UpgradeTools : MonoBehaviour
 		UpdateToolsResources();
 	}
 
+	void Update()
+	{
+		if (transform.parent.GetComponent<Canvas>().enabled)
+		{
+			UpdatePlayerResources();
+		}
+	}
+
+	void UpdatePlayerResources()
+	{
+		transform.GetChild(3).GetComponent<Text>().text = PlayerResources.GetPlayerResourcesAsString();
+	}
+
 	void UpdateToolsResources()
 	{
 		transform.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier().ToString();
@@ -36,6 +49,7 @@ public class UpgradeTools : MonoBehaviour
 				fellingAxe.SetCurrentTier(currentTier + 1);
 				fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateToolsResources();
+				// UpdatePlayerResources();
 			}
 			else
 			{
@@ -61,6 +75,7 @@ public class UpgradeTools : MonoBehaviour
 				crosscutSaw.SetCurrentTier(currentTier + 1);
 				crosscutSaw.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateToolsResources();
+				// UpdatePlayerResources();
 			}
 			else
 			{
@@ -86,6 +101,7 @@ public class UpgradeTools : MonoBehaviour
 				splittingAxe.SetCurrentTier(currentTier + 1);
 				splittingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateToolsResources();
+				// UpdatePlayerResources();
 			}
 			else
 			{

@@ -40,6 +40,7 @@ public class ShopRoomUpgrades : MonoBehaviour
 			{
 				PlayerRooms.SetKitchenRoomTier(currentTier + 1);
 				kitchen.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				ShopCanvas.TriggerRoomsInfoUpdate();
 			}
 			else
 			{
@@ -63,6 +64,7 @@ public class ShopRoomUpgrades : MonoBehaviour
 			{
 				PlayerRooms.SetOfficeRoomTier(currentTier + 1);
 				office.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				ShopCanvas.TriggerRoomsInfoUpdate();
 			}
 			else
 			{
@@ -86,6 +88,7 @@ public class ShopRoomUpgrades : MonoBehaviour
 			{
 				PlayerRooms.SetStudyRoomTier(currentTier + 1);
 				study.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				ShopCanvas.TriggerRoomsInfoUpdate();
 			}
 			else
 			{
@@ -109,6 +112,7 @@ public class ShopRoomUpgrades : MonoBehaviour
 			{
 				PlayerRooms.SetWorkshopRoomTier(currentTier + 1);
 				workshop.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
+				ShopCanvas.TriggerRoomsInfoUpdate();
 			}
 			else
 			{
