@@ -10,5 +10,6 @@ public class Sleep : MonoBehaviour
 	{
 		sleepPrompt.CloseMenu();
 		PlayerEnergy.FullyRestoreEnergy();
+		TimeManager.ProgressTimeByHours((float)PlayerRooms.GetBedRoomValue());
 	}
 }

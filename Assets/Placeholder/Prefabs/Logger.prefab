@@ -196,6 +196,7 @@ GameObject:
   - component: {fileID: 114916599929758116}
   - component: {fileID: 114294863923632934}
   - component: {fileID: 114073657051250156}
+  - component: {fileID: 114738433047131900}
   m_Layer: 2
   m_Name: Logger
   m_TagString: Player
@@ -578,7 +579,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1288260567125424}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.6, y: 0, z: -4.4}
+  m_LocalPosition: {x: 4.67, y: 0, z: 3.97}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4033511323540700}
@@ -1048,6 +1049,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07fa02bedabb247ee9ab89195c56dac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114738433047131900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1288260567125424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f11a3d4665c34bb285ef1e627c4a45a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114774498773272660
