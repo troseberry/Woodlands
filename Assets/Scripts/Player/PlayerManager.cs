@@ -76,4 +76,12 @@ public class PlayerManager : MonoBehaviour
 	{
 		playerTransform.position = SpawnLocations.ReturnSpawnVector(start, destination);
 	}
+
+	public static void SetSpawnLocation(string start, string end)
+	{
+		int startScene = SpawnLocations.ParseString(start).GetHashCode();
+		int endScene = SpawnLocations.ParseString(end).GetHashCode();
+
+		playerTransform.position = SpawnLocations.ReturnSpawnVector(startScene, endScene);
+	}
 }

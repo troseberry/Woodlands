@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnScene {HOMESTEAD, MAIN_CABIN, WORKSHOP, FOREST, LUMBER_YARD, NONE}
 public class SpawnLocations 
 {
 	//naming convention: currentScene_destinationScene
@@ -51,5 +52,23 @@ public class SpawnLocations
 	public static Vector3 ReturnSpawnVector(int start, int destination)
 	{
 		return spawnLocationsArray[start, destination];
+	}
+
+	public static SpawnScene ParseString(string sceneName)
+	{
+		switch (sceneName)
+		{
+			case "Homestead":
+				return SpawnScene.HOMESTEAD;
+			case "MainCabin":
+				return SpawnScene.MAIN_CABIN;
+			case "Workshop":
+				return SpawnScene.WORKSHOP;
+			case "Forest":
+				return SpawnScene.FOREST;
+			case "LumberYard":
+				return SpawnScene.LUMBER_YARD;
+		}
+		return SpawnScene.NONE;
 	}
 }
