@@ -10,7 +10,8 @@ using UnityEngine;
 
 public class TimeManager : MonoBehaviour 
 {
-	public static bool paused;
+	private static bool _paused;
+	public static bool paused { get{ return _paused;} }
 
 	private static float currentTime;
 	private static float dayLength = 1440f;
@@ -39,7 +40,7 @@ public class TimeManager : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.P))
 		{
-			if (!paused)
+			if (!_paused)
 			{
 				PauseGame();
 			}
@@ -52,13 +53,13 @@ public class TimeManager : MonoBehaviour
 
 	public static void PauseGame()
 	{
-		paused = true;
+		_paused = true;
 		Time.timeScale = 0f;
 	}
 
 	public static void UnpauseGame()
 	{
-		paused = false;
+		_paused = false;
 		Time.timeScale = 1.0f;
 	}
 
