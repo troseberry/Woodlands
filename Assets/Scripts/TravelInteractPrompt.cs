@@ -44,19 +44,19 @@ public class TravelInteractPrompt : MonoBehaviour
 		switch (triggerName)
 		{
 			case "ToHomesteadTrigger":
-				SceneNavigation.ToHomestead();
+				GameSceneNavigation.ToHomestead();
 				break;
 			case "ToMainCabinTrigger":
-				SceneNavigation.ToMainCabin();
+				GameSceneNavigation.ToMainCabin();
 				break;
 			case "ToWorkshopTrigger":
-				SceneNavigation.ToWorkshop();
+				GameSceneNavigation.ToWorkshop();
 				break;
 			case "ToForestTrigger":
-				SceneNavigation.ToForest();
+				GameSceneNavigation.ToForest();
 				break;
 			case "ToLumberYardTrigger":
-				SceneNavigation.ToLumberYard();
+				GameSceneNavigation.ToLumberYard();
 				break;
 			default:
 				Debug.Log("No Valid Travel Scene");

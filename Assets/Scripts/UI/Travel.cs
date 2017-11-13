@@ -12,25 +12,25 @@ public class Travel : MonoBehaviour
 	public void ToHomestead()
 	{
 		ToHomesteadTrigger.CloseMenu();
-		SceneNavigation.ToHomestead();
+		GameSceneNavigation.ToHomestead();
 	}
 
 	public void ToMainCabin()
 	{
 		ToMainCabinTrigger.CloseMenu();
-		SceneNavigation.ToMainCabin();
+		GameSceneNavigation.ToMainCabin();
 	}
 
 	public void ToWorkshop()
 	{
 		ToWorkshopTrigger.CloseMenu();
-		SceneNavigation.ToWorkshop();
+		GameSceneNavigation.ToWorkshop();
 	}
 
 	public void ToForest()
 	{
 		ToForestTrigger.CloseMenu();
-		SceneNavigation.ToForest();
+		GameSceneNavigation.ToForest();
 		//enabled ForestPlayerBehavior script on player object
 	}
 }
