@@ -30,10 +30,6 @@ public class CharacterAnimator : MonoBehaviour
 
 	void Update()
 	{
-		DebugPanel.Log("Movement Speed: ", "Animation", loggerAnimator.GetInteger("MovementSpeed"));
-		DebugPanel.Log("Movement State: ", "Animation", movementState);
-		DebugPanel.Log("Action State: ", "Animation", actionState);
-
 		ProcessMovementState();
 		ProcessActionState();
 	}

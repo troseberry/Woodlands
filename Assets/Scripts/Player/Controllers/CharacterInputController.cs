@@ -29,11 +29,6 @@ public class CharacterInputController : MonoBehaviour
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
 
-		DebugPanel.Log("Vertical Input: ", "Controller", vertInput);
-		DebugPanel.Log("Horizontal Input: ", "Controller", horzInput);
-
-		// CharacterAnimator.SetWalkDirection(vertInput, horzInput);
-
 
 
 		#region MOVEMENT INPUT

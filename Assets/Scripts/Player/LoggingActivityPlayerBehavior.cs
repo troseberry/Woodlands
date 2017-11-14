@@ -40,10 +40,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	void Update () 
 	{
-		DebugPanel.Log("Current: ", "Logging Activities", currentActivity);
-		DebugPanel.Log("Logs: ", "Logging Activities", logsRemaining);
-		DebugPanel.Log("Can Snap: ", "Logging Activities", canSnapPlayer);
-		DebugPanel.Log("Is Locked: ", "Logging Activities", playerIsLocked);
 		if (currentActivity != LoggingActivity.NONE && canSnapPlayer)
 		{
 			HandleSnapLogic();

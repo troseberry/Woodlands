@@ -26,11 +26,6 @@ public class CharacterMotor : MonoBehaviour
 		characterCollider = GetComponent<CapsuleCollider>();
 		characterRigidbody = GetComponent<Rigidbody>();
 	}
-	
-	void Update () 
-	{
-		DebugPanel.Log("Grounded Status: ", "Motor", isGrounded);
-	}
 
 	void FixedUpdate()
 	{

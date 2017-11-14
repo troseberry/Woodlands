@@ -11,37 +11,14 @@ using UnityEngine.UI;
 
 public class Clock : MonoBehaviour 
 {
-	//0 to 1440
-	//72 real-time seconds = 1 hour of game time
-	// public float clockSpeed;
-	// float maxTime = 1440;
-	// float currentClock = 720;
-
 	public Text clockText;
 	private string formattedClock = "";
 	
-	private float testClock = 0;
-	private string testClockString = "";
-	
 	void Update () 
 	{
-		// if (currentClock < maxTime)
-		// {
-		// 	testClock += Time.deltaTime;
-		// 	currentClock += ((Time.deltaTime * clockSpeed)/ 0.72f); //this does not equate to 20 mins for a 24 hr cycle. 17:17 for a 24 hr cycle currently
-		// }
-		// else if (currentClock >= maxTime || currentClock < 0)
-		// {
-		// 	testClock = 0;
-		// 	currentClock = 0;
-		// }
 		float currentClock = TimeManager.GetCurrentTime();
 
 		formattedClock = string.Format("{0}:{1:00}", (int)currentClock / 60, currentClock % 60);
 		clockText.text = formattedClock;
-		DebugPanel.Log("Clock: ", formattedClock);
-
-		testClockString = string.Format("{0}:{1:00}", (int)testClock / 60, testClock % 60);
-		DebugPanel.Log("Test Clock: ", testClockString);
 	}
 }
