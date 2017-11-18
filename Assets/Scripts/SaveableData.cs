@@ -6,14 +6,18 @@ using System;
 [Serializable]
 public class SaveableData 
 {
-	//dots game example
-	// public bool finishedTutorial;
-	// public bool viewedAbilityMatchInstructions;
-
-	
-	// public Dictionary<string, LevelStats> allBoardLevels;
-    // public Dictionary<HeroManager.Hero, LevelStats> heroesUnlocked;
-	// public Dictionary<string, int> boardStarCounts;
-
 	public List<LumberContract> activeContracts;
+
+	public int currentEnergy;
+
+	public int currentCurrency;
+	public int currentBuildingMaterials;
+	public int currentToolParts;
+	public int currentBookPages;
+
+	public int[] homesteadTreesCount;
+	public int[] homesteadLogsCount;
+	public int[] homesteadFirewoodCount;
+
+	public List<Tool> ownedTools;
 }

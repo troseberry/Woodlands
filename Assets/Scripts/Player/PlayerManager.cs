@@ -43,10 +43,10 @@ public class PlayerManager : MonoBehaviour
 		playerTransform = this.transform;
 		//eventually, load save data
 
-		PlayerTools.AddTool(new Tool(ToolName.EMPTY_HANDS));
-		PlayerTools.AddTool(new Tool(ToolName.FELLING_AXE, 2));
-		PlayerTools.AddTool(new Tool(ToolName.CROSSCUT_SAW));
-		PlayerTools.AddTool(new Tool(ToolName.SPLITTING_AXE));
+		// PlayerTools.AddTool(new Tool(ToolName.EMPTY_HANDS));
+		// PlayerTools.AddTool(new Tool(ToolName.FELLING_AXE, 2));
+		// PlayerTools.AddTool(new Tool(ToolName.CROSSCUT_SAW));
+		// PlayerTools.AddTool(new Tool(ToolName.SPLITTING_AXE));
 
 		// if (PlayerContracts.GetActiveContractsList().Count == 0)
 		// {
@@ -64,6 +64,7 @@ public class PlayerManager : MonoBehaviour
 		// 		3));
 		// }
 		Debug.Log("Contract Count: " + PlayerContracts.GetActiveContractsList().Count);
+		Debug.Log("Tools Count: " + PlayerTools.GetOwnedToolsList().Count);
 
 	}
 

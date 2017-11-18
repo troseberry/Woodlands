@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum ToolName {EMPTY_HANDS, FELLING_AXE, CROSSCUT_SAW, SPLITTING_AXE};
 
-
+[Serializable]
 public class Tool 
 {	
 	private ToolName toolName;

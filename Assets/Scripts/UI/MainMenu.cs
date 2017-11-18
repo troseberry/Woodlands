@@ -7,7 +7,7 @@ public class MainMenu : MonoBehaviour
 {
 	void Start()
 	{
-		Debug.Log("Contracts Count: " + PlayerContracts.GetActiveContractsList().Count);
+		Debug.Log("Save Data Here: " + Application.persistentDataPath);
 	}
 
 	public void StartNewGame()
