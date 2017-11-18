@@ -44,13 +44,20 @@ public class PauseMenu : MonoBehaviour
 		TimeManager.UnpauseGame();
 	}
 
+	public void SaveGame()
+	{
+		SaveLoad.Save();
+	}
+
 	public void ReturnToMainMenu()
 	{
+		SaveLoad.Save();
 		SceneManager.LoadScene("MainMenu");
 	}
 
 	public void QuitGame()
 	{
+		SaveLoad.Save();
 		Application.Quit();
 	}
 }

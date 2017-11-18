@@ -6,8 +6,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum QualityGrade {A, B, C, D, F};
+
+[Serializable]
 public class LumberResourceQuantity 
 {
 	private int trees;

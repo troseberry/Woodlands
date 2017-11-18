@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public class LumberContract 
 {
 	private LumberResourceQuantity requiredLumber;
 	private DevResourceQuantity payout;
 	private int completionDeadline;
-
 
 	public LumberContract() {}
 

@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour 
 {
+	void Start()
+	{
+		Debug.Log("Contracts Count: " + PlayerContracts.GetActiveContractsList().Count);
+	}
 
 	public void StartNewGame()
 	{
@@ -13,7 +17,7 @@ public class MainMenu : MonoBehaviour
 
 	public void LoadGame()
 	{
-		// Load Save Data
+		SaveLoad.Load();
 		SceneManager.LoadScene("MainCabin");
 	}
 
