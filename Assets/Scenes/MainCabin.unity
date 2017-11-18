@@ -4017,14 +4017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7df6fc2bbfa4460861bb8ac385c689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hideInEditMode: 0
-  visible: 0
-  hideOnAwake: 1
-  showFPS: 1
-  lockAlphaMultiplier: 0.5
-  ignoreDefLog: 0
-  ignoreDefLogByDefault: 0
-  bgColor: {r: 0, g: 0.5, b: 1, a: 0.5}
 --- !u!4 &246295599
 Transform:
   m_ObjectHideFlags: 0
@@ -9037,7 +9029,7 @@ MonoBehaviour:
   - {fileID: 333378210}
   - {fileID: 1828282623}
   - {fileID: 675423801}
-  newspaperKeyItem: {fileID: 0}
+  newspaperKeyItem: {fileID: 1025577996}
 --- !u!1 &566963978
 GameObject:
   m_ObjectHideFlags: 0

@@ -39,10 +39,9 @@ public class AvailableContracts : MonoBehaviour
 		}
 	}
 
-
 	void PopulateCanvasObjcets()
 	{
-		for (int i = 0; i < canvasObjects.Length; i++)
+		for (int i = 0; i < numberToDisplay; i++)
 		{
 			Transform contract = canvasObjects[i].transform;
 
