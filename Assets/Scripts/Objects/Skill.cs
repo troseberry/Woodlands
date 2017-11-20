@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum SkillName {EFFICIENCY, ACTIVE_CONTRACTS, CURRENCY, ENERGY, BUILDING_MATERIALS, TOOL_PARTS, BOOK_PAGES, LUMBER_TREES, LUMBER_LOGS, LUMBER_FIREWOOD};
 
+[Serializable]
 public class Skill 
 {
 	protected SkillName skillName;
@@ -69,6 +71,7 @@ public class Skill
 	public string GetSkillDescription() { return description; }
 }
 
+[Serializable]
 public class EfficiencySkill : Skill
 {
 	public EfficiencySkill() 
@@ -106,6 +109,7 @@ public class EfficiencySkill : Skill
 	}
 }
 
+[Serializable]
 public class ActiveContractsSkill : Skill
 {
 	public ActiveContractsSkill() 
@@ -142,6 +146,7 @@ public class ActiveContractsSkill : Skill
 	}
 }
 
+[Serializable]
 public class CurrencySkill : Skill
 {
 	public CurrencySkill() 
@@ -178,6 +183,7 @@ public class CurrencySkill : Skill
 	}
 }
 
+[Serializable]
 public class EnergySkill : Skill
 {
 	public EnergySkill() 
@@ -214,6 +220,7 @@ public class EnergySkill : Skill
 	}
 }
 
+[Serializable]
 public class BuildingMaterialsSkill : Skill
 {
 	public BuildingMaterialsSkill() 
@@ -250,6 +257,7 @@ public class BuildingMaterialsSkill : Skill
 	}
 }
 
+[Serializable]
 public class ToolPartsSkill : Skill
 {
 	public ToolPartsSkill() 
@@ -286,6 +294,7 @@ public class ToolPartsSkill : Skill
 	}
 }
 
+[Serializable]
 public class BookPagesSkill : Skill
 {
 	public BookPagesSkill() 
@@ -323,7 +332,7 @@ public class BookPagesSkill : Skill
 }
 
 
-
+[Serializable]
 public class LumberTreesSkill : Skill
 {
 	public LumberTreesSkill() 
@@ -361,6 +370,7 @@ public class LumberTreesSkill : Skill
 }
 
 
+[Serializable]
 public class LumberLogsSkill : Skill
 {
 	public LumberLogsSkill() 
@@ -398,6 +408,7 @@ public class LumberLogsSkill : Skill
 }
 
 
+[Serializable]
 public class LumberFirewoodSkill : Skill
 {
 	public LumberFirewoodSkill() 

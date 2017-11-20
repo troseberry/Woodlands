@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public enum RoomName {BEDROOM, KITCHEN, OFFICE, STUDY, WORKSHOP}
 
+[Serializable]
 public class HomesteadRoom
 {
 	protected RoomName roomName;
@@ -67,6 +69,7 @@ public class HomesteadRoom
 	public string GetRoomDescription() { return description; }
 }
 
+[Serializable]
 public class BedRoom : HomesteadRoom
 {
 	public BedRoom()
@@ -105,6 +108,7 @@ public class BedRoom : HomesteadRoom
 	}
 }
 
+[Serializable]
 public class KitchenRoom : HomesteadRoom
 {
 	public KitchenRoom()
@@ -142,6 +146,7 @@ public class KitchenRoom : HomesteadRoom
 	}
 }
 
+[Serializable]
 public class OfficeRoom : HomesteadRoom
 {
 	public OfficeRoom()
@@ -180,6 +185,7 @@ public class OfficeRoom : HomesteadRoom
 	}
 }
 
+[Serializable]
 public class StudyRoom : HomesteadRoom
 {
 	public StudyRoom()
@@ -217,6 +223,7 @@ public class StudyRoom : HomesteadRoom
 	}
 }
 
+[Serializable]
 public class WorkshopRoom : HomesteadRoom
 {
 	public WorkshopRoom()

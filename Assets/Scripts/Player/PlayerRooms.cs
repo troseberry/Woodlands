@@ -73,7 +73,7 @@ public class PlayerRooms
 
 	public static WorkshopRoom GetWorkshopRoom() { return workshopRoom; }
 
-	public static void SetStudyRoom(WorkshopRoom room) { workshopRoom = room; }
+	public static void SetWorkshopRoom(WorkshopRoom room) { workshopRoom = room; }
 
 	public static int GetWorkshopRoomTier() { return workshopRoom.GetCurrentTier(); }
 

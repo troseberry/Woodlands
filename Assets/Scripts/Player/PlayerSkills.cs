@@ -19,6 +19,8 @@ public class PlayerSkills
 
 	public static EfficiencySkill GetEfficiencySkill() { return efficiencySkill; }
 
+	public static void SetEfficiencySkill(EfficiencySkill skill) { efficiencySkill = skill; }
+
 	public static int GetCurrentEfficiencyTier() { return efficiencySkill.GetCurrentTier(); }
 	
 	public static void SetCurrentEfficiencyTier(int newTier) { efficiencySkill.SetCurrentTier(newTier); }
@@ -52,6 +54,8 @@ public class PlayerSkills
 	//change these to get/set activeContracts in method names
 	public static ActiveContractsSkill GetContractsSkill() { return contractsSkill; }
 
+	public static void SetContractsSkill(ActiveContractsSkill skill) { contractsSkill = skill; }
+
 	public static int GetCurrentContractsTier() { return contractsSkill.GetCurrentTier(); }
 	
 	public static void SetCurrentContractsTier(int newTier) { contractsSkill.SetCurrentTier(newTier); }
@@ -84,7 +88,10 @@ public class PlayerSkills
 
 	public static CurrencySkill GetCurrencySkill() { return currencySkill; }
 
+	public static void SetCurrencySkill(CurrencySkill skill) { currencySkill = skill; }
+
 	public static int GetCurrentCurrencyTier() { return currencySkill.GetCurrentTier(); }
+	
 	
 	public static void SetCurrentCurrencyTier(int newTier) { currencySkill.SetCurrentTier(newTier); }
 
@@ -115,6 +122,8 @@ public class PlayerSkills
 
 
 	public static EnergySkill GetEnergySkill() { return energySkill; }
+
+	public static void SetEnergySkill(EnergySkill skill) { energySkill = skill; }
 
 	public static int GetCurrentEnergyTier() { return energySkill.GetCurrentTier(); }
 	
@@ -148,6 +157,8 @@ public class PlayerSkills
 
 	public static BuildingMaterialsSkill GetBuildingMaterialsSkill() { return buildingMaterialsSkill; }
 
+	public static void SetBuildingMaterialsSkill(BuildingMaterialsSkill skill) { buildingMaterialsSkill = skill; }
+
 	public static int GetCurrentBuildingMaterialsTier() { return buildingMaterialsSkill.GetCurrentTier(); }
 	
 	public static void SetCurrentBuildingMaterialsTier(int newTier) { buildingMaterialsSkill.SetCurrentTier(newTier); }
@@ -179,6 +190,8 @@ public class PlayerSkills
 
 
 	public static ToolPartsSkill GetToolPartsSkill() { return toolPartsSkill; }
+
+	public static void SetToolPartsSkill(ToolPartsSkill skill) { toolPartsSkill = skill; }
 
 	public static int GetCurrentToolPartsTier() { return toolPartsSkill.GetCurrentTier(); }
 	
@@ -212,6 +225,8 @@ public class PlayerSkills
 
 	public static BookPagesSkill GetBookPagesSkill() { return bookPagesSkill; }
 
+	public static void SetBookPagesSkill(BookPagesSkill skill) { bookPagesSkill = skill; }
+
 	public static int GetCurrentBookPagesTier() { return bookPagesSkill.GetCurrentTier(); }
 	
 	public static void SetCurrentBookPagesTier(int newTier) { bookPagesSkill.SetCurrentTier(newTier); }
@@ -243,6 +258,8 @@ public class PlayerSkills
 
 
 	public static LumberTreesSkill GetLumberTreesSkill() { return lumberTreesSkill; }
+
+	public static void SetLumberTreesSkill(LumberTreesSkill skill) { lumberTreesSkill = skill; }
 
 	public static int GetCurrentLumberTreesTier() { return lumberTreesSkill.GetCurrentTier(); }
 	
@@ -276,6 +293,8 @@ public class PlayerSkills
 
 	public static LumberLogsSkill GetLumberLogsSkill() { return lumberLogsSkill; }
 
+	public static void SetLumberLogsSkill(LumberLogsSkill skill) { lumberLogsSkill = skill; }
+
 	public static int GetCurrentLumberLogsTier() { return lumberLogsSkill.GetCurrentTier(); }
 	
 	public static void SetCurrentLumberLogsTier(int newTier) { lumberLogsSkill.SetCurrentTier(newTier); }
@@ -307,6 +326,8 @@ public class PlayerSkills
 
 
 	public static LumberFirewoodSkill GetLumberFirewoodSkill() { return lumberFirewoodSkill; }
+
+	public static void SetLumberFirewoodSkill(LumberFirewoodSkill skill) { lumberFirewoodSkill = skill; }
 
 	public static int GetCurrentLumberFirewoodTier() { return lumberFirewoodSkill.GetCurrentTier(); }
 	

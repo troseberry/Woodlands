@@ -20,4 +20,21 @@ public class SaveableData
 	public int[] homesteadFirewoodCount;
 
 	public List<Tool> ownedTools;
+
+	public EfficiencySkill efficiencySkill;
+	public ActiveContractsSkill contractsSkill;
+	public CurrencySkill currencySkill;
+	public EnergySkill energySkill;
+	public BuildingMaterialsSkill buildingMaterialsSkill;
+	public ToolPartsSkill toolPartsSkill;
+	public BookPagesSkill bookPagesSkill;
+	public LumberTreesSkill lumberTreesSkill;
+	public LumberLogsSkill lumberLogsSkill;
+	public LumberFirewoodSkill lumberFirewoodSkill;
+
+	public BedRoom bedRoom;
+	public KitchenRoom kitchenRoom;
+	public OfficeRoom officeRoom;
+	public StudyRoom studyRoom;
+	public WorkshopRoom workshopRoom;
 }
