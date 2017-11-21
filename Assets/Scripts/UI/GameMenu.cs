@@ -21,6 +21,7 @@ public class GameMenu : MonoBehaviour
 	public Transform resourcesGroup;
 	public Transform skillsGroup;
 	public Transform roomsGroup;
+	public Transform toolsGroup;
 
 	Text buildingMaterialsCount;
 	Text toolPartsCount;
@@ -143,6 +144,7 @@ public class GameMenu : MonoBehaviour
 		resourcesGroup.gameObject.SetActive(false);
 		skillsGroup.gameObject.SetActive(false);
 		roomsGroup.gameObject.SetActive(false);
+		toolsGroup.gameObject.SetActive(false);
 	}
 
 	public void OpenContractsTab()
@@ -169,5 +171,11 @@ public class GameMenu : MonoBehaviour
 	{
 		CloseAllTabs();
 		roomsGroup.gameObject.SetActive(true);
+	}
+
+	public void OpenToolsTab()
+	{
+		CloseAllTabs();
+		toolsGroup.gameObject.SetActive(true);
 	}
 }
