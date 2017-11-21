@@ -34,7 +34,8 @@ public class MainMenu : MonoBehaviour
 		{
 			SaveLoad.SetCurrentSaveSlot(3);
 		}
-		//Create & load new save data
+		
+		SaveLoad.CreateNewSave();
 		SaveLoad.Load();
 		SceneManager.LoadScene("MainCabin");
 	}

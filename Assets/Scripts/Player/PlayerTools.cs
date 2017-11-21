@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerTools 
 {
-	private static List<Tool> ownedTools = new List<Tool>();
+	private static List<Tool> ownedTools;
 	private static Tool currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);
 
 

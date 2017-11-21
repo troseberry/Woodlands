@@ -116,7 +116,54 @@ public class SaveLoad : MonoBehaviour
 
 	public static void CreateNewSave()
 	{
-		
+		Debug.Log("Creating New Save in Slot: " + currentSaveSlot);
+		BinaryFormatter data = new BinaryFormatter();
+		FileStream file = File.Create(Application.persistentDataPath + saveSlotStrings[currentSaveSlot - 1]);
+
+		SaveableData saveData = new SaveableData();
+
+		//-----------------------Setting Save Data---------------------------------------------
+		saveData.activeContracts = new List<LumberContract>();
+
+		saveData.ownedTools = new List<Tool>()
+		{
+			new Tool(ToolName.EMPTY_HANDS),
+			new Tool(ToolName.FELLING_AXE),
+			new Tool(ToolName.CROSSCUT_SAW),
+			new Tool(ToolName.SPLITTING_AXE)
+		};
+
+		saveData.efficiencySkill = new EfficiencySkill();
+		saveData.contractsSkill = new ActiveContractsSkill();
+		saveData.currencySkill = new CurrencySkill();
+		saveData.energySkill = new EnergySkill();
+		saveData.buildingMaterialsSkill = new BuildingMaterialsSkill();
+		saveData.toolPartsSkill = new ToolPartsSkill();
+		saveData.bookPagesSkill = new BookPagesSkill();
+		saveData.lumberTreesSkill = new LumberTreesSkill();
+		saveData.lumberLogsSkill = new LumberLogsSkill();
+		saveData.lumberFirewoodSkill = new LumberFirewoodSkill();
+
+		saveData.bedRoom = new BedRoom();
+		saveData.kitchenRoom = new KitchenRoom();
+		saveData.officeRoom = new OfficeRoom();
+		saveData.studyRoom = new StudyRoom();
+		saveData.workshopRoom = new WorkshopRoom();
+
+		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
+
+		saveData.currentCurrency = 0;
+		saveData.currentBuildingMaterials = 0;
+		saveData.currentToolParts = 0;
+		saveData.currentBookPages = 0;
+
+		saveData.homesteadTreesCount = new int[5] {0, 0, 0, 0, 0};
+		saveData.homesteadLogsCount = new int[5] {0, 0, 0, 0, 0};
+		saveData.homesteadFirewoodCount = new int[5] {0, 0, 0, 0, 0};
+		//-----------------------Done Setting Data---------------------------------------------
+		data.Serialize(file, saveData);
+		file.Close();
+		Debug.Log("Finished Saving");
 	}
 
 	public static void Delete (int selectedSaveSlot)
