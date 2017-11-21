@@ -23,7 +23,7 @@ public class PlayerTools
 		}
 		else
 		{
-			Debug.Log("Already Own tool");
+			// Debug.Log("Already Own tool");
 		}
 	}
 

@@ -41,7 +41,6 @@ public class MainMenu : MonoBehaviour
 		SaveLoad.CreateNewSave();
 		SaveLoad.Load();
 		SceneManager.LoadScene("MainCabin");
-		// PlayerManager.SetSpawnLocationOnLoad(locationToSpawn);
 	}
 
 	public void LoadGame()
@@ -121,9 +120,7 @@ public class MainMenu : MonoBehaviour
 		}
 
 		SaveLoad.Load();
-		// SceneManager.LoadScene("MainCabin");
 		SceneManager.LoadScene(sceneToLoad);
-		// PlayerManager.SetSpawnLocationOnLoad(locationToSpawn);
 	}
 
 	public void BackFromSaveSlots()

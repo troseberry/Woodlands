@@ -8,6 +8,8 @@ public class PlayerManager : MonoBehaviour
 	private static bool playerCreated;
 	private static Transform playerTransform;
 	private static Vector3 spawnLocation;
+
+	private bool didLoadFromMenu = false;
 	
 	void Awake()
 	{
@@ -23,23 +25,28 @@ public class PlayerManager : MonoBehaviour
 	}
 
 	void OnEnable()
-		{
-			SceneManager.sceneLoaded += OnSceneLoaded;
-		}
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
 
-		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		//only do this on load from main menu
+		if (!didLoadFromMenu)
 		{
-			// if (scene.name.Equals("MainMenu"))
-			// {
-			// 	Destroy(gameObject);
-			// }
 			spawnLocation = MainMenu.GetLocationToSpawn();
+			StartCoroutine(DelaySetSpawnLocationOnLoad());
+			
+			didLoadFromMenu = true;
 		}
 
-		void OnDisable()
-		{
-			SceneManager.sceneLoaded -= OnSceneLoaded;
-		}
+		if (scene.name.Equals("MainMenu")) didLoadFromMenu = false;
+	}
+
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
 
 	void Start () 
 	{
@@ -65,10 +72,6 @@ public class PlayerManager : MonoBehaviour
 		// 		new DevResourceQuantity(100, 0, 0, 0), 
 		// 		3));
 		// }
-		// Debug.Log("Contract Count: " + PlayerContracts.GetActiveContractsList().Count);
-		// Debug.Log("Tools Count: " + PlayerTools.GetOwnedToolsList().Count);
-
-		playerTransform.position = spawnLocation;
 	}
 
 	public static void SetSpawnLocation(int start, int destination)
@@ -84,8 +87,10 @@ public class PlayerManager : MonoBehaviour
 		playerTransform.position = SpawnLocations.ReturnSpawnVector(startScene, endScene);
 	}
 
-	public static void SetSpawnLocationOnLoad(Vector3 spawnLocation)
+	public IEnumerator DelaySetSpawnLocationOnLoad()
 	{
+		yield return new WaitForSeconds(0.25f);
+
 		playerTransform.position = spawnLocation;
 	}
 }
