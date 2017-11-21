@@ -14,6 +14,9 @@ public class MainMenu : MonoBehaviour
 	public Transform[] mainButtons;
 	public Transform saveSlotsGroup;
 
+	private static string sceneToLoad;
+	private static Vector3 locationToSpawn;
+
 	void Start()
 	{
 		// Debug.Log("Save Data Here: " + Application.persistentDataPath);
@@ -38,6 +41,7 @@ public class MainMenu : MonoBehaviour
 		SaveLoad.CreateNewSave();
 		SaveLoad.Load();
 		SceneManager.LoadScene("MainCabin");
+		// PlayerManager.SetSpawnLocationOnLoad(locationToSpawn);
 	}
 
 	public void LoadGame()
@@ -117,7 +121,9 @@ public class MainMenu : MonoBehaviour
 		}
 
 		SaveLoad.Load();
-		SceneManager.LoadScene("MainCabin");
+		// SceneManager.LoadScene("MainCabin");
+		SceneManager.LoadScene(sceneToLoad);
+		// PlayerManager.SetSpawnLocationOnLoad(locationToSpawn);
 	}
 
 	public void BackFromSaveSlots()
@@ -125,4 +131,16 @@ public class MainMenu : MonoBehaviour
 		HideSaveSlots();
 		ShowMainButtons();
 	}
+
+	public static void SetSceneToLoad(string sceneName)
+	{
+		sceneToLoad = sceneName;
+	}
+
+	public static void SetLocationToSpawn(Vector3 location)
+	{
+		locationToSpawn = location;
+	}
+
+	public static Vector3 GetLocationToSpawn() { return locationToSpawn; }
 }

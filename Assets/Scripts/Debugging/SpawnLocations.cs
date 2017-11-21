@@ -38,6 +38,7 @@ public class SpawnLocations
 	//lumberYard_forest
 	//lumberYard_lumberYard
 
+	private static Vector3 sleepSpawnLocation = new Vector3(-7.5f, 4.65f, -2.35f);
 
 	private static Vector3[,] spawnLocationsArray = new Vector3[5,5]
 	{
@@ -70,5 +71,25 @@ public class SpawnLocations
 				return SpawnScene.LUMBER_YARD;
 		}
 		return SpawnScene.NONE;
+	}
+
+	public static Vector3 GetSpawnForLoad(string lastSceneName)
+	{
+		switch (lastSceneName)
+		{
+			case "Homestead":
+				return mainCabin_homestead;
+			case "MainCabin":
+				return homestead_mainCabin;
+			case "Workshop":
+				return homestead_workshop;
+			case "Forest":
+				return homestead_forest;
+			case "LumberYard":
+				return homestead_lumberYard;
+			case "MainMenu":
+				return sleepSpawnLocation;
+		}
+		return new Vector3(0, 0, 0);
 	}
 }

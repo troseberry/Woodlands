@@ -8,23 +8,25 @@ using UnityEngine.EventSystems;
 public class AvailableContracts : MonoBehaviour 
 {
 	int numberToDisplay;
-	List<LumberContract> availableContracts;
+	private static List<LumberContract> availableContracts;
 	public GameObject[] canvasObjects;
 
 	public KeyItemInteract newspaperKeyItem;
 
 	void Start () 
 	{
-		numberToDisplay = PlayerRooms.GetKitchenRoomValue();
-		availableContracts = new List<LumberContract>();
-
-		GenerateNewContracts();
+		// GenerateNewContracts();
 		PopulateCanvasObjcets();
-
 	}
+
+	public static List<LumberContract> GetAvailableContracts() { return availableContracts; }
+
+	public static void SetAvailableContracts(List<LumberContract> contracts) { availableContracts = contracts; }
 	
 	void GenerateNewContracts()
 	{
+		numberToDisplay = PlayerRooms.GetKitchenRoomValue();
+		availableContracts = new List<LumberContract>();
 		for (int i = 0 ; i < numberToDisplay; i++)
 		{
 			// int randType;
@@ -41,6 +43,8 @@ public class AvailableContracts : MonoBehaviour
 
 	void PopulateCanvasObjcets()
 	{
+		numberToDisplay = PlayerRooms.GetKitchenRoomValue();
+		
 		for (int i = 0; i < numberToDisplay; i++)
 		{
 			Transform contract = canvasObjects[i].transform;

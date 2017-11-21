@@ -2,12 +2,12 @@
 Any time a change is made to save load that affects what is being saved, the gameSave.dat file need to be 
 deleted so new variables will be loaded correctly. Otherwise the save data won't contain the information
 and will through null ref exceptions when trying to retrieve it.
-This was happening with hash tables. Unsure if it still occurs with serialized saveable data objects
 */
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
@@ -28,6 +28,7 @@ public class SaveLoad : MonoBehaviour
 
 		//-----------------------Setting Save Data---------------------------------------------
 		saveData.activeContracts = PlayerContracts.GetActiveContractsList();
+		saveData.availableContracts = AvailableContracts.GetAvailableContracts();
 
 		saveData.currentEnergy = PlayerEnergy.GetCurrentEnergyValue();
 
@@ -41,6 +42,7 @@ public class SaveLoad : MonoBehaviour
 		saveData.homesteadFirewoodCount = HomesteadStockpile.GetAllFirewoodCount();
 
 		saveData.ownedTools = PlayerTools.GetOwnedToolsList();
+		saveData.currentlyEquippedTool = PlayerTools.GetCurrentlyEquippedTool();
 
 		saveData.efficiencySkill = PlayerSkills.GetEfficiencySkill();
 		saveData.contractsSkill = PlayerSkills.GetContractsSkill();
@@ -58,6 +60,12 @@ public class SaveLoad : MonoBehaviour
 		saveData.officeRoom = PlayerRooms.GetOfficeRoom();
 		saveData.studyRoom = PlayerRooms.GetStudyRoom();
 		saveData.workshopRoom = PlayerRooms.GetWorkshopRoom();
+
+		saveData.currentTime = TimeManager.GetCurrentTime();
+
+		saveData.lastSceneName = SceneManager.GetActiveScene().name;
+		Vector3 spawnHolder = SpawnLocations.GetSpawnForLoad(SceneManager.GetActiveScene().name);
+		saveData.lastSceneSpawnLocation = new float[3] {spawnHolder.x, spawnHolder.y, spawnHolder.z};
 		//-----------------------Done Setting Data---------------------------------------------
 		data.Serialize(file, saveData);
 		file.Close();
@@ -77,6 +85,7 @@ public class SaveLoad : MonoBehaviour
 
 			//-----------------------Loading Data---------------------------------
 			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
+			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
 
 			PlayerEnergy.SetCurrentEnergyValue(loadData.currentEnergy);
 
@@ -90,6 +99,7 @@ public class SaveLoad : MonoBehaviour
 			HomesteadStockpile.SetAllFirewoodCount(loadData.homesteadFirewoodCount);
 
 			PlayerTools.SetOwnedToolsList(loadData.ownedTools);
+			PlayerTools.SetCurrentlyEquippedTool(loadData.currentlyEquippedTool.GetToolName());
 
 			PlayerSkills.SetEfficiencySkill(loadData.efficiencySkill);
 			PlayerSkills.SetContractsSkill(loadData.contractsSkill);
@@ -107,6 +117,12 @@ public class SaveLoad : MonoBehaviour
 			PlayerRooms.SetOfficeRoom(loadData.officeRoom);
 			PlayerRooms.SetStudyRoom(loadData.studyRoom);
 			PlayerRooms.SetWorkshopRoom(loadData.workshopRoom);
+
+			TimeManager.SetCurrentTime(loadData.currentTime);
+
+			MainMenu.SetSceneToLoad(loadData.lastSceneName);
+			float[] spawnHolder = loadData.lastSceneSpawnLocation;
+			MainMenu.SetLocationToSpawn(new Vector3(spawnHolder[0], spawnHolder[1], spawnHolder[2]));
 			//-----------------------Done Loading----------------------------------
 		}
 		else {
@@ -124,6 +140,7 @@ public class SaveLoad : MonoBehaviour
 
 		//-----------------------Setting Save Data---------------------------------------------
 		saveData.activeContracts = new List<LumberContract>();
+		saveData.availableContracts = new List<LumberContract>();
 
 		saveData.ownedTools = new List<Tool>()
 		{
@@ -151,6 +168,7 @@ public class SaveLoad : MonoBehaviour
 		saveData.workshopRoom = new WorkshopRoom();
 
 		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
+		saveData.currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);
 
 		saveData.currentCurrency = 0;
 		saveData.currentBuildingMaterials = 0;
@@ -160,6 +178,12 @@ public class SaveLoad : MonoBehaviour
 		saveData.homesteadTreesCount = new int[5] {0, 0, 0, 0, 0};
 		saveData.homesteadLogsCount = new int[5] {0, 0, 0, 0, 0};
 		saveData.homesteadFirewoodCount = new int[5] {0, 0, 0, 0, 0};
+
+		saveData.currentTime = 480f;
+
+		saveData.lastSceneName = "MainCabin";
+		Vector3 spawnHolder = SpawnLocations.GetSpawnForLoad("MainCabin");
+		saveData.lastSceneSpawnLocation = new float[3] {spawnHolder.x, spawnHolder.y, spawnHolder.z};
 		//-----------------------Done Setting Data---------------------------------------------
 		data.Serialize(file, saveData);
 		file.Close();

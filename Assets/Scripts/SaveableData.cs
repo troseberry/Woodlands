@@ -7,6 +7,7 @@ using System;
 public class SaveableData 
 {
 	public List<LumberContract> activeContracts;
+	public List<LumberContract> availableContracts;
 
 	public int currentEnergy;
 
@@ -20,6 +21,7 @@ public class SaveableData
 	public int[] homesteadFirewoodCount;
 
 	public List<Tool> ownedTools;
+	public Tool currentlyEquippedTool;
 
 	public EfficiencySkill efficiencySkill;
 	public ActiveContractsSkill contractsSkill;
@@ -37,4 +39,9 @@ public class SaveableData
 	public OfficeRoom officeRoom;
 	public StudyRoom studyRoom;
 	public WorkshopRoom workshopRoom;
+
+	public float currentTime;
+
+	public String lastSceneName;
+	public float[] lastSceneSpawnLocation;
 }

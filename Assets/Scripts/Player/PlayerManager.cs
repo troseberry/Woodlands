@@ -7,8 +7,8 @@ public class PlayerManager : MonoBehaviour
 {
 	private static bool playerCreated;
 	private static Transform playerTransform;
+	private static Vector3 spawnLocation;
 	
-
 	void Awake()
 	{
 		if (!playerCreated)
@@ -19,7 +19,7 @@ public class PlayerManager : MonoBehaviour
 		else
 		{
 			Destroy(gameObject);
-		}
+		}	
 	}
 
 	void OnEnable()
@@ -29,8 +29,11 @@ public class PlayerManager : MonoBehaviour
 
 		void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 		{
-			//Enabled ForestPlayerBehavior script when player enters forest scene
-			// GetComponent<Forest.ForestPlayerBehavior>().enabled = (SceneManager.GetActiveScene().buildIndex == 3) ? true : false;
+			// if (scene.name.Equals("MainMenu"))
+			// {
+			// 	Destroy(gameObject);
+			// }
+			spawnLocation = MainMenu.GetLocationToSpawn();
 		}
 
 		void OnDisable()
@@ -65,6 +68,7 @@ public class PlayerManager : MonoBehaviour
 		// Debug.Log("Contract Count: " + PlayerContracts.GetActiveContractsList().Count);
 		// Debug.Log("Tools Count: " + PlayerTools.GetOwnedToolsList().Count);
 
+		playerTransform.position = spawnLocation;
 	}
 
 	public static void SetSpawnLocation(int start, int destination)
@@ -78,5 +82,10 @@ public class PlayerManager : MonoBehaviour
 		int endScene = SpawnLocations.ParseString(end).GetHashCode();
 
 		playerTransform.position = SpawnLocations.ReturnSpawnVector(startScene, endScene);
+	}
+
+	public static void SetSpawnLocationOnLoad(Vector3 spawnLocation)
+	{
+		playerTransform.position = spawnLocation;
 	}
 }
