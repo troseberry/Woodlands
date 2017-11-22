@@ -11,8 +11,10 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour 
 {
+	public GameObject titleText;
 	public Transform[] mainButtons;
 	public Transform saveSlotsGroup;
+	public GameObject optionsGroup;
 
 	private static string sceneToLoad;
 	private static Vector3 locationToSpawn;
@@ -48,6 +50,20 @@ public class MainMenu : MonoBehaviour
 		HideMainButtons();
 		mainButtons[0].gameObject.SetActive(true);
 		ShowSaveSlots();
+	}
+
+	public void OpenOptionsMenu()
+	{
+		HideMainButtons();
+		titleText.SetActive(false);
+		optionsGroup.SetActive(true);
+	}
+
+	public void BackFromOptions()
+	{
+		optionsGroup.SetActive(false);
+		titleText.SetActive(true);
+		ShowMainButtons();
 	}
 
 	public void QuitGame()

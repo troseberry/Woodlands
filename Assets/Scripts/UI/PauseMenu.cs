@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
 	private bool menuOpen = false;
 	private Canvas menuCanvas;
+	public GameObject optionsMenu;
 
 	void Start () 
 	{
@@ -34,6 +35,7 @@ public class PauseMenu : MonoBehaviour
 	{
 		menuCanvas.enabled = true;
 		menuOpen = true;
+		optionsMenu.SetActive(false);
 		TimeManager.PauseGame();
 	}
 
@@ -41,12 +43,23 @@ public class PauseMenu : MonoBehaviour
 	{
 		menuCanvas.enabled = false;
 		menuOpen = false;
+		optionsMenu.SetActive(false);
 		TimeManager.UnpauseGame();
 	}
 
 	public void SaveGame()
 	{
 		SaveLoad.Save();
+	}
+
+	public void OpenOptionsMenu()
+	{
+		optionsMenu.SetActive(true);
+	}
+
+	public void BackFromOptionsMenu()
+	{
+		optionsMenu.SetActive(false);
 	}
 
 	public void ReturnToMainMenu()
