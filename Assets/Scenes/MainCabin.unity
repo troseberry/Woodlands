@@ -5450,7 +5450,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -7.544
+      value: -7.1
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.y
@@ -5458,7 +5458,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.38
+      value: 3.7
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6147,7 +6147,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 672881829}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenu
         m_Mode: 1
         m_Arguments:
@@ -6829,7 +6829,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 855904427}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.52916664
+  m_Size: 0.5291667
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -26232,7 +26232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0f7f64da3d6547e2a59ec35b4700a25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sleepPrompt: {fileID: 672881829}
+  sleepPrompt: {fileID: 0}
 --- !u!1001 &1469088847
 Prefab:
   m_ObjectHideFlags: 0
