@@ -10,6 +10,9 @@ public class PauseMenu : MonoBehaviour
 	private Canvas menuCanvas;
 	public GameObject optionsMenu;
 
+	public GameObject mainMenuConfirm;
+	public GameObject quitGameConfirm;
+
 	void Start () 
 	{
 		menuCanvas = GetComponent<Canvas>();
@@ -35,7 +38,11 @@ public class PauseMenu : MonoBehaviour
 	{
 		menuCanvas.enabled = true;
 		menuOpen = true;
+
 		optionsMenu.SetActive(false);
+		CloseMainMenuConfirm();
+		CloseQuitGameConfirm();
+
 		TimeManager.PauseGame();
 	}
 
@@ -43,7 +50,11 @@ public class PauseMenu : MonoBehaviour
 	{
 		menuCanvas.enabled = false;
 		menuOpen = false;
+
 		optionsMenu.SetActive(false);
+		CloseMainMenuConfirm();
+		CloseQuitGameConfirm();
+
 		TimeManager.UnpauseGame();
 	}
 
@@ -68,9 +79,33 @@ public class PauseMenu : MonoBehaviour
 		SceneManager.LoadScene("MainMenu");
 	}
 
+	public void OpenMainMenuConfirm()
+	{
+		mainMenuConfirm.SetActive(true);
+		transform.GetChild(1).gameObject.SetActive(false);
+	}
+
+	public void CloseMainMenuConfirm()
+	{
+		mainMenuConfirm.SetActive(false);
+		transform.GetChild(1).gameObject.SetActive(true);
+	}
+
 	public void QuitGame()
 	{
 		SaveLoad.Save();
 		Application.Quit();
+	}
+
+	public void OpenQuitGameConfirm()
+	{
+		quitGameConfirm.SetActive(true);
+		transform.GetChild(1).gameObject.SetActive(false);
+	}
+
+	public void CloseQuitGameConfirm()
+	{
+		quitGameConfirm.SetActive(false);
+		transform.GetChild(1).gameObject.SetActive(true);
 	}
 }
