@@ -9,13 +9,13 @@ public class AvailableContracts : MonoBehaviour
 {
 	int numberToDisplay;
 	private static List<LumberContract> availableContracts;
-	public GameObject[] canvasObjects;
+	public Transform contractsContent;
 
 	public KeyItemInteract newspaperKeyItem;
 
 	void Start () 
 	{
-		// GenerateNewContracts();
+		GenerateNewContracts();
 		PopulateCanvasObjcets();
 	}
 
@@ -44,16 +44,18 @@ public class AvailableContracts : MonoBehaviour
 	void PopulateCanvasObjcets()
 	{
 		numberToDisplay = PlayerRooms.GetKitchenRoomValue();
-		
-		for (int i = 0; i < numberToDisplay; i++)
+
+		for (int i = 0; i < contractsContent.childCount; i++)
 		{
-			Transform contract = canvasObjects[i].transform;
-
-			contract.GetChild(0).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetRequiredLumber().ToString();
-			contract.GetChild(1).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetPayout().ToString();
-
-			// only show deadline in player's active contracts menu
-			// contract.GetChild(5).GetChild(0).GetComponent<Text>().text = availableContracts[i].GetCompletionDeadline() + " Day(s)";
+			contractsContent.GetChild(i).gameObject.SetActive(i < numberToDisplay);
+		}
+		
+		for (int j = 0; j < numberToDisplay; j++)
+		{
+			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = availableContracts[j].GetCompletionDeadline().ToString();
+			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: ?";
+			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = availableContracts[j].GetRequiredLumber().StringWithoutQuality();
+			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = availableContracts[j].GetPayout().ToString();
 		}
 	}
 
@@ -72,6 +74,8 @@ public class AvailableContracts : MonoBehaviour
 		PlayerContracts.AddContract(availableContracts[contractNumber - 1]);
 
 		//visually circle the object. disable/hide the ui buttons
+		EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(7).GetComponent<Button>().interactable = false;
+		EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 	}
 
 	public void DeclineContract()
@@ -80,7 +84,9 @@ public class AvailableContracts : MonoBehaviour
 		// int contractNumber = int.Parse(contractName.Substring(9));
 
 		// RemoveFromAvailableContracts(contractNumber);
+		EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(6).GetComponent<Button>().interactable = false;
+		EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 
-		newspaperKeyItem.CloseMenu();
+		// newspaperKeyItem.CloseMenu();
 	}
 }

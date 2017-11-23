@@ -127,10 +127,10 @@ public class GameMenu : MonoBehaviour
 	{
 		List<LumberContract> activeContracts = PlayerContracts.GetActiveContractsList();
 		int activeCount = activeContracts.Count;
-
-		for (int i = activeCount; i < contractsContent.childCount; i++)
+		
+		for (int i = 0; i < contractsContent.childCount; i++)
 		{
-			contractsContent.GetChild(i).gameObject.SetActive(false);
+			contractsContent.GetChild(i).gameObject.SetActive(i < activeCount);
 		}
 
 		for (int j = 0; j < activeCount; j++)
