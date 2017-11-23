@@ -27,6 +27,7 @@ public class KeyItemInteract : MonoBehaviour
 		{
 			if (!isMenuOpen) 
 			{
+				MenuManager.currentMenuManager.currentGameMenu.ImmediatelyCloseMenu();
 				OpenMenu();
 			}
 			else 
@@ -57,7 +58,7 @@ public class KeyItemInteract : MonoBehaviour
 	}
 
 	void OpenMenu()
-	{
+	{	
 		for (int i = 0; i < generalElements.Length; i++)
 		{
 			generalElements[i].SetActive(true);

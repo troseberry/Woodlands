@@ -56,6 +56,8 @@ public class GameMenu : MonoBehaviour
 		{
 			if (!menuOpen)
 			{
+				MenuManager.currentMenuManager.CloseKeyItemCanvases();
+
 				StartCoroutine(OpenMenu());
 			}
 			else
@@ -106,6 +108,19 @@ public class GameMenu : MonoBehaviour
 			doMove = false;
 		}
 		yield return null;
+	}
+
+	public void ImmediatelyCloseMenu()
+	{
+		characterInputController.enabled = true;
+		characterCameraController.enabled = true;
+
+		menuObject.transform.localPosition = closedPosition;
+
+		moveTime = 0f;
+		menuOpen = false;
+		doMove = false;
+
 	}
 
 	void UpdateContracts()
