@@ -15,6 +15,8 @@ public class MenuManager : MonoBehaviour
 	public KeyItemInteract studyCanvas;
 	public KeyItemInteract workshopCanvas;
 
+	private bool inMenu;
+
 	void Start () 
 	{
 		currentMenuManager = this;
@@ -39,5 +41,23 @@ public class MenuManager : MonoBehaviour
 		if (officeCanvas) officeCanvas.CloseMenu();
 		if (studyCanvas) studyCanvas.CloseMenu();
 		if (workshopCanvas) workshopCanvas.CloseMenu();
+	}
+
+	public bool IsInMenu()
+	{
+		if (kitchenCanvas)
+		{
+			return currentGameMenu.IsMenuOpen() || bedCanvas.IsMenuOpen() || kitchenCanvas.IsMenuOpen() || officeCanvas.IsMenuOpen()
+			|| studyCanvas.IsMenuOpen();
+		}
+		else if (workshopCanvas)
+		{
+			return currentGameMenu.IsMenuOpen() || workshopCanvas.IsMenuOpen();
+		}
+		else
+		{
+			currentGameMenu.IsMenuOpen(); 
+		}
+		return false;
 	}
 }

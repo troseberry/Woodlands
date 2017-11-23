@@ -37,6 +37,8 @@ public class KeyItemInteract : MonoBehaviour
 		}
 	}
 
+	public bool IsMenuOpen() { return isMenuOpen; }
+
 	void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player") 

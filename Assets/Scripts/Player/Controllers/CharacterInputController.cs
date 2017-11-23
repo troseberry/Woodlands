@@ -130,7 +130,7 @@ public class CharacterInputController : MonoBehaviour
 			doChangeTool = true;
 		}
 
-		if (!ToolManager.GetScrollSwitch())
+		if (!ToolManager.GetScrollSwitch() && !MenuManager.currentMenuManager.IsInMenu())
 		{
 			if (Input.GetAxis("Mouse ScrollWheel") > 0.35f)
 			{
@@ -160,8 +160,8 @@ public class CharacterInputController : MonoBehaviour
 	{
 		if (doChangeTool)
 		{
-			Debug.Log("Current Tool: " + PlayerTools.GetCurrentlyEquippedToolIndex());
-			Debug.Log("To Equip Tool: " + ToolManager.GetToolToEquipIndex());
+			// Debug.Log("Current Tool: " + PlayerTools.GetCurrentlyEquippedToolIndex());
+			// Debug.Log("To Equip Tool: " + ToolManager.GetToolToEquipIndex());
 			
 			int startLoc = 0;
 			if (PlayerTools.GetCurrentlyEquippedToolIndex() > 0) startLoc = (PlayerTools.GetCurrentlyEquippedToolIndex() == 2) ? 2 : 1;

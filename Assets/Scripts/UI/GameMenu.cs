@@ -73,6 +73,8 @@ public class GameMenu : MonoBehaviour
 		}
 	}
 
+	public bool IsMenuOpen() { return menuOpen; }
+
 	IEnumerator OpenMenu()
 	{
 		characterInputController.enabled = false;
