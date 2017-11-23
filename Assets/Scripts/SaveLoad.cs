@@ -100,6 +100,7 @@ public class SaveLoad : MonoBehaviour
 
 			PlayerTools.SetOwnedToolsList(loadData.ownedTools);
 			PlayerTools.SetCurrentlyEquippedTool(loadData.currentlyEquippedTool.GetToolName());
+			ToolManager.EquipTool(PlayerTools.GetCurrentlyEquippedToolIndex());
 
 			PlayerSkills.SetEfficiencySkill(loadData.efficiencySkill);
 			PlayerSkills.SetContractsSkill(loadData.contractsSkill);
@@ -169,6 +170,7 @@ public class SaveLoad : MonoBehaviour
 
 		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
 		saveData.currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);
+		ToolManager.EquipTool(0);
 
 		saveData.currentCurrency = 0;
 		saveData.currentBuildingMaterials = 0;
