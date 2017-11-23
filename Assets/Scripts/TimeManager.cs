@@ -20,7 +20,7 @@ public class TimeManager : MonoBehaviour
 	void Start()
 	{
 		//load time from save data
-		// currentTime = 720;
+		currentTime = 55;
 	}
 
 	void Update () 
