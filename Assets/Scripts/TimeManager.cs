@@ -54,12 +54,14 @@ public class TimeManager : MonoBehaviour
 	public static void PauseGame()
 	{
 		_paused = true;
+		CharacterInputController.SetCanTurn(false);
 		Time.timeScale = 0f;
 	}
 
 	public static void UnpauseGame()
 	{
 		_paused = false;
+		CharacterInputController.SetCanTurn(true);
 		Time.timeScale = 1.0f;
 	}
 
