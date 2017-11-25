@@ -29,13 +29,10 @@ public class AvailableContracts : MonoBehaviour
 		availableContracts = new List<LumberContract>();
 		for (int i = 0 ; i < numberToDisplay; i++)
 		{
-			// int randType;
-			// int randRating;
-			// float randDuration;
-
+			LumberResourceQuantity lumberRequired = new LumberResourceQuantity(true);
 			LumberContract toAdd = new LumberContract(
-				new LumberResourceQuantity(1, QualityGrade.F, 0, QualityGrade.F, 0, QualityGrade.F), 
-				new DevResourceQuantity(50, 0, 0, 0),
+				lumberRequired, 
+				lumberRequired.GenerateDevResourcePayout(),
 				3);
 			availableContracts.Add(toAdd);
 		}

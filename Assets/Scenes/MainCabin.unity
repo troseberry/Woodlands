@@ -1882,7 +1882,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1923577905}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3791045
+  m_Size: 0.37910444
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6015,6 +6015,53 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: caa73d5b73dcf994780569c42edc464e, type: 3}
   m_PrefabInternal: {fileID: 308722664}
+--- !u!1001 &309706919
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771792223111630, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 114860534239890616, guid: 29b78b90364b14ba19e7c36be708edd7,
+        type: 2}
+      propertyPath: saveDataSlot
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &317533054
 GameObject:
   m_ObjectHideFlags: 0
@@ -8591,7 +8638,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 855904427}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.5291667
+  m_Size: 0.52916664
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

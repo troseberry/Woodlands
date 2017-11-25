@@ -112,6 +112,24 @@ public class Tool
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 
+	public int GetTierQualityGradeEquivalent()
+	{
+		switch (currentTier)
+		{
+			case 1:
+				return 4;
+			case 2:
+				return 3;
+			case 3:
+				return 2;
+			case 4:
+				return 1;
+			case 5:
+				return 0;
+		}
+		return 4;
+	}
+
 	public string GetTierDescriptiveString()
 	{
 		QualityGrade tierEquivalent = QualityGrade.F;

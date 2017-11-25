@@ -19,6 +19,14 @@ public class DevResourceQuantity
 		bookPages = pages;
 	}
 
+	// public DevResourceQuantity(bool doRandom)
+	// {
+	// 	if (doRandom)
+	// 	{
+	// 		currency = UnityEngine.Random.Range(1, PlayerSkills.GetMaxCurrencyValue());
+	// 	}
+	// }
+
 	public void SetCurrency(int newCur) { currency = newCur; }
 
 	public int GetCurrency() { return currency; }

@@ -42,6 +42,6 @@ public class SaveableData
 
 	public float currentTime;
 
-	public String lastSceneName;
+	public string lastSceneName;
 	public float[] lastSceneSpawnLocation;
 }
