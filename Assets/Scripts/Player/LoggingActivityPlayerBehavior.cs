@@ -168,13 +168,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				switch(currentActivity)
 				{
 					case LoggingActivity.FELLING:
-						if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) SwingForward();
+						SwingForward();
 						break;
 					case LoggingActivity.BUCKING:
-						if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH)) PushForward();
+						PushForward();
 						break;
 					case LoggingActivity.SPLITTING:
-						if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) SwingDownward();
+						SwingDownward();
 						break;
 				}
 			}
@@ -186,7 +186,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						SwingBackward();
 						break;
 					case LoggingActivity.BUCKING:
-						if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PULL)) PullBackward();
+						PullBackward();
 						break;
 					case LoggingActivity.SPLITTING:
 						SwingUpward();
@@ -225,8 +225,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				CharacterAnimator.SwingForward();
-				StartCoroutine(SwingForwardAfterAnim());
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) 
+				{
+					CharacterAnimator.SwingForward();
+					StartCoroutine(SwingForwardAfterAnim());
+				}
 			}
 		}
 
@@ -254,13 +257,16 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				CharacterAnimator.PushForward();
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH))
+				{ 
+					CharacterAnimator.PushForward();
 
-				felledTreeToSaw.SawLocation(markToSaw);
-				inForwardPosition = true;
-				inBackwardPosition = false;
+					felledTreeToSaw.SawLocation(markToSaw);
+					inForwardPosition = true;
+					inBackwardPosition = false;
 
-				// StartCoroutine(PushForwardAfterAnim());
+					// StartCoroutine(PushForwardAfterAnim());
+				}
 			}
 		}
 
@@ -268,12 +274,15 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inForwardPosition)
 			{
-				CharacterAnimator.PullBackward();
-				felledTreeToSaw.SawLocation(markToSaw);
-				inForwardPosition = false;
-				inBackwardPosition = true;
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PULL)) 
+				{
+					CharacterAnimator.PullBackward();
+					felledTreeToSaw.SawLocation(markToSaw);
+					inForwardPosition = false;
+					inBackwardPosition = true;
 
-				// StartCoroutine(PullBackwardAfterAnim());
+					// StartCoroutine(PullBackwardAfterAnim());
+				}
 			}
 		}
 
@@ -301,8 +310,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (inBackwardPosition)
 			{
-				CharacterAnimator.SwingDownward();
-				StartCoroutine(SwingDownwardAfterAnim());
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) 
+				{
+					CharacterAnimator.SwingDownward();
+					StartCoroutine(SwingDownwardAfterAnim());
+				}
 			}
 		}
 

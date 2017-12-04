@@ -30,6 +30,7 @@ public class PlayerHud : MonoBehaviour
 	
 	void Update () 
 	{
+		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
 		currentEnergyValue = (float) PlayerEnergy.GetCurrentEnergyValue()/maxEnergyValue;
 		energyRadial.fillAmount = currentEnergyValue;
 		energyRadial.color = Color.Lerp(Color.red, Color.green, currentEnergyValue);
