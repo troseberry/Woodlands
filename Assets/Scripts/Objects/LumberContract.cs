@@ -10,6 +10,7 @@ public class LumberContract
 	private LumberResourceQuantity requiredLumber;
 	private DevResourceQuantity payout;
 	private int completionDeadline;
+	private bool expired;
 
 	public LumberContract() {}
 
@@ -18,6 +19,7 @@ public class LumberContract
 		requiredLumber = lumber;
 		payout = pay;
 		completionDeadline = deadline;
+		expired = false;
 	}
 
 	public LumberResourceQuantity GetRequiredLumber() { return requiredLumber; }
@@ -31,6 +33,14 @@ public class LumberContract
 	public int GetCompletionDeadline() { return completionDeadline; }
 
 	public void SetCompletionDeadline(int deadline) { completionDeadline = deadline;}
+
+	public void DecrementDeadline()
+	{
+		if (completionDeadline > 0) completionDeadline -= 1;
+		expired = (completionDeadline == 0);
+	}
+	
+	public bool IsExpired() { return expired; }
 
 	public override string ToString()
 	{

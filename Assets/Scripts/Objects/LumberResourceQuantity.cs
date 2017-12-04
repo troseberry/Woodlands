@@ -127,15 +127,15 @@ public class LumberResourceQuantity
 		totalLumber -= currency;
 		currency = (5 - (currency % 5)) + currency;
 
-		Debug.Log("Total After Currency: " + totalLumber);
+		// Debug.Log("Total After Currency: " + totalLumber);
 
 		float percOne = 1 / UnityEngine.Random.Range(1, 100);
 		float percTwo = 1 / UnityEngine.Random.Range(percOne, 100);
 		float percThree = 1 / UnityEngine.Random.Range(percTwo, 100);
 
-		Debug.Log("Percent One: " + percOne);
-		Debug.Log("Percent Two: " + percTwo);
-		Debug.Log("Percent Three: " + percThree);
+		// Debug.Log("Percent One: " + percOne);
+		// Debug.Log("Percent Two: " + percTwo);
+		// Debug.Log("Percent Three: " + percThree);
 
 
 		int materials = Mathf.RoundToInt(totalLumber * percOne);

@@ -16,39 +16,34 @@ public class TimeManager : MonoBehaviour
 	private static float currentTime;
 	private static float dayLength = 1440f;
 
+	private static bool didDailyGeneration = false;
+
+	private const float morningTime = 480f;
+
 	
 	void Start()
 	{
-		//load time from save data
-		currentTime = 55;
+		currentTime = 720f;
 	}
 
 	void Update () 
 	{
+		// Debug.Log("Did Daily Generation: " + didDailyGeneration);
 		if (currentTime < dayLength)
 		{
 			currentTime += (Time.deltaTime / 0.8333f);
 		}
 		else if (currentTime >= dayLength)
 		{
-			currentTime -= 1440f;
+			currentTime -= dayLength;
+			//currentTime = (currentTime % dayLength);
 		}
 		else if (currentTime < 0)
 		{
 			currentTime = 0f;
 		}
 
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			if (!_paused)
-			{
-				PauseGame();
-			}
-			else
-			{
-				UnpauseGame();
-			}
-		}
+		HandleDailyTaskLogic();
 	}
 
 	public static void PauseGame()
@@ -71,11 +66,39 @@ public class TimeManager : MonoBehaviour
 
 	public static void ProgressTimeByHours(float hoursToPass)
 	{
+		float timeBeforeSkip = currentTime;
 		currentTime += (60 * hoursToPass);
+
+		HandleDailyTaskLogic();
 	}
 
 	public static void ProgressTimeByMinutes(float minsToPass)
 	{
 		currentTime += minsToPass;
+	}
+
+
+	static void HandleDailyTaskLogic()
+	{
+		if (didDailyGeneration)
+		{
+			if (currentTime >= 0  && currentTime < morningTime) didDailyGeneration = false;
+		}
+		else
+		{
+			if (currentTime >= morningTime) ExecuteDailyTasks();
+		}
+	}
+
+	static void ExecuteDailyTasks()
+	{
+		//Do this before generting new so new contracts don't get accidentally decremented
+		PlayerContracts.ProgressAllContractDeadlines();
+		AvailableContracts.ProgressAllContractDeadlines();
+
+		AvailableContracts.GenerateNewContracts();
+		didDailyGeneration = true;
+
+		Debug.Log("Finished Daily Tasks");
 	}
 }

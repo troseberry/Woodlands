@@ -84,20 +84,6 @@ public class SaveLoad : MonoBehaviour
 			file.Close();
 
 			//-----------------------Loading Data---------------------------------
-			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
-			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
-
-			PlayerEnergy.SetCurrentEnergyValue(loadData.currentEnergy);
-
-			PlayerResources.SetCurrentCurrencyValue(loadData.currentCurrency);
-			PlayerResources.SetCurrentBuildingMaterialsValue(loadData.currentBuildingMaterials);
-			PlayerResources.SetCurrentToolPartsValue(loadData.currentToolParts);
-			PlayerResources.SetCurrentBookPagesValue(loadData.currentBookPages);
-
-			HomesteadStockpile.SetAllTreesCount(loadData.homesteadTreesCount);
-			HomesteadStockpile.SetAllLogsCount(loadData.homesteadLogsCount);
-			HomesteadStockpile.SetAllFirewoodCount(loadData.homesteadFirewoodCount);
-
 			PlayerTools.SetOwnedToolsList(loadData.ownedTools);
 			PlayerTools.SetCurrentlyEquippedTool(loadData.currentlyEquippedTool.GetToolName());
 			ToolManager.EquipTool(PlayerTools.GetCurrentlyEquippedToolIndex());
@@ -118,6 +104,20 @@ public class SaveLoad : MonoBehaviour
 			PlayerRooms.SetOfficeRoom(loadData.officeRoom);
 			PlayerRooms.SetStudyRoom(loadData.studyRoom);
 			PlayerRooms.SetWorkshopRoom(loadData.workshopRoom);
+
+			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
+			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
+
+			PlayerEnergy.SetCurrentEnergyValue(loadData.currentEnergy);
+
+			PlayerResources.SetCurrentCurrencyValue(loadData.currentCurrency);
+			PlayerResources.SetCurrentBuildingMaterialsValue(loadData.currentBuildingMaterials);
+			PlayerResources.SetCurrentToolPartsValue(loadData.currentToolParts);
+			PlayerResources.SetCurrentBookPagesValue(loadData.currentBookPages);
+
+			HomesteadStockpile.SetAllTreesCount(loadData.homesteadTreesCount);
+			HomesteadStockpile.SetAllLogsCount(loadData.homesteadLogsCount);
+			HomesteadStockpile.SetAllFirewoodCount(loadData.homesteadFirewoodCount);
 
 			TimeManager.SetCurrentTime(loadData.currentTime);
 
@@ -140,9 +140,6 @@ public class SaveLoad : MonoBehaviour
 		SaveableData saveData = new SaveableData();
 
 		//-----------------------Setting Save Data---------------------------------------------
-		saveData.activeContracts = new List<LumberContract>();
-		saveData.availableContracts = new List<LumberContract>();
-
 		saveData.ownedTools = new List<Tool>()
 		{
 			new Tool(ToolName.EMPTY_HANDS),
@@ -167,6 +164,9 @@ public class SaveLoad : MonoBehaviour
 		saveData.officeRoom = new OfficeRoom();
 		saveData.studyRoom = new StudyRoom();
 		saveData.workshopRoom = new WorkshopRoom();
+
+		saveData.activeContracts = new List<LumberContract>();
+		saveData.availableContracts = new List<LumberContract>();
 
 		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
 		saveData.currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);

@@ -8,16 +8,19 @@ using UnityEditor;
 public class RunOnTheFlyEditor : Editor 
 {
     SerializedProperty saveDataSlot;
+    // SerializedProperty simulateFromMenu;
 
     void OnEnable()
     {
         saveDataSlot = serializedObject.FindProperty("saveDataSlot");
+        // simulateFromMenu = serializedObject.FindProperty("simulateFromMenu");
     }
 
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
 
+        // EditorGUILayout.PropertyField(simulateFromMenu);
         EditorGUILayout.PropertyField(saveDataSlot);
 
         serializedObject.ApplyModifiedProperties();

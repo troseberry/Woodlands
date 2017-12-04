@@ -5,11 +5,28 @@ using UnityEngine;
 
 public class RunOnTheFly : MonoBehaviour 
 {	
+    private static bool rotfCreated;
+
     public int saveDataSlot;
+	// public bool simulateFromMenu;
+
+    void Awake()
+	{
+		if (!rotfCreated)
+		{
+			DontDestroyOnLoad(gameObject);
+			rotfCreated = true;
+		}
+		else
+		{
+			Destroy(gameObject);
+		}	
+	}
 
     void Start()
     {
         if (saveDataSlot > 0) LoadFromSaveSlot();
+		// if (simulateFromMenu) SimulateLoadFromMenu();
     }
 
     public void LoadFromSaveSlot()
@@ -43,4 +60,9 @@ public class RunOnTheFly : MonoBehaviour
 		SaveLoad.CreateNewSave();
 		SaveLoad.Load();
     }
+
+	// void SimulateLoadFromMenu()
+	// {
+	// 	AvailableContracts.GenerateNewContracts();
+	// }
 }
