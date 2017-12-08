@@ -52,4 +52,16 @@ public class PlayerEnergy
 	{
 		currentEnergyValue = PlayerSkills.GetMaxEnergyValue();
 	}
+
+	public static void RestoreEnergyPercentage(float sleepDuration)
+	{
+		float restorePercentage = sleepDuration / PlayerRooms.GetBedRoomValue();
+		int restoreAmount = Mathf.RoundToInt(PlayerSkills.GetMaxEnergyValue() * restorePercentage);
+
+		// Debug.Log("Current Energy: " + currentEnergyValue);
+		// Debug.Log("Restore Perc: " + restorePercentage);
+		// Debug.Log("Resore Min Amount: " + restoreAmount);
+		
+		currentEnergyValue = Mathf.Clamp(currentEnergyValue, restoreAmount, PlayerSkills.GetMaxEnergyValue());
+	}
 }

@@ -13,12 +13,15 @@ public class TimeManager : MonoBehaviour
 	private static bool _paused;
 	public static bool paused { get{ return _paused;} }
 
+	public float timeSpeed = 1f;
+
 	private static float currentTime;
 	private static float dayLength = 1440f;
 
 	private static bool didDailyGeneration = false;
 
-	private const float morningTime = 480f;
+	public const float morningTime = 480f;
+	public const float sleepTime = 1320f;
 
 	
 	void Start()
@@ -31,7 +34,7 @@ public class TimeManager : MonoBehaviour
 		// Debug.Log("Did Daily Generation: " + didDailyGeneration);
 		if (currentTime < dayLength)
 		{
-			currentTime += (Time.deltaTime / 0.8333f);
+			currentTime += (Time.deltaTime / 0.8333f) * timeSpeed;
 		}
 		else if (currentTime >= dayLength)
 		{
@@ -44,6 +47,15 @@ public class TimeManager : MonoBehaviour
 		}
 
 		HandleDailyTaskLogic();
+	}
+
+	public static float GetCurrentTime() { return currentTime; }
+
+	public static void SetCurrentTime(float newTime) { currentTime = newTime; }
+
+	public static bool IsInSleepTimeFrame()
+	{ 
+		return (currentTime >= sleepTime || currentTime < morningTime);
 	}
 
 	public static void PauseGame()
@@ -60,21 +72,20 @@ public class TimeManager : MonoBehaviour
 		Time.timeScale = 1.0f;
 	}
 
-	public static float GetCurrentTime() { return currentTime; }
-
-	public static void SetCurrentTime(float newTime) { currentTime = newTime; }
-
 	public static void ProgressTimeByHours(float hoursToPass)
 	{
-		float timeBeforeSkip = currentTime;
 		currentTime += (60 * hoursToPass);
-
-		HandleDailyTaskLogic();
 	}
 
 	public static void ProgressTimeByMinutes(float minsToPass)
 	{
 		currentTime += minsToPass;
+	}
+
+	public static void ProgressToMorningTime()
+	{
+		currentTime = morningTime;
+		ExecuteDailyTasks();
 	}
 
 

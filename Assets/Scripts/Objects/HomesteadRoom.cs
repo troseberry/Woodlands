@@ -10,7 +10,8 @@ public class HomesteadRoom
 {
 	protected RoomName roomName;
 	protected int currentTier;
-	protected int[] tierValues;
+	protected int[] tierIntValues;
+	protected float[] tierFloatValues;
 	protected DevResourceQuantity[] upgradeCosts;
 	protected bool canBeUpgraded;
 	protected string description;
@@ -22,7 +23,7 @@ public class HomesteadRoom
 	{
 		roomName = name;
 		currentTier = 1;
-		tierValues = values;
+		tierIntValues = values;
 		upgradeCosts = costs;
 	}
 
@@ -30,7 +31,7 @@ public class HomesteadRoom
 	{
 		roomName = name;
 		currentTier = tier;
-		tierValues = values;
+		tierIntValues = values;
 		upgradeCosts = costs;
 	}
 
@@ -46,13 +47,21 @@ public class HomesteadRoom
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 	}
 
-	public int[] GetTierValues() { return tierValues; }
+	public int[] GetTierValues() { return tierIntValues; }
 
-	public void SetTierValues(int[] values) { tierValues = values; }
+	public void SetTierValues(int[] values) { tierIntValues = values; }
 
-	public int GetTierValueAtIndex(int index) { return tierValues[index]; }
+	public int GetTierValueAtIndex(int index) { return tierIntValues[index]; }
 
-	public void SetTierValueAtIndex(int index, int newValue) { tierValues[index] = newValue; }
+	public void SetTierValueAtIndex(int index, int newValue) { tierIntValues[index] = newValue; }
+
+	public float[] GetTierFloatValues() { return tierFloatValues; }
+
+	public void SetTierFloatValues(float[] values) { tierFloatValues = values; }
+
+	public float GetTierFloatValueAtIndex(int index) { return tierFloatValues[index]; }
+
+	public void SetTierFloatValueAtIndex(int index, float newValue) { tierFloatValues[index] = newValue; }
 
 	public string GetTierDescriptiveString() { return tierDescriptiveString; }
 
@@ -77,7 +86,7 @@ public class BedRoom : HomesteadRoom
 		roomName = RoomName.BEDROOM;
 		currentTier = 1;
 		//for bunk room, b/c this is sleep duration, this should really be float vals for tiervalues(8, 7.5, 7, 6.5, 6). for now, this is just hours
-		tierValues = new int[5]{9, 8, 7, 6, 5};
+		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6f, 6.5f};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -87,14 +96,14 @@ public class BedRoom : HomesteadRoom
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Sleep duration required to completely restore energy.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " hours for a full rest.";
+		tierDescriptiveString = tierFloatValues[currentTier - 1] + " hours for a full rest.";
 	}
 
 	public BedRoom(int tier)
 	{
 		roomName = RoomName.BEDROOM;
 		currentTier = tier;
-		tierValues = new int[5]{9, 8, 7, 6, 5};
+		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6f, 6.5f};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -104,7 +113,7 @@ public class BedRoom : HomesteadRoom
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Sleep duration required to completely restore energy.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " hours for a full rest.";
+		tierDescriptiveString = tierFloatValues[currentTier - 1] + " hours for a full rest.";
 	}
 }
 
@@ -115,7 +124,7 @@ public class KitchenRoom : HomesteadRoom
 	{
 		roomName = RoomName.KITCHEN;
 		currentTier = 1;
-		tierValues = new int[5]{3, 5, 8, 10, 15};
+		tierIntValues = new int[5]{3, 5, 8, 10, 15};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -125,14 +134,14 @@ public class KitchenRoom : HomesteadRoom
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "The maximum number of Lumber Contracts that can be displayed in the newspaper.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " available contracts";
+		tierDescriptiveString = tierIntValues[currentTier - 1] + " available contracts";
 	}
 
 	public KitchenRoom(int tier)
 	{
 		roomName = RoomName.KITCHEN;
 		currentTier = tier;
-		tierValues = new int[5]{3, 5, 8, 10, 15};
+		tierIntValues = new int[5]{3, 5, 8, 10, 15};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -142,7 +151,7 @@ public class KitchenRoom : HomesteadRoom
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "The maximum number of Lumber Contracts that can be displayed in the newspaper.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " available contracts";
+		tierDescriptiveString = tierIntValues[currentTier - 1] + " available contracts";
 	}
 }
 
@@ -154,7 +163,7 @@ public class OfficeRoom : HomesteadRoom
 		roomName = RoomName.OFFICE;
 		currentTier = 1;
 		//tiervalues represent the max level (quality grade equivalent) of the tools available to puchase
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -171,7 +180,7 @@ public class OfficeRoom : HomesteadRoom
 	{
 		roomName = RoomName.OFFICE;
 		currentTier = tier;
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -192,7 +201,7 @@ public class StudyRoom : HomesteadRoom
 	{
 		roomName = RoomName.STUDY;
 		currentTier = 1;
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -209,7 +218,7 @@ public class StudyRoom : HomesteadRoom
 	{
 		roomName = RoomName.STUDY;
 		currentTier = tier;
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -230,7 +239,7 @@ public class WorkshopRoom : HomesteadRoom
 	{
 		roomName = RoomName.WORKSHOP;
 		currentTier = 1;
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -247,7 +256,7 @@ public class WorkshopRoom : HomesteadRoom
 	{
 		roomName = RoomName.WORKSHOP;
 		currentTier = tier;
-		tierValues = new int[5]{1, 2, 3, 4, 5};
+		tierIntValues = new int[5]{1, 2, 3, 4, 5};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),

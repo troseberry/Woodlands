@@ -17,7 +17,7 @@ public class ProjectSceneNav : MonoBehaviour
 		EditorSceneManager.OpenScene("Assets/Scenes/Homestead.unity");
 	}
 
-	[MenuItem("Game/Scenes/Maincabin")]
+	[MenuItem("Game/Scenes/MainCabin")]
 	static void MainCabinLoad()
 	{
 		EditorSceneManager.OpenScene("Assets/Scenes/MainCabin.unity");

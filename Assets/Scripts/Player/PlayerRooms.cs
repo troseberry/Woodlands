@@ -19,7 +19,7 @@ public class PlayerRooms
 
 	public static void SetBedRoomTier(int newTier) { bedRoom.SetCurrentTier(newTier); }
 
-	public static int GetBedRoomValue() { return bedRoom.GetTierValueAtIndex(bedRoom.GetCurrentTier() - 1); }
+	public static float GetBedRoomValue() { return bedRoom.GetTierFloatValueAtIndex(bedRoom.GetCurrentTier() - 1); }
 
 	public static DevResourceQuantity GetNextBedRoomUpgradeCosts() { return bedRoom.GetDevResourceQuantityAtTier(GetBedRoomTier() + 1); }
 
