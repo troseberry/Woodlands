@@ -34,34 +34,38 @@ public class LumberResourceQuantity
 		firewoodGrade = fGrade;
 	}
 
-	public LumberResourceQuantity(bool doRandom)
+	public LumberResourceQuantity(bool doRandom, int typeCount)
 	{
+		trees = 0;
+		treeGrade = QualityGrade.F;
+
+		logs = 0;
+		logGrade = QualityGrade.F;
+
+		firewood = 0;
+		firewoodGrade = QualityGrade.F;
+
 		if (doRandom)
 		{
 			trees = UnityEngine.Random.Range(1, PlayerSkills.GetMaxLumberTreesValue());
 			int fellingAxeGrade = (PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetTierQualityGradeEquivalent());
 			treeGrade = (QualityGrade) UnityEngine.Random.Range(4, fellingAxeGrade);
 
-			logs = UnityEngine.Random.Range(3, PlayerSkills.GetMaxLumberLogsValue());
-			logs = logs - (logs % 3);
-			int crosscutSawGrade = (PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetTierQualityGradeEquivalent());
-			logGrade = (QualityGrade) UnityEngine.Random.Range(4, crosscutSawGrade);
+			if (typeCount >= 2)
+			{
+				logs = UnityEngine.Random.Range(3, PlayerSkills.GetMaxLumberLogsValue());
+				logs = logs - (logs % 3);
+				int crosscutSawGrade = (PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetTierQualityGradeEquivalent());
+				logGrade = (QualityGrade) UnityEngine.Random.Range(4, crosscutSawGrade);
+			}
 
-			firewood = UnityEngine.Random.Range(2, PlayerSkills.GetMaxLumberFirewoodValue());
-			firewood = firewood - (firewood % 2);
-			int splittingAxeGrade = (PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetTierQualityGradeEquivalent());
-			firewoodGrade = (QualityGrade) UnityEngine.Random.Range(4, splittingAxeGrade);
-		}
-		else
-		{
-			trees = 0;
-			treeGrade = QualityGrade.F;
-
-			logs = 0;
-			logGrade = QualityGrade.F;
-
-			firewood = 0;
-			firewoodGrade = QualityGrade.F;
+			if (typeCount == 3)
+			{
+				firewood = UnityEngine.Random.Range(2, PlayerSkills.GetMaxLumberFirewoodValue());
+				firewood = firewood - (firewood % 2);
+				int splittingAxeGrade = (PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetTierQualityGradeEquivalent());
+				firewoodGrade = (QualityGrade) UnityEngine.Random.Range(4, splittingAxeGrade);
+			}
 		}
 	}
 

@@ -70,6 +70,7 @@ public class MailboxCanvas : MonoBehaviour
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = activeContracts[j].GetPayout().ToString();
 
 			contractsContent.GetChild(j).GetChild(6).GetComponent<Button>().interactable = activeContracts[j].CanBeCompleted();
+			contractsContent.GetChild(j).GetChild(6).GetChild(0).GetComponent<Text>().text = "Turn In";
 		}
 	}
 

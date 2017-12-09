@@ -56,18 +56,21 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void GenerateNewContracts()
 	{
-		for (int i = contractsToRemove.Count - 1; i >= 0; i--)
+		if (contractsToRemove.Count > 0)
 		{
-			availableContracts.RemoveAt(contractsToRemove[i]);
+			for (int i = contractsToRemove.Count - 1; i >= 0; i--)
+			{
+				availableContracts.RemoveAt(contractsToRemove[i]);
+			}
+			contractsToRemove.Clear();
 		}
-		contractsToRemove.Clear();
 		
 		totalNumberToDisplay = PlayerRooms.GetKitchenRoomValue();
 		freeContractSpaces = totalNumberToDisplay - availableContracts.Count;
 
 		for (int j = 0; j < freeContractSpaces; j++)
 		{
-			LumberResourceQuantity lumberRequired = new LumberResourceQuantity(true);
+			LumberResourceQuantity lumberRequired = new LumberResourceQuantity(true, Random.Range(1, 4));
 			LumberContract toAdd = new LumberContract(
 				lumberRequired, 
 				lumberRequired.GenerateDevResourcePayout(),
