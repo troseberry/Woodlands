@@ -259,6 +259,7 @@ MonoBehaviour:
   officeCanvas: {fileID: 980468040}
   studyCanvas: {fileID: 1221120366}
   workshopCanvas: {fileID: 0}
+  mailboxCanvas: {fileID: 0}
 --- !u!4 &4503970
 Transform:
   m_ObjectHideFlags: 0
@@ -1968,7 +1969,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1923577905}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.37910447
+  m_Size: 0.3791045
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6143,7 +6144,7 @@ Prefab:
     - target: {fileID: 114860534239890616, guid: 29b78b90364b14ba19e7c36be708edd7,
         type: 2}
       propertyPath: saveDataSlot
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114860534239890616, guid: 29b78b90364b14ba19e7c36be708edd7,
         type: 2}

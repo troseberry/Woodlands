@@ -56,7 +56,7 @@ public class Skill
 
 	public void SetTierValueAtIndex(int index, int newValue) { tierValues[index] = newValue; }
 
-	public string GetTierDescriptiveString() { return tierDescriptiveString; }
+	public string GetTierDescriptiveString() { return String.Format(tierDescriptiveString, tierValues[currentTier - 1]); }
 
 	public DevResourceQuantity[] GetDevResourceQuanties() { return upgradeCosts; }
 
@@ -89,7 +89,7 @@ public class EfficiencySkill : Skill
 		}; 
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "How much effort (in the form of axe swings and saw moves) must be given to completing Logging Activities";
-		tierDescriptiveString = "Efficiency level " + tierValues[currentTier - 1];
+		tierDescriptiveString = "Efficiency level {0}";
 	}
 	public EfficiencySkill(int tier) 
 	{
@@ -105,7 +105,7 @@ public class EfficiencySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "How much effort (in the form of axe swings and saw moves) must be given to completing Logging Activities.";
-		tierDescriptiveString = "Efficiency level " + tierValues[currentTier - 1];
+		tierDescriptiveString = "Efficiency level {0}";
 	}
 }
 
@@ -126,7 +126,7 @@ public class ActiveContractsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "The maximum number of contracts that can be in progress at one time.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Active contract maximum";
+		tierDescriptiveString = "{0} Active contract maximum";
 	}
 	public ActiveContractsSkill(int tier) 
 	{
@@ -142,7 +142,7 @@ public class ActiveContractsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "The maximum number of contracts that can be in progress at one time.";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Active contract maximum";
+		tierDescriptiveString = "{0} Active contract maximum";
 	}
 }
 
@@ -163,7 +163,7 @@ public class CurrencySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Currency pouch capacity";
-		tierDescriptiveString = tierValues[currentTier - 1] + " coins";
+		tierDescriptiveString = "{0} coins";
 	}
 	public CurrencySkill(int tier) 
 	{
@@ -179,7 +179,7 @@ public class CurrencySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Currency pouch capacity";
-		tierDescriptiveString = tierValues[currentTier - 1] + " coins";
+		tierDescriptiveString = "{0} coins";
 	}
 }
 
@@ -200,7 +200,7 @@ public class EnergySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum energy level";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Energy";
+		tierDescriptiveString = "{0} Energy";
 	}
 	public EnergySkill(int tier) 
 	{
@@ -216,7 +216,7 @@ public class EnergySkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum energy level";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Energy";
+		tierDescriptiveString = "{0} Energy";
 	}
 }
 
@@ -237,7 +237,7 @@ public class BuildingMaterialsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for building materials";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Materials";
+		tierDescriptiveString = "{0} Materials";
 	}
 	public BuildingMaterialsSkill(int tier) 
 	{
@@ -253,7 +253,7 @@ public class BuildingMaterialsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for building materials";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Materials";
+		tierDescriptiveString = "{0} Materials";
 	}
 }
 
@@ -274,7 +274,7 @@ public class ToolPartsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for tool parts";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Parts";
+		tierDescriptiveString = "{0} Parts";
 	}
 	public ToolPartsSkill(int tier) 
 	{
@@ -290,7 +290,7 @@ public class ToolPartsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for tool parts";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Parts";
+		tierDescriptiveString = "{0} Parts";
 	}
 }
 
@@ -311,7 +311,7 @@ public class BookPagesSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for book pages";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Pages";
+		tierDescriptiveString = "{0} Pages";
 	}
 	public BookPagesSkill(int tier) 
 	{
@@ -327,7 +327,7 @@ public class BookPagesSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum inventory capacity for book pages";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Pages";
+		tierDescriptiveString = "{0} Pages";
 	}
 }
 
@@ -349,7 +349,7 @@ public class LumberTreesSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for felled trees";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Felled trees";
+		tierDescriptiveString = "{0} Felled trees";
 	}
 	public LumberTreesSkill(int tier) 
 	{
@@ -365,7 +365,7 @@ public class LumberTreesSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for felled trees";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Felled trees";
+		tierDescriptiveString = "{0} Felled trees";
 	}
 }
 
@@ -387,7 +387,7 @@ public class LumberLogsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for logs";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Logs";
+		tierDescriptiveString = "{0} Logs";
 	}
 	public LumberLogsSkill(int tier) 
 	{
@@ -403,7 +403,7 @@ public class LumberLogsSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for logs";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Logs";
+		tierDescriptiveString = "{0} Logs";
 	}
 }
 
@@ -425,7 +425,7 @@ public class LumberFirewoodSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for firewood";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Firewood";
+		tierDescriptiveString = "{0} Firewood";
 	}
 	public LumberFirewoodSkill(int tier) 
 	{
@@ -441,6 +441,6 @@ public class LumberFirewoodSkill : Skill
 		};
 		canBeUpgraded = (currentTier < upgradeCosts.Length);
 		description = "Maximum stockpile capacity for firewood";
-		tierDescriptiveString = tierValues[currentTier - 1] + " Firewood";
+		tierDescriptiveString = "{0} Firewood";
 	}
 }
