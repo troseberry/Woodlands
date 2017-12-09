@@ -109,7 +109,7 @@ public class AvailableContracts : MonoBehaviour
 		EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 
 		MarkContractForRemoval(contractNumber - 1);
-		//want to disable/hide the buttons and visually cross out the ui object
+		//visually cross out the ui object
 	}
 
 	public static void ProgressAllContractDeadlines()

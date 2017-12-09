@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
 	public KeyItemInteract officeCanvas;
 	public KeyItemInteract studyCanvas;
 	public KeyItemInteract workshopCanvas;
+	public KeyItemInteract mailboxCanvas;
 
 	private bool inMenu;
 
@@ -32,6 +33,7 @@ public class MenuManager : MonoBehaviour
 		if (officeCanvas) officeCanvas.CloseMenu();
 		if (studyCanvas) studyCanvas.CloseMenu();
 		if (workshopCanvas) workshopCanvas.CloseMenu();
+		if (mailboxCanvas) mailboxCanvas.CloseMenu();
 	}
 
 	public void CloseKeyItemCanvases()
@@ -41,6 +43,7 @@ public class MenuManager : MonoBehaviour
 		if (officeCanvas) officeCanvas.CloseMenu();
 		if (studyCanvas) studyCanvas.CloseMenu();
 		if (workshopCanvas) workshopCanvas.CloseMenu();
+		if (mailboxCanvas) mailboxCanvas.CloseMenu();
 	}
 
 	public bool IsInMenu()
@@ -53,6 +56,10 @@ public class MenuManager : MonoBehaviour
 		else if (workshopCanvas)
 		{
 			return currentGameMenu.IsMenuOpen() || workshopCanvas.IsMenuOpen();
+		}
+		else if (mailboxCanvas)
+		{
+			return currentGameMenu.IsMenuOpen() || mailboxCanvas.IsMenuOpen();
 		}
 		else
 		{

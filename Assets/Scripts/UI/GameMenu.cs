@@ -23,6 +23,7 @@ public class GameMenu : MonoBehaviour
 	public Transform roomsGroup;
 	public Transform toolsGroup;
 
+	Text currencyCount;
 	Text buildingMaterialsCount;
 	Text toolPartsCount;
 	Text bookPagesCount;
@@ -37,12 +38,13 @@ public class GameMenu : MonoBehaviour
 		characterInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInputController>();
 		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
 
-		buildingMaterialsCount = resourcesGroup.GetChild(0).GetChild(0).GetComponent<Text>();
-		toolPartsCount = resourcesGroup.GetChild(1).GetChild(0).GetComponent<Text>();
-		bookPagesCount = resourcesGroup.GetChild(2).GetChild(0).GetComponent<Text>();
-		felledTreesCount = resourcesGroup.GetChild(3).GetChild(0).GetComponent<Text>();
-		logsCount = resourcesGroup.GetChild(4).GetChild(0).GetComponent<Text>();
-		firewoodCount = resourcesGroup.GetChild(5).GetChild(0).GetComponent<Text>();
+		currencyCount = resourcesGroup.GetChild(0).GetChild(0).GetComponent<Text>();
+		buildingMaterialsCount = resourcesGroup.GetChild(1).GetChild(0).GetComponent<Text>();
+		toolPartsCount = resourcesGroup.GetChild(2).GetChild(0).GetComponent<Text>();
+		bookPagesCount = resourcesGroup.GetChild(3).GetChild(0).GetComponent<Text>();
+		felledTreesCount = resourcesGroup.GetChild(4).GetChild(0).GetComponent<Text>();
+		logsCount = resourcesGroup.GetChild(5).GetChild(0).GetComponent<Text>();
+		firewoodCount = resourcesGroup.GetChild(6).GetChild(0).GetComponent<Text>();
 	}
 	
 	void Update () 
@@ -146,6 +148,7 @@ public class GameMenu : MonoBehaviour
 
 	void UpdateResources()
 	{
+		currencyCount.text = PlayerResources.GetCurrentCurrencyValue().ToString();
 		buildingMaterialsCount.text = PlayerResources.GetCurrentBuildingMaterialsValue().ToString();
 		toolPartsCount.text = PlayerResources.GetCurrentToolPartsValue().ToString();
 		bookPagesCount.text = PlayerResources.GetCurrentBookPagesValue().ToString();

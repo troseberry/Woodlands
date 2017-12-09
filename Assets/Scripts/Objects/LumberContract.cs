@@ -42,8 +42,22 @@ public class LumberContract
 	
 	public bool IsExpired() { return expired; }
 
+	public bool CanBeCompleted() { return requiredLumber.HasInStockpile(); }
+
 	public override string ToString()
 	{
 		return "Contract Payout " + payout.ToString();
+	}
+
+	public int CompareByCompletion(LumberContract compareContract)
+	{
+		if (compareContract == null)
+		{
+			return 1;
+		}
+		else
+		{
+			return this.CanBeCompleted().CompareTo(compareContract.CanBeCompleted());
+		}
 	}
 }
