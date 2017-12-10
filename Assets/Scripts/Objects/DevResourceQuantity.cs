@@ -43,6 +43,22 @@ public class DevResourceQuantity
 
 	public int GetBookPages() { return bookPages; }
 
+	public int GetResourceAtIndex(int index)
+	{
+		switch (index)
+		{
+			case 0:
+				return currency;
+			case 1:
+				return buildingMaterials;
+			case 2:
+				return toolParts;
+			case 3:
+				return bookPages;
+		}
+		return 0;
+	}
+
 	//returns true if inventory quanitites are greater than or equal to the resource quantity
 	public bool HasInInventory()
 	{

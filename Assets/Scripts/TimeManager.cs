@@ -26,7 +26,7 @@ public class TimeManager : MonoBehaviour
 	
 	void Start()
 	{
-		currentTime = 720f;
+		// currentTime = 720f;
 	}
 
 	void Update () 

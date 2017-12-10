@@ -62,7 +62,7 @@ public class LumberResourceQuantity
 			if (typeCount == 3)
 			{
 				firewood = UnityEngine.Random.Range(2, PlayerSkills.GetMaxLumberFirewoodValue());
-				firewood = firewood - (firewood % 2);
+				firewood = firewood - (firewood % 6);
 				int splittingAxeGrade = (PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetTierQualityGradeEquivalent());
 				firewoodGrade = (QualityGrade) UnityEngine.Random.Range(4, splittingAxeGrade);
 			}
@@ -125,33 +125,68 @@ public class LumberResourceQuantity
 
 	public DevResourceQuantity GenerateDevResourcePayout()
 	{
-		int totalLumber = trees + logs + firewood;
+		DevResourceQuantity treeRate = FelledTreeExchangeRates[treeGrade.GetHashCode()];
+		DevResourceQuantity logRate = LogExchangeRates[logGrade.GetHashCode()];
+		DevResourceQuantity firewoodRate = FirewoodExchangeRates[firewoodGrade.GetHashCode()];
 
-		int currency = Mathf.RoundToInt(totalLumber /4);
-		totalLumber -= currency;
-		currency = (5 - (currency % 5)) + currency;
+		int currency = (treeRate.GetCurrency() * trees) + (logRate.GetCurrency() * logs) + (firewoodRate.GetCurrency() * firewood);
+		int materials = 0;
+		int parts = 0;
+		int pages = 0;
 
-		// Debug.Log("Total After Currency: " + totalLumber);
+		int[] resourceIndexes =
+		{
+			UnityEngine.Random.Range(1, 4),
+			UnityEngine.Random.Range(1, 4),
+			UnityEngine.Random.Range(1, 4),
+		};
+		
+		int [] lumberPayouts = 
+		{
+			treeRate.GetResourceAtIndex(resourceIndexes[0]) * trees,
+			logRate.GetResourceAtIndex(resourceIndexes[1]) * (logs / 3),
+			firewoodRate.GetResourceAtIndex(resourceIndexes[2]) * (firewood / 6),
+		};
+		
+		for (int i = 0; i < resourceIndexes.Length; i++)
+		{
+			if (resourceIndexes[i] == 1) materials += lumberPayouts[i];
+			else if (resourceIndexes[i] == 2) parts += lumberPayouts[i];
+			else if (resourceIndexes[i] == 3) pages += lumberPayouts[i];
+		}
 
-		float percOne = 1 / UnityEngine.Random.Range(1, 100);
-		float percTwo = 1 / UnityEngine.Random.Range(percOne, 100);
-		float percThree = 1 / UnityEngine.Random.Range(percTwo, 100);
-
-		// Debug.Log("Percent One: " + percOne);
-		// Debug.Log("Percent Two: " + percTwo);
-		// Debug.Log("Percent Three: " + percThree);
-
-
-		int materials = Mathf.RoundToInt(totalLumber * percOne);
-		if (materials > 0) materials = (5 - (materials % 5)) + materials;
-
-		int parts = Mathf.RoundToInt(totalLumber * percTwo);
-		if (parts > 0) parts = (5 - (parts % 5)) + parts;
-
-		int pages = Mathf.RoundToInt(totalLumber * percThree);
-		if (pages > 0) pages = (5 - (pages % 5)) + pages;
 
 		return new DevResourceQuantity(currency, materials, parts, pages);
 	}
+
+	private static DevResourceQuantity[] FelledTreeExchangeRates = new DevResourceQuantity[5]
+	{
+		// per 1 felled tree
+		new DevResourceQuantity(50, 5, 3, 10),	// A
+		new DevResourceQuantity(25, 4, 2, 8),
+		new DevResourceQuantity(15, 3, 2, 6),
+		new DevResourceQuantity(10, 2, 1, 4),
+		new DevResourceQuantity(5, 1, 1, 2),	// F
+	};
+
+	private static DevResourceQuantity[] LogExchangeRates = new DevResourceQuantity[5]
+	{
+		// per 3 logs
+		new DevResourceQuantity(80, 3, 5, 15),
+		new DevResourceQuantity(40, 2, 4, 12),
+		new DevResourceQuantity(20, 2, 3, 9),
+		new DevResourceQuantity(10, 1, 2, 6),
+		new DevResourceQuantity(5, 1, 1, 3),
+	};
+
+	private static DevResourceQuantity[] FirewoodExchangeRates = new DevResourceQuantity[5]
+	{
+		// per 6 firewood
+		new DevResourceQuantity(160, 3, 10, 25),
+		new DevResourceQuantity(80, 2, 8, 20),
+		new DevResourceQuantity(40, 2, 6,15),
+		new DevResourceQuantity(20, 1, 4, 10),
+		new DevResourceQuantity(10, 1, 2, 5),
+	};
 }
 
