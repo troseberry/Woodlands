@@ -9,7 +9,7 @@ public class PlayerManager : MonoBehaviour
 	private static Transform playerTransform;
 	private static Vector3 spawnLocation;
 
-	private bool didLoadFromMenu = false;
+	private static bool didLoadFromMenu = false;
 	
 	void Awake()
 	{
@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		//only do this on load from main menu
-		if (!didLoadFromMenu)
+		if (!didLoadFromMenu && RunOnTheFly.RunOnTheFlyReference.simulateFromMenu)
 		{
 			spawnLocation = MainMenu.GetLocationToSpawn();
 			StartCoroutine(DelaySetSpawnLocationOnLoad());
@@ -51,11 +51,6 @@ public class PlayerManager : MonoBehaviour
 	void Start () 
 	{
 		playerTransform = this.transform;
-	}
-
-	void Update()
-	{
-		
 	}
 
 	public static void SetSpawnLocation(int start, int destination)

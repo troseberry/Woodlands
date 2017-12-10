@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class RunOnTheFly : MonoBehaviour 
 {	
+	public static RunOnTheFly RunOnTheFlyReference;
     private static bool rotfCreated;
 
     public int saveDataSlot;
-	// public bool simulateFromMenu;
+	public bool simulateFromMenu;
 
     void Awake()
 	{
@@ -25,6 +26,8 @@ public class RunOnTheFly : MonoBehaviour
 
     void Start()
     {
+		RunOnTheFlyReference = this;
+
         if (saveDataSlot > 0) LoadFromSaveSlot();
 		// if (simulateFromMenu) SimulateLoadFromMenu();
     }

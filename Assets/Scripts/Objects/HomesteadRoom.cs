@@ -86,7 +86,7 @@ public class BedRoom : HomesteadRoom
 		roomName = RoomName.BEDROOM;
 		currentTier = 1;
 		//for bunk room, b/c this is sleep duration, this should really be float vals for tiervalues(8, 7.5, 7, 6.5, 6). for now, this is just hours
-		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6f, 6.5f};
+		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6.5f, 6f};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),
@@ -103,7 +103,7 @@ public class BedRoom : HomesteadRoom
 	{
 		roomName = RoomName.BEDROOM;
 		currentTier = tier;
-		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6f, 6.5f};
+		tierFloatValues = new float[5]{8f, 7.5f, 7f, 6.5f, 6f};
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
 			new DevResourceQuantity(100, 0, 0, 0),

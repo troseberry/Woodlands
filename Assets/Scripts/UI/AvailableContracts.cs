@@ -117,9 +117,12 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void ProgressAllContractDeadlines()
 	{
-		for (int i =0; i < availableContracts.Count; i++)
+		if (availableContracts.Count > 0)
 		{
-			availableContracts[i].DecrementDeadline();
+			for (int i =0; i < availableContracts.Count; i++)
+			{
+				availableContracts[i].DecrementDeadline();
+			}
 		}
 	}
 }

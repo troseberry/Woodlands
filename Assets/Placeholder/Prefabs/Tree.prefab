@@ -1135,7 +1135,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: CHOP GRADE ? TREE
+  m_Text: CHOP GRADE {0} TREE
 --- !u!114 &114050073317136050
 MonoBehaviour:
   m_ObjectHideFlags: 1
