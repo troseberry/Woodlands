@@ -4,22 +4,24 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+public enum ContractStatus {ACTIVE, AVAILABLE, COMPLETE, DECLINED, EXPIRED};
+
 [Serializable]
 public class LumberContract 
 {
 	private LumberResourceQuantity requiredLumber;
 	private DevResourceQuantity payout;
 	private int completionDeadline;
-	private bool expired;
+	private ContractStatus status;
 
 	public LumberContract() {}
 
-	public LumberContract(LumberResourceQuantity lumber, DevResourceQuantity pay, int deadline)
+	public LumberContract(LumberResourceQuantity lumber, DevResourceQuantity pay, int deadline, ContractStatus startStatus)
 	{
 		requiredLumber = lumber;
 		payout = pay;
 		completionDeadline = deadline;
-		expired = false;
+		status = startStatus;
 	}
 
 	public LumberResourceQuantity GetRequiredLumber() { return requiredLumber; }
@@ -37,12 +39,16 @@ public class LumberContract
 	public void DecrementDeadline()
 	{
 		if (completionDeadline > 0) completionDeadline -= 1;
-		expired = (completionDeadline == 0);
+		if (completionDeadline == 0) status = ContractStatus.EXPIRED;
 	}
 	
-	public bool IsExpired() { return expired; }
+	public bool IsExpired() { return status == ContractStatus.EXPIRED; }
 
 	public bool CanBeCompleted() { return requiredLumber.HasInStockpile(); }
+
+	public ContractStatus GetStatus() { return status; }
+
+	public void SetStatus (ContractStatus newStatus) { status = newStatus; }
 
 	public override string ToString()
 	{

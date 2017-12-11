@@ -29,7 +29,18 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void SetAvailableContracts(List<LumberContract> contracts) { availableContracts = contracts; }
 	
-	void MarkContractForRemoval(int contractIndex) { contractsToRemove.Add(contractIndex); }
+	void MarkContractForRemoval(int contractIndex, bool active) 
+	{
+		contractsToRemove.Add(contractIndex);
+		if (active)
+		{
+			availableContracts[contractIndex].SetStatus(ContractStatus.ACTIVE);
+		}
+		else
+		{
+			availableContracts[contractIndex].SetStatus(ContractStatus.DECLINED);
+		}
+	}
 
 
 	public void PopulateCanvasObjcets()
@@ -49,8 +60,8 @@ public class AvailableContracts : MonoBehaviour
 			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = availableContracts[j].GetRequiredLumber().StringWithoutQuality();
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = availableContracts[j].GetPayout().ToString();
 
-			contractsContent.GetChild(j).GetChild(6).GetComponent<Button>().interactable = true;
-			contractsContent.GetChild(j).GetChild(7).GetComponent<Button>().interactable = true;
+			contractsContent.GetChild(j).GetChild(6).GetComponent<Button>().interactable = (availableContracts[j].GetStatus() == ContractStatus.AVAILABLE);
+			contractsContent.GetChild(j).GetChild(7).GetComponent<Button>().interactable = (availableContracts[j].GetStatus() == ContractStatus.AVAILABLE);
 		}
 	}
 
@@ -74,7 +85,8 @@ public class AvailableContracts : MonoBehaviour
 			LumberContract toAdd = new LumberContract(
 				lumberRequired, 
 				lumberRequired.GenerateDevResourcePayout(),
-				3);
+				3,
+				ContractStatus.AVAILABLE);
 			availableContracts.Add(toAdd);
 		}
 
@@ -89,8 +101,9 @@ public class AvailableContracts : MonoBehaviour
 			int contractNumber = int.Parse(contractName.Substring(9));
 
 			LumberContract toAdd = availableContracts[contractNumber - 1];
-			PlayerContracts.AddContract(new LumberContract(toAdd.GetRequiredLumber(), toAdd.GetPayout(), toAdd.GetCompletionDeadline()));
-			MarkContractForRemoval(contractNumber - 1);
+			PlayerContracts.AddContract(new LumberContract(toAdd.GetRequiredLumber(), toAdd.GetPayout(), toAdd.GetCompletionDeadline(), ContractStatus.ACTIVE));
+
+			MarkContractForRemoval(contractNumber - 1, true);
 
 			EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(7).GetComponent<Button>().interactable = false;
 			EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
@@ -111,7 +124,7 @@ public class AvailableContracts : MonoBehaviour
 		EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(6).GetComponent<Button>().interactable = false;
 		EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 
-		MarkContractForRemoval(contractNumber - 1);
+		MarkContractForRemoval(contractNumber - 1, false);
 		//visually cross out the ui object
 	}
 
