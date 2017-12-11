@@ -29,16 +29,20 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void SetAvailableContracts(List<LumberContract> contracts) { availableContracts = contracts; }
 	
-	void MarkContractForRemoval(int contractIndex, bool active) 
+	static void MarkContractForRemoval(int contractIndex, ContractStatus status) 
 	{
 		contractsToRemove.Add(contractIndex);
-		if (active)
+		switch (status)
 		{
-			availableContracts[contractIndex].SetStatus(ContractStatus.ACTIVE);
-		}
-		else
-		{
-			availableContracts[contractIndex].SetStatus(ContractStatus.DECLINED);
+			case ContractStatus.ACTIVE:
+				availableContracts[contractIndex].SetStatus(ContractStatus.ACTIVE);
+				break;
+			case ContractStatus.DECLINED:
+				availableContracts[contractIndex].SetStatus(ContractStatus.DECLINED);
+				break;
+			case ContractStatus.EXPIRED:
+				availableContracts[contractIndex].SetStatus(ContractStatus.EXPIRED);
+				break;
 		}
 	}
 
@@ -71,6 +75,7 @@ public class AvailableContracts : MonoBehaviour
 		{
 			for (int i = contractsToRemove.Count - 1; i >= 0; i--)
 			{
+				// Debug.Log("Index: " + i);
 				availableContracts.RemoveAt(contractsToRemove[i]);
 			}
 			contractsToRemove.Clear();
@@ -103,7 +108,7 @@ public class AvailableContracts : MonoBehaviour
 			LumberContract toAdd = availableContracts[contractNumber - 1];
 			PlayerContracts.AddContract(new LumberContract(toAdd.GetRequiredLumber(), toAdd.GetPayout(), toAdd.GetCompletionDeadline(), ContractStatus.ACTIVE));
 
-			MarkContractForRemoval(contractNumber - 1, true);
+			MarkContractForRemoval(contractNumber - 1, ContractStatus.ACTIVE);
 
 			EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(7).GetComponent<Button>().interactable = false;
 			EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
@@ -124,7 +129,7 @@ public class AvailableContracts : MonoBehaviour
 		EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(6).GetComponent<Button>().interactable = false;
 		EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 
-		MarkContractForRemoval(contractNumber - 1, false);
+		MarkContractForRemoval(contractNumber - 1, ContractStatus.DECLINED);
 		//visually cross out the ui object
 	}
 
@@ -135,6 +140,7 @@ public class AvailableContracts : MonoBehaviour
 			for (int i =0; i < availableContracts.Count; i++)
 			{
 				availableContracts[i].DecrementDeadline();
+				if (availableContracts[i].IsExpired()) MarkContractForRemoval(i, ContractStatus.EXPIRED);
 			}
 		}
 	}

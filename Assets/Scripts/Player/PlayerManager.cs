@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
 		//only do this on load from main menu
-		if (!didLoadFromMenu && RunOnTheFly.RunOnTheFlyReference.simulateFromMenu)
+		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
 		{
 			spawnLocation = MainMenu.GetLocationToSpawn();
 			StartCoroutine(DelaySetSpawnLocationOnLoad());

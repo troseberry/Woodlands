@@ -13092,11 +13092,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 223520376584163812, guid: 906b09cb3b4ad432ab8b2e6cb45ed77c,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 906b09cb3b4ad432ab8b2e6cb45ed77c, type: 2}
   m_IsPrefabParent: 0
@@ -13830,7 +13825,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114165273}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3791045
+  m_Size: 0.37910447
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

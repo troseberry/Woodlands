@@ -143,6 +143,18 @@ public class ConsoleCommands : MonoBehaviour
 			case "Lumber Firewood Tier":
 				PlayerSkills.SetCurrentLumberFirewoodTier(commandValue);
 				break;
+
+
+			case "Skip To Time":
+				TimeManager.SetCurrentTime((float) commandValue);
+				break;
+
+			case "Clear Active Contracts":
+				PlayerContracts.SetActiveContractsList(new List<LumberContract>());
+				break;
+			case "Clear Available Contracts":
+				AvailableContracts.SetAvailableContracts(new List<LumberContract>());
+				break;
 		}
 	}
 }

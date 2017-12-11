@@ -807,7 +807,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Console Commands
+  m_Text: Debug Commands
 --- !u!114 &114325598653014348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1397,6 +1397,12 @@ MonoBehaviour:
     - m_Text: Lumber Logs Tier
       m_Image: {fileID: 0}
     - m_Text: Lumber Firewood Tier
+      m_Image: {fileID: 0}
+    - m_Text: Skip To Time
+      m_Image: {fileID: 0}
+    - m_Text: Clear Active Contracts
+      m_Image: {fileID: 0}
+    - m_Text: Clear Available Contracts
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
