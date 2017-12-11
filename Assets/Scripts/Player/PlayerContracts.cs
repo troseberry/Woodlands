@@ -35,9 +35,9 @@ public class PlayerContracts
 		// currently just going to remove from active contracts list
 		// should probably just mark as expired and let the player handle removing
 
-		for (int j = expiredContracts.Count - 1; j >= 0; j--)
-		{
-			activeContracts.RemoveAt(expiredContracts[j]);
-		}
+		// for (int j = expiredContracts.Count - 1; j >= 0; j--)
+		// {
+		// 	activeContracts.RemoveAt(expiredContracts[j]);
+		// }
 	}
 }

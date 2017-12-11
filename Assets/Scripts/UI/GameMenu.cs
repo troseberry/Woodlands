@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityStandardAssets.Cameras;
+using UnityEngine.EventSystems;
 
 public class GameMenu : MonoBehaviour 
 {
@@ -143,7 +144,19 @@ public class GameMenu : MonoBehaviour
 			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: " + activeContracts[j].GetRequiredLumber().GetTreeGrade();
 			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = activeContracts[j].GetRequiredLumber().StringWithoutQuality();
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = activeContracts[j].GetPayout().ToString();
+
+			contractsContent.GetChild(j).GetChild(6).gameObject.SetActive(activeContracts[j].IsExpired());
 		}
+	}
+
+	public void RemoveContract()
+	{
+		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.transform.parent.name;
+		int contractNumber = int.Parse(contractName.Substring(9));
+
+		PlayerContracts.RemoveContractAtIndex(contractNumber - 1);
+
+		UpdateContracts();
 	}
 
 	void UpdateResources()
