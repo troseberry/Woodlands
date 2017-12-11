@@ -65,7 +65,7 @@ public class MailboxCanvas : MonoBehaviour
 		for (int j = 0; j < activeContracts.Count; j++)
 		{
 			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = activeContracts[j].GetCompletionDeadline().ToString();
-			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: ?";
+			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: " + activeContracts[j].GetRequiredLumber().GetTreeGrade();
 			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = activeContracts[j].GetRequiredLumber().StringWithoutQuality();
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = activeContracts[j].GetPayout().ToString();
 

@@ -56,7 +56,7 @@ public class AvailableContracts : MonoBehaviour
 		for (int j = 0; j < totalNumberToDisplay; j++)
 		{
 			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = availableContracts[j].GetCompletionDeadline().ToString();
-			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: ?";
+			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: " + availableContracts[j].GetRequiredLumber().GetTreeGrade();
 			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = availableContracts[j].GetRequiredLumber().StringWithoutQuality();
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = availableContracts[j].GetPayout().ToString();
 

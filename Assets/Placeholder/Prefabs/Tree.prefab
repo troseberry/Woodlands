@@ -1149,6 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upperCutBlock: {fileID: 114833757783471406}
   lowerCutBlock: {fileID: 114858605950347850}
+  interactText: {fileID: 114025951113153964}
 --- !u!114 &114089517753865554
 MonoBehaviour:
   m_ObjectHideFlags: 1

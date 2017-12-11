@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.ThirdPerson;
+using UnityEngine.UI;
 
 namespace Forest
 {
@@ -13,9 +14,8 @@ namespace Forest
 
 		Vector3 fallForcePosition;
 
-		//generate this at runtime
-		private float randomQuality;
 		private QualityGrade qualityGrade;
+		public Text interactText;
 
 		int[] sideCutsCount = new int[4] {0, 0, 0, 0};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
@@ -28,28 +28,7 @@ namespace Forest
 			fallForcePosition = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
 			
 			qualityGrade = GetComponentInParent<TreeGroupAttributes>().groupQualityGrade;
-
-			// randomQuality = Random.value;
-			// if (randomQuality < .4)
-			// {
-			// 	qualityGrade = QualityGrade.F;
-			// }
-			// else if (randomQuality < .65)
-			// {
-			// 	qualityGrade = QualityGrade.D;
-			// }
-			// else if (randomQuality < .85)
-			// {
-			// 	qualityGrade = QualityGrade.C;
-			// }
-			// else if (randomQuality < .95)
-			// {
-			// 	qualityGrade = QualityGrade.B;
-			// }
-			// else
-			// {
-			// 	qualityGrade = QualityGrade.A;
-			// }
+			interactText.text = string.Format(interactText.text, qualityGrade.ToString());
 		}
 
 
