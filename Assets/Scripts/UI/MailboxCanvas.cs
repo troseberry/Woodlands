@@ -71,6 +71,8 @@ public class MailboxCanvas : MonoBehaviour
 
 			contractsContent.GetChild(j).GetChild(6).GetComponent<Button>().interactable = activeContracts[j].CanBeCompleted();
 			contractsContent.GetChild(j).GetChild(6).GetChild(0).GetComponent<Text>().text = "Turn In";
+
+			contractsContent.GetChild(j).GetChild(7).gameObject.SetActive(activeContracts[j].IsExpired());
 		}
 	}
 
