@@ -107,3 +107,21 @@ public class LumberContract
 		}
 	}
 }
+
+public class ContractDifficulty
+{
+	private int difficulty;
+
+	public int grade { get; set; }
+	public int typeCount { get; set; }
+	public int rangeMax { get; set; }
+
+	public ContractDifficulty(int g, int t, int r)
+	{
+		grade = g;
+		typeCount = t;
+		rangeMax = r;
+
+		difficulty = grade + (typeCount * rangeMax);
+	}
+}

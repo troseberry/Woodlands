@@ -86,7 +86,7 @@ public class AvailableContracts : MonoBehaviour
 
 		for (int j = 0; j < freeContractSpaces; j++)
 		{
-			LumberResourceQuantity lumberRequired = new LumberResourceQuantity(true, Random.Range(1, 4));
+			LumberResourceQuantity lumberRequired = new LumberResourceQuantity(2);
 			LumberContract toAdd = new LumberContract(
 				lumberRequired, 
 				lumberRequired.GenerateDevResourcePayout(),
