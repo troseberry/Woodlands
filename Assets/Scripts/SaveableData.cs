@@ -9,6 +9,9 @@ public class SaveableData
 	public List<LumberContract> activeContracts;
 	public List<LumberContract> availableContracts;
 
+	public int averageContractDifficulty;
+	public List<int> pastGeneratedContractDifficulties;
+
 	public int currentEnergy;
 
 	public int currentCurrency;

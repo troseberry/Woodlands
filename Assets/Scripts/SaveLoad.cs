@@ -30,6 +30,9 @@ public class SaveLoad : MonoBehaviour
 		saveData.activeContracts = PlayerContracts.GetActiveContractsList();
 		saveData.availableContracts = AvailableContracts.GetAvailableContracts();
 
+		saveData.averageContractDifficulty = AvailableContracts.GetAverageContractDifficulty();
+		saveData.pastGeneratedContractDifficulties = AvailableContracts.GetPastGeneratedContractDifficuties();
+
 		saveData.currentEnergy = PlayerEnergy.GetCurrentEnergyValue();
 
 		saveData.currentCurrency = PlayerResources.GetCurrentCurrencyValue();
@@ -108,6 +111,9 @@ public class SaveLoad : MonoBehaviour
 			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
 			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
 
+			AvailableContracts.SetAverageContractDifficulty(loadData.averageContractDifficulty);
+			AvailableContracts.SetPastGeneratedContractDifficulties(loadData.pastGeneratedContractDifficulties);
+
 			PlayerEnergy.SetCurrentEnergyValue(loadData.currentEnergy);
 
 			PlayerResources.SetCurrentCurrencyValue(loadData.currentCurrency);
@@ -167,6 +173,9 @@ public class SaveLoad : MonoBehaviour
 
 		saveData.activeContracts = new List<LumberContract>();
 		saveData.availableContracts = new List<LumberContract>();
+
+		saveData.averageContractDifficulty = 2;
+		saveData.pastGeneratedContractDifficulties = new List<int>() {2};
 
 		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
 		saveData.currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);

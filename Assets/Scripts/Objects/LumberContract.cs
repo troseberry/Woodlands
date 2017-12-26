@@ -13,55 +13,30 @@ public class LumberContract
 	private DevResourceQuantity payout;
 	private int completionDeadline;
 	private ContractStatus status;
-
-
-	private int overallDifficulty;
-	private int difficultyGrade;
-	private int difficultyTypeCount;
-	private int difficultyRangeMax;
+	private ContractDifficulty difficulty;
 
 	public LumberContract() {}
 
-	public LumberContract(LumberResourceQuantity lumber, DevResourceQuantity pay, int deadline, ContractStatus startStatus)
+	public LumberContract(LumberResourceQuantity lumber, DevResourceQuantity pay, int deadline, ContractStatus startStatus, ContractDifficulty diff)
 	{
 		requiredLumber = lumber;
 		payout = pay;
 		completionDeadline = deadline;
 		status = startStatus;
+		difficulty = diff;
 	}
 
-	public LumberContract(int grade, int typeCount, int rangeMax)
+	public LumberContract(int difficultyNumber)
 	{
+		ContractDifficulty[] difficultyArray = LumberContractHelper.DifficultyDictionary[difficultyNumber];
+		int randomSelection = UnityEngine.Random.Range(0, difficultyArray.Length - 1);
 
-	}
+		difficulty = difficultyArray[randomSelection];
 
-	public LumberContract(int difficulty)
-	{
-		//basically need to write a polynomial solver to calculate possible values for g, t, and r when only d is known.
-		//difficulty = grade + (typeCount * rangeVal)
-
-		//d = g + tr;
-		//tr = d - g;
-		//g = d / tr;
-		//t = (d - g) / r;
-		//r = (d - g) / t;
-
-		int grade = 0;
-		int typeCount = 0;
-		int rangeMax = 0;
-
-		grade = UnityEngine.Random.Range(1, 6);
-		difficulty -= grade;
-
-		rangeMax = UnityEngine.Random.Range(1, 17);
-		rangeMax = Mathf.Clamp(rangeMax, 1, difficulty);
-		difficulty = difficulty / rangeMax;
-
-		typeCount = UnityEngine.Random.Range(1, 4);
-		typeCount = Mathf.Clamp(typeCount, 1, difficulty);
-		difficulty -= typeCount;
-
-		
+		requiredLumber = new LumberResourceQuantity(difficulty);
+		payout = requiredLumber.GenerateDevResourcePayout();
+		completionDeadline = 3;			//should generate deadline based on either difficulty or required lumber quantities
+		status = ContractStatus.AVAILABLE;
 	}
 
 	public LumberResourceQuantity GetRequiredLumber() { return requiredLumber; }
@@ -89,6 +64,10 @@ public class LumberContract
 	public ContractStatus GetStatus() { return status; }
 
 	public void SetStatus (ContractStatus newStatus) { status = newStatus; }
+
+	public ContractDifficulty GetDifficulty() { return difficulty; }
+
+	public void SetDifficulty(ContractDifficulty diff) { difficulty = diff; }
 
 	public override string ToString()
 	{
