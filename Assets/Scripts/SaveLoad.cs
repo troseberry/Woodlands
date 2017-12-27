@@ -174,8 +174,8 @@ public class SaveLoad : MonoBehaviour
 		saveData.activeContracts = new List<LumberContract>();
 		saveData.availableContracts = new List<LumberContract>();
 
-		saveData.averageContractDifficulty = 2;
-		saveData.pastGeneratedContractDifficulties = new List<int>() {2};
+		saveData.averageContractDifficulty = 2.5f;
+		saveData.pastGeneratedContractDifficulties = new List<int>() {2, 3};
 
 		saveData.currentEnergy = PlayerSkills.GetMaxEnergyValue();
 		saveData.currentlyEquippedTool = new Tool(ToolName.EMPTY_HANDS);

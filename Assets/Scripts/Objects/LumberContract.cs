@@ -87,20 +87,31 @@ public class LumberContract
 	}
 }
 
+[Serializable]
 public class ContractDifficulty
 {
-	private int difficulty;
+	public int difficulty { get; set; }
 
-	public int grade { get; set; }
+	public int gradeFuncVal { get; set; }
 	public int typeCount { get; set; }
 	public int rangeMax { get; set; }
 
 	public ContractDifficulty(int g, int t, int r)
 	{
-		grade = g;
+		gradeFuncVal = g;
 		typeCount = t;
 		rangeMax = r;
 
-		difficulty = grade + (typeCount * rangeMax);
+		difficulty = gradeFuncVal + (typeCount * rangeMax);
+	}
+
+	public int GetQualityGradeInt()
+	{
+		return 5 - gradeFuncVal;
+	}
+
+	public QualityGrade GetQualityGrade()
+	{
+		return (QualityGrade) (5 - gradeFuncVal);
 	}
 }

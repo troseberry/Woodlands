@@ -111,5 +111,7 @@ public class TimeManager : MonoBehaviour
 		didDailyGeneration = true;
 
 		Debug.Log("Finished Daily Tasks");
+		Debug.Log("Average Difficulty: " + AvailableContracts.GetAverageContractDifficulty());
+		Debug.Log("Standard Dev: " + AvailableContracts.CalculateStandardDeviation(AvailableContracts.GetPastGeneratedContractDifficuties()));
 	}
 }

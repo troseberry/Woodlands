@@ -154,6 +154,8 @@ public class GameMenu : MonoBehaviour
 		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.transform.parent.name;
 		int contractNumber = int.Parse(contractName.Substring(9));
 
+		//this might need to be done exactly when contracts expire so difficulty updates doesn't require actual player input
+		AvailableContracts.AdjustContractDifficulty(-PlayerContracts.GetContractAtIndex(contractNumber - 1).GetDifficulty().difficulty);
 		PlayerContracts.RemoveContractAtIndex(contractNumber - 1);
 
 		UpdateContracts();

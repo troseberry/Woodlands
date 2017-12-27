@@ -87,9 +87,9 @@ public class LumberResourceQuantity
 			}
 		}
 
-		treeGrade = (QualityGrade) difficulty.grade;
-		logGrade = (QualityGrade) difficulty.grade;
-		firewoodGrade = (QualityGrade) difficulty.grade;
+		treeGrade = difficulty.GetQualityGrade();
+		logGrade = difficulty.GetQualityGrade();
+		firewoodGrade = difficulty.GetQualityGrade();
 	}
 
 

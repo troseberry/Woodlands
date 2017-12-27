@@ -12,7 +12,7 @@ public class AvailableContracts : MonoBehaviour
 
 	private static List<LumberContract> availableContracts;
 
-	private static int averageContractDifficulty;
+	private static float averageContractDifficulty;
 	private static List<int> pastGeneratedContractDifficulties;
 
 	private static int totalNumberToDisplay;
@@ -34,9 +34,9 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void SetAvailableContracts(List<LumberContract> contracts) { availableContracts = contracts; }
 
-	public static int GetAverageContractDifficulty() { return averageContractDifficulty; }
+	public static float GetAverageContractDifficulty() { return averageContractDifficulty; }
 
-	public static void SetAverageContractDifficulty(int difficulty) { averageContractDifficulty = difficulty; }
+	public static void SetAverageContractDifficulty(float difficulty) { averageContractDifficulty = difficulty; }
 
 	public static List<int> GetPastGeneratedContractDifficuties () { return pastGeneratedContractDifficulties; }
 
@@ -101,10 +101,9 @@ public class AvailableContracts : MonoBehaviour
 			int difficulty = GenerateDifficulty();
 			LumberContract toAdd = new LumberContract(difficulty);
 
-			availableContracts.Add(toAdd);
+			Debug.Log("C" + j + ": " + toAdd.GetDifficulty().difficulty + ", " + toAdd.GetDifficulty().GetQualityGradeInt());
 
-			// Don't update past generated difficulties list until player completes or has one expire in their active contracts
-			// AddToTrackedAveragesList(difficulty);
+			availableContracts.Add(toAdd);
 		}
 
 		if (SceneManager.GetActiveScene().name.Equals("MainCabin")) AvailableContractsReference.PopulateCanvasObjcets();
@@ -159,7 +158,7 @@ public class AvailableContracts : MonoBehaviour
 
 
 
-	public static int CalculateStandardDeviation(List<int> values)
+	public static float CalculateStandardDeviation(List<int> values)
 	{
 		float newAverage = 0;
 
@@ -167,40 +166,40 @@ public class AvailableContracts : MonoBehaviour
 		{
 			newAverage += Mathf.Pow((values[i] - averageContractDifficulty), 2);
 		}
-
 		newAverage = newAverage / values.Count;
 
-		return Mathf.RoundToInt(Mathf.Sqrt(newAverage));
+		return Mathf.Sqrt(newAverage);
 	}
 
 	public static int GenerateDifficulty()
 	{
-		int stddev = CalculateStandardDeviation(pastGeneratedContractDifficulties);
+		float stddev = CalculateStandardDeviation(pastGeneratedContractDifficulties);
 		float randomPercentage = Random.value;
 		int diff = 0;
 
 		if (randomPercentage <= 0.68f)
 		{
-			diff = UnityEngine.Random.Range(averageContractDifficulty - stddev, (averageContractDifficulty + stddev) + 1);
+			diff = Mathf.RoundToInt(UnityEngine.Random.Range(averageContractDifficulty - stddev, (averageContractDifficulty + stddev) + 1));
 		}
 		else if ( randomPercentage < 0.96f)
 		{
-			diff = UnityEngine.Random.Range(averageContractDifficulty - (2 * stddev), (averageContractDifficulty + (2 * stddev)) + 1);
+			diff = Mathf.RoundToInt(UnityEngine.Random.Range(averageContractDifficulty - (2 * stddev), (averageContractDifficulty + (2 * stddev)) + 1));
 		}
 		else
 		{
-			diff = UnityEngine.Random.Range(averageContractDifficulty - (3 * stddev), (averageContractDifficulty + (3 * stddev)) + 1);
+			diff = Mathf.RoundToInt(UnityEngine.Random.Range(averageContractDifficulty - (3 * stddev), (averageContractDifficulty + (3 * stddev)) + 1));
 		}
 
 		return Mathf.Clamp(diff, 2, 53);
 	}
 
-	static void AddToTrackedAveragesList(int newAverage)
+	public static void AdjustContractDifficulty(int newDifficulty)
 	{
-		pastGeneratedContractDifficulties.Add(newAverage);
+		pastGeneratedContractDifficulties.Add(newDifficulty);
 		
 		if (pastGeneratedContractDifficulties.Count > 25) pastGeneratedContractDifficulties.RemoveAt(0);
 
-		averageContractDifficulty =  (int) pastGeneratedContractDifficulties.Average();
+		averageContractDifficulty =  (float) pastGeneratedContractDifficulties.Average();
+		averageContractDifficulty = Mathf.Clamp(averageContractDifficulty, 2, 53);
 	}
 }

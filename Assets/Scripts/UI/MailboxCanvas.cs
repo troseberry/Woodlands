@@ -96,6 +96,8 @@ public class MailboxCanvas : MonoBehaviour
 		contractsContent.GetChild(contractNumber - 1).GetChild(6).GetComponent<Button>().interactable = false;
 		contractsContent.GetChild(contractNumber - 1).GetChild(6).GetChild(0).GetComponent<Text>().text = "Completed";
 
+		AvailableContracts.AdjustContractDifficulty(activeContracts[contractNumber - 1].GetDifficulty().difficulty);
+
 		//do more visually to the contract object to show it has been turned in
 		MarkContractForRemoval(contractNumber - 1);
 
