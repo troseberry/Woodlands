@@ -89,6 +89,11 @@ public class PlayerManager : MonoBehaviour
 		playerTransform.position = SpawnLocations.ReturnSpawnVector(startScene, endScene);
 	}
 
+	public static void TraverseStairs(bool goUp)
+	{
+		playerTransform.position = goUp ? new Vector3(-3f, 3.8f, 0f) : new Vector3(1f, -0.5f, 0f);
+	}
+
 	public IEnumerator DelaySetSpawnLocationOnLoad()
 	{
 		yield return new WaitForSeconds(0.25f);

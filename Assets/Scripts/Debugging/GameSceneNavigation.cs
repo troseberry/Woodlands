@@ -47,4 +47,14 @@ public static class GameSceneNavigation
 		SceneManager.LoadScene("LumberYard");
 		PlayerManager.SetSpawnLocation(currentSceneName, "LumberYard");
 	}
+
+	public static void ToTopFloor()
+	{
+		PlayerManager.TraverseStairs(true);
+	}
+
+	public static void ToBottomFloor()
+	{
+		PlayerManager.TraverseStairs(false);
+	}
 }

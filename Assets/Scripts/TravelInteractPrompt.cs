@@ -58,6 +58,12 @@ public class TravelInteractPrompt : MonoBehaviour
 			case "ToLumberYardTrigger":
 				GameSceneNavigation.ToLumberYard();
 				break;
+			case "ToTopFloor":
+				GameSceneNavigation.ToTopFloor();
+				break;
+			case "ToBottomFloor":
+				GameSceneNavigation.ToBottomFloor();
+				break;
 			default:
 				Debug.Log("No Valid Travel Scene");
 				break;

@@ -13,7 +13,7 @@ EditorBuildSettings:
     guid: 2c9e024ed193144ffa92ad2a391cea91
   - enabled: 1
     path: Assets/Scenes/MainCabin.unity
-    guid: 157c6ff9d34d7442eac8293fd10b9631
+    guid: dc533490ad43949dbb1ad20bde214ead
   - enabled: 1
     path: Assets/Scenes/Workshop.unity
     guid: 370d2609987c24ae280703013e58a49d
