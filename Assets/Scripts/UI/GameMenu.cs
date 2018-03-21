@@ -146,6 +146,7 @@ public class GameMenu : MonoBehaviour
 			contractsContent.GetChild(j).GetChild(3).GetComponent<Text>().text = activeContracts[j].GetPayout().ToString();
 
 			contractsContent.GetChild(j).GetChild(6).gameObject.SetActive(activeContracts[j].IsExpired());
+			contractsContent.GetChild(j).GetChild(7).gameObject.SetActive(!activeContracts[j].IsExpired());
 		}
 	}
 

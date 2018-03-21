@@ -26,7 +26,7 @@ public class AvailableContracts : MonoBehaviour
 	void Start () 
 	{
 		AvailableContractsReference = this;
-		PopulateCanvasObjcets();
+		// PopulateCanvasObjcets();
 	}
 	
 
@@ -69,7 +69,7 @@ public class AvailableContracts : MonoBehaviour
 			contractsContent.GetChild(i).gameObject.SetActive(i < totalNumberToDisplay);
 		}
 		
-		//This shows newwest contracts last. consider starting at end of list and going backward to show newest first
+		//This shows newest contracts last. consider starting at end of list and going backward to show newest first
 		for (int j = 0; j < totalNumberToDisplay; j++)
 		{
 			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = availableContracts[j].GetCompletionDeadline().ToString();
@@ -101,7 +101,7 @@ public class AvailableContracts : MonoBehaviour
 			int difficulty = GenerateDifficulty();
 			LumberContract toAdd = new LumberContract(difficulty);
 
-			Debug.Log("C" + j + ": " + toAdd.GetDifficulty().difficulty + ", " + toAdd.GetDifficulty().GetQualityGradeInt());
+			// Debug.Log("C" + j + ": " + toAdd.GetDifficulty().difficulty + ", " + toAdd.GetDifficulty().GetQualityGradeInt());
 
 			availableContracts.Add(toAdd);
 		}
