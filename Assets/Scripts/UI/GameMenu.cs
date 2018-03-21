@@ -161,6 +161,22 @@ public class GameMenu : MonoBehaviour
 		UpdateContracts();
 	}
 
+	public void ToggleAbandonPrompt()
+	{
+		Transform button = EventSystem.current.currentSelectedGameObject.transform;
+		if (button.name.Equals("NoButton"))
+		{
+			button.parent.gameObject.SetActive(false);
+		}
+		else if (button.name.Equals("AbandonButton"))
+		{
+			button.parent.GetChild(8).gameObject.SetActive(true);
+		}
+	}
+
+
+
+
 	void UpdateResources()
 	{
 		currencyCount.text = PlayerResources.GetCurrentCurrencyValue().ToString();
