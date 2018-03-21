@@ -7594,7 +7594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Currency Capacity
+  m_Text: Max Tool Parts
 --- !u!222 &389939668
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11893,7 +11893,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Efficiency
+  m_Text: Max Book Pages
 --- !u!222 &590637754
 CanvasRenderer:
   m_ObjectHideFlags: 0

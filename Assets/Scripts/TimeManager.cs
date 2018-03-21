@@ -103,7 +103,7 @@ public class TimeManager : MonoBehaviour
 
 	static void ExecuteDailyTasks()
 	{
-		//Do this before generting new so new contracts don't get accidentally decremented
+		//Do this before generating new so new contracts don't get accidentally decremented
 		PlayerContracts.ProgressAllContractDeadlines();
 		AvailableContracts.ProgressAllContractDeadlines();
 
