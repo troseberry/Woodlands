@@ -189,7 +189,8 @@ public class EnergySkill : Skill
 	public EnergySkill() 
 	{
 		skillName = SkillName.ENERGY;
-		tierValues = new int[5] {20, 40, 60, 80, 100};
+		// tierValues = new int[5] {20, 40, 60, 80, 100};
+		tierValues = new int[5] {50, 100, 150, 200, 250};
 		currentTier = 1;
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),
@@ -205,7 +206,8 @@ public class EnergySkill : Skill
 	public EnergySkill(int tier) 
 	{
 		skillName = SkillName.ENERGY;
-		tierValues = new int[5] {20, 40, 60, 80, 100};
+		// tierValues = new int[5] {20, 40, 60, 80, 100};
+		tierValues = new int[5] {50, 100, 150, 200, 250};
 		currentTier = tier; 
 		upgradeCosts = new DevResourceQuantity[5] {
 			new DevResourceQuantity(0, 0, 0, 0),

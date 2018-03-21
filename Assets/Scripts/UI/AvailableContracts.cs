@@ -124,7 +124,7 @@ public class AvailableContracts : MonoBehaviour
 			EventSystem.current.currentSelectedGameObject.transform.parent.GetChild(7).GetComponent<Button>().interactable = false;
 			EventSystem.current.currentSelectedGameObject.GetComponent<Button>().interactable = false;
 
-			//visually show contract has been accpet (circle object)
+			//visually show contract has been accpeted (circle object)
 		}
 		else
 		{

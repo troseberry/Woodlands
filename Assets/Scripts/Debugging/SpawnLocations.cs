@@ -38,7 +38,7 @@ public class SpawnLocations
 	//lumberYard_forest
 	//lumberYard_lumberYard
 
-	private static Vector3 sleepSpawnLocation = new Vector3(-7.5f, 4.65f, -2.35f);
+	private static Vector3 sleepSpawnLocation = new Vector3(-4.5f, 4f, -1f);
 
 	private static Vector3[,] spawnLocationsArray = new Vector3[5,5]
 	{

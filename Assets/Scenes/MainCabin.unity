@@ -343,7 +343,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Active Contracts
+  m_Text: Max Lumber Trees
 --- !u!222 &5870171
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1802,7 +1802,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1923577905}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.37910447
+  m_Size: 0.3791045
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7003,15 +7003,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.45
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4.307
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.09
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7019,7 +7019,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0.9929106
+      value: -0.69874644
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalRotation.z
@@ -7027,7 +7027,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 0.11886363
+      value: -0.71536946
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_RootOrder
@@ -7035,7 +7035,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4287729781639760, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -166.34702
+      value: -271.347
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 18e7ef44223d349dfb4cbc580a2f4b37, type: 2}
@@ -15439,15 +15439,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4800554161190658, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.7
+      value: 0.761
       objectReference: {fileID: 0}
     - target: {fileID: 4800554161190658, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 4800554161190658, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -3.9
       objectReference: {fileID: 0}
     - target: {fileID: 4800554161190658, guid: b16af8c1f7f714b22ab92d038b1f60a1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -18931,7 +18931,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Max Building Materials
+  m_Text: Max Lumber Firewood
 --- !u!222 &899798538
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -33389,7 +33389,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Max Energy
+  m_Text: Max Lumber Logs
 --- !u!222 &1583299858
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -39100,7 +39100,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f96aa0129750c4655877b9ac382f7a43, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.12
+      value: 0.029
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f96aa0129750c4655877b9ac382f7a43, type: 3}
       propertyPath: m_LocalPosition.z

@@ -193,7 +193,7 @@ public class SaveLoad : MonoBehaviour
 		saveData.currentTime = 480f;
 
 		saveData.lastSceneName = "MainCabin";
-		Vector3 spawnHolder = SpawnLocations.GetSpawnForLoad("MainCabin");
+		Vector3 spawnHolder = SpawnLocations.GetSpawnForLoad("MainMenu");
 		saveData.lastSceneSpawnLocation = new float[3] {spawnHolder.x, spawnHolder.y, spawnHolder.z};
 		//-----------------------Done Setting Data---------------------------------------------
 		data.Serialize(file, saveData);
