@@ -147,13 +147,18 @@ public class GameMenu : MonoBehaviour
 
 			contractsContent.GetChild(j).GetChild(6).gameObject.SetActive(activeContracts[j].IsExpired());
 			contractsContent.GetChild(j).GetChild(7).gameObject.SetActive(!activeContracts[j].IsExpired());
+			
+			contractsContent.GetChild(j).GetChild(8).gameObject.SetActive(false);
 		}
 	}
 
 	public void RemoveContract()
 	{
-		string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.transform.parent.name;
-		int contractNumber = int.Parse(contractName.Substring(9));
+		Transform contractObj = EventSystem.current.currentSelectedGameObject.transform.parent.transform.parent;
+
+		contractObj.GetChild(8).gameObject.SetActive(false);
+		// string contractName = EventSystem.current.currentSelectedGameObject.transform.parent.transform.parent.name;
+		int contractNumber = int.Parse(contractObj.name.Substring(9));
 
 		//this might need to be done exactly when contracts expire so difficulty updates doesn't require actual player input
 		AvailableContracts.AdjustContractDifficulty(-PlayerContracts.GetContractAtIndex(contractNumber - 1).GetDifficulty().difficulty);

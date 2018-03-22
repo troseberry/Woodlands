@@ -84,12 +84,12 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void GenerateNewContracts()
 	{
-		Debug.Log("To Remove Count: " + contractsToRemove.Count)
+		Debug.Log("To Remove Count: " + contractsToRemove.Count);
 		if (contractsToRemove.Count > 0)
 		{
 			for (int i = contractsToRemove.Count - 1; i >= 0; i--)
 			{
-				Debug.Log("Remove #: " + i)
+				Debug.Log("Remove #: " + i);
 				availableContracts.RemoveAt(contractsToRemove[i]);
 			}
 			contractsToRemove.Clear();
