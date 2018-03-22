@@ -108,6 +108,11 @@ public class TimeManager : MonoBehaviour
 		AvailableContracts.ProgressAllContractDeadlines();
 
 		AvailableContracts.GenerateNewContracts();
+
+		Debug.Log("Holding Here?");
+
+		MenuManager.currentMenuManager.UpdateMenusAtStartOfDay();
+
 		didDailyGeneration = true;
 
 		Debug.Log("Finished Daily Tasks");

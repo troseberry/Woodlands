@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour 
 {
@@ -8,6 +9,7 @@ public class MenuManager : MonoBehaviour
 	
 	public PauseMenu currentPauseMenu;
 	public GameMenu currentGameMenu;
+	public MailboxMenu currentMailboxMenu;
 
 	public KeyItemInteract bedCanvas;
 	public KeyItemInteract kitchenCanvas;
@@ -21,6 +23,28 @@ public class MenuManager : MonoBehaviour
 	void Start () 
 	{
 		currentMenuManager = this;
+	}
+
+	void Reset()
+	{
+		currentPauseMenu = GameObject.Find("PauseMenu").GetComponent<PauseMenu>();
+		currentGameMenu = GameObject.Find("GameMenu").GetComponent<GameMenu>();
+
+		if (SceneManager.GetActiveScene().name.Equals("Homestead"))
+		{
+			currentMailboxMenu = GameObject.Find("MailboxMenu").GetComponent<MailboxMenu>();
+			mailboxCanvas = GameObject.Find("Mailbox").GetComponent<KeyItemInteract>();
+		}
+
+		if (SceneManager.GetActiveScene().name.Equals("MainCabin"))
+		{
+			bedCanvas = GameObject.Find("Bed").GetComponent<KeyItemInteract>();
+			kitchenCanvas = GameObject.Find("KitchenTable").GetComponent<KeyItemInteract>();
+			officeCanvas = GameObject.Find("Shop").GetComponent<KeyItemInteract>();
+			studyCanvas = GameObject.Find("StudyMenuTrigger").GetComponent<KeyItemInteract>();
+		}
+
+		if (SceneManager.GetActiveScene().name.Equals("Workshop")) workshopCanvas = GameObject.Find("UpgradeTools").GetComponent<KeyItemInteract>();
 	}
 	
 	public void CloseAllCanvases()
@@ -66,5 +90,11 @@ public class MenuManager : MonoBehaviour
 			currentGameMenu.IsMenuOpen(); 
 		}
 		return false;
+	}
+
+	public void UpdateMenusAtStartOfDay()
+	{
+		currentGameMenu.UpdateAtStartOfDay();
+		if (currentMailboxMenu) currentMailboxMenu.ShowContracts();
 	}
 }

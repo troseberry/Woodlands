@@ -125,7 +125,11 @@ public class GameMenu : MonoBehaviour
 		moveTime = 0f;
 		menuOpen = false;
 		doMove = false;
+	}
 
+	public void UpdateAtStartOfDay()
+	{
+		UpdateContracts();
 	}
 
 	void UpdateContracts()
