@@ -124,6 +124,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterMotor.SetCanMove(true);
 		CharacterInputController.SetCanTurn(true);
 		CharacterInputController.InitiateLoggingState(AnimState.NONE);
+		CharacterAnimator.ResetLoggingTriggers();
 
 		Instance.GetComponent<Rigidbody>().constraints = startingConstraints;
 
@@ -238,6 +239,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			if (inForwardPosition)
 			{
 				CharacterAnimator.SwingBackward();
+				// StartCoroutine(SwingBackwardAfterAnim());
 				inForwardPosition = false;
 				inBackwardPosition = true;
 			}
@@ -249,6 +251,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			forestTreeToCut.CutSide(sideToCut);
 			inForwardPosition = true;
 			inBackwardPosition = false;
+		}
+
+		IEnumerator SwingBackwardAfterAnim()
+		{
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"));
+			inForwardPosition = false;
+			inBackwardPosition = true;
 		}
 	#endregion
 
@@ -264,8 +273,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 					felledTreeToSaw.SawLocation(markToSaw);
 					inForwardPosition = true;
 					inBackwardPosition = false;
-
-					// StartCoroutine(PushForwardAfterAnim());
 				}
 			}
 		}
@@ -280,29 +287,23 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 					felledTreeToSaw.SawLocation(markToSaw);
 					inForwardPosition = false;
 					inBackwardPosition = true;
-
-					// StartCoroutine(PullBackwardAfterAnim());
 				}
 			}
 		}
 
-		// Having no delay looks okay for log bucking animations
-		// IEnumerator PushForwardAfterAnim()
-		// {
-		// 	yield return new WaitUntil(() => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_ForwardIdle"));
-		// 	felledTreeToSaw.SawLocation(markToSaw);
-		// 	inForwardPosition = true;
-		// 	inBackwardPosition = false;
-		// }
+		public void UnsnapAfterSaw()
+		{
+			StartCoroutine(UnsnapAfterSawAnim());
+			Debug.Log("Holding Here");
+		}
 
-		// IEnumerator PullBackwardAfterAnim()
-		// {
-		// 	yield return new WaitUntil(() => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle"));
-		// 	inForwardPosition = false;
-		// 	inBackwardPosition = true;
-		// }
-
-		
+		IEnumerator UnsnapAfterSawAnim()
+		{
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle"));
+			Debug.Log("Backward State");
+			UnsnapPlayer();
+			CharacterAnimator.ResetLoggingTriggers();
+		}
 	#endregion
 
 	#region SPLLITTING METHODS

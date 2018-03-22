@@ -188,6 +188,18 @@ public class CharacterAnimator : MonoBehaviour
 		public static void SwingDownward() { loggerAnimator.SetTrigger("SwingDownward"); }
 
 		public static void SwingUpward() { loggerAnimator.SetTrigger("SwingUpward"); }
+		
+		public static void ResetLoggingTriggers()
+		{
+			loggerAnimator.ResetTrigger("SwingForward");
+			loggerAnimator.ResetTrigger("SwingBackward");
+
+			loggerAnimator.ResetTrigger("PushForward");
+			loggerAnimator.ResetTrigger("PullBackward");
+
+			loggerAnimator.ResetTrigger("SwingDownward");
+			loggerAnimator.ResetTrigger("SwingUpward");
+		}
 	#endregion
 
 	#region TOOL METHODS

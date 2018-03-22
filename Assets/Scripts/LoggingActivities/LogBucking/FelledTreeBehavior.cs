@@ -53,7 +53,7 @@ namespace LogBucking
 			}
 
 
-			if (locationStrokeCounts[loc] < 9)
+			if (locationStrokeCounts[loc] < 10)
 			{
 				int cut01 = loc == 0 ? 0 : 2;
 				int cut02 = loc== 0 ? 1 : 3;
@@ -62,16 +62,15 @@ namespace LogBucking
 				sawProgressCuts[cut01].CutFace(3);
 				sawProgressCuts[cut02].CutFace(3);
 			}
-			else
-			{
-				SawThrough(loc);
-			}
+
+			if (locationStrokeCounts[loc] == 10) SawThrough(loc);
 		}
 
 		void SawThrough(int loc)
 		{
 			snapSpots[loc].enabled = false;
-			LoggingActivityPlayerBehavior.UnsnapPlayer();
+			// LoggingActivityPlayerBehavior.UnsnapPlayer();
+			LoggingActivityPlayerBehavior.Instance.UnsnapAfterSaw();
 			locationFullySawed[loc] = true;
 
 			if (locationFullySawed[0] && locationFullySawed[1])
