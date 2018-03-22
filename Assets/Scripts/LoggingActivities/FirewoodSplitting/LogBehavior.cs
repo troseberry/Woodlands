@@ -36,6 +36,13 @@ namespace FirewoodSplitting
 			associatedLogPile = transform.GetComponentInParent<LogPileBehavior>();
 		}
 
+		public bool PlayerCanStore()
+		{
+			return HomesteadStockpile.GetFirewoodCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberFirewoodValue();
+		}
+
+		public QualityGrade GetQualityGrade() { return qualityGrade; }
+
 		public bool HasBeenSplit() { return hasBeenSplit; }
 
 		public void Split()

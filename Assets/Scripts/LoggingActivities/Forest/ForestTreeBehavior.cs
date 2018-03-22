@@ -31,6 +31,12 @@ namespace Forest
 			interactText.text = string.Format(interactText.text, qualityGrade.ToString());
 		}
 
+		public bool PlayerCanStore()
+		{
+			return HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberTreesValue();
+		}
+
+		public QualityGrade GetQualityGrade() { return qualityGrade; }
 
 		public bool HasFallen() { return hasFallen; }
 

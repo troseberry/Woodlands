@@ -41,9 +41,20 @@ namespace LogBucking
 			}
 			snapSpots = transform.GetComponentsInChildren<FelledTreeSnapSpot>();
 			associatedFelledTreePile = transform.GetComponentInParent<FelledTreePileBehavior>();
-			
-			
 		}
+
+		public bool PlayerCanStore()
+		{
+			return HomesteadStockpile.GetLogsCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberLogsValue();
+		}
+
+		public QualityGrade GetQualityGrade() { return qualityGrade; }
+
+		public bool IsLocationFullyCut(int loc)
+		{
+			return locationFullySawed[loc];
+		}
+
 		
 		public void SawLocation(int loc)
 		{
@@ -111,11 +122,6 @@ namespace LogBucking
 			associatedFelledTreePile.UpdateFelledTreePile();
 
 			gameObject.SetActive(true);
-		}
-
-		public bool IsLocationFullyCut(int loc)
-		{
-			return locationFullySawed[loc];
 		}
 	}
 }

@@ -45,6 +45,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			HandleSnapLogic();
 			ProcessInput();
 		}
+
+		DebugPanel.Log("Forward", "Logging Anim", CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+		DebugPanel.Log("Backward", "Logging Anim", CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"));
 	}
 
 	public static void SetSnapInfo(bool canSnap) 
@@ -133,11 +136,14 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	void HandleSnapLogic()
 	{
-		bool fellingCondition = (currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
+		bool fellingCondition = 
+		(currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() && forestTreeToCut.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
 
-		bool buckingCondition = (currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
+		bool buckingCondition = 
+		(currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) && felledTreeToSaw.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
 
-		bool splittingCondition = (currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0 && PlayerTools.GetCurrentlyEquippedToolIndex() == 3);
+		bool splittingCondition = 
+		(currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0 && logToSplit.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 3);
 
 		if (Input.GetButtonDown("Interact") && canSnapPlayer)
 		{
@@ -151,6 +157,21 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				{
 					UnsnapPlayer();
 				}
+			}
+
+			if (forestTreeToCut != null)
+			{
+				if (!forestTreeToCut.PlayerCanStore()) Debug.Log("Full On Trees: Grade " + forestTreeToCut.GetQualityGrade().ToString());
+			}
+			
+			if (felledTreeToSaw != null)
+			{
+				if (!felledTreeToSaw.PlayerCanStore()) Debug.Log("Full On Logs: Grade " + felledTreeToSaw.GetQualityGrade().ToString());
+			}
+
+			if (logToSplit != null)
+			{
+				if (!logToSplit.PlayerCanStore()) Debug.Log("Full On Firewood: Grade " + logToSplit.GetQualityGrade().ToString());
 			}
 		}
 	}
@@ -224,7 +245,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		void SwingForward()
 		{
-			if (inBackwardPosition)
+			if (inBackwardPosition && CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"))
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) 
 				{
