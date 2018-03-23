@@ -21,12 +21,28 @@ public class AvailableContracts : MonoBehaviour
 
 	private static List<int> contractsToRemove = new List<int>();
 
-	public KeyItemInteract newspaperKeyItem;
+	public Canvas kitchenMenu;
+	private bool didPopulate = false;
 
 	void Start () 
 	{
 		AvailableContractsReference = this;
-		// PopulateCanvasObjcets();
+	}
+
+	void Reset()
+	{
+		contractsContent = transform.GetChild(0).GetChild(0).GetChild(0);
+		kitchenMenu = transform.parent.GetComponent<Canvas>();
+	}
+
+	void Update() 
+	{
+		if (kitchenMenu.enabled && !didPopulate)
+		{
+			PopulateCanvasObjcets();
+			didPopulate = true;
+		}
+		if (!kitchenMenu.enabled && didPopulate) didPopulate = false;
 	}
 	
 
@@ -41,6 +57,10 @@ public class AvailableContracts : MonoBehaviour
 	public static List<int> GetPastGeneratedContractDifficuties () { return pastGeneratedContractDifficulties; }
 
 	public static void SetPastGeneratedContractDifficulties(List<int> difficulties) { pastGeneratedContractDifficulties = difficulties; }
+
+	public static List<int> GetContractsToRemove() { return contractsToRemove; }
+
+	public static void SetContractsToRemove(List<int> toRemove) { contractsToRemove = toRemove; }
 	
 	static void MarkContractForRemoval(int contractIndex, ContractStatus status) 
 	{

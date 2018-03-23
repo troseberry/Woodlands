@@ -29,7 +29,9 @@ public class SaveLoad : MonoBehaviour
 		//-----------------------Setting Save Data---------------------------------------------
 		saveData.activeContracts = PlayerContracts.GetActiveContractsList();
 		saveData.availableContracts = AvailableContracts.GetAvailableContracts();
+		saveData.availableContractsToRemove = AvailableContracts.GetContractsToRemove();
 
+		saveData.didDailyGeneration = TimeManager.GetDidDailyGeneration();
 		saveData.averageContractDifficulty = AvailableContracts.GetAverageContractDifficulty();
 		saveData.pastGeneratedContractDifficulties = AvailableContracts.GetPastGeneratedContractDifficuties();
 
@@ -110,7 +112,10 @@ public class SaveLoad : MonoBehaviour
 
 			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
 			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
+			AvailableContracts.SetContractsToRemove(loadData.availableContractsToRemove);
+			
 
+			TimeManager.SetDidDailyGeneration(loadData.didDailyGeneration);
 			AvailableContracts.SetAverageContractDifficulty(loadData.averageContractDifficulty);
 			AvailableContracts.SetPastGeneratedContractDifficulties(loadData.pastGeneratedContractDifficulties);
 
@@ -173,7 +178,9 @@ public class SaveLoad : MonoBehaviour
 
 		saveData.activeContracts = new List<LumberContract>();
 		saveData.availableContracts = new List<LumberContract>();
+		saveData.availableContractsToRemove = new List<int>();
 
+		saveData.didDailyGeneration = false;
 		saveData.averageContractDifficulty = 2.5f;
 		saveData.pastGeneratedContractDifficulties = new List<int>() {2, 3};
 

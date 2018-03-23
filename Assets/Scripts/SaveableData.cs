@@ -8,7 +8,9 @@ public class SaveableData
 {
 	public List<LumberContract> activeContracts;
 	public List<LumberContract> availableContracts;
+	public List<int> availableContractsToRemove;
 
+	public bool didDailyGeneration;
 	public float averageContractDifficulty;
 	public List<int> pastGeneratedContractDifficulties;
 

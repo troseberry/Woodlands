@@ -31,6 +31,7 @@ public class TimeManager : MonoBehaviour
 
 	void Update () 
 	{
+		DebugPanel.Log("Did Daily Generation: ", "Save Data", didDailyGeneration);
 		// Debug.Log("Did Daily Generation: " + didDailyGeneration);
 		if (currentTime < dayLength)
 		{
@@ -119,4 +120,8 @@ public class TimeManager : MonoBehaviour
 		Debug.Log("Average Difficulty: " + AvailableContracts.GetAverageContractDifficulty());
 		Debug.Log("Standard Dev: " + AvailableContracts.CalculateStandardDeviation(AvailableContracts.GetPastGeneratedContractDifficuties()));
 	}
+
+	public static bool GetDidDailyGeneration() { return didDailyGeneration; }
+
+	public static void SetDidDailyGeneration(bool didGen) { didDailyGeneration = didGen; }
 }
