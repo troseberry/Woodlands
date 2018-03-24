@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class PlayerHud : MonoBehaviour 
 {
@@ -17,6 +18,7 @@ public class PlayerHud : MonoBehaviour
 
 	public Transform toolIconGroup;
 	public Transform toolWheelGroup;
+	private bool toolsDisabledInside = false;
 
 	
 	void Start () 
@@ -25,6 +27,8 @@ public class PlayerHud : MonoBehaviour
 
 		playerCanvas = GetComponent<Canvas>();
 		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
+
+		toolIconGroup.parent.transform.parent.gameObject.SetActive(true);
 		ChangeToolIcon();
 	}
 	
@@ -36,7 +40,18 @@ public class PlayerHud : MonoBehaviour
 		energyRadial.color = Color.Lerp(Color.red, Color.green, currentEnergyValue);
 		energyText.text = (currentEnergyValue * maxEnergyValue).ToString();
 
-		if (Input.GetButtonDown("ToolWheel")) ToggleToolWheel();
+		if (!SceneManager.GetActiveScene().name.Equals("MainCabin"))
+		{
+			if (Input.GetButtonDown("ToolWheel")) ToggleToolWheel();
+		}
+		else
+		{
+			if (!toolsDisabledInside)
+			{
+				toolIconGroup.parent.transform.parent.gameObject.SetActive(false);
+				toolsDisabledInside = true;
+			}
+		}
 	}
 
 	public void ChangeToolIcon()

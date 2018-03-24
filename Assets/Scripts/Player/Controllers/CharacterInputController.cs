@@ -5,6 +5,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterInputController : MonoBehaviour 
 {
@@ -17,6 +18,8 @@ public class CharacterInputController : MonoBehaviour
 	private static bool canTurn = true;
 
 	private static bool doChangeTool = false;
+	
+	private bool toolsDisabledInside = false;
 
 	void Start () 
 	{
@@ -58,9 +61,24 @@ public class CharacterInputController : MonoBehaviour
 			CharacterAnimator.SetJumpAsAction();
 		}
 
-		HandleToolInput();		
-		if (doChangeTool) ChangeTool();
-		
+		if (!SceneManager.GetActiveScene().name.Equals("MainCabin"))
+		{
+			HandleToolInput();		
+			if (doChangeTool) ChangeTool();
+			if (toolsDisabledInside) toolsDisabledInside = false;
+		}
+		else
+		{
+			if (!toolsDisabledInside)
+			{
+				Debug.Log("Entered Cabin");
+				int tempIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
+				HandleToolInput(0);
+				ChangeTool();
+				HandleToolInput(tempIndex);
+				toolsDisabledInside = true;
+			}
+		}
 	}
 
 	void FixedUpdate()
@@ -132,14 +150,17 @@ public class CharacterInputController : MonoBehaviour
 
 		if (!ToolManager.GetScrollSwitch() && !MenuManager.currentMenuManager.IsInMenu())
 		{
-			if (Input.GetAxis("Mouse ScrollWheel") > 0.35f)
+			// Debug.Log("Scroll: " + Input.GetAxis("Mouse ScrollWheel"));
+			if (Input.GetAxis("Mouse ScrollWheel") >= 0.1f)
 			{
+				// Debug.Log("Scoll Check Forward");
 				ToolManager.SetToolToEquipIndex((PlayerTools.GetCurrentlyEquippedToolIndex() + 1) % 4);
 				doChangeTool = true;
 				ToolManager.SetScrollSwitch(true);
 			}
-			else if (Input.GetAxis("Mouse ScrollWheel") < -0.35f)
+			else if (Input.GetAxis("Mouse ScrollWheel") <= -0.1f)
 			{
+				// Debug.Log("Scoll Check Backward");
 				ToolManager.SetToolToEquipIndex((PlayerTools.GetCurrentlyEquippedToolIndex() + 3) % 4);
 				doChangeTool = true;
 				ToolManager.SetScrollSwitch(true);
