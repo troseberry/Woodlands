@@ -20,11 +20,44 @@ public class CharacterInputController : MonoBehaviour
 	private static bool doChangeTool = false;
 	
 	private bool toolsDisabledInside = false;
+	private int tempToolIndex = 0;
 
 	void Start () 
 	{
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
+	}
+
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		Debug.Log("Current Tool (Enter): " + PlayerTools.GetCurrentlyEquippedToolIndex());
+
+		toolsDisabledInside = scene.name.Equals("MainCabin");
+
+		if (toolsDisabledInside)
+		{
+			Debug.Log("Entered Cabin");
+			tempToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
+			HandleToolInput(0);
+			ChangeTool();
+		}
+		else
+		{
+			HandleToolInput(tempToolIndex);
+			ChangeTool();
+		}
+
+		Debug.Log("Current Tool (After Set): " + PlayerTools.GetCurrentlyEquippedToolIndex());
+	}
+
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 	
 	void Update () 
@@ -61,23 +94,10 @@ public class CharacterInputController : MonoBehaviour
 			CharacterAnimator.SetJumpAsAction();
 		}
 
-		if (!SceneManager.GetActiveScene().name.Equals("MainCabin"))
+		if (!toolsDisabledInside)
 		{
 			HandleToolInput();		
 			if (doChangeTool) ChangeTool();
-			if (toolsDisabledInside) toolsDisabledInside = false;
-		}
-		else
-		{
-			if (!toolsDisabledInside)
-			{
-				Debug.Log("Entered Cabin");
-				int tempIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
-				HandleToolInput(0);
-				ChangeTool();
-				HandleToolInput(tempIndex);
-				toolsDisabledInside = true;
-			}
 		}
 	}
 

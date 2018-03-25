@@ -56,11 +56,14 @@ public class PlayerHud : MonoBehaviour
 
 	public void ChangeToolIcon()
 	{
-		for (int i = 0; i < toolIconGroup.childCount; i++)
+		if (toolIconGroup != null)
 		{
-			toolIconGroup.GetChild(i).gameObject.SetActive(false);
+			for (int i = 0; i < toolIconGroup.childCount; i++)
+			{
+				toolIconGroup.GetChild(i).gameObject.SetActive(false);
+			}
+			toolIconGroup.GetChild(ToolManager.GetToolToEquipIndex()).gameObject.SetActive(true);
 		}
-		toolIconGroup.GetChild(ToolManager.GetToolToEquipIndex()).gameObject.SetActive(true);
 	}
 
 	void ToggleToolWheel()
