@@ -66,6 +66,10 @@ namespace UnityStandardAssets.Cameras
             transform.position = Vector3.Lerp(transform.position, m_Target.position, deltaTime*m_MoveSpeed);
         }
 
+        public void SetTurnSpeed(float value)
+        {
+            m_TurnSpeed = value;
+        }
 
         private void HandleRotationMovement()
         {

@@ -4,10 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Cameras;
 
 public class PlayerHud : MonoBehaviour 
 {
 	public static PlayerHud PlayerHudReference;
+
+	private FreeLookCam characterCameraController;
 
 	private Canvas playerCanvas;
 
@@ -18,12 +21,15 @@ public class PlayerHud : MonoBehaviour
 
 	public Transform toolIconGroup;
 	public Transform toolWheelGroup;
+	private bool toolWheelIsOpen = false;
 	private bool toolsDisabledInside = false;
 
 	
 	void Start () 
 	{
 		PlayerHudReference = this;
+
+		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
 
 		playerCanvas = GetComponent<Canvas>();
 		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
@@ -42,7 +48,10 @@ public class PlayerHud : MonoBehaviour
 
 		if (!SceneManager.GetActiveScene().name.Equals("MainCabin"))
 		{
-			if (Input.GetButtonDown("ToolWheel")) ToggleToolWheel();
+			if ((Input.GetButton("ToolWheel") && !toolWheelIsOpen) || (Input.GetButtonUp("ToolWheel") && toolWheelIsOpen))
+			{
+				ToggleToolWheel();
+			}
 		}
 		else
 		{
@@ -68,7 +77,11 @@ public class PlayerHud : MonoBehaviour
 
 	void ToggleToolWheel()
 	{
-		toolWheelGroup.gameObject.SetActive(!toolWheelGroup.gameObject.activeSelf);
+		toolWheelIsOpen = !toolWheelIsOpen;
+		toolWheelGroup.gameObject.SetActive(toolWheelIsOpen);
+
+		float newTurnSpeed = toolWheelIsOpen ? 0f : 1.5f;
+		characterCameraController.SetTurnSpeed(newTurnSpeed);
 	}
 
 	public void CallForToolSwitch()
@@ -88,5 +101,10 @@ public class PlayerHud : MonoBehaviour
 				break;
 		}
 		CharacterInputController.HandleToolInput(toolToEquipIndex);
+	}
+
+	public void CallForToolSwitch(int index)
+	{
+		CharacterInputController.HandleToolInput(index);
 	}
 }
