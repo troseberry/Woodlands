@@ -21,6 +21,9 @@ public class PlayerHud : MonoBehaviour
 
 	public Transform toolIconGroup;
 	public Transform toolWheelGroup;
+	public HoverTool[] toolHovers;
+
+	private int toolWheelEquipIndex = 0;
 	private bool toolWheelIsOpen = false;
 	private bool toolsDisabledInside = false;
 
@@ -82,6 +85,15 @@ public class PlayerHud : MonoBehaviour
 
 		float newTurnSpeed = toolWheelIsOpen ? 0f : 1.5f;
 		characterCameraController.SetTurnSpeed(newTurnSpeed);
+
+		if (toolWheelIsOpen)
+		{
+			toolWheelEquipIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
+		}
+		else
+		{
+			ToolWheelSwitchExecute();
+		}
 	}
 
 	public void CallForToolSwitch()
@@ -106,5 +118,20 @@ public class PlayerHud : MonoBehaviour
 	public void CallForToolSwitch(int index)
 	{
 		CharacterInputController.HandleToolInput(index);
+	}
+
+	public void ToolWheelSwitchSetup(int index)
+	{
+		toolWheelEquipIndex = index;
+
+		for (int i = 0; i < toolHovers.Length; i++)
+		{
+			toolHovers[i].DeselectTool();
+		}
+	}
+
+	public void ToolWheelSwitchExecute()
+	{
+		CharacterInputController.HandleToolInput(toolWheelEquipIndex);
 	}
 }
