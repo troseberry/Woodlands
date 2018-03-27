@@ -88,12 +88,6 @@ public class CharacterInputController : MonoBehaviour
 
 		DetermineCharacterRotation();
 
-		if (Input.GetButtonDown("Jump"))
-		{
-			CharacterMotor.ExecuteJump();
-			CharacterAnimator.SetJumpAsAction();
-		}
-
 		if (!toolsDisabledInside)
 		{
 			HandleToolInput();		

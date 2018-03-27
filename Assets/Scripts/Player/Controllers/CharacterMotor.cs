@@ -10,7 +10,6 @@ public class CharacterMotor : MonoBehaviour
 	private static Rigidbody characterRigidbody;
 
 	private static bool isGrounded = true;
-	private static bool doJump = false;
 	private static bool canMove = true;
 
 	public float walkSpeed;
@@ -30,7 +29,6 @@ public class CharacterMotor : MonoBehaviour
 	void FixedUpdate()
 	{
 		DetermineGroundedStatus();
-		ApplyJumpForce();
 	}
 
 	public static bool DetermineGroundedStatus()
@@ -44,20 +42,6 @@ public class CharacterMotor : MonoBehaviour
 	}
 
 	public static bool IsGrounded() { return isGrounded; }
-
-	public static void ExecuteJump() { doJump = true; }
-	
-	void ApplyJumpForce()
-	{
-		if (doJump)
-		{
-			if (CharacterAnimator.GetActionState() == AnimState.JUMP_STATIONARY)
-			{
-				characterRigidbody.AddForce(new Vector3(0, 3.5f, 0), ForceMode.Impulse);	
-			}
-			doJump = false;
-		}
-	}
 
 	public static void SetCanMove(bool move)
 	{

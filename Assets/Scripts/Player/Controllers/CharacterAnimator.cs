@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public enum AnimState {NONE, IDLE, IDLE_FELLING, IDLE_BUCKING, IDLE_SPLITTING, WALK, RUN, JUMP_STATIONARY, JUMP_WALK, JUMP_RUN, CHOP_FORWARD, CHOP_BACKWARD, SAW_FORWARD, SAW_BACWARD, UPGRADE_TOOL, UPGRADE_SKILL, UPGRADE_ROOM, INTERACT_NEWSPAPER, INTERACT_BED, INTERACT_SHOP, INTERACT_WORKBENCH, INTERACT_BOOKSHELF, SWITCH_TOOL};
+public enum AnimState {NONE, IDLE, IDLE_FELLING, IDLE_BUCKING, IDLE_SPLITTING, WALK, RUN, CHOP_FORWARD, CHOP_BACKWARD, SAW_FORWARD, SAW_BACWARD, UPGRADE_TOOL, UPGRADE_SKILL, UPGRADE_ROOM, INTERACT_NEWSPAPER, INTERACT_BED, INTERACT_SHOP, INTERACT_WORKBENCH, INTERACT_BOOKSHELF, SWITCH_TOOL};
 
 
 public class CharacterAnimator : MonoBehaviour 
@@ -85,15 +85,6 @@ public class CharacterAnimator : MonoBehaviour
 	{
 		switch(actionState)
 		{
-			case AnimState.JUMP_STATIONARY:
-				Jump();
-				break;
-			case AnimState.JUMP_WALK:
-				Jump();
-				break;
-			case AnimState.JUMP_RUN:
-				Jump();
-				break;
 			case AnimState.IDLE_FELLING:
 				IdleTreeFelling();
 				break;
@@ -109,44 +100,6 @@ public class CharacterAnimator : MonoBehaviour
 		}
 	}
 
-
-	#region JUMP METHODS
-		public static void Jump() 
-		{ 
-			if (CharacterMotor.IsGrounded())
-			{	
-				//change this to be a trigger? with transition with exit time
-				loggerAnimator.SetBool("JumpBool", true);
-				Instance.Invoke("ResetJump", 0.9f);		//delay time should be jump anim length
-			}
-		}
-
-		public static void SetJumpAsAction()
-		{
-			if (movementState == AnimState.IDLE)
-			{
-				actionState = AnimState.JUMP_STATIONARY; 
-			}
-			else if (movementState == AnimState.WALK)
-			{
-				actionState = AnimState.JUMP_WALK;
-			}
-			else if (movementState == AnimState.RUN)
-			{
-				actionState = AnimState.JUMP_RUN;
-			}
-			else
-			{
-				actionState = AnimState.NONE;
-			}
-		}
-
-		void ResetJump()
-		{
-			actionState = AnimState.NONE;
-			loggerAnimator.SetBool("JumpBool", false);
-		}
-	#endregion
 
 	#region LOGGING ACTIVITY METHODS
 		public static void IdleTreeFelling() 
