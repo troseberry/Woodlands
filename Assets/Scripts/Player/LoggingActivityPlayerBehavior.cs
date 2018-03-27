@@ -45,9 +45,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			HandleSnapLogic();
 			ProcessInput();
 		}
-
-		DebugPanel.Log("Forward", "Logging Anim", CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
-		DebugPanel.Log("Backward", "Logging Anim", CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"));
 	}
 
 	public static void SetSnapInfo(bool canSnap) 
@@ -190,30 +187,19 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				switch(currentActivity)
 				{
 					case LoggingActivity.FELLING:
-						SwingForward();
+						ChopDiagonal();
 						break;
 					case LoggingActivity.BUCKING:
 						PushForward();
 						break;
 					case LoggingActivity.SPLITTING:
-						SwingDownward();
+						ChopVertical();
 						break;
 				}
 			}
 			else if (Input.GetAxis("Right Trigger") == 1 || Input.GetMouseButtonDown(1))
 			{
-				switch(currentActivity)
-				{
-					case LoggingActivity.FELLING:
-						SwingBackward();
-						break;
-					case LoggingActivity.BUCKING:
-						PullBackward();
-						break;
-					case LoggingActivity.SPLITTING:
-						SwingUpward();
-						break;
-				}
+				if (currentActivity == LoggingActivity.BUCKING) PullBackward();
 			}
 		}
 	}
@@ -243,43 +229,26 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			}
 		}
 
-		void SwingForward()
+		void ChopDiagonal()
 		{
-			if (inBackwardPosition && CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"))
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"))
 			{
-				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP)) 
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
-					CharacterAnimator.SwingForward();
-					StartCoroutine(SwingForwardAfterAnim());
+					CharacterAnimator.ChopFull();
+					StartCoroutine(ChopDiagonalAfterAnim());
 				}
 			}
 		}
 
-		void SwingBackward()
-		{
-			if (inForwardPosition)
-			{
-				CharacterAnimator.SwingBackward();
-				// StartCoroutine(SwingBackwardAfterAnim());
-				inForwardPosition = false;
-				inBackwardPosition = true;
-			}
-		}
-
-		IEnumerator SwingForwardAfterAnim()
+		IEnumerator ChopDiagonalAfterAnim()
 		{
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+			
 			forestTreeToCut.CutSide(sideToCut);
-			inForwardPosition = true;
-			inBackwardPosition = false;
 		}
 
-		IEnumerator SwingBackwardAfterAnim()
-		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward"));
-			inForwardPosition = false;
-			inBackwardPosition = true;
-		}
+		
 	#endregion
 
 	#region BUCKING METHODS
@@ -328,34 +297,23 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	#endregion
 
 	#region SPLLITTING METHODS
-		void SwingDownward()
+
+		void ChopVertical()
 		{
-			if (inBackwardPosition)
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"))
 			{
-				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP)) 
+				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP))
 				{
-					CharacterAnimator.SwingDownward();
-					StartCoroutine(SwingDownwardAfterAnim());
+					CharacterAnimator.ChopFull();
+					StartCoroutine(ChopVerticalAfterAnim());
 				}
 			}
 		}
 
-		void SwingUpward()
-		{
-			if (inForwardPosition)
-			{
-				CharacterAnimator.SwingUpward();
-				inForwardPosition = false;
-				inBackwardPosition = true;
-			}
-		}
-
-		IEnumerator SwingDownwardAfterAnim()
+		IEnumerator ChopVerticalAfterAnim()
 		{
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Forward"));
 			logToSplit.Split();
-			inForwardPosition = true;
-			inBackwardPosition = false;
 		}
 		
 		public static void SetLogsRemaining(int logs) { logsRemaining = logs; }

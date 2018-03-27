@@ -176,29 +176,17 @@ public class CharacterAnimator : MonoBehaviour
 				actionState = AnimState.NONE;
 			}
 		}
-		
-		public static void SwingForward() { loggerAnimator.SetTrigger("SwingForward"); }
 
-		public static void SwingBackward()  { loggerAnimator.SetTrigger("SwingBackward"); }
+		public static void ChopFull() { loggerAnimator.SetTrigger("ChopFull"); }
 
 		public static void PushForward() { loggerAnimator.SetTrigger("PushForward"); }
 
 		public static void PullBackward() { loggerAnimator.SetTrigger("PullBackward"); }
-
-		public static void SwingDownward() { loggerAnimator.SetTrigger("SwingDownward"); }
-
-		public static void SwingUpward() { loggerAnimator.SetTrigger("SwingUpward"); }
 		
 		public static void ResetLoggingTriggers()
 		{
-			loggerAnimator.ResetTrigger("SwingForward");
-			loggerAnimator.ResetTrigger("SwingBackward");
-
 			loggerAnimator.ResetTrigger("PushForward");
 			loggerAnimator.ResetTrigger("PullBackward");
-
-			loggerAnimator.ResetTrigger("SwingDownward");
-			loggerAnimator.ResetTrigger("SwingUpward");
 		}
 	#endregion
 
