@@ -32,6 +32,9 @@ public class CharacterAnimator : MonoBehaviour
 	{
 		ProcessMovementState();
 		ProcessActionState();
+
+		DebugPanel.Log("Tool Start: ", "Tool", GetStartToolFloat() );
+		DebugPanel.Log("Tool End: ", "Tool", GetEndToolFloat() );
 	}
 
 	public static AnimatorStateInfo GetCurrentAnimState()
@@ -150,6 +153,12 @@ public class CharacterAnimator : MonoBehaviour
 			loggerAnimator.SetInteger("EndingToolLocation", endingLocation);
 		}
 
+		public static void SetEquipLocations(float starting, float ending)
+		{
+			loggerAnimator.SetFloat("StartToolFloat", starting);
+			loggerAnimator.SetFloat("EndToolFloat", ending);
+		}
+
 		public static void SwitchTool()
 		{
 			loggerAnimator.SetTrigger("SwitchTool");
@@ -160,5 +169,9 @@ public class CharacterAnimator : MonoBehaviour
 		{
 			actionState = AnimState.SWITCH_TOOL;
 		}
+
+		public static float GetStartToolFloat() { return loggerAnimator.GetFloat("StartToolFloat"); }
+
+		public static float GetEndToolFloat() { return loggerAnimator.GetFloat("EndToolFloat"); }
 	#endregion
 }

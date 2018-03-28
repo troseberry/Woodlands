@@ -90,24 +90,14 @@ public class ToolManager : MonoBehaviour
 
 	void HandleToolAnimatorChecks()
 	{
-		if (CharacterAnimator.GetCurrentAnimState().IsName("Back_Equip") || CharacterAnimator.GetCurrentAnimState().IsName("Waist_Equip"))
-		{
-			EquipTool(toolToEquipIndex);
-		}
-		else if (CharacterAnimator.GetCurrentAnimState().IsName("Back_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("Waist_Unequip"))
+		if (CharacterAnimator.GetEndToolFloat() == 0f)
 		{
 			toolToEquipIndex = 0;
 			UnequipTool();
 		}
-		else if (CharacterAnimator.GetCurrentAnimState().IsName("BackToBack_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("WaistToWaist_Unequip"))
+		else
 		{
-			UnequipTool();
-			StartCoroutine(DelayedEquipTool(toolToEquipIndex));
-		}
-		else if (CharacterAnimator.GetCurrentAnimState().IsName("BackToWaist_Unequip") || CharacterAnimator.GetCurrentAnimState().IsName("WaistToBack_Unequip"))
-		{
-			UnequipTool();
-			StartCoroutine(DelayedEquipTool(toolToEquipIndex));
+			EquipTool(toolToEquipIndex);
 		}
 	}
 }

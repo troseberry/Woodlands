@@ -18,6 +18,8 @@ public class CharacterInputController : MonoBehaviour
 	private static bool canTurn = true;
 
 	private static bool doChangeTool = false;
+	private static int startingToolLocation;
+	private static int endingToolLocation;
 	
 	private bool toolsDisabledInside = false;
 	private int tempToolIndex = 0;
@@ -204,7 +206,7 @@ public class CharacterInputController : MonoBehaviour
 			int endLoc = 0;
 			if (ToolManager.GetToolToEquipIndex() > 0) endLoc = (ToolManager.GetToolToEquipIndex() == 2) ? 2 : 1;
 
-			CharacterAnimator.SetEquipLocations(startLoc, endLoc);
+			CharacterAnimator.SetEquipLocations( (float) startLoc, (float) endLoc);
 			CharacterAnimator.SetSwitchToolAsAction();
 
 			PlayerHud.PlayerHudReference.ChangeToolIcon();
