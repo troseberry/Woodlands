@@ -14050,7 +14050,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1002401792800142, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 29b78b90364b14ba19e7c36be708edd7, type: 2}
@@ -14262,7 +14262,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114165273}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.37910447
+  m_Size: 0.37910444
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
