@@ -48,11 +48,11 @@ public class CharacterAnimator : MonoBehaviour
 
 
 	#region MOVEMENT METHODS
-		public static void Idle() { loggerAnimator.SetInteger("MovementSpeed", 0); }
+		public static void Idle() { loggerAnimator.SetFloat("MoveSpeedFloat", 0f); }
 
-		public static void Walk() { loggerAnimator.SetInteger("MovementSpeed", 1); }
+		public static void Walk() { loggerAnimator.SetFloat("MoveSpeedFloat", 1f); }
 
-		public static void Run() { loggerAnimator.SetInteger("MovementSpeed", 2); }
+		public static void Run() { loggerAnimator.SetFloat("MoveSpeedFloat", 2f); }
 
 		public static void ProcessMovementState() 
 		{ 
