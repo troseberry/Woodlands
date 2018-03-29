@@ -7,9 +7,6 @@ using UnityEngine.EventSystems;
 
 public class GameMenu : MonoBehaviour 
 {
-	private CharacterInputController characterInputController;
-	private FreeLookCam characterCameraController;
-
 	public GameObject menuObject;
 	private bool menuOpen = false;
 	private bool doMove = false;
@@ -36,9 +33,6 @@ public class GameMenu : MonoBehaviour
 
 	void Start () 
 	{
-		characterInputController = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterInputController>();
-		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
-
 		currencyCount = resourcesGroup.GetChild(0).GetChild(0).GetComponent<Text>();
 		buildingMaterialsCount = resourcesGroup.GetChild(1).GetChild(0).GetComponent<Text>();
 		toolPartsCount = resourcesGroup.GetChild(2).GetChild(0).GetComponent<Text>();
@@ -50,6 +44,8 @@ public class GameMenu : MonoBehaviour
 	
 	void Update () 
 	{
+		if (TimeManager.paused) return;
+		
 		if (Input.GetButtonDown("Game Menu"))
 		{
 			doMove = true;
@@ -59,8 +55,6 @@ public class GameMenu : MonoBehaviour
 		{
 			if (!menuOpen)
 			{
-				MenuManager.currentMenuManager.CloseKeyItemCanvases();
-
 				StartCoroutine(OpenMenu());
 			}
 			else
@@ -80,8 +74,10 @@ public class GameMenu : MonoBehaviour
 
 	IEnumerator OpenMenu()
 	{
-		characterInputController.enabled = false;
-		characterCameraController.enabled = false;
+		MenuManager.currentMenuManager.CloseKeyItemCanvases();
+
+		CharacterInputController.ToggleCharacterInput(false);
+		CharacterInputController.ToggleCameraInput(false);
 
 		UpdateContracts();
 		
@@ -100,8 +96,8 @@ public class GameMenu : MonoBehaviour
 
 	IEnumerator CloseMenu()
 	{
-		characterInputController.enabled = true;
-		characterCameraController.enabled = true;
+		CharacterInputController.ToggleCharacterInput(true);
+		CharacterInputController.ToggleCameraInput(true);
 
 		moveTime += Time.deltaTime/0.15f;
 		menuObject.transform.localPosition = Vector3.Lerp(openPosition, closedPosition, moveTime);
@@ -117,8 +113,8 @@ public class GameMenu : MonoBehaviour
 
 	public void ImmediatelyCloseMenu()
 	{
-		characterInputController.enabled = true;
-		characterCameraController.enabled = true;
+		CharacterInputController.ToggleCharacterInput(true);
+		CharacterInputController.ToggleCameraInput(true);
 
 		menuObject.transform.localPosition = closedPosition;
 

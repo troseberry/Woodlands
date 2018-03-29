@@ -51,6 +51,9 @@ public class MenuManager : MonoBehaviour
 	{
 		currentPauseMenu.CloseMenu();
 		currentGameMenu.ImmediatelyCloseMenu();
+		if (currentMailboxMenu) currentMailboxMenu.CloseMenu();
+
+		PlayerHud.PlayerHudReference.HideToolWheel();
 
 		if (bedCanvas) bedCanvas.CloseMenu();
 		if (kitchenCanvas) kitchenCanvas.CloseMenu();

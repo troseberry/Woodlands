@@ -10,8 +10,6 @@ public class PlayerHud : MonoBehaviour
 {
 	public static PlayerHud PlayerHudReference;
 
-	private FreeLookCam characterCameraController;
-
 	private Canvas playerCanvas;
 
 	private float currentEnergyValue = 0f;
@@ -32,8 +30,6 @@ public class PlayerHud : MonoBehaviour
 	{
 		PlayerHudReference = this;
 
-		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
-
 		playerCanvas = GetComponent<Canvas>();
 		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
 
@@ -43,6 +39,8 @@ public class PlayerHud : MonoBehaviour
 	
 	void Update () 
 	{
+		if (TimeManager.paused) return;
+
 		maxEnergyValue = PlayerSkills.GetMaxEnergyValue();
 		currentEnergyValue = (float) PlayerEnergy.GetCurrentEnergyValue()/maxEnergyValue;
 		energyRadial.fillAmount = currentEnergyValue;
@@ -51,7 +49,7 @@ public class PlayerHud : MonoBehaviour
 
 		if (!SceneManager.GetActiveScene().name.Equals("MainCabin"))
 		{
-			if ((Input.GetButton("ToolWheel") && !toolWheelIsOpen) || (Input.GetButtonUp("ToolWheel") && toolWheelIsOpen))
+			if (((Input.GetButton("ToolWheel") && !toolWheelIsOpen) || (Input.GetButtonUp("ToolWheel") && toolWheelIsOpen)) && !MenuManager.currentMenuManager.IsInMenu())
 			{
 				ToggleToolWheel();
 			}
@@ -83,8 +81,7 @@ public class PlayerHud : MonoBehaviour
 		toolWheelIsOpen = !toolWheelIsOpen;
 		toolWheelGroup.gameObject.SetActive(toolWheelIsOpen);
 
-		float newTurnSpeed = toolWheelIsOpen ? 0f : 1.5f;
-		characterCameraController.SetTurnSpeed(newTurnSpeed);
+		CharacterInputController.ToggleCameraTurn(!toolWheelIsOpen);
 
 		if (toolWheelIsOpen)
 		{
@@ -94,6 +91,16 @@ public class PlayerHud : MonoBehaviour
 		{
 			ToolWheelSwitchExecute();
 		}
+	}
+
+	public void HideToolWheel()
+	{
+		toolWheelIsOpen = false;
+		toolWheelGroup.gameObject.SetActive(toolWheelIsOpen);
+
+		CharacterInputController.ToggleCameraTurn(!toolWheelIsOpen);
+
+		ToolWheelSwitchExecute();
 	}
 
 	public void CallForToolSwitch()

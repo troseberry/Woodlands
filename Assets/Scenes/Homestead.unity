@@ -14183,6 +14183,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c5c9643b1854ba4eb9a6491424afce7, type: 3}
   m_IsPrefabParent: 0
+--- !u!114 &988522537 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114585724197022592, guid: ce6fc492db4514a0b976034fc1367de3,
+    type: 2}
+  m_PrefabInternal: {fileID: 1807217803}
+  m_Script: {fileID: 11500000, guid: 8efec186e447540c99f763d7d067ce91, type: 3}
 --- !u!1 &999536948
 GameObject:
   m_ObjectHideFlags: 0
@@ -14262,7 +14268,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2114165273}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.37910444
+  m_Size: 0.37910452
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -25422,6 +25428,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPauseMenu: {fileID: 1721734463}
   currentGameMenu: {fileID: 1858720825}
+  currentPlayerHUD: {fileID: 988522537}
   currentMailboxMenu: {fileID: 890972648}
   bedCanvas: {fileID: 0}
   kitchenCanvas: {fileID: 0}

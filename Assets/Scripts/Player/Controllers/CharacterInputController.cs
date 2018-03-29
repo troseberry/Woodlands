@@ -6,9 +6,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityStandardAssets.Cameras;
 
 public class CharacterInputController : MonoBehaviour 
 {
+	private static FreeLookCam characterCameraController;
 
 	float vertInput;
 	float horzInput;
@@ -24,8 +26,12 @@ public class CharacterInputController : MonoBehaviour
 	private bool toolsDisabledInside = false;
 	private int tempToolIndex = 0;
 
+	private static bool characterInputEnabled = true;
+
 	void Start () 
 	{
+		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
+
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
 	}
@@ -37,8 +43,6 @@ public class CharacterInputController : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		Debug.Log("Current Tool (Enter): " + PlayerTools.GetCurrentlyEquippedToolIndex());
-
 		toolsDisabledInside = scene.name.Equals("MainCabin");
 
 		if (toolsDisabledInside)
@@ -53,8 +57,6 @@ public class CharacterInputController : MonoBehaviour
 			HandleToolInput(tempToolIndex);
 			ChangeTool();
 		}
-
-		Debug.Log("Current Tool (After Set): " + PlayerTools.GetCurrentlyEquippedToolIndex());
 	}
 
 	void OnDisable()
@@ -62,11 +64,13 @@ public class CharacterInputController : MonoBehaviour
 		SceneManager.sceneLoaded -= OnSceneLoaded;
 	}
 	
+
 	void Update () 
 	{
+		if (!characterInputEnabled) return;
+
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
-
 
 
 		#region MOVEMENT INPUT
@@ -99,11 +103,21 @@ public class CharacterInputController : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (!characterInputEnabled) return;
 		CharacterMotor.ProcessLocomotionInput(vertInput, horzInput);
 	}
 
+	public static void ToggleCharacterInput(bool canInput) { characterInputEnabled = canInput; }
 
 	public static void SetCanTurn(bool turn) { canTurn = turn; }
+
+	public static void ToggleCameraInput(bool canInput) { characterCameraController.enabled = canInput; }
+
+	public static void ToggleCameraTurn(bool canTurn)
+	{
+		float newTurnSpeed = canTurn ? 1.5f : 0f;
+		characterCameraController.SetTurnSpeed(newTurnSpeed);
+	}
 
 	public void DetermineCharacterRotation()
     {
