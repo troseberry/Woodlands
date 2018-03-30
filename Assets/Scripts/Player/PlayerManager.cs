@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class PlayerManager : MonoBehaviour 
 {
@@ -10,6 +11,9 @@ public class PlayerManager : MonoBehaviour
 	private static Vector3 spawnLocation;
 
 	private static bool didLoadFromMenu = false;
+
+	public Transform playerLookAt;
+	public Transform playerFollow;
 	
 	void Awake()
 	{
@@ -24,33 +28,47 @@ public class PlayerManager : MonoBehaviour
 		}	
 	}
 
-	// void OnEnable()
-	// {
-	// 	SceneManager.sceneLoaded += OnSceneLoaded;
-	// }
+	void Reset()
+	{
+		playerLookAt = GameObject.Find("Neck_jnt").transform;
+		playerFollow = GameObject.Find("Logger").transform;
+	}
 
-	// void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-	// {
-	// 	//only do this on load from main menu
-	// 	if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
-	// 	{
-	// 		spawnLocation = MainMenu.GetLocationToSpawn();
-	// 		StartCoroutine(DelaySetSpawnLocationOnLoad());
+	void OnEnable()
+	{
+		SceneManager.sceneLoaded += OnSceneLoaded;
+	}
+
+	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+	{
+		//only do this on load from main menu
+		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
+		{
+			spawnLocation = MainMenu.GetLocationToSpawn();
+			StartCoroutine(DelaySetSpawnLocationOnLoad());
 			
-	// 		didLoadFromMenu = true;
-	// 	}
+			didLoadFromMenu = true;
+		}
 
-	// 	if (scene.name.Equals("MainMenu")) didLoadFromMenu = false;
-	// }
+		if (scene.name.Equals("MainMenu")) didLoadFromMenu = false;
 
-	// void OnDisable()
-	// {
-	// 	SceneManager.sceneLoaded -= OnSceneLoaded;
-	// }
+		if (scene.name.Equals("MainCabin"))
+		{
+			GameObject.Find("CM_ClearShotCamera").GetComponent<CinemachineClearShot>().m_LookAt = playerLookAt;
+		}
+	}
+
+	void OnDisable()
+	{
+		SceneManager.sceneLoaded -= OnSceneLoaded;
+	}
 
 	void Start () 
 	{
 		playerTransform = this.transform;
+
+		// playerLookAt = GameObject.Find("Neck_jnt").transform;
+		// playerFollow = GameObject.Find("Logger").transform;
 	}
 
 	public static void SetSpawnLocation(int start, int destination)

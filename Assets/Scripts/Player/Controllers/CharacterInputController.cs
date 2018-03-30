@@ -29,10 +29,11 @@ public class CharacterInputController : MonoBehaviour
 	private int tempToolIndex = 0;
 
 	private static bool characterInputEnabled = true;
+	private static bool freeLookInputEnabled = true;
 
 	void Start () 
 	{
-		characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
+		// characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
 
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
@@ -50,12 +51,15 @@ public class CharacterInputController : MonoBehaviour
 		if (toolsDisabledInside)
 		{
 			Debug.Log("Entered Cabin");
+			freeLookInputEnabled = false;
 			tempToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 			HandleToolInput(0);
 			ChangeTool();
 		}
 		else
 		{
+			characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
+			freeLookInputEnabled = true;
 			HandleToolInput(tempToolIndex);
 			ChangeTool();
 		}
@@ -109,16 +113,19 @@ public class CharacterInputController : MonoBehaviour
 		CharacterMotor.ProcessLocomotionInput(vertInput, horzInput);
 	}
 
-	public static void ToggleCharacterInput(bool canInput) { characterInputEnabled = canInput; }
+	public static void ToggleCharacterInput(bool canInput) { if (freeLookInputEnabled) characterInputEnabled = canInput; }
 
-	public static void SetCanTurn(bool turn) { canTurn = turn; }
+	public static void SetCanTurn(bool turn) { if (freeLookInputEnabled) canTurn = turn; }
 
-	public static void ToggleCameraInput(bool canInput) { characterCameraController.enabled = canInput; }
+	public static void ToggleCameraInput(bool canInput) { if (freeLookInputEnabled) characterCameraController.enabled = canInput; }
 
 	public static void ToggleCameraTurn(bool canTurn)
 	{
-		characterCameraController.m_YAxis.m_InputAxisName = canTurn ? "Mouse Y" : "";
-		characterCameraController.m_XAxis.m_InputAxisName = canTurn ? "Mouse X" : "";
+		if (freeLookInputEnabled)
+		{
+			characterCameraController.m_YAxis.m_InputAxisName = canTurn ? "Mouse Y" : "";
+			characterCameraController.m_XAxis.m_InputAxisName = canTurn ? "Mouse X" : "";
+		}
 	}
 
 	public void DetermineCharacterRotation()
