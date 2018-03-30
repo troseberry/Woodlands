@@ -32,7 +32,7 @@ public class CharacterInputController : MonoBehaviour
 
 	void Start () 
 	{
-		characterCameraController = GameObject.Find("CM FreeLook1").GetComponent<CinemachineFreeLook>();
+		characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
 
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
