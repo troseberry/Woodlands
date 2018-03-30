@@ -19,8 +19,6 @@ namespace Forest
 		{
 			ForestManagerReference = this;
 			treeGroup = GameObject.Find("Trees");
-
-			//GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>().enabled = false;
 		}
 
 		void Update()

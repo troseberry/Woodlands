@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityStandardAssets.Cameras;
+using Cinemachine;
 
 public class CharacterInputController : MonoBehaviour 
 {
-	private static FreeLookCam characterCameraController;
+	// private static FreeLookCam characterCameraController;
+	private static CinemachineFreeLook characterCameraController;
 
 	float vertInput;
 	float horzInput;
@@ -30,7 +32,7 @@ public class CharacterInputController : MonoBehaviour
 
 	void Start () 
 	{
-		characterCameraController = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
+		characterCameraController = GameObject.Find("CM FreeLook1").GetComponent<CinemachineFreeLook>();
 
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
@@ -115,8 +117,8 @@ public class CharacterInputController : MonoBehaviour
 
 	public static void ToggleCameraTurn(bool canTurn)
 	{
-		float newTurnSpeed = canTurn ? 1.5f : 0f;
-		characterCameraController.SetTurnSpeed(newTurnSpeed);
+		characterCameraController.m_YAxis.m_InputAxisName = canTurn ? "Mouse Y" : "";
+		characterCameraController.m_XAxis.m_InputAxisName = canTurn ? "Mouse X" : "";
 	}
 
 	public void DetermineCharacterRotation()

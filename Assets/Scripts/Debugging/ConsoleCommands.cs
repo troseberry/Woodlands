@@ -19,12 +19,6 @@ public class ConsoleCommands : MonoBehaviour
 	private int commandValue = 0;
 	private int secondaryCommandValue = 0;
 	
-
-	void Start()
-	{
-		cameraControl = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
-	}
-
 	
 	void Update () 
 	{
@@ -44,14 +38,14 @@ public class ConsoleCommands : MonoBehaviour
 	void OpenConsole()
 	{
 		consoleCanvas.enabled = true;
-		cameraControl.enabled = false;
+		CharacterInputController.ToggleCameraInput(false);
 		isConsoleOpen = true;
 	}
 
 	void CloseConsole()
 	{
 		consoleCanvas.enabled = false;
-		cameraControl.enabled = true;
+		CharacterInputController.ToggleCameraInput(true);
 		isConsoleOpen = false;
 	}
 

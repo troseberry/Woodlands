@@ -6,8 +6,6 @@ using UnityStandardAssets.Cameras;
 
 public class KeyItemInteract : MonoBehaviour 
 {
-	private FreeLookCam cameraControl;
-
 	public Canvas popupMenu;
 	public Canvas interactPrompt;
 	public GameObject[] generalElements;
@@ -18,7 +16,6 @@ public class KeyItemInteract : MonoBehaviour
 	void Start () 
 	{
 		popupMenu.enabled = false;
-		cameraControl = GameObject.Find("FreeLookCameraRig").GetComponent<FreeLookCam>();
 	}
 	
 	void Update () 
@@ -73,10 +70,8 @@ public class KeyItemInteract : MonoBehaviour
 
 	
 		popupMenu.enabled = true;
-		cameraControl.enabled = false;
+		CharacterInputController.ToggleCameraInput(false);
 		isMenuOpen = true;
-
-		// Debug.Log("Camera Script: " + cameraControl.enabled);
 	}
 
 	public void CloseMenu()
@@ -86,9 +81,7 @@ public class KeyItemInteract : MonoBehaviour
 			generalElements[i].SetActive(false);
 		}
 		popupMenu.enabled = false;
-		cameraControl.enabled = true;
+		CharacterInputController.ToggleCameraInput(true);
 		isMenuOpen = false;
-
-		// Debug.Log("Camera Script: " + cameraControl.enabled);
 	}
 }

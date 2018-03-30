@@ -40,4 +40,16 @@ public class ProjectSceneNav : MonoBehaviour
 	{
 		EditorSceneManager.OpenScene("Assets/Scenes/LumberYard.unity");
 	}
+
+	[MenuItem("Game/Scenes/IsometricInterior")]
+	static void IsometricInteriorLoad()
+	{
+		EditorSceneManager.OpenScene("Assets/Scenes/IsometricInterior.unity");
+	}
+
+	[MenuItem("Game/Scenes/Testing")]
+	static void TestingLoad()
+	{
+		EditorSceneManager.OpenScene("Assets/Scenes/Testing.unity");
+	}
 }
