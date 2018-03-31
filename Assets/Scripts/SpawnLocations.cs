@@ -8,31 +8,31 @@ public class SpawnLocations
 	//naming convention: currentScene_destinationScene
 
 	//homestead_homestead
-	private static Vector3 homestead_mainCabin = new Vector3(2.75f, 0, -5);
-	private static Vector3 homestead_workshop = new Vector3(0, 0, -1.5f);
-	private static Vector3 homestead_forest = new Vector3(32.5f, 2, 5.75f);
-	private static Vector3 homestead_lumberYard = new Vector3(-14.5f, 0, -4.5f);
+	private static Vector3 homestead_mainCabin = new Vector3(1f, 0, -4f);
+	private static Vector3 homestead_workshop = new Vector3(0.25f, 0, -2.5f);
+	private static Vector3 homestead_forest = new Vector3(35f, 1.5f, 5f);
+	private static Vector3 homestead_lumberYard = new Vector3(-17.5f, 0, -2.5f);
 
 
-	private static Vector3 mainCabin_homestead = new Vector3(-2.5f, 0, 8);
+	private static Vector3 mainCabin_homestead = new Vector3(-0.5f, 0, 7.5f);
 	//mainCabin_mainCabin
 	//mainCabin_workshop
 	//mainCabin_forest
 	//mainCabin_lumberYard
 
-	private static Vector3 workshop_homestead = new Vector3(10, 0, 9);
+	private static Vector3 workshop_homestead = new Vector3(10f, 0, 8.5f);
 	//workshop_mainCabin
 	//workshop_workshop
 	//workshop_forest
 	//workshop_lumberYard
 
-	private static Vector3 forest_homestead = new Vector3(-20, 0, 2);
+	private static Vector3 forest_homestead = new Vector3(-21f, 0, 6f);
 	//forest_mainCabin
 	//forest_workshop
 	//forest_forest
 	//forest_lumberYard
 
-	private static Vector3 lumberYard_homestead = new Vector3(20, 0, 2);
+	private static Vector3 lumberYard_homestead = new Vector3(22f, 0, 6f);
 	//lumberYard_mainCabin
 	//lumberYard_workshop
 	//lumberYard_forest

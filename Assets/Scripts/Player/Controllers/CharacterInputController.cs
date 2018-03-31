@@ -50,7 +50,7 @@ public class CharacterInputController : MonoBehaviour
 
 		if (toolsDisabledInside)
 		{
-			Debug.Log("Entered Cabin");
+			// Debug.Log("Entered Cabin");
 			freeLookInputEnabled = false;
 			tempToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 			HandleToolInput(0);

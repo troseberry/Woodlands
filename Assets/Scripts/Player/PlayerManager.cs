@@ -14,24 +14,34 @@ public class PlayerManager : MonoBehaviour
 
 	public Transform playerLookAt;
 	public Transform playerFollow;
+
+	public CinemachineStateDrivenCamera stateDrivenCamera;
+	// public CinemachineClearShot clearShotCamera_MainCabin;
 	
-	void Awake()
+	// void Awake()
+	// {
+	// 	if (!playerCreated)
+	// 	{
+	// 		DontDestroyOnLoad(gameObject);
+	// 		playerCreated = true;
+	// 	}
+	// 	else
+	// 	{
+	// 		Destroy(gameObject);
+	// 	}	
+	// }
+
+	void Update()
 	{
-		if (!playerCreated)
-		{
-			DontDestroyOnLoad(gameObject);
-			playerCreated = true;
-		}
-		else
-		{
-			Destroy(gameObject);
-		}	
+		DebugPanel.Log("Clear Shot? ", GameObject.Find("CM_ClearShotCamera_MainCabin") == null);
 	}
 
 	void Reset()
 	{
 		playerLookAt = GameObject.Find("Neck_jnt").transform;
 		playerFollow = GameObject.Find("Logger").transform;
+
+		stateDrivenCamera = GameObject.Find("CM_StateDrivenCamera").GetComponent<CinemachineStateDrivenCamera>();
 	}
 
 	void OnEnable()
@@ -54,7 +64,13 @@ public class PlayerManager : MonoBehaviour
 
 		if (scene.name.Equals("MainCabin"))
 		{
-			GameObject.Find("CM_ClearShotCamera").GetComponent<CinemachineClearShot>().m_LookAt = playerLookAt;
+			stateDrivenCamera.enabled = false;
+
+			GameObject.Find("CM_ClearShotCamera_MainCabin").GetComponent<CinemachineClearShot>().m_LookAt = playerLookAt;
+		}
+		else
+		{
+			stateDrivenCamera.enabled = true;
 		}
 	}
 
@@ -67,7 +83,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		playerTransform = this.transform;
 
-		// playerLookAt = GameObject.Find("Neck_jnt").transform;
+		playerLookAt = GameObject.Find("Neck_jnt").transform;
 		// playerFollow = GameObject.Find("Logger").transform;
 	}
 
