@@ -33,7 +33,7 @@ public class CharacterInputController : MonoBehaviour
 
 	void Start () 
 	{
-		// characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
+		characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
 
 		vertInput = Input.GetAxisRaw("Vertical");
 		horzInput = Input.GetAxisRaw("Horizontal");
@@ -58,7 +58,6 @@ public class CharacterInputController : MonoBehaviour
 		}
 		else
 		{
-			characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
 			freeLookInputEnabled = true;
 			HandleToolInput(tempToolIndex);
 			ChangeTool();
