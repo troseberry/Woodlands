@@ -6,21 +6,6 @@ public class Sleep : MonoBehaviour
 {
 	public KeyItemInteract sleepPrompt;
 
-
-	void Update()
-	{
-		if (!TimeManager.IsInSleepTimeFrame())
-		{
-			sleepPrompt.interactPrompt.gameObject.SetActive(false);
-			sleepPrompt.enabled = false;
-		}
-		else
-		{
-			sleepPrompt.interactPrompt.gameObject.SetActive(true);
-			sleepPrompt.enabled = true;
-		}
-	}
-
 	public void SleepToMorning()
 	{
 		sleepPrompt.CloseMenu();

@@ -5,10 +5,7 @@ using UnityEngine.UI;
 
 public class TravelInteractPrompt : MonoBehaviour 
 {
-	public Canvas uiPrompt;
-	private bool isPromptVisible;
 	private bool canInteract;
-
 	private string triggerName;
 	
 	void Update () 
@@ -24,8 +21,10 @@ public class TravelInteractPrompt : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			canInteract = true;
-			uiPrompt.enabled = true;
 			triggerName = gameObject.name;
+
+			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
+			PlayerHud.ToggleInteractPrompt();
 		}
 	}
 
@@ -34,8 +33,9 @@ public class TravelInteractPrompt : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			canInteract = false;
-			uiPrompt.enabled = false;
 			triggerName = "none";
+
+			PlayerHud.ToggleInteractPrompt();
 		}
 	}
 

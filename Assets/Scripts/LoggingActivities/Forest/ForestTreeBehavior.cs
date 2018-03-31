@@ -15,7 +15,7 @@ namespace Forest
 		Vector3 fallForcePosition;
 
 		private QualityGrade qualityGrade;
-		public Text interactText;
+		public DisplayText displayInteractText;
 
 		int[] sideCutsCount = new int[4] {0, 0, 0, 0};		//order: x_01, x_02, z_01, z_02
 		private bool hasFallen = false;
@@ -28,7 +28,7 @@ namespace Forest
 			fallForcePosition = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
 			
 			qualityGrade = GetComponentInParent<TreeGroupAttributes>().groupQualityGrade;
-			interactText.text = string.Format(interactText.text, qualityGrade.ToString());
+			displayInteractText.displayText = string.Format(displayInteractText.displayText, qualityGrade.ToString());
 		}
 
 		public bool PlayerCanStore()

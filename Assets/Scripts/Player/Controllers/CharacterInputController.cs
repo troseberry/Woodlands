@@ -11,7 +11,6 @@ using Cinemachine;
 
 public class CharacterInputController : MonoBehaviour 
 {
-	// private static FreeLookCam characterCameraController;
 	private static CinemachineFreeLook characterCameraController;
 
 	float vertInput;

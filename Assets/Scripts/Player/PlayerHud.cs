@@ -25,6 +25,9 @@ public class PlayerHud : MonoBehaviour
 	private bool toolWheelIsOpen = false;
 	private bool toolsDisabledInside = false;
 
+	public GameObject InteractPrompt;
+	private Text interactText;
+
 	
 	void Start () 
 	{
@@ -35,6 +38,8 @@ public class PlayerHud : MonoBehaviour
 
 		toolIconGroup.parent.transform.parent.gameObject.SetActive(true);
 		ChangeToolIcon();
+
+		interactText = InteractPrompt.transform.GetChild(3).GetComponent<Text>();
 	}
 	
 	void Update () 
@@ -140,5 +145,21 @@ public class PlayerHud : MonoBehaviour
 	public void ToolWheelSwitchExecute()
 	{
 		CharacterInputController.HandleToolInput(toolWheelEquipIndex);
+	}
+
+
+	public static void SetInteractText(string toDisplay)
+	{
+		PlayerHudReference.interactText.text = toDisplay;
+	}
+
+	public static void ToggleInteractPrompt()
+	{
+		PlayerHudReference.InteractPrompt.SetActive(!PlayerHudReference.InteractPrompt.activeSelf);
+	}
+
+	public static void SetInteractPrompt(bool state)
+	{
+		PlayerHudReference.InteractPrompt.SetActive(state);
 	}
 }

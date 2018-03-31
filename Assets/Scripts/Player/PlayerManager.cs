@@ -54,8 +54,8 @@ public class PlayerManager : MonoBehaviour
 		//only do this on load from main menu
 		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
 		{
-			spawnLocation = MainMenu.GetLocationToSpawn();
-			StartCoroutine(DelaySetSpawnLocationOnLoad());
+			// spawnLocation = MainMenu.GetLocationToSpawn();
+			// StartCoroutine(DelaySetSpawnLocationOnLoad());
 			
 			didLoadFromMenu = true;
 		}

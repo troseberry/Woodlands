@@ -7,7 +7,6 @@ using UnityStandardAssets.Cameras;
 public class KeyItemInteract : MonoBehaviour 
 {
 	public Canvas popupMenu;
-	public Canvas interactPrompt;
 	public GameObject[] generalElements;
 	public GameObject[] elementsToDisable;
 	private bool isMenuOpen = false;
@@ -39,8 +38,12 @@ public class KeyItemInteract : MonoBehaviour
 	{
 		if (other.tag == "Player") 
 		{
+			if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
+
 			canInteract = true;
-			interactPrompt.enabled = true;
+			
+			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
+			PlayerHud.ToggleInteractPrompt();
 		}
 	}
 
@@ -48,10 +51,26 @@ public class KeyItemInteract : MonoBehaviour
 	{
 		if (other.tag == "Player") 
 		{
+			if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
+
 			canInteract = false;
-			interactPrompt.enabled = false;
 			isMenuOpen = false;
+
+			PlayerHud.ToggleInteractPrompt();
 			CloseMenu();
+		}
+	}
+
+	void OnTriggerStay(Collider other)
+	{
+		if (other.tag == "Player" && !canInteract) 
+		{
+			if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
+
+			canInteract = true;
+			
+			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
+			PlayerHud.ToggleInteractPrompt();
 		}
 	}
 
