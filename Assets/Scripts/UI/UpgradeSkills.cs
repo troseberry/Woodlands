@@ -66,6 +66,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetEfficiencySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentEfficiencyTier(currentTier + 1);
 				PlayerSkills.GetEfficiencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -89,6 +91,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetContractsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentContractsTier(currentTier + 1);
 				PlayerSkills.GetContractsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -112,6 +116,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetCurrencySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentCurrencyTier(currentTier + 1);
 				PlayerSkills.GetCurrencySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -135,6 +141,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetEnergySkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentEnergyTier(currentTier + 1);
 				PlayerSkills.GetEnergySkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -158,6 +166,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetBuildingMaterialsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentBuildingMaterialsTier(currentTier + 1);
 				PlayerSkills.GetBuildingMaterialsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -181,6 +191,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetToolPartsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentToolPartsTier(currentTier + 1);
 				PlayerSkills.GetToolPartsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -204,6 +216,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetBookPagesSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentBookPagesTier(currentTier + 1);
 				PlayerSkills.GetBookPagesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -228,6 +242,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetLumberTreesSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentLumberTreesTier(currentTier + 1);
 				PlayerSkills.GetLumberTreesSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -251,6 +267,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetLumberLogsSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentLumberLogsTier(currentTier + 1);
 				PlayerSkills.GetLumberLogsSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();
@@ -274,6 +292,8 @@ public class UpgradeSkills : MonoBehaviour
 
 			if (PlayerSkills.GetLumberFirewoodSkill().GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_SKILL);
+
 				PlayerSkills.SetCurrentLumberFirewoodTier(currentTier + 1);
 				PlayerSkills.GetLumberFirewoodSkill().GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateSkillsResources();

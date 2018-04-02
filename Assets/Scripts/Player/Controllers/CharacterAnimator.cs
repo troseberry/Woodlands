@@ -183,8 +183,15 @@ public class CharacterAnimator : MonoBehaviour
 		}
 	}
 
-	public static void UpgradeTool() { Debug.Log("Trigger Set (Upgrade"); loggerAnimator.SetTrigger("UpgradeTool"); 
-	actionState = AnimState.NONE;}
+	public static void UpgradeTool()
+	{ 
+		loggerAnimator.SetTrigger("UpgradeTool"); 
+		actionState = AnimState.NONE;
+	}
 
-	public static void UpgradeSkill() { loggerAnimator.SetTrigger("UpgradeSkill"); }
+	public static void UpgradeSkill()
+	{
+		loggerAnimator.SetTrigger("UpgradeSkill");
+		actionState = AnimState.NONE;
+	}
 }
