@@ -12,6 +12,8 @@ public class KeyItemInteract : MonoBehaviour
 	private bool isMenuOpen = false;
 	private bool canInteract = false;
 
+	public GenericSnapSpot itemSnapSpot;
+
 	void Start () 
 	{
 		popupMenu.enabled = false;
@@ -76,6 +78,8 @@ public class KeyItemInteract : MonoBehaviour
 
 	void OpenMenu()
 	{	
+		if (itemSnapSpot) itemSnapSpot.SnapPlayer();
+
 		MenuManager.currentMenuManager.CloseAllCanvases();
 		for (int i = 0; i < generalElements.Length; i++)
 		{
@@ -95,6 +99,8 @@ public class KeyItemInteract : MonoBehaviour
 
 	public void CloseMenu()
 	{
+		if (itemSnapSpot) itemSnapSpot.UnsnapPlayer();
+
 		for (int i = 0; i < generalElements.Length; i++)
 		{
 			generalElements[i].SetActive(false);

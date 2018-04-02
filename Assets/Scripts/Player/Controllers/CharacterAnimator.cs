@@ -46,6 +46,30 @@ public class CharacterAnimator : MonoBehaviour
 
 	public static AnimState GetActionState() { return actionState; }
 
+	public static void ProcessActionState()
+	{
+		switch(actionState)
+		{
+			case AnimState.IDLE_FELLING:
+				IdleTreeFelling();
+				break;
+			case AnimState.IDLE_BUCKING:
+				IdleLogBucking();
+				break;
+			case AnimState.IDLE_SPLITTING:
+				IdleFirewoodSplitting();
+				break;
+			case AnimState.SWITCH_TOOL:
+				SwitchTool();
+				break;
+			case AnimState.UPGRADE_TOOL:
+				UpgradeTool();
+				break;
+			case AnimState.UPGRADE_SKILL:
+				UpgradeSkill();
+				break;
+		}
+	}
 
 	#region MOVEMENT METHODS
 		public static void Idle() { loggerAnimator.SetFloat("MoveSpeedFloat", 0f); }
@@ -84,41 +108,12 @@ public class CharacterAnimator : MonoBehaviour
 		}
 	#endregion
 
-	public static void ProcessActionState()
-	{
-		switch(actionState)
-		{
-			case AnimState.IDLE_FELLING:
-				IdleTreeFelling();
-				break;
-			case AnimState.IDLE_BUCKING:
-				IdleLogBucking();
-				break;
-			case AnimState.IDLE_SPLITTING:
-				IdleFirewoodSplitting();
-				break;
-			case AnimState.SWITCH_TOOL:
-				SwitchTool();
-				break;
-		}
-	}
-
-
 	#region LOGGING ACTIVITY METHODS
-		public static void IdleTreeFelling() 
-		{ 
-			loggerAnimator.SetInteger("LoggingActivity", 1); 
-		}
+		public static void IdleTreeFelling() { loggerAnimator.SetInteger("LoggingActivity", 1); }
 
-		public static void IdleLogBucking() 
-		{ 
-			loggerAnimator.SetInteger("LoggingActivity", 2); 
-		}		
+		public static void IdleLogBucking() { loggerAnimator.SetInteger("LoggingActivity", 2); }
 
-		public static void IdleFirewoodSplitting() 
-		{ 
-			loggerAnimator.SetInteger("LoggingActivity", 3); 
-		}
+		public static void IdleFirewoodSplitting() { loggerAnimator.SetInteger("LoggingActivity", 3); }
 
 		public static void SetLoggingAsAction(AnimState newState)
 		{
@@ -174,4 +169,22 @@ public class CharacterAnimator : MonoBehaviour
 
 		public static float GetEndToolFloat() { return loggerAnimator.GetFloat("EndToolFloat"); }
 	#endregion
+
+	public static void SetUpgradingAsAction(AnimState newState)
+	{
+		Debug.Log("Set Upgrade As Action State");
+		if (newState == AnimState.UPGRADE_TOOL || newState == AnimState.UPGRADE_SKILL || newState == AnimState.UPGRADE_ROOM)
+		{
+			actionState = newState;
+		}
+		else
+		{
+			actionState = AnimState.NONE;
+		}
+	}
+
+	public static void UpgradeTool() { Debug.Log("Trigger Set (Upgrade"); loggerAnimator.SetTrigger("UpgradeTool"); 
+	actionState = AnimState.NONE;}
+
+	public static void UpgradeSkill() { loggerAnimator.SetTrigger("UpgradeSkill"); }
 }

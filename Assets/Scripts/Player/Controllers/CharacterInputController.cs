@@ -235,4 +235,11 @@ public class CharacterInputController : MonoBehaviour
 			doChangeTool = false;
 		}
 	}
+
+
+	public static void InitiateUpgrade(AnimState upgradeAction)
+	{
+		Debug.Log("Upgrade (Input)");
+		CharacterAnimator.SetUpgradingAsAction(upgradeAction);
+	}
 }

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class UpgradeTools : MonoBehaviour 
 {
-	
 	void Start()
 	{
 		UpdateToolsResources();
@@ -45,11 +44,13 @@ public class UpgradeTools : MonoBehaviour
 		{
 			if (fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).HasInInventory())
 			{
+				CharacterInputController.InitiateUpgrade(AnimState.UPGRADE_TOOL);
 				//might need to reference actual PlayerTools object
 				fellingAxe.SetCurrentTier(currentTier + 1);
 				fellingAxe.GetDevResourceQuantityAtTier(currentTier + 1).SubtractFromInventory();
 				UpdateToolsResources();
 				// UpdatePlayerResources();
+				Debug.Log("Upgraded Felling Axe");
 			}
 			else
 			{

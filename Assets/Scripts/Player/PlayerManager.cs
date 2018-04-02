@@ -54,8 +54,8 @@ public class PlayerManager : MonoBehaviour
 		//only do this on load from main menu
 		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
 		{
-			// spawnLocation = MainMenu.GetLocationToSpawn();
-			// StartCoroutine(DelaySetSpawnLocationOnLoad());
+			spawnLocation = MainMenu.GetLocationToSpawn();
+			StartCoroutine(DelaySetSpawnLocationOnLoad());
 			
 			didLoadFromMenu = true;
 		}
@@ -111,5 +111,11 @@ public class PlayerManager : MonoBehaviour
 		yield return new WaitForSeconds(0.25f);
 
 		playerTransform.position = spawnLocation;
+	}
+
+	public static void SetTransformData(Vector3 position, Quaternion rotation)
+	{
+		playerTransform.position = position;
+		playerTransform.rotation = rotation;
 	}
 }
