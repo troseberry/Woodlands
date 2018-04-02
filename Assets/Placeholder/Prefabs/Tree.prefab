@@ -1093,7 +1093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4648e0041184c48a56287b98444b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayText: CHOP GRADE {0} TREE
+  displayText: CHOP TREE
 --- !u!114 &114416452755381198
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -14,7 +14,6 @@ namespace Forest
 
 		Vector3 fallForcePosition;
 
-		private QualityGrade qualityGrade;
 		private QualityGrade maxQualityGrade = QualityGrade.A;
 		public DisplayText displayInteractText;
 
@@ -27,15 +26,12 @@ namespace Forest
 		{
 			treeRigidbody = GetComponent<Rigidbody>();
 			fallForcePosition = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
-			
-			qualityGrade = GetComponentInParent<TreeGroupAttributes>().groupQualityGrade;
-			displayInteractText.displayText = string.Format(displayInteractText.displayText, qualityGrade.ToString());
 		}
 
-		public bool PlayerCanStore()
-		{
-			return HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberTreesValue();
-		}
+		// public bool PlayerCanStore()
+		// {
+		// 	return HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberTreesValue();
+		// }
 
 		// public QualityGrade GetQualityGrade() { return qualityGrade; }
 
@@ -83,10 +79,10 @@ namespace Forest
 
 			QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
 
-			Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
-			Debug.Log("Max Grade Number: " + maxGradeNumber);
-			Debug.Log("Gathered Grade: " + gatheredQuality);
-			Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
+			// Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
+			// Debug.Log("Max Grade Number: " + maxGradeNumber);
+			// Debug.Log("Gathered Grade: " + gatheredQuality);
+			// Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
 
 			HomesteadStockpile.UpdateTreesCountAtGrade(gatheredQuality, 1);
 
