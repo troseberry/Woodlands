@@ -100,6 +100,17 @@ public class ConsoleCommands : MonoBehaviour
 				break;
 
 
+			case "Felling Axe Tier":
+				PlayerTools.GetToolByName(ToolName.FELLING_AXE).SetCurrentTier(commandValue);
+				break;
+			case "Crosscut Saw Tier":
+				PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).SetCurrentTier(commandValue);
+				break;
+			case "Splitting Axe Tier":
+				PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).SetCurrentTier(commandValue);
+				break;
+
+
 			case "Bedroom Tier":
 				PlayerRooms.SetBedRoomTier(commandValue);
 				break;

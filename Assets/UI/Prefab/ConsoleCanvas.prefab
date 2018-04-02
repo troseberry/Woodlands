@@ -1382,6 +1382,12 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Book Pages Tier
       m_Image: {fileID: 0}
+    - m_Text: Felling Axe Tier
+      m_Image: {fileID: 0}
+    - m_Text: Crosscut Saw Tier
+      m_Image: {fileID: 0}
+    - m_Text: Splitting Axe Tier
+      m_Image: {fileID: 0}
     - m_Text: Bedroom Tier
       m_Image: {fileID: 0}
     - m_Text: Kitchen Tier

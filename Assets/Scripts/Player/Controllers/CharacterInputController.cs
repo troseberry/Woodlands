@@ -237,9 +237,5 @@ public class CharacterInputController : MonoBehaviour
 	}
 
 
-	public static void InitiateUpgrade(AnimState upgradeAction)
-	{
-		Debug.Log("Upgrade (Input)");
-		CharacterAnimator.SetUpgradingAsAction(upgradeAction);
-	}
+	public static void InitiateUpgrade(AnimState upgradeAction) { CharacterAnimator.SetUpgradingAsAction(upgradeAction); }
 }

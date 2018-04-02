@@ -134,7 +134,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	void HandleSnapLogic()
 	{
 		bool fellingCondition = 
-		(currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() && forestTreeToCut.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
+		(currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() /*&& forestTreeToCut.PlayerCanStore()*/ && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
 
 		bool buckingCondition = 
 		(currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) && felledTreeToSaw.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
@@ -156,10 +156,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				}
 			}
 
-			if (forestTreeToCut != null)
-			{
-				if (!forestTreeToCut.PlayerCanStore()) Debug.Log("Full On Trees: Grade " + forestTreeToCut.GetQualityGrade().ToString());
-			}
+			// if (forestTreeToCut != null)
+			// {
+			// 	if (!forestTreeToCut.PlayerCanStore()) Debug.Log("Full On Trees: Grade " + forestTreeToCut.GetQualityGrade().ToString());
+			// }
 			
 			if (felledTreeToSaw != null)
 			{
@@ -233,6 +233,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"))
 			{
+				//only allow this to happen once. so add like a chop counter that gets
+				// reset once the coroutine is finished
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
 					CharacterAnimator.ChopFull();

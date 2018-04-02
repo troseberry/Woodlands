@@ -15,6 +15,7 @@ namespace Forest
 		Vector3 fallForcePosition;
 
 		private QualityGrade qualityGrade;
+		private QualityGrade maxQualityGrade = QualityGrade.A;
 		public DisplayText displayInteractText;
 
 		int[] sideCutsCount = new int[4] {0, 0, 0, 0};		//order: x_01, x_02, z_01, z_02
@@ -36,7 +37,9 @@ namespace Forest
 			return HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberTreesValue();
 		}
 
-		public QualityGrade GetQualityGrade() { return qualityGrade; }
+		// public QualityGrade GetQualityGrade() { return qualityGrade; }
+
+		public QualityGrade GetMaxQualityGrade() { return maxQualityGrade; }
 
 		public bool HasFallen() { return hasFallen; }
 
@@ -73,7 +76,19 @@ namespace Forest
 			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
-			HomesteadStockpile.UpdateTreesCountAtGrade(qualityGrade, 1);
+			int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier() - 1;
+			int maxGradeNumber = 10 % ((int) maxQualityGrade + 6);
+			int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
+			gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
+
+			QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
+
+			Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
+			Debug.Log("Max Grade Number: " + maxGradeNumber);
+			Debug.Log("Gathered Grade: " + gatheredQuality);
+			Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
+
+			HomesteadStockpile.UpdateTreesCountAtGrade(gatheredQuality, 1);
 
 			//Visually phase tree out
 			Invoke("PhaseOutTree", 5);
