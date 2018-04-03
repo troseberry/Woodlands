@@ -6,7 +6,7 @@ namespace LogBucking
 {
 	public class FelledTreeBehavior : MonoBehaviour 
 	{
-		private QualityGrade qualityGrade;
+		private QualityGrade maxQualityGrade;
 		private FelledTreeSnapSpot[] snapSpots;
 
 		private FelledTreePileBehavior associatedFelledTreePile;
@@ -24,31 +24,30 @@ namespace LogBucking
 			switch(transform.parent.name)
 			{
 				case "GradeA":
-					qualityGrade = QualityGrade.A;
+					maxQualityGrade = QualityGrade.A;
 					break;
 				case "GradeB":
-					qualityGrade = QualityGrade.B;
+					maxQualityGrade = QualityGrade.B;
 					break;
 				case "GradeC":
-					qualityGrade = QualityGrade.C;
+					maxQualityGrade = QualityGrade.C;
 					break;
 				case "GradeD":
-					qualityGrade = QualityGrade.D;
+					maxQualityGrade = QualityGrade.D;
 					break;
 				case "GradeF":
-					qualityGrade = QualityGrade.F;
+					maxQualityGrade = QualityGrade.F;
 					break;
 			}
 			snapSpots = transform.GetComponentsInChildren<FelledTreeSnapSpot>();
 			associatedFelledTreePile = transform.GetComponentInParent<FelledTreePileBehavior>();
 		}
 
-		public bool PlayerCanStore()
-		{
-			return HomesteadStockpile.GetLogsCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberLogsValue();
-		}
+		// public bool PlayerCanStore()
+		// {
+		// 	return HomesteadStockpile.GetLogsCountAtGrade(qualityGrade) < PlayerSkills.GetMaxLumberLogsValue();
+		// }
 
-		public QualityGrade GetQualityGrade() { return qualityGrade; }
 
 		public bool IsLocationFullyCut(int loc)
 		{
@@ -80,14 +79,26 @@ namespace LogBucking
 		void SawThrough(int loc)
 		{
 			snapSpots[loc].enabled = false;
-			// LoggingActivityPlayerBehavior.UnsnapPlayer();
+			
 			LoggingActivityPlayerBehavior.Instance.UnsnapAfterSaw();
 			locationFullySawed[loc] = true;
 
 			if (locationFullySawed[0] && locationFullySawed[1])
 			{
-				HomesteadStockpile.UpdateLogsCountAtGrade(qualityGrade, 3);
-				HomesteadStockpile.UpdateTreesCountAtGrade(qualityGrade, -1);
+				int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetCurrentTier() - 1;
+				int maxGradeNumber = 10 % ((int) maxQualityGrade + 6);
+				int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
+				gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
+
+				QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
+				
+				// Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
+				// Debug.Log("Max Grade Number: " + maxGradeNumber);
+				// Debug.Log("Gathered Grade: " + gatheredQuality);
+				// Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
+
+				HomesteadStockpile.UpdateLogsCountAtGrade(gatheredQuality, 3);
+				HomesteadStockpile.UpdateTreesCountAtGrade(maxQualityGrade, -1);
 				
 				Invoke("PhaseOutLogs", 1.0f);
 			}
@@ -95,7 +106,7 @@ namespace LogBucking
 
 		void PhaseOutLogs()
 		{
-			if (HomesteadStockpile.GetTreesCountAtGrade(qualityGrade) > 0)
+			if (HomesteadStockpile.GetTreesCountAtGrade(maxQualityGrade) > 0)
 			{
 				Invoke("ResetInteractableFelledTree", 1.0f);
 			}

@@ -137,10 +137,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		(currentActivity == LoggingActivity.FELLING && !forestTreeToCut.HasFallen() /*&& forestTreeToCut.PlayerCanStore()*/ && PlayerTools.GetCurrentlyEquippedToolIndex() == 1);
 
 		bool buckingCondition = 
-		(currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) && felledTreeToSaw.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
+		(currentActivity == LoggingActivity.BUCKING && !felledTreeToSaw.IsLocationFullyCut(markToSaw) /*&& felledTreeToSaw.PlayerCanStore()*/ && PlayerTools.GetCurrentlyEquippedToolIndex() == 2);
 
 		bool splittingCondition = 
-		(currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0 && logToSplit.PlayerCanStore() && PlayerTools.GetCurrentlyEquippedToolIndex() == 3);
+		(currentActivity == LoggingActivity.SPLITTING && logsRemaining > 0 /*&& logToSplit.PlayerCanStore()*/ && PlayerTools.GetCurrentlyEquippedToolIndex() == 3);
 
 		if (Input.GetButtonDown("Interact") && canSnapPlayer)
 		{
@@ -161,15 +161,15 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			// 	if (!forestTreeToCut.PlayerCanStore()) Debug.Log("Full On Trees: Grade " + forestTreeToCut.GetQualityGrade().ToString());
 			// }
 			
-			if (felledTreeToSaw != null)
-			{
-				if (!felledTreeToSaw.PlayerCanStore()) Debug.Log("Full On Logs: Grade " + felledTreeToSaw.GetQualityGrade().ToString());
-			}
+			// if (felledTreeToSaw != null)
+			// {
+			// 	if (!felledTreeToSaw.PlayerCanStore()) Debug.Log("Full On Logs: Grade " + felledTreeToSaw.GetQualityGrade().ToString());
+			// }
 
-			if (logToSplit != null)
-			{
-				if (!logToSplit.PlayerCanStore()) Debug.Log("Full On Firewood: Grade " + logToSplit.GetQualityGrade().ToString());
-			}
+			// if (logToSplit != null)
+			// {
+			// 	if (!logToSplit.PlayerCanStore()) Debug.Log("Full On Firewood: Grade " + logToSplit.GetQualityGrade().ToString());
+			// }
 		}
 	}
 
