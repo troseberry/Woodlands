@@ -96,7 +96,7 @@ public class CharacterInputController : MonoBehaviour
 		}
 		#endregion
 
-		DetermineCharacterRotation();
+		CharacterMotor.DetermineCharacterRotation(vertInput, horzInput);
 
 		if (!toolsDisabledInside)
 		{
@@ -121,41 +121,12 @@ public class CharacterInputController : MonoBehaviour
 	{
 		if (freeLookInputEnabled)
 		{
+			// characterCameraController.enabled = false;
+
 			characterCameraController.m_YAxis.m_InputAxisName = canTurn ? "Mouse Y" : "";
 			characterCameraController.m_XAxis.m_InputAxisName = canTurn ? "Mouse X" : "";
 		}
 	}
-
-	public void DetermineCharacterRotation()
-    {
-		if (canTurn)
-		{
-			//player rotation follows camera direction when moving. if stationary, player can rotate camera 360 around character
-			if (CharacterAnimator.GetMovementState() != AnimState.IDLE)
-			{
-				if (vertInput == 1f)
-				{
-					rotationOffset = (horzInput == 0)
-					? 0f
-					: (horzInput > 0) ? 45f : -45f;
-				}
-				else if (vertInput == -1f)
-				{
-					rotationOffset = (horzInput == 0)
-					? 180f
-					: (horzInput > 0) ? -225f : 225f;
-				}
-				else if (vertInput == 0f)
-				{
-					rotationOffset = (horzInput == 0)
-					? 0f
-					: (horzInput > 0) ? 90f : -90f;
-				}
-
-				transform.rotation = Quaternion.Euler(transform.eulerAngles.x, Camera.main.transform.eulerAngles.y + rotationOffset, transform.eulerAngles.z);
-			}
-		}
-    }
 
 	public static void InitiateLoggingState(AnimState activity)
 	{
