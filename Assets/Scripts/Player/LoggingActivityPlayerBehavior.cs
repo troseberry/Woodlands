@@ -32,6 +32,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	// defaults for Tree Felling
 	private static bool inForwardPosition = true;
 	private static bool inBackwardPosition = false;
+
+	private int actionCounter = 0;
 	
 	void Start()
 	{
@@ -231,12 +233,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		void ChopDiagonal()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"))
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") && actionCounter == 0)
 			{
 				//only allow this to happen once. so add like a chop counter that gets
 				// reset once the coroutine is finished
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
+					actionCounter = 1;
 					CharacterAnimator.ChopFull();
 					StartCoroutine(ChopDiagonalAfterAnim());
 				}
@@ -248,39 +251,52 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
 			
 			forestTreeToCut.CutSide(sideToCut);
-		}
-
-		
+			actionCounter = 0;
+		}	
 	#endregion
 
 	#region BUCKING METHODS
 		void PushForward()
 		{
-			if (inBackwardPosition)
+			if (inBackwardPosition && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH))
 				{ 
+					actionCounter = 1;
+
 					CharacterAnimator.PushForward();
 
 					felledTreeToSaw.SawLocation(markToSaw);
 					inForwardPosition = true;
 					inBackwardPosition = false;
+
+					StartCoroutine(ChangeCounterAfterSaw());
 				}
 			}
 		}
 
 		void PullBackward()
 		{
-			if (inForwardPosition)
+			if (inForwardPosition && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PULL)) 
 				{
+					actionCounter = 1;
+
 					CharacterAnimator.PullBackward();
 					felledTreeToSaw.SawLocation(markToSaw);
 					inForwardPosition = false;
 					inBackwardPosition = true;
+
+					StartCoroutine(ChangeCounterAfterSaw());
 				}
 			}
+		}
+
+		IEnumerator ChangeCounterAfterSaw()
+		{
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle") || CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_ForwardIdle"));
+			actionCounter = 0;
 		}
 
 		public void UnsnapAfterSaw()
@@ -302,10 +318,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		void ChopVertical()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"))
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP))
 				{
+					actionCounter = 1;
 					CharacterAnimator.ChopFull();
 					StartCoroutine(ChopVerticalAfterAnim());
 				}
@@ -316,6 +333,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Forward"));
 			logToSplit.Split();
+			actionCounter = 0;
 		}
 		
 		public static void SetLogsRemaining(int logs) { logsRemaining = logs; }

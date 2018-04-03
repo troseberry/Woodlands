@@ -73,19 +73,8 @@ namespace FirewoodSplitting
 
 		void ApplySplitForce()
 		{
-			// Vector3 randomLeft = new Vector3(firewoodPieces[0].transform.position.x, 
-			// 								Random.Range(firewoodPieces[0].transform.position.y + 0.25f, firewoodPieces[0].transform.position.y - 0.25f), 
-			// 								Random.Range(firewoodPieces[0].transform.position.z + 0.125f, firewoodPieces[0].transform.position.z - 0.125f));
-											
-			// Vector3 randomRight = new Vector3(firewoodPieces[1].transform.position.x, 
-			// 								Random.Range(firewoodPieces[0].transform.position.y + 0.25f, firewoodPieces[0].transform.position.y - 0.25f), 
-			// 								Random.Range(firewoodPieces[0].transform.position.z + 0.125f, firewoodPieces[0].transform.position.z - 0.125f));
-
 			firewoodPieces[0].constraints = RigidbodyConstraints.None;
 			firewoodPieces[1].constraints = RigidbodyConstraints.None;
-
-			// firewoodPieces[0].AddForceAtPosition(transform.right * -3, randomLeft, ForceMode.Impulse);
-			// firewoodPieces[1].AddForceAtPosition(transform.right * 3, randomRight, ForceMode.Impulse);
 
 			firewoodPieces[0].AddForce(transform.right * -3, ForceMode.Impulse);
 			firewoodPieces[1].AddForce(transform.right * 3, ForceMode.Impulse);
