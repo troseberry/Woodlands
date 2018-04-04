@@ -24,7 +24,7 @@ public class CharacterInputController : MonoBehaviour
 	private static int startingToolLocation;
 	private static int endingToolLocation;
 	
-	private bool toolsDisabledInside = false;
+	private static bool toolsDisabled = false;
 	private int tempToolIndex = 0;
 
 	private static bool characterInputEnabled = true;
@@ -45,9 +45,9 @@ public class CharacterInputController : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
-		toolsDisabledInside = scene.name.Equals("MainCabin");
+		toolsDisabled = scene.name.Equals("MainCabin");
 
-		if (toolsDisabledInside)
+		if (toolsDisabled)
 		{
 			// Debug.Log("Entered Cabin");
 			freeLookInputEnabled = false;
@@ -98,7 +98,7 @@ public class CharacterInputController : MonoBehaviour
 
 		CharacterMotor.DetermineCharacterRotation(vertInput, horzInput);
 
-		if (!toolsDisabledInside)
+		if (!toolsDisabled)
 		{
 			HandleToolInput();		
 			if (doChangeTool) ChangeTool();
@@ -207,6 +207,7 @@ public class CharacterInputController : MonoBehaviour
 		}
 	}
 
+		public static void ToggleToolsInput(bool state) { toolsDisabled = !state; }
 
 	public static void InitiateUpgrade(AnimState upgradeAction) { CharacterAnimator.SetUpgradingAsAction(upgradeAction); }
 }

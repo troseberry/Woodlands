@@ -86,6 +86,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	{
 		CharacterMotor.SetCanMove(false);
 		CharacterInputController.SetCanTurn(false);
+		CharacterInputController.ToggleToolsInput(false);
 		switch(currentActivity)
 		{
 			case LoggingActivity.FELLING:
@@ -126,6 +127,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterMotor.SetCanMove(true);
 		CharacterInputController.SetCanTurn(true);
 		CharacterInputController.InitiateLoggingState(AnimState.NONE);
+		CharacterInputController.ToggleToolsInput(true);
 		CharacterAnimator.ResetLoggingTriggers();
 
 		Instance.GetComponent<Rigidbody>().constraints = startingConstraints;
