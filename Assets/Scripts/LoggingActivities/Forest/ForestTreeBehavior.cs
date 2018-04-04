@@ -121,7 +121,9 @@ namespace Forest
 
 		void PhaseOutTree()
 		{
-			Destroy(gameObject);
+			transform.parent.GetComponent<ObjectIdentity>().dontLoad = true;
+			// gameObject.SetActive(false);
+			// Destroy(gameObject);
 		}
 	}
 }
