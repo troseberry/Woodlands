@@ -60,7 +60,7 @@ public class PlayerManager : MonoBehaviour
 			didLoadFromMenu = true;
 		}
 
-		if (scene.name.Equals("MainMenu")) didLoadFromMenu = false;
+		if (scene.name.Equals("MainMenu")) didLoadFromMenu = false; //need to also destroy player object
 
 		if (scene.name.Equals("MainCabin") || scene.name.Equals("Workshop"))
 		{

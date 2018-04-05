@@ -25,7 +25,7 @@ public class SceneSaveHandler : MonoBehaviour
 		}
 
 		object[] allObjects = GameObject.FindObjectsOfType(typeof (GameObject));
-		Debug.Log("All Scene GOs: " + allObjects.Length);
+		// Debug.Log("All Scene GOs: " + allObjects.Length);
 		for (int i = 0; i < allObjects.Length; i++)
 		{
 			GameObject currentObj = (GameObject) allObjects[i];
@@ -33,7 +33,7 @@ public class SceneSaveHandler : MonoBehaviour
 			ObjectIdentity idScript = currentObj.GetComponent<ObjectIdentity>();
 			if (idScript != null)
 			{
-				Debug.Log("Found Object With ID: " + idScript.id);
+				// Debug.Log("Found Object With ID: " + idScript.id);
 
 				SceneObject newSceneObject = new SceneObject();
 				newSceneObject.name = currentObj.name;
@@ -63,13 +63,13 @@ public class SceneSaveHandler : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log("Scene Objects to Save: " + sceneObjectsToSave.Count);
+		// Debug.Log("Scene Objects to Save: " + sceneObjectsToSave.Count);
 
 		newSceneData.sceneName = "Forest";
 		newSceneData.sceneObjects = sceneObjectsToSave;
 
 		SaveLoadScene.Save(newSceneData);
-		Debug.Log("Finished Saving (Save Handler)");
+		// Debug.Log("Finished Saving (Save Handler)");
 	}
 
 
@@ -78,9 +78,9 @@ public class SceneSaveHandler : MonoBehaviour
 	{
 		SaveLoadScene.Load("Forest");
 		SaveableSceneData loadedScene = SaveLoadScene.loadedScene;
-		Debug.Log("Load Scene Objects: " + loadedScene.sceneObjects.Count);
+		// Debug.Log("Load Scene Objects: " + loadedScene.sceneObjects.Count);
 
-		Debug.Log("Existing Scene Objects: " + existingSceneObjects.Length);
+		// Debug.Log("Existing Scene Objects: " + existingSceneObjects.Length);
 
 		for (int i = 0; i< loadedScene.sceneObjects.Count; i++)
 		{
@@ -88,8 +88,8 @@ public class SceneSaveHandler : MonoBehaviour
 			{
 				if (loadedScene.sceneObjects[i].id == existingSceneObjects[j].id)
 				{
-					Debug.Log("Id Loaded: " + loadedScene.sceneObjects[i].id);
-					Debug.Log("Id Loaded (Don't Load?): " + loadedScene.sceneObjects[i].dontLoad);
+					// Debug.Log("Id Loaded: " + loadedScene.sceneObjects[i].id);
+					// Debug.Log("Id Loaded (Don't Load?): " + loadedScene.sceneObjects[i].dontLoad);
 
 					if(!loadedScene.sceneObjects[i].dontLoad)
 					{
@@ -101,7 +101,7 @@ public class SceneSaveHandler : MonoBehaviour
 
 						existingSceneObjects[j].gameObject.SetActive(true);
 
-						Debug.Log("Activating: " + existingSceneObjects[j].name + "(" + existingSceneObjects[j].id + ")");
+						// Debug.Log("Activating: " + existingSceneObjects[j].name + "(" + existingSceneObjects[j].id + ")");
 					}
 					else
 					{

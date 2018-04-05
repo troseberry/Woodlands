@@ -16,13 +16,14 @@ using System.IO;
 public class SaveLoad : MonoBehaviour 
 {
 	private static int currentSaveSlot;
+	private static string folderPath = "/Saves/Slot_0";
 	private static string[] saveSlotStrings = {"/gameSave_01.dat", "/gameSave_02.dat", "/gameSave_03.dat"};
 
 	public static void Save()
 	{
 		Debug.Log("Save Slot: " + currentSaveSlot);
 		BinaryFormatter data = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + saveSlotStrings[currentSaveSlot - 1]);
+		FileStream file = File.Create(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1]);
 
 		SaveableData saveData = new SaveableData();
 
@@ -79,12 +80,12 @@ public class SaveLoad : MonoBehaviour
 
 	public static void Load()
 	{
-		if (File.Exists(Application.persistentDataPath + saveSlotStrings[currentSaveSlot - 1]))
+		if (File.Exists(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1]))
 		{
 			Debug.Log("Loading...");
 
 			BinaryFormatter data = new BinaryFormatter();
-			FileStream file = File.Open(Application.persistentDataPath + saveSlotStrings[currentSaveSlot - 1], FileMode.Open);
+			FileStream file = File.Open(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1], FileMode.Open);
 			SaveableData loadData = (SaveableData) data.Deserialize(file);
 			file.Close();
 
@@ -146,7 +147,10 @@ public class SaveLoad : MonoBehaviour
 	{
 		Debug.Log("Creating New Save in Slot: " + currentSaveSlot);
 		BinaryFormatter data = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + saveSlotStrings[currentSaveSlot - 1]);
+		
+		if (!Directory.Exists(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1])) Directory.CreateDirectory(Application.persistentDataPath + folderPath + currentSaveSlot);
+		
+		FileStream file = File.Create(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1]);
 
 		SaveableData saveData = new SaveableData();
 
@@ -210,15 +214,20 @@ public class SaveLoad : MonoBehaviour
 
 	public static void Delete (int selectedSaveSlot)
 	{
-		File.Delete(Application.persistentDataPath + saveSlotStrings[selectedSaveSlot - 1]);
+		// File.Delete(Application.persistentDataPath + folderPath + selectedSaveSlot + saveSlotStrings[selectedSaveSlot - 1]);
+
+		Directory.Delete(Application.persistentDataPath + folderPath + selectedSaveSlot);
+		Debug.Log("Deleted Save: " + selectedSaveSlot);
 	}
 
 	public static bool DoesSaveExist (int selectedSaveSlot)
 	{
-		return File.Exists(Application.persistentDataPath + saveSlotStrings[selectedSaveSlot - 1]);
+		return File.Exists(Application.persistentDataPath + folderPath + selectedSaveSlot + saveSlotStrings[selectedSaveSlot - 1]);
 	}
 
 	public static int GetCurrentSaveSlot() { return currentSaveSlot; }
 
 	public static void SetCurrentSaveSlot(int slot) { currentSaveSlot = slot; }
+
+	public static string GetCurrentSaveDirectory() { return Application.persistentDataPath + folderPath + currentSaveSlot; }
 }

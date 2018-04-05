@@ -6,16 +6,20 @@ using UnityEngine;
 
 public class SaveLoadScene
 {
+	private static string folderPath = "/SceneSaves";
 	public static SaveableSceneData loadedScene = new SaveableSceneData();
 	public static List<SaveableSceneData> savedScenes = new List<SaveableSceneData>();
 
 	public static void Save(SaveableSceneData sceneData)
 	{
 		BinaryFormatter bf = new BinaryFormatter();
+		
 
-		string path = Application.persistentDataPath + "/";
+		if (!Directory.Exists(SaveLoad.GetCurrentSaveDirectory() + folderPath)) Directory.CreateDirectory(SaveLoad.GetCurrentSaveDirectory() + folderPath);
 
-		FileStream file = File.Create(path + sceneData.sceneName + ".sd");
+		string path = SaveLoad.GetCurrentSaveDirectory() + folderPath + "/" + sceneData.sceneName + ".sd";
+
+		FileStream file = File.Create(path);
 
 		bf.Serialize(file, sceneData);
 		file.Close();
@@ -24,12 +28,12 @@ public class SaveLoadScene
 
 	public static void Load(string sceneToLoad)
 	{
-		string path = Application.persistentDataPath + "/";
+		string path = SaveLoad.GetCurrentSaveDirectory() + folderPath + "/" + sceneToLoad + ".sd";
 
-		if (File.Exists(path + sceneToLoad + ".sd"))
+		if (File.Exists(path))
 		{
 			BinaryFormatter bf = new BinaryFormatter();
-			FileStream file = File.Open(path + sceneToLoad + ".sd", FileMode.Open);
+			FileStream file = File.Open(path, FileMode.Open);
 			loadedScene = (SaveableSceneData)bf.Deserialize(file);
 			file.Close();
 			Debug.Log("Loaded Scene: " + loadedScene.sceneName);
@@ -38,6 +42,6 @@ public class SaveLoadScene
 
 	public static bool SceneSaveExists(string sceneToLoad)
 	{
-		return File.Exists(Application.persistentDataPath + "/" + sceneToLoad + ".sd");
+		return File.Exists(SaveLoad.GetCurrentSaveDirectory() + folderPath + "/" + sceneToLoad + ".sd");
 	}
 }
