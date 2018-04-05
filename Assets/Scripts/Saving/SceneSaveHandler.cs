@@ -5,21 +5,21 @@ using UnityEngine;
 
 public class SceneSaveHandler : MonoBehaviour
 {
+	public string sceneName;
 	public ObjectIdentity[] existingSceneObjects;
 
 
 	void Start()
 	{
-		if (SaveLoadScene.SceneSaveExists("Forest")) LoadSceneData();
+		if (SaveLoadScene.SceneSaveExists(sceneName)) LoadSceneData();
 	}
-
 
 	public void SaveSceneData()
 	{
 		SaveableSceneData newSceneData = new SaveableSceneData();
 		List<SceneObject> sceneObjectsToSave = new List<SceneObject>();
 
-		if (SaveLoadScene.SceneSaveExists("Forest"))
+		if (SaveLoadScene.SceneSaveExists(sceneName))
 		{
 			sceneObjectsToSave = SaveLoadScene.loadedScene.sceneObjects;
 		}
@@ -65,7 +65,7 @@ public class SceneSaveHandler : MonoBehaviour
 		}
 		// Debug.Log("Scene Objects to Save: " + sceneObjectsToSave.Count);
 
-		newSceneData.sceneName = "Forest";
+		newSceneData.sceneName = sceneName;
 		newSceneData.sceneObjects = sceneObjectsToSave;
 
 		SaveLoadScene.Save(newSceneData);
@@ -76,7 +76,7 @@ public class SceneSaveHandler : MonoBehaviour
 
 	public void LoadSceneData()
 	{
-		SaveLoadScene.Load("Forest");
+		SaveLoadScene.Load(sceneName);
 		SaveableSceneData loadedScene = SaveLoadScene.loadedScene;
 		// Debug.Log("Load Scene Objects: " + loadedScene.sceneObjects.Count);
 
