@@ -22,12 +22,13 @@ public class ObjectIdentity : MonoBehaviour
 		List<int> takenIDs = new List<int>();
 		ObjectIdentity[] objects = GameObject.FindObjectsOfType(typeof (ObjectIdentity)) as ObjectIdentity[];
 
-		foreach (ObjectIdentity obj in objects)
+		// foreach (ObjectIdentity obj in objects)
+		for (int i = 0; i < objects.Length; i++)
 		{
-			if (obj.transform.gameObject != gameObject)
+			if (objects[i].transform.gameObject != gameObject)
 			{
-				takenIDs.Add(obj.id);
-				Debug.Log("taken ID added: " + obj.id);
+				takenIDs.Add(objects[i].id);
+				Debug.Log("taken ID added: " + objects[i].id);
 			}
 		}
 
