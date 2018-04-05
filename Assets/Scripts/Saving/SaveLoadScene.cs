@@ -35,4 +35,9 @@ public class SaveLoadScene
 			Debug.Log("Loaded Scene: " + loadedScene.sceneName);
 		}
 	}
+
+	public static bool SceneSaveExists(string sceneToLoad)
+	{
+		return File.Exists(Application.persistentDataPath + "/" + sceneToLoad + ".sd");
+	}
 }

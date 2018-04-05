@@ -122,7 +122,7 @@ namespace Forest
 		void PhaseOutTree()
 		{
 			transform.parent.GetComponent<ObjectIdentity>().dontLoad = true;
-			// gameObject.SetActive(false);
+			gameObject.SetActive(false);
 			// Destroy(gameObject);
 		}
 	}
