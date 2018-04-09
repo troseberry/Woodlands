@@ -12,7 +12,9 @@ public class TravelInteractPrompt : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Interact") && canInteract)
 		{
-			CallTravelMethod();
+			// CallTravelMethod();
+			PlayerManager.currentSceneSaveHandler.SaveSceneData();
+			StartCoroutine(SaveSceneAndTravel());
 		}
 	}
 
@@ -37,6 +39,19 @@ public class TravelInteractPrompt : MonoBehaviour
 
 			PlayerHud.ToggleInteractPrompt();
 		}
+	}
+
+	IEnumerator SaveSceneAndTravel()
+	{
+		LoadingScreen.Instance.ToggleLoadingCanvas(true);
+
+		yield return new WaitUntil( () => PlayerManager.currentSceneSaveHandler.HasFinishedSaving());
+		yield return new WaitForSeconds(2f);
+
+		CharacterInputController.ToggleCharacterInput(false);
+		CharacterInputController.ToggleCameraInput(false);
+
+		CallTravelMethod();
 	}
 
 	void CallTravelMethod()

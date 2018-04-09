@@ -14,6 +14,8 @@ public static class GameSceneNavigation
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Homestead");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Homestead");
+
+		LoadingScreen.Instance.WaitForLoad();
 	}
 
 	public static void ToMainCabin()
@@ -22,6 +24,8 @@ public static class GameSceneNavigation
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("MainCabin");
 		PlayerManager.SetSpawnLocation(currentSceneName, "MainCabin");
+		
+		LoadingScreen.Instance.WaitForLoad();
 	}
 
 	public static void ToWorkshop()
@@ -30,6 +34,8 @@ public static class GameSceneNavigation
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Workshop");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Workshop");
+		
+		LoadingScreen.Instance.WaitForLoad();
 	}
 
 	public static void ToForest()
@@ -38,6 +44,8 @@ public static class GameSceneNavigation
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Forest");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Forest");
+		
+		LoadingScreen.Instance.WaitForLoad();
 	}
 
 	public static void ToLumberYard()
@@ -46,6 +54,8 @@ public static class GameSceneNavigation
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("LumberYard");
 		PlayerManager.SetSpawnLocation(currentSceneName, "LumberYard");
+		
+		LoadingScreen.Instance.WaitForLoad();
 	}
 
 	public static void ToTopFloor()

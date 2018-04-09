@@ -8,10 +8,16 @@ public class SceneSaveHandler : MonoBehaviour
 	public string sceneName;
 	public ObjectIdentity[] existingSceneObjects;
 
+	private bool hasFinishedSaving = false;
+	private bool hasFinishedLoading = false;
 
 	void Start()
 	{
+		hasFinishedSaving = false;
+		hasFinishedLoading = false;
+
 		if (SaveLoadScene.SceneSaveExists(sceneName)) LoadSceneData();
+		else hasFinishedLoading = true;
 	}
 
 	public void SaveSceneData()
@@ -62,14 +68,15 @@ public class SceneSaveHandler : MonoBehaviour
 					sceneObjectsToSave.Add(newSceneObject);
 				}
 			}
-		}
+		} 
 		// Debug.Log("Scene Objects to Save: " + sceneObjectsToSave.Count);
 
 		newSceneData.sceneName = sceneName;
 		newSceneData.sceneObjects = sceneObjectsToSave;
 
 		SaveLoadScene.Save(newSceneData);
-		// Debug.Log("Finished Saving (Save Handler)");
+		Debug.Log("Finished Scene Save (Save Handler)");
+		hasFinishedSaving = true;
 	}
 
 
@@ -110,6 +117,8 @@ public class SceneSaveHandler : MonoBehaviour
 				}
 			}
 		}
+		Debug.Log("Finished Scene Load (Save Handler)");
+		hasFinishedLoading = true;
 	}
 
 
@@ -123,5 +132,12 @@ public class SceneSaveHandler : MonoBehaviour
 			Debug.Log("Triggered Save");
 			SaveSceneData();
 		}
+
+		DebugPanel.Log("Has Finished Saving", "Scene Save/Load", hasFinishedSaving);
+		DebugPanel.Log("Has Finished Loading", "Scene Save/Load", hasFinishedLoading);
 	}
+
+	public bool HasFinishedSaving() { return hasFinishedSaving; }
+
+	public bool HasFinishedLoading() { return hasFinishedLoading; }
 }

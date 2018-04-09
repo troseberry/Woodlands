@@ -17,6 +17,8 @@ public class PlayerManager : MonoBehaviour
 
 	public CinemachineStateDrivenCamera stateDrivenCamera;
 	// public CinemachineClearShot clearShotCamera_MainCabin;
+
+	public static SceneSaveHandler currentSceneSaveHandler;
 	
 	// void Awake()
 	// {
@@ -34,6 +36,7 @@ public class PlayerManager : MonoBehaviour
 	void Update()
 	{
 		DebugPanel.Log("Clear Shot? ", GameObject.Find("CM_ClearShotCamera_MainCabin") == null);
+		
 	}
 
 	void Reset()
@@ -51,6 +54,9 @@ public class PlayerManager : MonoBehaviour
 
 	void OnSceneLoaded(Scene scene, LoadSceneMode mode)
 	{
+		GameObject ssh = GameObject.Find("SceneSaveHandler");
+		if (ssh) currentSceneSaveHandler = ssh.GetComponent<SceneSaveHandler>();
+		
 		//only do this on load from main menu
 		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
 		{
