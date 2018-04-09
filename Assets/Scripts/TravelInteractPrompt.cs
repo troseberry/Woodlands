@@ -46,7 +46,7 @@ public class TravelInteractPrompt : MonoBehaviour
 		LoadingScreen.Instance.ToggleLoadingCanvas(true);
 
 		yield return new WaitUntil( () => PlayerManager.currentSceneSaveHandler.HasFinishedSaving());
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.5f);
 
 		CharacterInputController.ToggleCharacterInput(false);
 		CharacterInputController.ToggleCameraInput(false);

@@ -7,7 +7,7 @@ public class LoadingScreen : MonoBehaviour
 {
 	public static LoadingScreen Instance;
 
-	bool loadingScreenExists = false;
+	private static bool loadingScreenExists = false;
 	private Canvas loadingScreenCanvas;
 
 	void Awake()
@@ -38,7 +38,7 @@ public class LoadingScreen : MonoBehaviour
 	{
 		yield return new WaitUntil( () => PlayerManager.currentSceneSaveHandler.HasFinishedLoading());
 
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(0.5f);
 
 		CharacterInputController.ToggleCharacterInput(true);
 		CharacterInputController.ToggleCameraInput(true);
