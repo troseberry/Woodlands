@@ -41,7 +41,7 @@ public class PlayerManager : MonoBehaviour
 
 	void Reset()
 	{
-		playerLookAt = GameObject.Find("Neck_jnt").transform;
+		playerLookAt = GameObject.Find("Head").transform;
 		playerFollow = GameObject.Find("Logger").transform;
 
 		stateDrivenCamera = GameObject.Find("CM_StateDrivenCamera").GetComponent<CinemachineStateDrivenCamera>();
@@ -60,8 +60,8 @@ public class PlayerManager : MonoBehaviour
 		//only do this on load from main menu
 		if (!didLoadFromMenu /*&& RunOnTheFly.RunOnTheFlyReference.simulateFromMenu*/)
 		{
-			// spawnLocation = MainMenu.GetLocationToSpawn();
-			// StartCoroutine(DelaySetSpawnLocationOnLoad());
+			spawnLocation = MainMenu.GetLocationToSpawn();
+			StartCoroutine(DelaySetSpawnLocationOnLoad());
 			
 			didLoadFromMenu = true;
 		}
@@ -90,7 +90,7 @@ public class PlayerManager : MonoBehaviour
 	{
 		playerTransform = this.transform;
 
-		playerLookAt = GameObject.Find("Neck_jnt").transform;
+		playerLookAt = GameObject.Find("Head").transform;
 		// playerFollow = GameObject.Find("Logger").transform;
 	}
 
