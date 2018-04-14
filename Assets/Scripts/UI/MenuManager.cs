@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour 
 {
 	public static MenuManager currentMenuManager;
-	
+
 	public PauseMenu currentPauseMenu;
 	public GameMenu currentGameMenu;
 	public MailboxMenu currentMailboxMenu;
@@ -23,6 +23,11 @@ public class MenuManager : MonoBehaviour
 	void Start () 
 	{
 		currentMenuManager = this;
+	}
+
+	void Update()
+	{
+		if (LoadingScreen.IsLoading()) CloseAllCanvases();
 	}
 
 	void Reset()

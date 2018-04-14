@@ -10,6 +10,8 @@ public class LoadingScreen : MonoBehaviour
 	private static bool loadingScreenExists = false;
 	private Canvas loadingScreenCanvas;
 
+	private static bool isLoading = false;
+
 	void Awake()
 	{
 		if (!loadingScreenExists)
@@ -29,6 +31,11 @@ public class LoadingScreen : MonoBehaviour
 		loadingScreenCanvas = GetComponent<Canvas>();
 	}
 
+	void Update()
+	{
+		DebugPanel.Log("Is Loading: ", "Loading", isLoading);
+	}
+
 	public void WaitForLoad()
 	{
 		StartCoroutine(WaitForLoadToFinish());
@@ -44,6 +51,7 @@ public class LoadingScreen : MonoBehaviour
 		CharacterInputController.ToggleCameraInput(true);
 
 		loadingScreenCanvas.enabled = false;
+		isLoading = false;
 	}
 
 
@@ -51,4 +59,9 @@ public class LoadingScreen : MonoBehaviour
 	{
 		loadingScreenCanvas.enabled = state;
 	}
+
+
+	public static void ToggleIsLoading(bool state) { isLoading = state; }
+
+	public static bool IsLoading() { return isLoading; }
 }

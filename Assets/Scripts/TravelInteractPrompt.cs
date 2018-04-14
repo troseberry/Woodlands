@@ -43,6 +43,7 @@ public class TravelInteractPrompt : MonoBehaviour
 
 	IEnumerator SaveSceneAndTravel()
 	{
+		LoadingScreen.ToggleIsLoading(true);
 		LoadingScreen.Instance.ToggleLoadingCanvas(true);
 
 		yield return new WaitUntil( () => PlayerManager.currentSceneSaveHandler.HasFinishedSaving());
