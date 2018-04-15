@@ -72,19 +72,15 @@ namespace Forest
 			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
-			int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier() - 1;
 			int maxGradeNumber = 10 % ((int) maxQualityGrade + 6);
-			int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
-			gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
-
-			QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
-
-			// Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
-			// Debug.Log("Max Grade Number: " + maxGradeNumber);
-			// Debug.Log("Gathered Grade: " + gatheredQuality);
-			// Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
+			
+			int qualityAverage = QualityMinigame.CalculateAverageGrade();
+			qualityAverage = Mathf.Clamp(qualityAverage, 0, maxGradeNumber);
+			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
 			HomesteadStockpile.UpdateTreesCountAtGrade(gatheredQuality, 1);
+
+			Debug.Log("Gathered Grade: " + (QualityGrade) qualityAverage);
 
 			//Visually phase tree out
 			Invoke("PhaseOutTree", 5);

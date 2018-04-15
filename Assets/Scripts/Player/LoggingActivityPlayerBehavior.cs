@@ -120,10 +120,15 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
+
+		// PlayerHud.ToggleQualityGame(true);
+		PlayerHud.EnableQualityGame();
 	}
 
 	public static void UnsnapPlayer()
 	{
+		PlayerHud.ToggleQualityGame(false);
+
 		CharacterMotor.SetCanMove(true);
 		CharacterInputController.SetCanTurn(true);
 		CharacterInputController.InitiateLoggingState(AnimState.NONE);

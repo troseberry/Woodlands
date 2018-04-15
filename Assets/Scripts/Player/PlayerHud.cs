@@ -25,8 +25,10 @@ public class PlayerHud : MonoBehaviour
 	private bool toolWheelIsOpen = false;
 	private bool toolsDisabledInside = false;
 
-	public GameObject InteractPrompt;
+	public GameObject interactPrompt;
 	private Text interactText;
+
+	public GameObject qualityGame;
 
 	
 	void Start () 
@@ -39,7 +41,7 @@ public class PlayerHud : MonoBehaviour
 		toolIconGroup.parent.transform.parent.gameObject.SetActive(true);
 		ChangeToolIcon();
 
-		interactText = InteractPrompt.transform.GetChild(3).GetComponent<Text>();
+		interactText = interactPrompt.transform.GetChild(3).GetComponent<Text>();
 	}
 	
 	void Update () 
@@ -155,11 +157,31 @@ public class PlayerHud : MonoBehaviour
 
 	public static void ToggleInteractPrompt()
 	{
-		PlayerHudReference.InteractPrompt.SetActive(!PlayerHudReference.InteractPrompt.activeSelf);
+		PlayerHudReference.interactPrompt.SetActive(!PlayerHudReference.interactPrompt.activeSelf);
 	}
 
 	public static void SetInteractPrompt(bool state)
 	{
-		PlayerHudReference.InteractPrompt.SetActive(state);
+		PlayerHudReference.interactPrompt.SetActive(state);
+	}
+
+	public static void ToggleQualityGame(bool state)
+	{
+		PlayerHudReference.qualityGame.SetActive(state);
+	}
+
+	public static void EnableQualityGame()
+	{
+		PlayerHudReference.StartCoroutine(PlayerHudReference.WaitForActivityLock());
+	}
+
+	IEnumerator WaitForActivityLock()
+	{
+		yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"));
+
+		yield return new WaitForSeconds(0.25f);
+
+		PlayerHudReference.qualityGame.SetActive(true);
 	}
 }
+
