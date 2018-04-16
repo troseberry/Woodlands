@@ -72,10 +72,9 @@ namespace Forest
 			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
-			int maxGradeNumber = 10 % ((int) maxQualityGrade + 6);
-			
 			int qualityAverage = QualityMinigame.CalculateAverageGrade();
-			qualityAverage = Mathf.Clamp(qualityAverage, 0, maxGradeNumber);
+			qualityAverage = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
+			
 			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
 			HomesteadStockpile.UpdateTreesCountAtGrade(gatheredQuality, 1);

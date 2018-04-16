@@ -177,7 +177,8 @@ public class PlayerHud : MonoBehaviour
 
 	IEnumerator WaitForActivityLock()
 	{
-		yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle"));
+
+		yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") || CharacterAnimator.GetCurrentAnimState().IsName("SawStart"));
 
 		yield return new WaitForSeconds(0.25f);
 

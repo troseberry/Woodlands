@@ -53,9 +53,9 @@ namespace FirewoodSplitting
 			hasBeenSplit = true;
 
 			int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetCurrentTier() - 1;
-			int maxGradeNumber = 10 % ((int) maxQualityGrade + 6);
+			int maxGradeNumber = (int) maxQualityGrade;
 			int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
-			gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
+			// gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
 
 			QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
 

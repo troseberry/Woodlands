@@ -114,41 +114,45 @@ public class Tool
 
 	public int GetTierQualityGradeEquivalent()
 	{
-		switch (currentTier)
-		{
-			case 1:
-				return 4;
-			case 2:
-				return 3;
-			case 3:
-				return 2;
-			case 4:
-				return 1;
-			case 5:
-				return 0;
-		}
-		return 4;
+		// switch (currentTier)
+		// {
+		// 	case 1:
+		// 		return 4;
+		// 	case 2:
+		// 		return 3;
+		// 	case 3:
+		// 		return 2;
+		// 	case 4:
+		// 		return 1;
+		// 	case 5:
+		// 		return 0;
+		// }
+		// return 4;
+
+		return currentTier - 1;
 	}
 
 	public string GetTierDescriptiveString()
 	{
-		QualityGrade tierEquivalent = QualityGrade.F;
-		switch(currentTier)
-		{
-			case 2:
-				tierEquivalent = QualityGrade.D;
-				break;
-			case 3:
-				tierEquivalent = QualityGrade.C;
-				break;
-			case 4:
-				tierEquivalent = QualityGrade.B;
-				break;
-			case 5:
-				tierEquivalent = QualityGrade.A;
-				break;
-		}
-		return tierDescriptiveString + tierEquivalent.ToString();
+		// QualityGrade tierEquivalent = QualityGrade.F;
+		// switch(currentTier)
+		// {
+		// 	case 2:
+		// 		tierEquivalent = QualityGrade.D;
+		// 		break;
+		// 	case 3:
+		// 		tierEquivalent = QualityGrade.C;
+		// 		break;
+		// 	case 4:
+		// 		tierEquivalent = QualityGrade.B;
+		// 		break;
+		// 	case 5:
+		// 		tierEquivalent = QualityGrade.A;
+		// 		break;
+		// }
+		// return tierDescriptiveString + tierEquivalent.ToString();
+
+		return tierDescriptiveString + ((QualityGrade) currentTier - 1).ToString();
 	}
 
 	public DevResourceQuantity[] GetDevResourceQuanties() { return upgradeCosts; }

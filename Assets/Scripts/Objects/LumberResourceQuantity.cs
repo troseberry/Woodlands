@@ -9,7 +9,8 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public enum QualityGrade {A, B, C, D, F};		//Hash Code: 0 - 4 
+// public enum QualityGrade {A, B, C, D, F};		//Hash Code: 0 - 4 
+public enum QualityGrade {F, D, C, B, A};		//Hash Code: 0 - 4
 
 [Serializable]
 public class LumberResourceQuantity 

@@ -75,7 +75,7 @@ public class SceneSaveHandler : MonoBehaviour
 		newSceneData.sceneObjects = sceneObjectsToSave;
 
 		SaveLoadScene.Save(newSceneData);
-		Debug.Log("Finished Scene Save (Save Handler)");
+		// Debug.Log("Finished Scene Save (Save Handler)");
 		hasFinishedSaving = true;
 	}
 

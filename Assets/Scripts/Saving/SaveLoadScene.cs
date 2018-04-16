@@ -36,7 +36,7 @@ public class SaveLoadScene
 			FileStream file = File.Open(path, FileMode.Open);
 			loadedScene = (SaveableSceneData)bf.Deserialize(file);
 			file.Close();
-			Debug.Log("Loaded Scene: " + loadedScene.sceneName);
+			// Debug.Log("Loaded Scene: " + loadedScene.sceneName);
 		}
 	}
 

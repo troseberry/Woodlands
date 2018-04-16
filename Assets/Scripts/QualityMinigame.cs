@@ -18,6 +18,12 @@ public class QualityMinigame : MonoBehaviour
 	{
 		
 	}
+
+
+	void OnEnabled()
+	{
+		//get current logging activity here instead of in update
+	}
 	
 	void Update ()
 	{
@@ -35,7 +41,7 @@ public class QualityMinigame : MonoBehaviour
 			// Debug.Log("Player Swing (Slider): " + qualitySlider.value);
 			// Debug.Log("Player Swing (Rounded): " + swingValue);
 
-			int gradeInt = FloatToGradeInt(swingValue, LoggingActivity.FELLING);
+			int gradeInt = FloatToGradeInt(swingValue, LoggingActivityPlayerBehavior.GetCurrentActivity());
 
 			Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
 
@@ -45,20 +51,30 @@ public class QualityMinigame : MonoBehaviour
 
 	int FloatToGradeInt(float swingVal, LoggingActivity activity)
 	{
-		switch (activity)
+		int returnValue = -1;
+		int toolTier = 0;
+
+		if (activity == LoggingActivity.FELLING)
 		{
-			case LoggingActivity.FELLING:
-				int toolTier = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier();
-				return CompareToRanges(swingVal, toolTier);
+			toolTier = PlayerTools.GetToolByName(ToolName.FELLING_AXE).GetCurrentTier();
 		}
-		return -1;
+		else if (activity == LoggingActivity.BUCKING)
+		{
+				toolTier = PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetCurrentTier();
+		}
+		else if (activity == LoggingActivity.SPLITTING)
+		{
+			toolTier = PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetCurrentTier();
+		}
+		returnValue = CompareToRanges(swingVal, toolTier);
+		return returnValue;
 	}
 
 	int CompareToRanges(float value, int toolTier)
 	{
 		int rangeIndex = 10 % ( (toolTier - 1) + 6);
 
-		// Debug.Log("Range Index: " + rangeIndex);
+		Debug.Log("Range Index: " + rangeIndex);
 
 		for (int i = 0; i < rangeIndex + 1; i++)
 		{
@@ -71,7 +87,8 @@ public class QualityMinigame : MonoBehaviour
 				return i;
 			}
 		}
-		return -1;
+		// Debug.Log("Returned Range Index");
+		return rangeIndex;
 	}
 
 	private static float[,] swingGradeRanges = new float[5,2]
@@ -86,6 +103,7 @@ public class QualityMinigame : MonoBehaviour
 	public static int CalculateAverageGrade()
 	{
 		int avg = Mathf.RoundToInt( (float) swingGrades.Average());
+		Debug.Log("Average: " + avg);
 		swingGrades.Clear();
 		return avg;
 	}

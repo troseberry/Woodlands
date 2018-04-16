@@ -82,7 +82,7 @@ public class SaveLoad : MonoBehaviour
 	{
 		if (File.Exists(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1]))
 		{
-			Debug.Log("Loading...");
+			// Debug.Log("Loading...");
 
 			BinaryFormatter data = new BinaryFormatter();
 			FileStream file = File.Open(Application.persistentDataPath + folderPath + currentSaveSlot + saveSlotStrings[currentSaveSlot - 1], FileMode.Open);

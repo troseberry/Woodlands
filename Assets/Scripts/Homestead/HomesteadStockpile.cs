@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HomesteadStockpile 
 {
-	//0 - 5 = A - F
+	//0 - 5 = F - A
 	private static int[] trees = new int[5]{0, 0, 5, 0, 0};
 	private static int[] logs = new int[5]{0, 5, 0, 0, 0};
 	private static int[] firewood = new int[5];
@@ -26,7 +26,7 @@ public class HomesteadStockpile
 
 	public static string GetTreesCountAsString()
 	{
-		return "A: " + trees[0] + " | B: " + trees[1] + " | C: " + trees[2] + " | D: " + trees[3] + " | F: " + trees[4];
+		return "F: " + trees[0] + " | D: " + trees[1] + " | C: " + trees[2] + " | B: " + trees[3] + " | A: " + trees[4];
 	}
 
 	public static void SetTreesCountAtGrade(QualityGrade grade, int newValue)
@@ -62,7 +62,7 @@ public class HomesteadStockpile
 
 	public static string GetLogsCountAsString()
 	{
-		return "A: " + logs[0] + " | B: " + logs[1] + " | C: " + logs[2] + " | D: " + logs[3] + " | F: " + logs[4];
+		return "F: " + logs[0] + " | D: " + logs[1] + " | C: " + logs[2] + " | B: " + logs[3] + " | A: " + logs[4];
 	}
 
 	public static void SetLogsCountAtGrade(QualityGrade grade, int newValue)
@@ -98,7 +98,7 @@ public class HomesteadStockpile
 
 	public static string GetFirewoodCountAsString()
 	{
-		return "A: " + firewood[0] + " | B: " + firewood[1] + " | C: " + firewood[2] + " | D: " + firewood[3] + " | F: " + firewood[4];
+		return "F: " + firewood[0] + " | D: " + firewood[1] + " | C: " + firewood[2] + " | B: " + firewood[3] + " | A: " + firewood[4];
 	}
 
 	public static void SetFirewoodCountAtGrade(QualityGrade grade, int newValue)

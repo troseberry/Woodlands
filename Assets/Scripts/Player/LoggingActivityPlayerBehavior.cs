@@ -213,6 +213,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		}
 	}
 
+	public static LoggingActivity GetCurrentActivity() { return currentActivity; }
+
 	#region FELLING METHODS
 		void RotateAroundTree()
 		{
