@@ -63,7 +63,7 @@ namespace LogBucking
 			}
 
 
-			if (locationStrokeCounts[loc] < 10)
+			if (locationStrokeCounts[loc] < 5)
 			{
 				int cut01 = loc == 0 ? 0 : 2;
 				int cut02 = loc== 0 ? 1 : 3;
@@ -73,7 +73,7 @@ namespace LogBucking
 				sawProgressCuts[cut02].CutFace(3);
 			}
 
-			if (locationStrokeCounts[loc] == 10) SawThrough(loc);
+			if (locationStrokeCounts[loc] == 5) SawThrough(loc);
 		}
 
 		void SawThrough(int loc)

@@ -29,10 +29,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	private static LogBehavior logToSplit;
 	private static int logsRemaining;
 
-	// defaults for Tree Felling
-	private static bool inForwardPosition = true;
-	private static bool inBackwardPosition = false;
-
 	private int actionCounter = 0;
 	
 	void Start()
@@ -92,26 +88,17 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			case LoggingActivity.FELLING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_FELLING);
 
-				inForwardPosition = true;
-				inBackwardPosition = false;
-
 				Vector3 toLookAt = new Vector3 (forestTreeToCut.transform.position.x, transform.position.y, forestTreeToCut.transform.position.z);
 				transform.LookAt(toLookAt);
 				break;
 			case LoggingActivity.BUCKING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_BUCKING);
-				
-				inForwardPosition = false;
-				inBackwardPosition = true;
 
 				transform.position = snapLocation.position;
 				transform.rotation = snapLocation.rotation;
 				break;
 			case LoggingActivity.SPLITTING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_SPLITTING);
-
-				inForwardPosition = true;
-				inBackwardPosition = false;
 
 				transform.position = snapLocation.position;
 				transform.rotation = snapLocation.rotation;
@@ -206,10 +193,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						break;
 				}
 			}
-			else if (Input.GetAxis("Right Trigger") == 1 || Input.GetMouseButtonDown(1))
-			{
-				if (currentActivity == LoggingActivity.BUCKING) PullBackward();
-			}
 		}
 	}
 
@@ -267,35 +250,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	#region BUCKING METHODS
 		void PushForward()
 		{
-			if (inBackwardPosition && actionCounter == 0)
+			if (CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle") && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH))
 				{ 
 					actionCounter = 1;
 
 					CharacterAnimator.PushForward();
-
-					felledTreeToSaw.SawLocation(markToSaw);
-					inForwardPosition = true;
-					inBackwardPosition = false;
-
-					StartCoroutine(ChangeCounterAfterSaw());
-				}
-			}
-		}
-
-		void PullBackward()
-		{
-			if (inForwardPosition && actionCounter == 0)
-			{
-				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PULL)) 
-				{
-					actionCounter = 1;
-
-					CharacterAnimator.PullBackward();
-					felledTreeToSaw.SawLocation(markToSaw);
-					inForwardPosition = false;
-					inBackwardPosition = true;
 
 					StartCoroutine(ChangeCounterAfterSaw());
 				}
@@ -304,20 +265,21 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChangeCounterAfterSaw()
 		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle") || CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_ForwardIdle"));
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle"));
+			felledTreeToSaw.SawLocation(markToSaw);
 			actionCounter = 0;
 		}
 
 		public void UnsnapAfterSaw()
 		{
 			StartCoroutine(UnsnapAfterSawAnim());
-			Debug.Log("Holding Here");
+			// Debug.Log("Unsnapped after Saw");
 		}
 
 		IEnumerator UnsnapAfterSawAnim()
 		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawSawing_BackwardIdle"));
-			Debug.Log("Backward State");
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle"));
+			// Debug.Log("Unsnapped after Saw (coroutine)");
 			UnsnapPlayer();
 			CharacterAnimator.ResetLoggingTriggers();
 		}

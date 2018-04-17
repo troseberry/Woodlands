@@ -5,6 +5,7 @@ using UnityEngine;
 public class ShowTreeCuts : MonoBehaviour 
 {
 	public bool rotatedCube;
+	public bool isFelled;
 
 	private float cutInc = 1f/9f;
 
@@ -30,6 +31,8 @@ public class ShowTreeCuts : MonoBehaviour
 	void Start()
 	{
 		mesh = GetComponent<MeshFilter>().mesh;
+
+		if (isFelled) cutInc = 1f/5f;
 	}
 
 	void Redraw () 
