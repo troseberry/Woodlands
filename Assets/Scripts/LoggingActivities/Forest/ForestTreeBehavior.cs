@@ -74,12 +74,12 @@ namespace Forest
 
 			int qualityAverage = QualityMinigame.CalculateAverageGrade();
 			qualityAverage = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
-			
+
 			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
 			HomesteadStockpile.UpdateTreesCountAtGrade(gatheredQuality, 1);
 
-			Debug.Log("Gathered Grade: " + (QualityGrade) qualityAverage);
+			Debug.Log("Gathered Grade: " + gatheredQuality);
 
 			//Visually phase tree out
 			Invoke("PhaseOutTree", 5);

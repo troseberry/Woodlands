@@ -72,11 +72,11 @@ public class QualityMinigame : MonoBehaviour
 
 	int CompareToRanges(float value, int toolTier)
 	{
-		int rangeIndex = 10 % ( (toolTier - 1) + 6);
+		int rangeIndex = toolTier - 1;
 
-		Debug.Log("Range Index: " + rangeIndex);
+		// Debug.Log("Range Index: " + rangeIndex);
 
-		for (int i = 0; i < rangeIndex + 1; i++)
+		for (int i = 4; i > rangeIndex - 1; i--)
 		{
 			// Debug.Log("Compare Range Index: " + i);
 			// Debug.Log("Compare (Lower): " + (value >= swingGradeRanges[i, 0]));
@@ -93,11 +93,11 @@ public class QualityMinigame : MonoBehaviour
 
 	private static float[,] swingGradeRanges = new float[5,2]
 	{
-		{0.5f, 0.5f},	
-		{0.49f, 0.51f},
-		{0.48f, 0.52f},
-		{0.47f, 0.53f},
 		{0f, 1f},
+		{0.47f, 0.53f},
+		{0.48f, 0.52f},
+		{0.49f, 0.51f},
+		{0.5f, 0.5f},	
 	};
 
 	public static int CalculateAverageGrade()

@@ -52,15 +52,15 @@ namespace FirewoodSplitting
 
 			hasBeenSplit = true;
 
-			int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.SPLITTING_AXE).GetCurrentTier() - 1;
-			int maxGradeNumber = (int) maxQualityGrade;
-			int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
-			// gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
+			int qualityAverage = QualityMinigame.CalculateAverageGrade();
+			qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
 
-			QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
+			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
 			HomesteadStockpile.UpdateFirewoodCountAtGrade(gatheredQuality, 2);
 			HomesteadStockpile.UpdateLogsCountAtGrade(maxQualityGrade, -1);
+
+			Debug.Log("Gathered Grade: " + gatheredQuality);
 
 			if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) <= 0)
 			{

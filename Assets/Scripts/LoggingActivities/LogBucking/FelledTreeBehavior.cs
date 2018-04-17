@@ -85,29 +85,16 @@ namespace LogBucking
 
 			if (locationFullySawed[0] && locationFullySawed[1])
 			{
-				int toolGradeEquivalent = PlayerTools.GetToolByName(ToolName.CROSSCUT_SAW).GetCurrentTier() - 1;
-				int maxGradeNumber = (int) maxQualityGrade;
-				
-				int gatheredQualityNumber = Mathf.Clamp(toolGradeEquivalent, toolGradeEquivalent, maxGradeNumber);
-				// gatheredQualityNumber = 10 % (gatheredQualityNumber + 6);
+				int qualityAverage = QualityMinigame.CalculateAverageGrade();
+				qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
 
-				QualityGrade gatheredQuality = (QualityGrade) gatheredQualityNumber;
-				
-				// Debug.Log("Tool Grade Number: " + toolGradeEquivalent);
-				// Debug.Log("Max Grade Number: " + maxGradeNumber);
-				Debug.Log("Gathered Grade (old): " + gatheredQuality);
-				// Debug.Log("Gathered Grade nUmber: " + gatheredQualityNumber);
+				QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
 				HomesteadStockpile.UpdateLogsCountAtGrade(gatheredQuality, 3);
 				HomesteadStockpile.UpdateTreesCountAtGrade(maxQualityGrade, -1);
 
-				int qualityAverage = QualityMinigame.CalculateAverageGrade();
-				qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxGradeNumber);
+				Debug.Log("Gathered Grade: " + gatheredQuality);
 
-				Debug.Log("Gathered Grade (new): " + (QualityGrade) qualityAverage);
-
-
-				
 				Invoke("PhaseOutLogs", 1.0f);
 			}
 		}

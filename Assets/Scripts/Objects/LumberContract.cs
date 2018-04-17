@@ -92,27 +92,27 @@ public class ContractDifficulty
 {
 	public int difficulty { get; set; }
 
-	public int gradeValue { get; set; }
+	public int gradeFuncVal { get; set; }
 	public int typeCount { get; set; }
 	public int rangeMax { get; set; }
 
 	public ContractDifficulty(int g, int t, int r)
 	{
-		gradeValue = g;
+		gradeFuncVal = g;
 		typeCount = t;
 		rangeMax = r;
 
-		difficulty = gradeValue + (typeCount * rangeMax);
+		difficulty = gradeFuncVal + (typeCount * rangeMax);
 	}
 
 	public int GetQualityGradeInt()
 	{
-		return gradeValue;
+		return gradeFuncVal;
 	}
 
 	public QualityGrade GetQualityGrade()
 	{
-		return (QualityGrade) gradeValue;
+		return (QualityGrade) gradeFuncVal;
 
 		//1 - 4 | 1 - 0
 		//2 - 3 | 2 - 1
