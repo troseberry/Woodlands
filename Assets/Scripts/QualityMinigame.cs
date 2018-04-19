@@ -21,6 +21,8 @@ public class QualityMinigame : MonoBehaviour
 	private float moveDuration = 0.8f;
 	private static bool sliderLeft = true;
 
+	private static bool playerDidInput = false;
+
 	void Start ()
 	{
 		Instance = this;
@@ -56,10 +58,12 @@ public class QualityMinigame : MonoBehaviour
 			{
 				sliderLeft = !sliderLeft;
 				timer = 0f;
+
+				if (sliderLeft) playerDidInput = false;
 			}
 			
 
-			if (Input.GetMouseButtonDown(0))
+			if (Input.GetMouseButtonDown(0) && !playerDidInput)
 			{
 				swingValue = qualitySlider.value < 0.5f ?
 				Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
@@ -74,8 +78,12 @@ public class QualityMinigame : MonoBehaviour
 				Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
 
 				swingGrades.Add(gradeInt);
+				playerDidInput = true;
 			}
 		}
+
+		// DebugPanel.Log("Timer", "Quality Game", timer);
+		// DebugPanel.Log("Player Did Input", "Quality Game", playerDidInput);
 	}
 
 	int FloatToGradeInt(float swingVal, LoggingActivity activity)
@@ -132,7 +140,7 @@ public class QualityMinigame : MonoBehaviour
 	public static int CalculateAverageGrade()
 	{
 		int avg = Mathf.RoundToInt( (float) swingGrades.Average());
-		Debug.Log("Average: " + avg);
+		Debug.Log("Average: " + avg + " | Count: " + swingGrades.Count);
 		swingGrades.Clear();
 
 		Instance.qualitySlider.value = 0f;
@@ -146,4 +154,18 @@ public class QualityMinigame : MonoBehaviour
 	public static void StartGame() { if (!gameStarted) gameStarted = true; }
 
 	public static void SetSliderValue(float value) { sliderValue = value;}
+
+	public static void ResetPlayerDidInput() { playerDidInput = false; }
+
+	public static void BackFillSwingGrades(int totalNeeded)
+	{
+		Debug.Log("Before Backfill: " + swingGrades.Count);
+		int toFill = totalNeeded - swingGrades.Count;
+
+		for (int i = 0; i < toFill; i++)
+		{
+			swingGrades.Add(Instance.FloatToGradeInt(1f, LoggingActivityPlayerBehavior.GetCurrentActivity()));
+		}
+		Debug.Log("After Backfill: " + swingGrades.Count);
+	}
 }

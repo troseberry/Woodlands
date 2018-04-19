@@ -243,11 +243,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward") && actionCounter == 0)
 			{
-				//only allow this to happen once. so add like a chop counter that gets
-				// reset once the coroutine is finished
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
-					// QualityMinigame.SetSliderValue(0f);
 					actionCounter = 1;
 					CharacterAnimator.ChopFull();
 					StartCoroutine(ChopDiagonalAfterAnim());
@@ -259,11 +256,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			QualityMinigame.StartGame();
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
-			// QualityMinigame.SetSliderValue(0.5f);
 			
 			forestTreeToCut.CutSide(sideToCut);
 			actionCounter = 0;
-			Debug.Log("Timer: " + QualityMinigame.timer);
+			// Debug.Log("Timer: " + QualityMinigame.timer);
 		}	
 	#endregion
 
