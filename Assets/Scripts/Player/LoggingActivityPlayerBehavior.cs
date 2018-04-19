@@ -43,6 +43,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			HandleSnapLogic();
 			ProcessInput();
 		}
+
+		DebugPanel.Log("Action Counter: ", "Quality Game", actionCounter);
 	}
 
 	public static void SetSnapInfo(bool canSnap) 
@@ -110,6 +112,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		// PlayerHud.ToggleQualityGame(true);
 		PlayerHud.EnableQualityGame();
+		StartCoroutine(AutoChopDiagonal());
 	}
 
 	public static void UnsnapPlayer()
@@ -199,6 +202,19 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	public static LoggingActivity GetCurrentActivity() { return currentActivity; }
 
 	#region FELLING METHODS
+
+		IEnumerator AutoChopDiagonal()
+		{
+			// yield return new WaitForSeconds(3f);
+
+			while (playerIsLocked)
+			{
+				ChopDiagonal();
+				yield return null;
+			}
+			yield return null;
+		}
+
 		void RotateAroundTree()
 		{
 			if (Mathf.Approximately(transform.eulerAngles.y, 30f)) 
@@ -225,12 +241,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		void ChopDiagonal()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") && actionCounter == 0)
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward") && actionCounter == 0)
 			{
 				//only allow this to happen once. so add like a chop counter that gets
 				// reset once the coroutine is finished
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
+					// QualityMinigame.SetSliderValue(0f);
 					actionCounter = 1;
 					CharacterAnimator.ChopFull();
 					StartCoroutine(ChopDiagonalAfterAnim());
@@ -240,10 +257,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChopDiagonalAfterAnim()
 		{
+			QualityMinigame.StartGame();
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+			// QualityMinigame.SetSliderValue(0.5f);
 			
 			forestTreeToCut.CutSide(sideToCut);
 			actionCounter = 0;
+			Debug.Log("Timer: " + QualityMinigame.timer);
 		}	
 	#endregion
 

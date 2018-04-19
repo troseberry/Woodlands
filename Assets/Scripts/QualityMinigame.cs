@@ -7,45 +7,74 @@ using UnityEngine.UI;
 
 public class QualityMinigame : MonoBehaviour
 {
+	public static QualityMinigame Instance;
+
 	public Slider qualitySlider;
+	public static float sliderValue;
 	private float swingValue = 0;
 
-	// private bool gameEnabled = false;
+	private static bool gameStarted = false;
 
 	private static List<int> swingGrades = new List<int>();
 
+	public static float timer = 0f;
+	private float moveDuration = 0.8f;
+	private static bool sliderLeft = true;
+
 	void Start ()
 	{
+		Instance = this;
 		
+		qualitySlider.value = 0f;
+		timer = 0f;
 	}
 
 
 	void OnEnabled()
 	{
 		//get current logging activity here instead of in update
+		qualitySlider.value = 0f;
+		timer = 0f;
 	}
 	
 	void Update ()
 	{
-		
-		qualitySlider.value = Mathf.PingPong(Time.time, 1);
-		 
-
-		if (Input.GetMouseButtonDown(0))
+		if (gameStarted)
 		{
-			swingValue = qualitySlider.value < 0.5f ?
-			Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
-			Mathf.Ceil(qualitySlider.value * 100) / 100 : 0.5f;
+			// qualitySlider.value = Mathf.PingPong(timer, 1);
+			// timer += Time.deltaTime;
+			// qualitySlider.value = sliderValue;
+
+			if (timer <  moveDuration)
+			{
+				timer += Time.deltaTime/moveDuration;
+
+				if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
+				else qualitySlider.value = Mathf.Lerp(0.8f, -0.2f, timer);
+			}
+			else if (timer >= moveDuration)
+			{
+				sliderLeft = !sliderLeft;
+				timer = 0f;
+			}
+			
+
+			if (Input.GetMouseButtonDown(0))
+			{
+				swingValue = qualitySlider.value < 0.5f ?
+				Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
+				Mathf.Ceil(qualitySlider.value * 100) / 100 : 0.5f;
 
 
-			// Debug.Log("Player Swing (Slider): " + qualitySlider.value);
-			// Debug.Log("Player Swing (Rounded): " + swingValue);
+				// Debug.Log("Player Swing (Slider): " + qualitySlider.value);
+				// Debug.Log("Player Swing (Rounded): " + swingValue);
 
-			int gradeInt = FloatToGradeInt(swingValue, LoggingActivityPlayerBehavior.GetCurrentActivity());
+				int gradeInt = FloatToGradeInt(swingValue, LoggingActivityPlayerBehavior.GetCurrentActivity());
 
-			Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
+				Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
 
-			swingGrades.Add(gradeInt);
+				swingGrades.Add(gradeInt);
+			}
 		}
 	}
 
@@ -105,6 +134,16 @@ public class QualityMinigame : MonoBehaviour
 		int avg = Mathf.RoundToInt( (float) swingGrades.Average());
 		Debug.Log("Average: " + avg);
 		swingGrades.Clear();
+
+		Instance.qualitySlider.value = 0f;
+		gameStarted = false;
+		sliderLeft = true;
+		timer = 0f;
+
 		return avg;
 	}
+
+	public static void StartGame() { if (!gameStarted) gameStarted = true; }
+
+	public static void SetSliderValue(float value) { sliderValue = value;}
 }
