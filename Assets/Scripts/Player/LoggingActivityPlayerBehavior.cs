@@ -112,7 +112,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		// PlayerHud.ToggleQualityGame(true);
 		PlayerHud.EnableQualityGame();
-		StartCoroutine(AutoChopDiagonal());
+		// StartCoroutine(AutoChopDiagonal());
+		
+		StartCoroutine(AutoSaw());
+
 	}
 
 	public static void UnsnapPlayer()
@@ -186,10 +189,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				switch(currentActivity)
 				{
 					case LoggingActivity.FELLING:
-						ChopDiagonal();
+						// ChopDiagonal();
 						break;
 					case LoggingActivity.BUCKING:
-						PushForward();
+						// PushForward();
 						break;
 					case LoggingActivity.SPLITTING:
 						ChopVertical();
@@ -255,6 +258,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		IEnumerator ChopDiagonalAfterAnim()
 		{
 			QualityMinigame.StartGame();
+
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
 			
 			forestTreeToCut.CutSide(sideToCut);
@@ -264,16 +268,25 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	#endregion
 
 	#region BUCKING METHODS
+
+		IEnumerator AutoSaw()
+		{
+			while (playerIsLocked)
+			{
+				PushForward();
+				yield return null;
+			}
+			yield return null;
+		}
+
 		void PushForward()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle") && actionCounter == 0)
+			if (CharacterAnimator.GetCurrentAnimState().IsName("Saw_Forward") && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH))
 				{ 
 					actionCounter = 1;
-
 					CharacterAnimator.PushForward();
-
 					StartCoroutine(ChangeCounterAfterSaw());
 				}
 			}
@@ -281,21 +294,24 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChangeCounterAfterSaw()
 		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle"));
+			QualityMinigame.StartGame();
+
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("Saw_Backward"));
+
 			felledTreeToSaw.SawLocation(markToSaw);
 			actionCounter = 0;
+			Debug.Log("Timer: " + Time.time);
 		}
 
 		public void UnsnapAfterSaw()
 		{
 			StartCoroutine(UnsnapAfterSawAnim());
-			// Debug.Log("Unsnapped after Saw");
 		}
 
 		IEnumerator UnsnapAfterSawAnim()
 		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("SawMiddle_Idle"));
-			// Debug.Log("Unsnapped after Saw (coroutine)");
+			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("Saw_Backward"));
+			
 			UnsnapPlayer();
 			CharacterAnimator.ResetLoggingTriggers();
 		}

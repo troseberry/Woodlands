@@ -18,7 +18,10 @@ public class QualityMinigame : MonoBehaviour
 	private static List<int> swingGrades = new List<int>();
 
 	public static float timer = 0f;
-	private float moveDuration = 0.8f;
+
+	// private float moveDuration = 0.8f;		//duration for tree felling
+	private float moveDuration = 0.46f;			//duration for log bucking
+
 	private static bool sliderLeft = true;
 
 	private static bool playerDidInput = false;
@@ -29,6 +32,8 @@ public class QualityMinigame : MonoBehaviour
 		
 		qualitySlider.value = 0f;
 		timer = 0f;
+
+		qualitySlider.minValue = -0.64f;
 	}
 
 
@@ -50,9 +55,13 @@ public class QualityMinigame : MonoBehaviour
 			if (timer <  moveDuration)
 			{
 				timer += Time.deltaTime/moveDuration;
+				
+				//logic for tree felling
+				// if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
+				// else qualitySlider.value = Mathf.Lerp(0.8f, -0.2f, timer);
 
 				if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
-				else qualitySlider.value = Mathf.Lerp(0.8f, -0.2f, timer);
+				else qualitySlider.value = Mathf.Lerp(0.46f, -0.64f, timer);
 			}
 			else if (timer >= moveDuration)
 			{
