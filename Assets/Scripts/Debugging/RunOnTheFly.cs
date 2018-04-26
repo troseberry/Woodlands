@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
 
 public class RunOnTheFly : MonoBehaviour 
 {	
@@ -68,4 +69,9 @@ public class RunOnTheFly : MonoBehaviour
 	// {
 	// 	AvailableContracts.GenerateNewContracts();
 	// }
+
+	public void PrintSaveLocation()
+	{
+		Debug.Log(Application.persistentDataPath);
+	}
 }

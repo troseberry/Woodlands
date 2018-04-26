@@ -34,5 +34,9 @@ public class RunOnTheFlyEditor : Editor
         {
             rotfScript.CreateNewSave();
         }
+        else if (GUILayout.Button("Print Save Location"))
+        {
+            rotfScript.PrintSaveLocation();
+        }
     }
 }
