@@ -85,6 +85,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterMotor.SetCanMove(false);
 		CharacterInputController.SetCanTurn(false);
 		CharacterInputController.ToggleToolsInput(false);
+
 		switch(currentActivity)
 		{
 			case LoggingActivity.FELLING:
@@ -98,6 +99,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 				transform.position = snapLocation.position;
 				transform.rotation = snapLocation.rotation;
+				StartCoroutine(AutoSaw());
 				break;
 			case LoggingActivity.SPLITTING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_SPLITTING);
@@ -109,12 +111,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
-
-		// PlayerHud.ToggleQualityGame(true);
-		PlayerHud.EnableQualityGame();
-		// StartCoroutine(AutoChopDiagonal());
 		
-		StartCoroutine(AutoSaw());
+		PlayerHud.EnableQualityGame();
+		QualityMinigame.SetMoveSpeed(currentActivity);
+
+		if (currentActivity == LoggingActivity.FELLING) StartCoroutine(AutoChopDiagonal());
+		else if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
+		else if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
 
 	}
 
@@ -208,8 +211,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator AutoChopDiagonal()
 		{
-			// yield return new WaitForSeconds(3f);
-
 			while (playerIsLocked)
 			{
 				ChopDiagonal();
@@ -319,9 +320,19 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	#region SPLLITTING METHODS
 
+		IEnumerator AutoChopVertical()
+		{
+			while (playerIsLocked)
+			{
+				ChopVertical();
+				yield return null;
+			}
+			yield return null;
+		}
+
 		void ChopVertical()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") && actionCounter == 0)
+			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Backward") && actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP))
 				{
@@ -334,6 +345,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChopVerticalAfterAnim()
 		{
+			QualityMinigame.StartGame();
+
 			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Forward"));
 			logToSplit.Split();
 			actionCounter = 0;

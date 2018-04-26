@@ -19,11 +19,10 @@ public class QualityMinigame : MonoBehaviour
 
 	public static float timer = 0f;
 
-	// private float moveDuration = 0.8f;		//duration for tree felling
-	private float moveDuration = 0.46f;			//duration for log bucking
+	private float moveDuration = 1f;
+	private static float moveSpeed;
 
 	private static bool sliderLeft = true;
-
 	private static bool playerDidInput = false;
 
 	void Start ()
@@ -32,8 +31,6 @@ public class QualityMinigame : MonoBehaviour
 		
 		qualitySlider.value = 0f;
 		timer = 0f;
-
-		qualitySlider.minValue = -0.64f;
 	}
 
 
@@ -48,20 +45,12 @@ public class QualityMinigame : MonoBehaviour
 	{
 		if (gameStarted)
 		{
-			// qualitySlider.value = Mathf.PingPong(timer, 1);
-			// timer += Time.deltaTime;
-			// qualitySlider.value = sliderValue;
-
 			if (timer <  moveDuration)
 			{
-				timer += Time.deltaTime/moveDuration;
-				
-				//logic for tree felling
-				// if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
-				// else qualitySlider.value = Mathf.Lerp(0.8f, -0.2f, timer);
+				timer += (Time.deltaTime/moveDuration) * moveSpeed;
 
 				if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
-				else qualitySlider.value = Mathf.Lerp(0.46f, -0.64f, timer);
+				else qualitySlider.value = Mathf.Lerp(1f, 0f, timer);
 			}
 			else if (timer >= moveDuration)
 			{
@@ -160,6 +149,23 @@ public class QualityMinigame : MonoBehaviour
 		return avg;
 	}
 
+	public static int CalculateAverageGrade(int remainingLogs)
+	{
+		int avg = Mathf.RoundToInt( (float) swingGrades.Average());
+		Debug.Log("Average: " + avg + " | Count: " + swingGrades.Count);
+		swingGrades.Clear();
+
+		if (remainingLogs == 1)
+		{
+			Instance.qualitySlider.value = 0f;
+			gameStarted = false;
+			sliderLeft = true;
+			timer = 0f;
+		}
+
+		return avg;
+	}
+
 	public static void StartGame() { if (!gameStarted) gameStarted = true; }
 
 	public static void SetSliderValue(float value) { sliderValue = value;}
@@ -176,5 +182,12 @@ public class QualityMinigame : MonoBehaviour
 			swingGrades.Add(Instance.FloatToGradeInt(1f, LoggingActivityPlayerBehavior.GetCurrentActivity()));
 		}
 		Debug.Log("After Backfill: " + swingGrades.Count);
+	}
+
+	public static void SetMoveSpeed(LoggingActivity activity) 
+	{
+		if (activity == LoggingActivity.FELLING) moveSpeed = 1.6f;
+		else if (activity == LoggingActivity.BUCKING) moveSpeed = 2f;
+		else if (activity == LoggingActivity.SPLITTING) moveSpeed = 1.15f;
 	}
 }
