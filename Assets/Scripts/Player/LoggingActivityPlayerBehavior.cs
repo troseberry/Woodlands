@@ -90,24 +90,17 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			case LoggingActivity.FELLING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_FELLING);
-
-				Vector3 toLookAt = new Vector3 (forestTreeToCut.transform.position.x, transform.position.y, forestTreeToCut.transform.position.z);
-				transform.LookAt(toLookAt);
 				break;
 			case LoggingActivity.BUCKING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_BUCKING);
-
-				transform.position = snapLocation.position;
-				transform.rotation = snapLocation.rotation;
-				StartCoroutine(AutoSaw());
 				break;
 			case LoggingActivity.SPLITTING:
 				CharacterInputController.InitiateLoggingState(AnimState.IDLE_SPLITTING);
-
-				transform.position = snapLocation.position;
-				transform.rotation = snapLocation.rotation;
 				break;
 		}
+		transform.position = snapLocation.position;
+		transform.rotation = snapLocation.rotation;
+
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
@@ -185,22 +178,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Right Bumper") || Input.GetButtonDown("Left Bumper"))
 			{
 				RotateAroundTree();
-			}
-
-			if (Input.GetAxis("Left Trigger") == 1 || Input.GetMouseButtonDown(0))
-			{
-				switch(currentActivity)
-				{
-					case LoggingActivity.FELLING:
-						// ChopDiagonal();
-						break;
-					case LoggingActivity.BUCKING:
-						// PushForward();
-						break;
-					case LoggingActivity.SPLITTING:
-						ChopVertical();
-						break;
-				}
 			}
 		}
 	}

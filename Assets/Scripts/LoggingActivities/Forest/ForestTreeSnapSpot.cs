@@ -10,6 +10,8 @@ namespace Forest
 		private ForestTreeBehavior parentTree;
 		private Transform playerTransform;
 
+		// public Transform[] snapSpots;
+
 		void Start()
 		{
 			parentTree = transform.parent.GetComponent<ForestTreeBehavior>();;
@@ -17,8 +19,9 @@ namespace Forest
 
 		void OnTriggerEnter(Collider other)
 		{	
-			if (other.tag.Equals("Player") && !name.Equals("ProximityTrigger"))
+			if (other.tag.Equals("Player"))
 			{
+				Debug.Log("can snap");
 				int side = 0;
 				switch(name)
 				{
@@ -41,8 +44,9 @@ namespace Forest
 
 		void OnTriggerExit(Collider other)
 		{
-			if (other.tag.Equals("Player") && name.Equals("ProximityTrigger"))
+			if (other.tag.Equals("Player"))
 			{
+				Debug.Log("cannot snap");
 				LoggingActivityPlayerBehavior.SetSnapInfo(false);
 
 			}
