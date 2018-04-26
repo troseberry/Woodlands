@@ -12,9 +12,16 @@ public class TravelInteractPrompt : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Interact") && canInteract)
 		{
-			// CallTravelMethod();
-			PlayerManager.currentSceneSaveHandler.SaveSceneData();
-			StartCoroutine(SaveSceneAndTravel());
+			if (triggerName.Contains("Trigger"))
+			{
+				
+				PlayerManager.currentSceneSaveHandler.SaveSceneData();
+				StartCoroutine(SaveSceneAndTravel());
+			}
+			else
+			{
+				CallTravelMethod();
+			}
 		}
 	}
 
@@ -27,6 +34,7 @@ public class TravelInteractPrompt : MonoBehaviour
 
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
 			PlayerHud.ToggleInteractPrompt();
+			
 		}
 	}
 
