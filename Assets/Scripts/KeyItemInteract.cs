@@ -45,7 +45,7 @@ public class KeyItemInteract : MonoBehaviour
 			canInteract = true;
 			
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
-			PlayerHud.ToggleInteractPrompt();
+			PlayerHud.ToggleInteractPrompt(true);
 		}
 	}
 
@@ -53,26 +53,23 @@ public class KeyItemInteract : MonoBehaviour
 	{
 		if (other.tag == "Player") 
 		{
-			if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
+			// if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
 
 			canInteract = false;
 			isMenuOpen = false;
 
-			PlayerHud.ToggleInteractPrompt();
+			PlayerHud.ToggleInteractPrompt(false);
 			CloseMenu();
 		}
 	}
 
+	// Only used for the bed/sleep trigger
 	void OnTriggerStay(Collider other)
 	{
-		if (other.tag == "Player" && !canInteract) 
+		if (other.tag == "Player" && name.Equals("Bed"))
 		{
-			if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
-
-			canInteract = true;
-			
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
-			PlayerHud.ToggleInteractPrompt();
+			PlayerHud.ToggleInteractPrompt(TimeManager.IsInSleepTimeFrame());
 		}
 	}
 

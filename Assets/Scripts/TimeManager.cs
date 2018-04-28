@@ -21,7 +21,7 @@ public class TimeManager : MonoBehaviour
 	private static bool didDailyGeneration = false;
 
 	public const float morningTime = 480f;
-	public const float sleepTime = 1320f;
+	public const float sleepTime = 1200f;
 
 	
 	void Start()
@@ -31,8 +31,9 @@ public class TimeManager : MonoBehaviour
 
 	void Update () 
 	{
-		DebugPanel.Log("Did Daily Generation: ", "Save Data", didDailyGeneration);
-		// Debug.Log("Did Daily Generation: " + didDailyGeneration);
+		DebugPanel.Log("Did Daily Generation: ", "Time Manager", didDailyGeneration);
+		DebugPanel.Log("In Sleep Time: ", "Time Manager", IsInSleepTimeFrame());
+
 		if (currentTime < dayLength)
 		{
 			currentTime += (Time.deltaTime / 0.8333f) * timeSpeed;

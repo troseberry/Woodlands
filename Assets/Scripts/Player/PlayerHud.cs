@@ -155,9 +155,9 @@ public class PlayerHud : MonoBehaviour
 		PlayerHudReference.interactText.text = toDisplay;
 	}
 
-	public static void ToggleInteractPrompt()
+	public static void ToggleInteractPrompt(bool state)
 	{
-		PlayerHudReference.interactPrompt.SetActive(!PlayerHudReference.interactPrompt.activeSelf);
+		PlayerHudReference.interactPrompt.SetActive(state);
 	}
 
 	public static void SetInteractPrompt(bool state)

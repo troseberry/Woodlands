@@ -9,6 +9,7 @@ public class Sleep : MonoBehaviour
 	public void SleepToMorning()
 	{
 		sleepPrompt.CloseMenu();
+		PlayerHud.ToggleInteractPrompt(false);
 		PlayerEnergy.RestoreEnergyPercentage(DetermineSleepDuration());
 		TimeManager.ProgressToMorningTime();
 	}

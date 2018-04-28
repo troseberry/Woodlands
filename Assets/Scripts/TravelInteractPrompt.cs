@@ -33,7 +33,7 @@ public class TravelInteractPrompt : MonoBehaviour
 			triggerName = gameObject.name;
 
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
-			PlayerHud.ToggleInteractPrompt();
+			PlayerHud.ToggleInteractPrompt(true);
 			
 		}
 	}
@@ -45,7 +45,7 @@ public class TravelInteractPrompt : MonoBehaviour
 			canInteract = false;
 			triggerName = "none";
 
-			PlayerHud.ToggleInteractPrompt();
+			PlayerHud.ToggleInteractPrompt(false);
 		}
 	}
 
