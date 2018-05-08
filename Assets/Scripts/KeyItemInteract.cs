@@ -21,6 +21,7 @@ public class KeyItemInteract : MonoBehaviour
 	
 	void Update () 
 	{
+		DebugPanel.Log("Bed - Can Interact: ", canInteract);
 		if (canInteract && Input.GetButtonDown("Interact"))
 		{
 			if (!isMenuOpen) 
@@ -53,8 +54,6 @@ public class KeyItemInteract : MonoBehaviour
 	{
 		if (other.tag == "Player") 
 		{
-			// if (name.Equals("Bed") && !TimeManager.IsInSleepTimeFrame()) return;
-
 			canInteract = false;
 			isMenuOpen = false;
 
@@ -70,6 +69,7 @@ public class KeyItemInteract : MonoBehaviour
 		{
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
 			PlayerHud.ToggleInteractPrompt(TimeManager.IsInSleepTimeFrame());
+			canInteract = TimeManager.IsInSleepTimeFrame();
 		}
 	}
 
