@@ -84,7 +84,6 @@ public class PlayerManager : MonoBehaviour
 
 		if (scene.name.Equals("MainCabin")) 
 		{
-			Debug.Log("Upscale");
 			transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
 		}
 		else
@@ -107,7 +106,6 @@ public class PlayerManager : MonoBehaviour
 
 		if (SceneManager.GetActiveScene().name.Equals("MainCabin")) 
 		{
-			Debug.Log("Upscale");
 			transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
 		}
 		else

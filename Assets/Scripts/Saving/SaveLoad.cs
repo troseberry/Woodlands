@@ -67,6 +67,11 @@ public class SaveLoad : MonoBehaviour
 		saveData.studyRoom = PlayerRooms.GetStudyRoom();
 		saveData.workshopRoom = PlayerRooms.GetWorkshopRoom();
 
+		saveData.coffeeMakerAddition = PlayerAdditions.GetCoffeeMakerAddition();
+		saveData.fireplaceAddition = PlayerAdditions.GetFireplaceAddition();
+		saveData.frontPorchAddition = PlayerAdditions.GetFrontPorchAddition();
+		saveData.woodworkingBenchAddition = PlayerAdditions.GetWoodworkingBenchAddition();
+
 		saveData.currentTime = TimeManager.GetCurrentTime();
 
 		saveData.lastSceneName = SceneManager.GetActiveScene().name;
@@ -110,6 +115,11 @@ public class SaveLoad : MonoBehaviour
 			PlayerRooms.SetOfficeRoom(loadData.officeRoom);
 			PlayerRooms.SetStudyRoom(loadData.studyRoom);
 			PlayerRooms.SetWorkshopRoom(loadData.workshopRoom);
+
+			PlayerAdditions.SetCoffeeMakerAddition(loadData.coffeeMakerAddition);
+			PlayerAdditions.SetFireplaceAddition(loadData.fireplaceAddition);
+			PlayerAdditions.SetFrontPorchAddition(loadData.frontPorchAddition);
+			PlayerAdditions.SetWoodworkingBenchAddition(loadData.woodworkingBenchAddition);
 
 			PlayerContracts.SetActiveContractsList(loadData.activeContracts);
 			AvailableContracts.SetAvailableContracts(loadData.availableContracts);
@@ -179,6 +189,11 @@ public class SaveLoad : MonoBehaviour
 		saveData.officeRoom = new OfficeRoom();
 		saveData.studyRoom = new StudyRoom();
 		saveData.workshopRoom = new WorkshopRoom();
+
+		saveData.coffeeMakerAddition = new CoffeeMakerAddition();
+		saveData.fireplaceAddition = new FireplaceAddition();
+		saveData.frontPorchAddition = new FrontPorchAddition();
+		saveData.woodworkingBenchAddition = new WoodworkingBenchAddition();
 
 		saveData.activeContracts = new List<LumberContract>();
 		saveData.availableContracts = new List<LumberContract>();

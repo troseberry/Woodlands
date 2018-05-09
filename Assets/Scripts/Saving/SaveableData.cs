@@ -45,6 +45,11 @@ public class SaveableData
 	public StudyRoom studyRoom;
 	public WorkshopRoom workshopRoom;
 
+	public CoffeeMakerAddition coffeeMakerAddition;
+	public FireplaceAddition fireplaceAddition;
+	public FrontPorchAddition frontPorchAddition;
+	public WoodworkingBenchAddition woodworkingBenchAddition;
+
 	public float currentTime;
 
 	public string lastSceneName;

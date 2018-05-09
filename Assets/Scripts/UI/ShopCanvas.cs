@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class ShopCanvas : MonoBehaviour 
 {
 	public Transform roomUpgradesGroup;
-	public GameObject homeImprovementsGroup;
+	public GameObject additionsGroup;
 	public GameObject clothesGroup;
 
 	private static bool updateRooms = false;
 	private static bool updateClothes = false;
-	private static bool updateHomesteadImprovements = false;
+	private static bool updateHomesteadAdditions = false;
 
+	private Text currentDevResources;
 
 	void Start()
 	{
+		currentDevResources = transform.Find("CurrentDevResources").GetComponent<Text>();
 		UpdateRoomsInfo();
 		SelectRoomUpgrades();
 	}
@@ -23,19 +25,20 @@ public class ShopCanvas : MonoBehaviour
 	void Update()
 	{
 		if (updateRooms) UpdateRoomsInfo();
+		if (updateHomesteadAdditions) UpdateAdditionsInfo();
 
 		if (GetComponent<Canvas>().enabled) UpdatePlayerResources();
 	}
 
 	void UpdatePlayerResources()
 	{
-		transform.GetChild(5).GetComponent<Text>().text = PlayerResources.GetPlayerResourcesAsString();
+		currentDevResources.text = PlayerResources.GetPlayerResourcesAsString();
 	}
 
 	void TurnOffAll()
 	{
 		roomUpgradesGroup.gameObject.SetActive(false);
-		homeImprovementsGroup.SetActive(false);
+		additionsGroup.SetActive(false);
 		clothesGroup.SetActive(false);
 	}
 
@@ -45,10 +48,11 @@ public class ShopCanvas : MonoBehaviour
 		roomUpgradesGroup.gameObject.SetActive(true);
 	}
 
-	public void SelectHomeImprovements()
+	public void SelectHomesteadAdditions()
 	{
 		TurnOffAll();
-		homeImprovementsGroup.SetActive(true);
+		additionsGroup.SetActive(true);
+		UpdateAdditionsInfo();
 	}
 
 	public void SelectClothes()
@@ -78,5 +82,29 @@ public class ShopCanvas : MonoBehaviour
 		roomUpgradesGroup.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = PlayerRooms.GetNextWorkshopUpgradeCostsAsString();
 
 		updateRooms = false;
+	}
+
+	void UpdateAdditionsInfo()
+	{
+		// should disable these or throw an overlay over them if they've already been unlocked
+		
+		additionsGroup.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = PlayerAdditions.GetCoffeeMakerAddition().GetPurchaseCosts().ToString();
+		additionsGroup.transform.GetChild(0).GetChild(4).gameObject.SetActive(PlayerAdditions.GetCoffeeMakerAddition().GetIsUnlocked());
+
+		additionsGroup.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = PlayerAdditions.GetFireplaceAddition().GetPurchaseCosts().ToString();
+		additionsGroup.transform.GetChild(1).GetChild(4).gameObject.SetActive(PlayerAdditions.GetFireplaceAddition().GetIsUnlocked());
+
+		additionsGroup.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = PlayerAdditions.GetFrontPorchAddition().GetPurchaseCosts().ToString();
+		additionsGroup.transform.GetChild(2).GetChild(4).gameObject.SetActive(PlayerAdditions.GetFrontPorchAddition().GetIsUnlocked());
+
+		additionsGroup.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = PlayerAdditions.GetWoodworkingBenchAddition().GetPurchaseCosts().ToString();
+		additionsGroup.transform.GetChild(3).GetChild(4).gameObject.SetActive(PlayerAdditions.GetWoodworkingBenchAddition().GetIsUnlocked());
+
+		updateHomesteadAdditions = false;
+	}
+
+	public static void TriggerAdditionsInfoUpdate()
+	{
+		updateHomesteadAdditions = true;
 	}
 }
