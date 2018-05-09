@@ -90,8 +90,11 @@ public class AvailableContracts : MonoBehaviour
 		}
 		
 		//This shows newest contracts last. consider starting at end of list and going backward to show newest first
+		// Debug.Log("Available Count: " + availableContracts.Count);
+		// Debug.Log("Available Total Display: " + totalNumberToDisplay);
 		for (int j = 0; j < totalNumberToDisplay; j++)
 		{
+			// Debug.Log("Available Populate Index: " + j);
 			contractsContent.GetChild(j).GetChild(0).GetComponent<Text>().text = availableContracts[j].GetCompletionDeadline().ToString();
 			contractsContent.GetChild(j).GetChild(1).GetComponent<Text>().text = "Quality Grade: " + availableContracts[j].GetRequiredLumber().GetTreeGrade();
 			contractsContent.GetChild(j).GetChild(2).GetComponent<Text>().text = availableContracts[j].GetRequiredLumber().StringWithoutQuality();
@@ -104,13 +107,16 @@ public class AvailableContracts : MonoBehaviour
 
 	public static void GenerateNewContracts()
 	{
-		Debug.Log("To Remove Count: " + contractsToRemove.Count);
+		// Debug.Log("To Remove Count: " + contractsToRemove.Count);
 		if (contractsToRemove.Count > 0)
 		{
 			for (int i = contractsToRemove.Count - 1; i >= 0; i--)
 			{
-				Debug.Log("Remove #: " + i);
-				availableContracts.RemoveAt(contractsToRemove[i]);
+				if (contractsToRemove[i] <= availableContracts.Count - 1)
+				{
+					// Debug.Log("Remove Index: " + contractsToRemove[i] + " | Loop Index: " + i);
+					availableContracts.RemoveAt(contractsToRemove[i]);
+				}
 			}
 			contractsToRemove.Clear();
 		}

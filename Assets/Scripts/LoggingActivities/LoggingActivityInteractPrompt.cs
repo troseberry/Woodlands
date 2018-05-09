@@ -15,7 +15,7 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 		if (other.tag == "Player" && !permenantlyDisabled) 
 		{
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
-			PlayerHud.SetInteractPrompt(true);
+			PlayerHud.ToggleInteractPrompt(true);
 		}
 	}
 
@@ -23,13 +23,13 @@ public class LoggingActivityInteractPrompt : MonoBehaviour
 	{
 		if (other.tag == "Player" && !permenantlyDisabled) 
 		{
-			PlayerHud.SetInteractPrompt(false);
+			PlayerHud.ToggleInteractPrompt(false);
 		}
 	}
 
 	public void HideUI()
 	{
 		permenantlyDisabled = true;
-		PlayerHud.SetInteractPrompt(false);
+		PlayerHud.ToggleInteractPrompt(false);
 	}
 }

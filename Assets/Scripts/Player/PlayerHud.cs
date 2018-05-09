@@ -160,11 +160,6 @@ public class PlayerHud : MonoBehaviour
 		PlayerHudReference.interactPrompt.SetActive(state);
 	}
 
-	public static void SetInteractPrompt(bool state)
-	{
-		PlayerHudReference.interactPrompt.SetActive(state);
-	}
-
 	public static void ToggleQualityGame(bool state)
 	{
 		PlayerHudReference.qualityGame.SetActive(state);
