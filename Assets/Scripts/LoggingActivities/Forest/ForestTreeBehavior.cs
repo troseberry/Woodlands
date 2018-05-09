@@ -60,9 +60,9 @@ namespace Forest
 		{
 			int oppositeSide = side % 2 == 0 ? (side + 1) : (side - 1);
 
-			int sideToFall = (sideCutsCount[side] >= sideCutsCount[oppositeSide]) ? side : oppositeSide;
 			transform.parent.GetComponentInChildren<LoggingActivityInteractPrompt>().HideUI();
-			ApplyFallingForce(sideToFall);
+			
+			ApplyFallingForce(oppositeSide);
 			hasFallen = true;
 
 			foreach (ForestTreeSnapSpot snap in transform.GetComponentsInChildren<ForestTreeSnapSpot>())
