@@ -8,13 +8,17 @@ public class TravelInteractPrompt : MonoBehaviour
 	private bool canInteract;
 	private string triggerName;
 	
+	void Start()
+	{
+		triggerName = gameObject.name;
+	}
+
 	void Update () 
 	{
 		if (Input.GetButtonDown("Interact") && canInteract)
 		{
 			if (triggerName.Contains("Trigger"))
 			{
-				
 				PlayerManager.currentSceneSaveHandler.SaveSceneData();
 				StartCoroutine(SaveSceneAndTravel());
 			}
@@ -30,8 +34,7 @@ public class TravelInteractPrompt : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			canInteract = true;
-			triggerName = gameObject.name;
-
+			
 			PlayerHud.SetInteractText(GetComponent<DisplayText>().displayText);
 			PlayerHud.ToggleInteractPrompt(true);
 			
@@ -43,10 +46,14 @@ public class TravelInteractPrompt : MonoBehaviour
 		if (other.tag == "Player")
 		{
 			canInteract = false;
-			triggerName = "none";
 
 			PlayerHud.ToggleInteractPrompt(false);
 		}
+	}
+
+	public void OnTriggerStay(Collider other)
+	{
+
 	}
 
 	IEnumerator SaveSceneAndTravel()

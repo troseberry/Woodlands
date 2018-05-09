@@ -79,6 +79,16 @@ public class PlayerManager : MonoBehaviour
 		{
 			stateDrivenCamera.enabled = true;
 		}
+
+		if (scene.name.Equals("MainCabin")) 
+		{
+			Debug.Log("Upscale");
+			transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+		}
+		else
+		{
+			transform.localScale = Vector3.one;
+		}
 	}
 
 	void OnDisable()
@@ -92,6 +102,16 @@ public class PlayerManager : MonoBehaviour
 
 		playerLookAt = GameObject.Find("Head").transform;
 		// playerFollow = GameObject.Find("Logger").transform;
+
+		if (SceneManager.GetActiveScene().name.Equals("MainCabin")) 
+		{
+			Debug.Log("Upscale");
+			transform.localScale = new Vector3(1.25f, 1.25f, 1.25f);
+		}
+		else
+		{
+			transform.localScale = Vector3.one;
+		}
 	}
 
 	public static void SetSpawnLocation(int start, int destination)
