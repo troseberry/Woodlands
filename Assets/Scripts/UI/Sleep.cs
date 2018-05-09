@@ -12,6 +12,8 @@ public class Sleep : MonoBehaviour
 		PlayerHud.ToggleInteractPrompt(false);
 		PlayerEnergy.RestoreEnergyPercentage(DetermineSleepDuration());
 		TimeManager.ProgressToMorningTime();
+
+		SaveLoad.Save();
 	}
 
 	float DetermineSleepDuration()
