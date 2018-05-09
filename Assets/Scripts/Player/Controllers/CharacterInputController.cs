@@ -19,6 +19,7 @@ public class CharacterInputController : MonoBehaviour
 	private float rotationOffset;
 
 	private static bool canTurn = true;
+	private static bool canRun = true;
 
 	private static bool doChangeTool = false;
 	private static int startingToolLocation;
@@ -80,7 +81,7 @@ public class CharacterInputController : MonoBehaviour
 		#region MOVEMENT INPUT
 		if (vertInput != 0 || horzInput != 0)
 		{
-			if (Input.GetButton("Move Speed"))
+			if (Input.GetButton("Run") && canRun)
 			{
 				CharacterAnimator.SetMovementState(AnimState.RUN);
 			}
@@ -114,6 +115,8 @@ public class CharacterInputController : MonoBehaviour
 	public static void ToggleCharacterInput(bool canInput) { if (freeLookInputEnabled) characterInputEnabled = canInput; }
 
 	public static void SetCanTurn(bool turn) { if (freeLookInputEnabled) canTurn = turn; }
+
+	public static void SetCanRun(bool run) { canRun = run; }
 
 	public static void ToggleCameraInput(bool canInput) { if (freeLookInputEnabled) characterCameraController.enabled = canInput; }
 

@@ -71,6 +71,7 @@ public class PlayerManager : MonoBehaviour
 		if (scene.name.Equals("MainCabin") || scene.name.Equals("Workshop"))
 		{
 			stateDrivenCamera.enabled = false;
+			CharacterInputController.SetCanRun(false);
 
 			if (scene.name.Equals("MainCabin")) GameObject.Find("CM_ClearShotCamera_MainCabin").GetComponent<CinemachineClearShot>().m_LookAt = playerLookAt;
 			if (scene.name.Equals("Workshop")) GameObject.Find("CM_VirtualCamera_Workshop").GetComponent<CinemachineVirtualCamera>().m_LookAt = playerLookAt;
@@ -78,6 +79,7 @@ public class PlayerManager : MonoBehaviour
 		else
 		{
 			stateDrivenCamera.enabled = true;
+			CharacterInputController.SetCanRun(true);
 		}
 
 		if (scene.name.Equals("MainCabin")) 
