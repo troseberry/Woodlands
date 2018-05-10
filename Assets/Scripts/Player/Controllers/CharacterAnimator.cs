@@ -128,6 +128,18 @@ public class CharacterAnimator : MonoBehaviour
 			}
 		}
 
+		public static void StartChopLoop()
+		{
+			if (!loggerAnimator.GetBool("ChopBool"))
+			loggerAnimator.SetBool("ChopBool", true);
+		}
+
+		public static void EndChopLoop()
+		{
+			if (loggerAnimator.GetBool("ChopBool"))
+			loggerAnimator.SetBool("ChopBool", false);
+		}
+
 		public static void ChopFull() { loggerAnimator.SetTrigger("ChopFull"); }
 
 		public static void PushForward() { loggerAnimator.SetTrigger("PushForward"); }

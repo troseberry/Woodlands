@@ -52,7 +52,7 @@ namespace FirewoodSplitting
 
 			hasBeenSplit = true;
 
-			QualityMinigame.BackFillSwingGrades(1);
+			// QualityMinigame.BackFillSwingGrades(1);
 
 			int qualityAverage = QualityMinigame.CalculateAverageGrade(HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade));
 			qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());

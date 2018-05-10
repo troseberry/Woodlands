@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class HomesteadAdditionHandler : MonoBehaviour
 {
-	public static HomesteadAdditionHandler Instance;
-
 	public AdditionName addition;
 
 	public GameObject[] toEnable;

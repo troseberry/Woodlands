@@ -105,11 +105,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		playerIsLocked = true;
 		
-		PlayerHud.EnableQualityGame();
-		QualityMinigame.SetMoveSpeed(currentActivity);
+		// PlayerHud.EnableQualityGame();
+		// QualityMinigame.SetMoveSpeed(currentActivity);
 
-		if (currentActivity == LoggingActivity.FELLING) StartCoroutine(AutoChopDiagonal());
-		else if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
+		// if (currentActivity == LoggingActivity.FELLING) StartCoroutine(AutoChopDiagonal());
+		if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
 		else if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
 
 	}
@@ -175,9 +175,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	{
 		if (playerIsLocked)
 		{
-			if (Input.GetKeyDown(KeyCode.R) || Input.GetButtonDown("Right Bumper") || Input.GetButtonDown("Left Bumper"))
+			if (Input.GetMouseButton(0))
 			{
-				RotateAroundTree();
+				ChopDiagonal();
+			}
+			else
+			{
+				CharacterAnimator.EndChopLoop();
 			}
 		}
 	}
@@ -186,48 +190,15 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	#region FELLING METHODS
 
-		IEnumerator AutoChopDiagonal()
-		{
-			while (playerIsLocked)
-			{
-				ChopDiagonal();
-				yield return null;
-			}
-			yield return null;
-		}
-
-		void RotateAroundTree()
-		{
-			if (Mathf.Approximately(transform.eulerAngles.y, 30f)) 
-			{
-				transform.position = new Vector3(transform.position.x, 0 , transform.position.z + 2);
-				transform.eulerAngles = new Vector3(0, 210, 0);
-			}
-			else if (Mathf.Approximately(transform.eulerAngles.y, 120f)) 
-			{
-				transform.position = new Vector3(transform.position.x + 2, 0 , transform.position.z);
-				transform.eulerAngles = new Vector3(0, 300, 0);
-			}
-			else if (Mathf.Approximately(transform.eulerAngles.y, 210f)) 
-			{
-				transform.position = new Vector3(transform.position.x, 0 , transform.position.z - 2);
-				transform.eulerAngles = new Vector3(0, 30, 0);
-			}
-			else if (Mathf.Approximately(transform.eulerAngles.y, 300f)) 
-			{
-				transform.position = new Vector3(transform.position.x - 2, 0 , transform.position.z);
-				transform.eulerAngles = new Vector3(0, 120, 0);
-			}
-		}
-
 		void ChopDiagonal()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Backward") && actionCounter == 0)
+			if (actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
+					Debug.Log("Diagonal Chop");
 					actionCounter = 1;
-					CharacterAnimator.ChopFull();
+					CharacterAnimator.StartChopLoop();
 					StartCoroutine(ChopDiagonalAfterAnim());
 				}
 			}
@@ -235,13 +206,12 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChopDiagonalAfterAnim()
 		{
-			QualityMinigame.StartGame();
-
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopDiagonal_Forward"));
+			yield return new WaitForSeconds(CharacterAnimator.GetCurrentAnimState().length);
 			
 			forestTreeToCut.CutSide(sideToCut);
+			Debug.Log("Diagonal Chop 2");
+
 			actionCounter = 0;
-			// Debug.Log("Timer: " + QualityMinigame.timer);
 		}	
 	#endregion
 

@@ -23,7 +23,7 @@ public class QualityMinigame : MonoBehaviour
 	private static float moveSpeed;
 
 	private static bool sliderLeft = true;
-	private static bool playerDidInput = false;
+	// private static bool playerDidInput = false;
 
 	void Start ()
 	{
@@ -47,7 +47,7 @@ public class QualityMinigame : MonoBehaviour
 		{
 			if (timer <  moveDuration)
 			{
-				timer += (Time.deltaTime/moveDuration) * moveSpeed;
+				timer += (Time.deltaTime/moveDuration);
 
 				if (sliderLeft) qualitySlider.value = Mathf.Lerp(0f, 1f, timer);
 				else qualitySlider.value = Mathf.Lerp(1f, 0f, timer);
@@ -57,11 +57,11 @@ public class QualityMinigame : MonoBehaviour
 				sliderLeft = !sliderLeft;
 				timer = 0f;
 
-				if (sliderLeft) playerDidInput = false;
+				// if (sliderLeft) playerDidInput = false;
 			}
 			
 
-			if (Input.GetMouseButtonDown(0) && !playerDidInput)
+			if (Input.GetMouseButtonDown(0))
 			{
 				swingValue = qualitySlider.value < 0.5f ?
 				Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
@@ -76,7 +76,7 @@ public class QualityMinigame : MonoBehaviour
 				Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
 
 				swingGrades.Add(gradeInt);
-				playerDidInput = true;
+				// playerDidInput = true;
 			}
 		}
 
@@ -170,19 +170,21 @@ public class QualityMinigame : MonoBehaviour
 
 	public static void SetSliderValue(float value) { sliderValue = value;}
 
-	public static void ResetPlayerDidInput() { playerDidInput = false; }
+	public static bool IsGradeListEmpty() { return swingGrades.Count == 0; }
 
-	public static void BackFillSwingGrades(int totalNeeded)
-	{
-		Debug.Log("Before Backfill: " + swingGrades.Count);
-		int toFill = totalNeeded - swingGrades.Count;
+	// public static void ResetPlayerDidInput() { playerDidInput = false; }
 
-		for (int i = 0; i < toFill; i++)
-		{
-			swingGrades.Add(Instance.FloatToGradeInt(1f, LoggingActivityPlayerBehavior.GetCurrentActivity()));
-		}
-		Debug.Log("After Backfill: " + swingGrades.Count);
-	}
+	// public static void BackFillSwingGrades(int totalNeeded)
+	// {
+	// 	Debug.Log("Before Backfill: " + swingGrades.Count);
+	// 	int toFill = totalNeeded - swingGrades.Count;
+
+	// 	for (int i = 0; i < toFill; i++)
+	// 	{
+	// 		swingGrades.Add(Instance.FloatToGradeInt(1f, LoggingActivityPlayerBehavior.GetCurrentActivity()));
+	// 	}
+	// 	Debug.Log("After Backfill: " + swingGrades.Count);
+	// }
 
 	public static void SetMoveSpeed(LoggingActivity activity) 
 	{
