@@ -3,7 +3,7 @@ guid: 8339c33d34a9045e7b93228a6adca9b4
 timeCreated: 1519124782
 licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Beams
     100002: Cabin
@@ -73,6 +73,21 @@ ModelImporter:
     100130: Window_Small_Outer_Int_003
     100132: Window_Small_Outer_Int_004
     100134: Windows
+    100136: Front_Step
+    100138: Front_Step_001
+    100140: Door
+    100142: DoorGroup
+    100144: Doorway
+    100146: Handle
+    100148: Hinge_01
+    100150: Hinge_02
+    100152: Hinge_03
+    100154: Hinges
+    100156: Porch_Roof_Short
+    100158: Roof_Porch
+    100160: Roof_Porch_Short
+    100162: RoofGroup
+    100164: Roof_Front_Short
     400000: Beams
     400002: Cabin
     400004: Cabin_Front
@@ -141,6 +156,21 @@ ModelImporter:
     400130: Window_Small_Outer_Int_003
     400132: Window_Small_Outer_Int_004
     400134: Windows
+    400136: Front_Step
+    400138: Front_Step_001
+    400140: Door
+    400142: DoorGroup
+    400144: Doorway
+    400146: Handle
+    400148: Hinge_01
+    400150: Hinge_02
+    400152: Hinge_03
+    400154: Hinges
+    400156: Porch_Roof_Short
+    400158: Roof_Porch
+    400160: Roof_Porch_Short
+    400162: RoofGroup
+    400164: Roof_Front_Short
     2300000: Cabin_Front
     2300002: Cabin_Main
     2300004: Cabin_Upper_01
@@ -195,6 +225,18 @@ ModelImporter:
     2300102: Window_Small_Outer_Int_002
     2300104: Window_Small_Outer_Int_003
     2300106: Window_Small_Outer_Int_004
+    2300108: Front_Step
+    2300110: Front_Step_001
+    2300112: Door
+    2300114: Doorway
+    2300116: Handle
+    2300118: Hinge_01
+    2300120: Hinge_02
+    2300122: Hinge_03
+    2300124: Porch_Roof_Short
+    2300126: Roof_Porch
+    2300128: Roof_Porch_Short
+    2300130: Roof_Front_Short
     3300000: Cabin_Front
     3300002: Cabin_Main
     3300004: Cabin_Upper_01
@@ -249,6 +291,18 @@ ModelImporter:
     3300102: Window_Small_Outer_Int_002
     3300104: Window_Small_Outer_Int_003
     3300106: Window_Small_Outer_Int_004
+    3300108: Front_Step
+    3300110: Front_Step_001
+    3300112: Door
+    3300114: Doorway
+    3300116: Handle
+    3300118: Hinge_01
+    3300120: Hinge_02
+    3300122: Hinge_03
+    3300124: Porch_Roof_Short
+    3300126: Roof_Porch
+    3300128: Roof_Porch_Short
+    3300130: Roof_Front_Short
     4300000: Chimney
     4300002: Roof_Right
     4300004: Roof_Left
@@ -303,12 +357,71 @@ ModelImporter:
     4300102: Window_Small_Glass
     4300104: Window_Small_Outer_Ext
     4300106: Window_Small_Inner
+    4300108: Front_Step_001
+    4300110: Front_Step
+    4300112: Door
+    4300114: Handle
+    4300116: Doorway
+    4300118: Hinge_02
+    4300120: Hinge_03
+    4300122: Hinge_01
+    4300124: Porch_Roof_Short
+    4300126: Roof_Porch
+    4300128: Roof_Porch_Short
+    4300130: Roof_Front_Short
     7400000: Default Take
     9500000: //RootNode
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cabin
+    second: {fileID: 2100000, guid: 2a8145e2e53c74a0289cbf55b2705f84, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Chimney
+    second: {fileID: 2100000, guid: a6d0b761c05f943e18ab31855968205d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Doorway
+    second: {fileID: 2100000, guid: 3119ca6ed50fb2f498d22db610e63f7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: cceb14b2566a14655a2e3d02757eac23, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Wood
+    second: {fileID: 2100000, guid: f70a990a019d8464694e9bfac9af3c83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material_001
+    second: {fileID: 2100000, guid: 38512b172a9361647957faadf0a343db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal
+    second: {fileID: 2100000, guid: e8b07e6f1760e4f68b28de6573836a3a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Roof
+    second: {fileID: 2100000, guid: c9684dd71034f41d9803f8bb6ab45d15, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: unnamed
+    second: {fileID: 2100000, guid: e3dbde6cfa0af43e2971bf9547d31a7e, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -321,6 +434,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -371,10 +485,10 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 2
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
