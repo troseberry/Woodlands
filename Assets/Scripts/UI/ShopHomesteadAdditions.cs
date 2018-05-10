@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ShopHomesteadAdditions : MonoBehaviour
 {
+	public HomesteadAdditionHandler[] cabinAdditionHandlers;
 
 	public void PurchaseCoffeeMaker()
 	{
@@ -16,6 +17,10 @@ public class ShopHomesteadAdditions : MonoBehaviour
 				addition.GetPurchaseCosts().SubtractFromInventory();
 				PlayerAdditions.GetCoffeeMakerAddition().SetIsUnlocked(true);
 				ShopCanvas.TriggerAdditionsInfoUpdate();
+
+				// For this to immedialty show up, have to manually trigger
+				// because the addition exists in the same scene as the menu
+				cabinAdditionHandlers[0].HandleAdditions();
 			}
 			else
 			{
@@ -39,6 +44,7 @@ public class ShopHomesteadAdditions : MonoBehaviour
 				addition.GetPurchaseCosts().SubtractFromInventory();
 				PlayerAdditions.GetFireplaceAddition().SetIsUnlocked(true);
 				ShopCanvas.TriggerAdditionsInfoUpdate();
+				cabinAdditionHandlers[1].HandleAdditions();
 			}
 			else
 			{
