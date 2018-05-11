@@ -73,18 +73,39 @@ namespace LogBucking
 				sawProgressCuts[cut02].CutFace(3);
 			}
 
-			if (locationStrokeCounts[loc] == 5) SawThrough(loc);
+			if (locationStrokeCounts[loc] == 5)
+			{
+				snapSpots[loc].enabled = false;
+				locationFullySawed[loc] = true;
+
+				LoggingActivityPlayerBehavior.SetCanPerformAction(false);
+
+				if (locationFullySawed[0] && locationFullySawed[1])
+				{
+					PlayerHud.ToggleQualityGame(true);
+					QualityMinigame.StartGame();
+
+					StartCoroutine(SawThroughAfterGrade(loc));
+				}
+				else
+				{
+					LoggingActivityPlayerBehavior.UnsnapPlayer();
+				}
+			}
+		}
+
+		IEnumerator SawThroughAfterGrade(int loc)
+		{
+			yield return new WaitUntil( () => !QualityMinigame.IsGradeListEmpty());
+			SawThrough(loc);
 		}
 
 		void SawThrough(int loc)
 		{
-			snapSpots[loc].enabled = false;
-			
-			LoggingActivityPlayerBehavior.Instance.UnsnapAfterSaw();
-			locationFullySawed[loc] = true;
-
 			if (locationFullySawed[0] && locationFullySawed[1])
 			{
+				LoggingActivityPlayerBehavior.UnsnapPlayer();
+
 				int qualityAverage = QualityMinigame.CalculateAverageGrade();
 				qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
 

@@ -130,23 +130,23 @@ public class CharacterAnimator : MonoBehaviour
 			}
 		}
 
-		public static void StartChopLoop()
+		public static void StartActionLoop()
 		{
-			if (!loggerAnimator.GetBool("ChopBool"))
-			loggerAnimator.SetBool("ChopBool", true);
+			if (!loggerAnimator.GetBool("PerformLoggingAction"))
+			loggerAnimator.SetBool("PerformLoggingAction", true);
 		}
 
-		public static void EndChopLoop()
+		public static void EndActionLoop()
 		{
-			if (loggerAnimator.GetBool("ChopBool"))
-			loggerAnimator.SetBool("ChopBool", false);
+			if (loggerAnimator.GetBool("PerformLoggingAction"))
+			loggerAnimator.SetBool("PerformLoggingAction", false);
 		}
 
 		public static void ChopFull() { loggerAnimator.SetTrigger("ChopFull"); }
 
-		public static void PushForward() { loggerAnimator.SetTrigger("PushForward"); }
+		// public static void PushForward() { loggerAnimator.SetTrigger("PushForward"); }
 
-		public static void PullBackward() { loggerAnimator.SetTrigger("PullBackward"); }
+		// public static void PullBackward() { loggerAnimator.SetTrigger("PullBackward"); }
 		
 		public static void ResetLoggingTriggers()
 		{
@@ -195,28 +195,30 @@ public class CharacterAnimator : MonoBehaviour
 		public static float GetEndToolFloat() { return loggerAnimator.GetFloat("EndToolFloat"); }
 	#endregion
 
-	public static void SetUpgradingAsAction(AnimState newState)
-	{
-		Debug.Log("Set Upgrade As Action State");
-		if (newState == AnimState.UPGRADE_TOOL || newState == AnimState.UPGRADE_SKILL || newState == AnimState.UPGRADE_ROOM)
+	#region UPGRADE METHODS
+		public static void SetUpgradingAsAction(AnimState newState)
 		{
-			actionState = newState;
+			Debug.Log("Set Upgrade As Action State");
+			if (newState == AnimState.UPGRADE_TOOL || newState == AnimState.UPGRADE_SKILL || newState == AnimState.UPGRADE_ROOM)
+			{
+				actionState = newState;
+			}
+			else
+			{
+				actionState = AnimState.NONE;
+			}
 		}
-		else
-		{
+
+		public static void UpgradeTool()
+		{ 
+			loggerAnimator.SetTrigger("UpgradeTool"); 
 			actionState = AnimState.NONE;
 		}
-	}
 
-	public static void UpgradeTool()
-	{ 
-		loggerAnimator.SetTrigger("UpgradeTool"); 
-		actionState = AnimState.NONE;
-	}
-
-	public static void UpgradeSkill()
-	{
-		loggerAnimator.SetTrigger("UpgradeSkill");
-		actionState = AnimState.NONE;
-	}
+		public static void UpgradeSkill()
+		{
+			loggerAnimator.SetTrigger("UpgradeSkill");
+			actionState = AnimState.NONE;
+		}
+	#endregion
 }

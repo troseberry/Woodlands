@@ -45,7 +45,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			ProcessInput();
 		}
 
-		DebugPanel.Log("Action Counter: ", "Quality Game", actionCounter);
+		DebugPanel.Log("Action Counter: ", "LA Player Behavior", actionCounter);
+		DebugPanel.Log("Can Perform Action", "LA Player Behavior", canPerformAction);
+		DebugPanel.Log("Mouse Down", "LA Player Behavior", Input.GetMouseButton(0));
 	}
 
 	public static void SetSnapInfo(bool canSnap) 
@@ -110,8 +112,9 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		// PlayerHud.EnableQualityGame();
 		// QualityMinigame.SetMoveSpeed(currentActivity);
 
-		if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
-		else if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
+		// if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
+		// else 
+		if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
 
 	}
 
@@ -178,11 +181,22 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		{
 			if (Input.GetMouseButton(0) && canPerformAction)
 			{
-				ChopDiagonal();
+				switch(currentActivity)
+				{
+					case LoggingActivity.FELLING:
+						ChopDiagonal();
+						break;
+					case LoggingActivity.BUCKING:
+						Saw();
+						break;
+					case LoggingActivity.SPLITTING:
+						// ChopVertical();
+						break;
+				}
 			}
 			else
 			{
-				CharacterAnimator.EndChopLoop();
+				CharacterAnimator.EndActionLoop();
 			}
 		}
 	}
@@ -201,9 +215,8 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.HORIZONTAL_CHOP))
 				{
-					Debug.Log("Diagonal Chop");
 					actionCounter = 1;
-					CharacterAnimator.StartChopLoop();
+					CharacterAnimator.StartActionLoop();
 					StartCoroutine(ChopDiagonalAfterAnim());
 				}
 			}
@@ -214,32 +227,19 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			yield return new WaitForSeconds(CharacterAnimator.GetCurrentAnimState().length);
 			
 			forestTreeToCut.CutSide(sideToCut);
-			Debug.Log("Diagonal Chop 2");
-
 			actionCounter = 0;
 		}	
 	#endregion
 
 	#region BUCKING METHODS
-
-		IEnumerator AutoSaw()
+		void Saw()
 		{
-			while (playerIsLocked)
-			{
-				PushForward();
-				yield return null;
-			}
-			yield return null;
-		}
-
-		void PushForward()
-		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("Saw_Forward") && actionCounter == 0)
+			if (actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.SAW_PUSH))
 				{ 
 					actionCounter = 1;
-					CharacterAnimator.PushForward();
+					CharacterAnimator.StartActionLoop();
 					StartCoroutine(ChangeCounterAfterSaw());
 				}
 			}
@@ -247,26 +247,13 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChangeCounterAfterSaw()
 		{
-			QualityMinigame.StartGame();
+			if (actionCounter == 1)
+			{
+				yield return new WaitForSeconds(0.533f); //SawSawing_Full length
 
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("Saw_Backward"));
-
-			felledTreeToSaw.SawLocation(markToSaw);
-			actionCounter = 0;
-			Debug.Log("Timer: " + Time.time);
-		}
-
-		public void UnsnapAfterSaw()
-		{
-			StartCoroutine(UnsnapAfterSawAnim());
-		}
-
-		IEnumerator UnsnapAfterSawAnim()
-		{
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("Saw_Backward"));
-			
-			UnsnapPlayer();
-			CharacterAnimator.ResetLoggingTriggers();
+				felledTreeToSaw.SawLocation(markToSaw);
+				actionCounter = 0;
+			}
 		}
 	#endregion
 
