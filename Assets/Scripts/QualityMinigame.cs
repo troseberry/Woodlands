@@ -24,6 +24,8 @@ public class QualityMinigame : MonoBehaviour
 
 	private static bool sliderLeft = true;
 	// private static bool playerDidInput = false;
+	private static int ungradedFirewood = 0;
+	private static QualityGrade lastMaxFirewoodGrade;
 
 	void Start ()
 	{
@@ -192,4 +194,19 @@ public class QualityMinigame : MonoBehaviour
 		else if (activity == LoggingActivity.BUCKING) moveSpeed = 2f;
 		else if (activity == LoggingActivity.SPLITTING) moveSpeed = 1.15f;
 	}
+
+	public static void SetUngradedFirewood(int value) { ungradedFirewood = value; }
+
+	public static void IncrementUngradedFirewood() { ungradedFirewood += 2; }
+
+	public static int GetUngradedFirewood()
+	{
+		return ungradedFirewood;
+	}
+
+	public static void ClearUngradedFirewood() { ungradedFirewood = 0; }
+
+	public static void SetLastMaxFirewoodGrade(QualityGrade grade) { lastMaxFirewoodGrade = grade; }
+	
+	public static QualityGrade GetLastMaxFirewoodGrade() { return lastMaxFirewoodGrade; }
 }

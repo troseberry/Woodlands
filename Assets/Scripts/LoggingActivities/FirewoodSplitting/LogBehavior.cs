@@ -12,7 +12,7 @@ namespace FirewoodSplitting
 
 		public Rigidbody[] firewoodPieces;
 
-		private bool hasBeenSplit = false;
+		// private bool hasBeenSplit = false;
 
 		void Start () 
 		{
@@ -44,33 +44,54 @@ namespace FirewoodSplitting
 
 		// public QualityGrade GetQualityGrade() { return qualityGrade; }
 
-		public bool HasBeenSplit() { return hasBeenSplit; }
+		// public bool HasBeenSplit() { return hasBeenSplit; }
 
-		public void Split()
+		public void ChopLog()
+		{
+			HomesteadStockpile.UpdateLogsCountAtGrade(maxQualityGrade, -1);
+			if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) > 0)associatedLogPile.UpdateLogPile();
+
+			QualityMinigame.IncrementUngradedFirewood();
+			QualityMinigame.SetLastMaxFirewoodGrade(maxQualityGrade);
+
+			// hasBeenSplit = true;
+
+			if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) <= 0)
+			{
+				LoggingActivityPlayerBehavior.SetLogsRemaining(HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade));
+				LoggingActivityPlayerBehavior.SetCanPerformAction(false);
+
+				PlayerHud.ToggleQualityGame(true);
+				QualityMinigame.StartGame();
+
+				StartCoroutine(SplitAfterGrade());
+			}
+		}
+
+		IEnumerator SplitAfterGrade()
+		{
+			yield return new WaitUntil( () => !QualityMinigame.IsGradeListEmpty());
+			Split();
+		}
+
+		void Split()
 		{
 			ApplySplitForce();
 
-			hasBeenSplit = true;
-
-			// QualityMinigame.BackFillSwingGrades(1);
+			LoggingActivityPlayerBehavior.UnsnapPlayer();
 
 			int qualityAverage = QualityMinigame.CalculateAverageGrade(HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade));
 			qualityAverage  = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
 
 			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
 
-			HomesteadStockpile.UpdateFirewoodCountAtGrade(gatheredQuality, 2);
-			HomesteadStockpile.UpdateLogsCountAtGrade(maxQualityGrade, -1);
+			HomesteadStockpile.UpdateFirewoodCountAtGrade(gatheredQuality, QualityMinigame.GetUngradedFirewood());
+
+			QualityMinigame.ClearUngradedFirewood();
 
 			Debug.Log("Gathered Grade: " + gatheredQuality);
 
-			if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) <= 0)
-			{
-				LoggingActivityPlayerBehavior.SetLogsRemaining(HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade));
-				LoggingActivityPlayerBehavior.UnsnapPlayer();
-			}
-
-			Invoke("PhaseOutFirewood", 1.0f);
+			Invoke("PhaseOutFirewood", 5f);
 		}
 
 		void ApplySplitForce()
@@ -84,21 +105,21 @@ namespace FirewoodSplitting
 
 		void PhaseOutFirewood()
 		{
-			if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) > 0)
-			{
-				Invoke("ResetInteractableLog", 1.0f);
-			}
-			else
-			{
-				transform.parent.GetComponentInChildren<LoggingActivityInteractPrompt>().HideUI();
-			}
+			// if (HomesteadStockpile.GetLogsCountAtGrade(maxQualityGrade) > 0)
+			// {
+			// 	Invoke("ResetInteractableLog", 1.0f);
+			// }
+			// else
+			// {
+			// 	transform.parent.GetComponentInChildren<LoggingActivityInteractPrompt>().HideUI();
+			// }
 			gameObject.SetActive(false);
 		}
 
 		public void ResetInteractableLog()
 		{
-			hasBeenSplit = false;
-			associatedLogPile.UpdateLogPile();
+			// hasBeenSplit = false;
+			// associatedLogPile.UpdateLogPile();
 
 			firewoodPieces[0].constraints = RigidbodyConstraints.FreezeAll;
 			firewoodPieces[1].constraints = RigidbodyConstraints.FreezeAll;

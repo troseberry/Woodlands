@@ -108,13 +108,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
-		
-		// PlayerHud.EnableQualityGame();
-		// QualityMinigame.SetMoveSpeed(currentActivity);
 
-		// if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
-		// else 
-		if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
+		if (currentActivity == LoggingActivity.SPLITTING)
+		{
+
+		}
 
 	}
 
@@ -154,7 +152,11 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 				}
 				else
 				{
-					UnsnapPlayer();
+					if (currentActivity == LoggingActivity.SPLITTING && QualityMinigame.GetUngradedFirewood() > 0)
+					{
+						GradeSplitFirewoodBeforeUnsnap();
+					}
+					else UnsnapPlayer();
 				}
 			}
 
@@ -190,7 +192,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 						Saw();
 						break;
 					case LoggingActivity.SPLITTING:
-						// ChopVertical();
+						ChopVertical();
 						break;
 				}
 			}
@@ -247,36 +249,23 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChangeCounterAfterSaw()
 		{
-			if (actionCounter == 1)
-			{
-				yield return new WaitForSeconds(0.533f); //SawSawing_Full length
+			yield return new WaitForSeconds(0.533f); //SawSawing_Full length
 
-				felledTreeToSaw.SawLocation(markToSaw);
-				actionCounter = 0;
-			}
+			felledTreeToSaw.SawLocation(markToSaw);
+			actionCounter = 0;
 		}
 	#endregion
 
 	#region SPLLITTING METHODS
 
-		IEnumerator AutoChopVertical()
-		{
-			while (playerIsLocked)
-			{
-				ChopVertical();
-				yield return null;
-			}
-			yield return null;
-		}
-
 		void ChopVertical()
 		{
-			if (CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Backward") && actionCounter == 0)
+			if (actionCounter == 0)
 			{
 				if (PlayerEnergy.ConsumeEnergy(EnergyAction.VERTICAL_CHOP))
 				{
 					actionCounter = 1;
-					CharacterAnimator.ChopFull();
+					CharacterAnimator.StartActionLoop();
 					StartCoroutine(ChopVerticalAfterAnim());
 				}
 			}
@@ -284,15 +273,45 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChopVerticalAfterAnim()
 		{
-			QualityMinigame.StartGame();
-
-			yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopVertical_Forward"));
-			logToSplit.Split();
+			yield return new WaitForSeconds(1.333f);  //ChopVertical_Full length
+			// logToSplit.InitiateSplit();
+			logToSplit.ChopLog();
 			actionCounter = 0;
 		}
 		
 		public static void SetLogsRemaining(int logs) { logsRemaining = logs; }
 		
 		public static int GetLogsRemaining() { return logsRemaining; }
+
+		void GradeSplitFirewoodBeforeUnsnap()
+		{
+			SetCanPerformAction(false);
+
+			PlayerHud.ToggleQualityGame(true);
+			QualityMinigame.StartGame();
+
+			StartCoroutine(WaitForFirewoodGrade());
+		}
+
+		IEnumerator WaitForFirewoodGrade()
+		{
+			
+			yield return new WaitUntil( () => !QualityMinigame.IsGradeListEmpty());
+
+			UnsnapPlayer();
+
+			int qualityAverage = QualityMinigame.CalculateAverageGrade(HomesteadStockpile.GetLogsCountAtGrade(QualityMinigame.GetLastMaxFirewoodGrade()));
+			qualityAverage  = Mathf.Clamp(qualityAverage, 0, QualityMinigame.GetLastMaxFirewoodGrade().GetHashCode());
+
+			QualityGrade gatheredQuality = (QualityGrade) qualityAverage;
+
+			int ungradedCount = QualityMinigame.GetUngradedFirewood();
+			HomesteadStockpile.UpdateFirewoodCountAtGrade(gatheredQuality, ungradedCount);
+
+			QualityMinigame.ClearUngradedFirewood();
+
+			Debug.Log("Gathered Grade: " + gatheredQuality);
+			Debug.Log("Gathered Count: " + ungradedCount);
+		}
 	#endregion
 }
