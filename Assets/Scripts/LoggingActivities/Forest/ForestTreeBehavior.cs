@@ -52,9 +52,10 @@ namespace Forest
 			}
 			else
 			{
+				LoggingActivityPlayerBehavior.SetCanPerformAction(false);
 				PlayerHud.EnableQualityGame();
 				QualityMinigame.StartGame();
-				// Fall(side);
+				
 				StartCoroutine(FallAfterGrade(side));
 			}
 		}
@@ -81,8 +82,6 @@ namespace Forest
 			LoggingActivityPlayerBehavior.UnsnapPlayer();
 			GetComponent<ForestTreeBehavior>().enabled = false;
 
-			// QualityMinigame.BackFillSwingGrades(10);
-			
 			int qualityAverage = QualityMinigame.CalculateAverageGrade();
 			qualityAverage = Mathf.Clamp(qualityAverage, 0, maxQualityGrade.GetHashCode());
 

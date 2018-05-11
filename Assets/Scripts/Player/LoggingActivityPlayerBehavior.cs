@@ -17,6 +17,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 	private static bool playerIsLocked = false;
 	private static bool canSnapPlayer = false;
+	private static bool canPerformAction = false;
 
 	private static Transform snapLocation;
 
@@ -85,6 +86,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		CharacterMotor.SetCanMove(false);
 		CharacterInputController.SetCanTurn(false);
 		CharacterInputController.ToggleToolsInput(false);
+		canPerformAction = true;
 
 		switch(currentActivity)
 		{
@@ -108,7 +110,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		// PlayerHud.EnableQualityGame();
 		// QualityMinigame.SetMoveSpeed(currentActivity);
 
-		// if (currentActivity == LoggingActivity.FELLING) StartCoroutine(AutoChopDiagonal());
 		if (currentActivity == LoggingActivity.BUCKING) StartCoroutine(AutoSaw());
 		else if (currentActivity == LoggingActivity.SPLITTING) StartCoroutine(AutoChopVertical());
 
@@ -175,7 +176,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 	{
 		if (playerIsLocked)
 		{
-			if (Input.GetMouseButton(0))
+			if (Input.GetMouseButton(0) && canPerformAction)
 			{
 				ChopDiagonal();
 			}
@@ -185,6 +186,10 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			}
 		}
 	}
+
+	public static bool GetCanPerformAction() { return canPerformAction; }
+
+	public static void SetCanPerformAction(bool state) { canPerformAction = state; }
 
 	public static LoggingActivity GetCurrentActivity() { return currentActivity; }
 
