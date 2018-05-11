@@ -33,8 +33,10 @@ public class CharacterAnimator : MonoBehaviour
 		ProcessMovementState();
 		ProcessActionState();
 
-		DebugPanel.Log("Tool Start: ", "Tool", GetStartToolFloat() );
-		DebugPanel.Log("Tool End: ", "Tool", GetEndToolFloat() );
+		// DebugPanel.Log("Tool Start: ", "Tool", GetStartToolFloat() );
+		// DebugPanel.Log("Tool End: ", "Tool", GetEndToolFloat() );
+
+		// DebugPanel.Log("Tool Layer Weight: ", loggerAnimator.GetLayerWeight(1));
 	}
 
 	public static AnimatorStateInfo GetCurrentAnimState()
@@ -154,6 +156,14 @@ public class CharacterAnimator : MonoBehaviour
 	#endregion
 
 	#region TOOL METHODS
+		IEnumerator DisableToolLayer()
+		{
+			yield return new WaitUntil( () => loggerAnimator.GetCurrentAnimatorStateInfo(1).IsName("ToolSwitch"));
+
+			yield return new WaitUntil( () => !loggerAnimator.GetCurrentAnimatorStateInfo(1).IsName("ToolSwitch"));
+			loggerAnimator.SetLayerWeight(1, 0f);
+		}
+
 		public static void SetEquipLocations(int startingLocation, int endingLocation)
 		{
 			loggerAnimator.SetInteger("StartingToolLocation", startingLocation);
@@ -168,6 +178,9 @@ public class CharacterAnimator : MonoBehaviour
 
 		public static void SwitchTool()
 		{
+			loggerAnimator.SetLayerWeight(1, 1f);
+			Instance.StartCoroutine(Instance.DisableToolLayer());
+
 			loggerAnimator.SetTrigger("SwitchTool");
 			actionState = AnimState.NONE;
 		}
