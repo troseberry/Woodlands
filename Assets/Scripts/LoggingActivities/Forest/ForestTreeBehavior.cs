@@ -53,7 +53,7 @@ namespace Forest
 			else
 			{
 				LoggingActivityPlayerBehavior.SetCanPerformAction(false);
-				PlayerHud.EnableQualityGame();
+				PlayerHud.ToggleQualityGame(true);
 				QualityMinigame.StartGame();
 				
 				StartCoroutine(FallAfterGrade(side));

@@ -162,22 +162,8 @@ public class PlayerHud : MonoBehaviour
 
 	public static void ToggleQualityGame(bool state)
 	{
+		if (!state && PlayerHudReference.qualityGame.activeSelf) QualityMinigame.EndGame();
 		PlayerHudReference.qualityGame.SetActive(state);
-	}
-
-	public static void EnableQualityGame()
-	{
-		PlayerHudReference.StartCoroutine(PlayerHudReference.WaitForActivityLock());
-	}
-
-	IEnumerator WaitForActivityLock()
-	{
-
-		yield return new WaitUntil( () => CharacterAnimator.GetCurrentAnimState().IsName("ChopIdle") || CharacterAnimator.GetCurrentAnimState().IsName("SawStart"));
-
-		yield return new WaitForSeconds(0.25f);
-
-		PlayerHudReference.qualityGame.SetActive(true);
 	}
 }
 

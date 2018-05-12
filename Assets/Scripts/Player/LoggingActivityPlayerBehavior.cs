@@ -311,7 +311,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 			QualityMinigame.ClearUngradedFirewood();
 
 			Debug.Log("Gathered Grade: " + gatheredQuality);
-			Debug.Log("Gathered Count: " + ungradedCount);
+			// Debug.Log("Gathered Count: " + ungradedCount);
 		}
 	#endregion
 }
