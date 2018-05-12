@@ -15,7 +15,7 @@ public class TravelInteractPrompt : MonoBehaviour
 
 	void Update () 
 	{
-		if (Input.GetButtonDown("Interact") && canInteract)
+		if (Input.GetButtonDown("Interact") && canInteract && !TimeManager.paused)
 		{
 			if (triggerName.Contains("Trigger"))
 			{

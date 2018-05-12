@@ -22,7 +22,7 @@ public class KeyItemInteract : MonoBehaviour
 	void Update () 
 	{
 		DebugPanel.Log("Bed - Can Interact: ", canInteract);
-		if (canInteract && Input.GetButtonDown("Interact"))
+		if (canInteract && Input.GetButtonDown("Interact") && !TimeManager.paused)
 		{
 			if (!isMenuOpen) 
 			{
