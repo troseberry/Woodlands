@@ -162,8 +162,18 @@ public class PlayerHud : MonoBehaviour
 
 	public static void ToggleQualityGame(bool state)
 	{
-		if (!state && PlayerHudReference.qualityGame.activeSelf) QualityMinigame.EndGame();
-		PlayerHudReference.qualityGame.SetActive(state);
+		if (!state && PlayerHudReference.qualityGame.activeSelf)
+		{
+			QualityMinigame.EndGame();
+			PlayerHudReference.StartCoroutine(PlayerHudReference.HideQualityGame());
+		}
+		else PlayerHudReference.qualityGame.SetActive(state);
+	}
+
+	IEnumerator HideQualityGame()
+	{
+		yield return new WaitForSeconds(1f);	// same as the delay QualityMinigame.EndGame()
+		PlayerHudReference.qualityGame.SetActive(false);
 	}
 }
 

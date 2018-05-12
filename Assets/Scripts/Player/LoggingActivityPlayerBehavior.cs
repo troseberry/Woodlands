@@ -108,12 +108,6 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 		GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 
 		playerIsLocked = true;
-
-		if (currentActivity == LoggingActivity.SPLITTING)
-		{
-
-		}
-
 	}
 
 	public static void UnsnapPlayer()
@@ -226,7 +220,7 @@ public class LoggingActivityPlayerBehavior : MonoBehaviour
 
 		IEnumerator ChopDiagonalAfterAnim()
 		{
-			yield return new WaitForSeconds(CharacterAnimator.GetCurrentAnimState().length);
+			yield return new WaitForSeconds(1.333f / 1.5f);  //ChopDiagonal_Full length
 			
 			forestTreeToCut.CutSide(sideToCut);
 			actionCounter = 0;

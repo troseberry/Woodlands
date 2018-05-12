@@ -10,9 +10,11 @@ public class QualityMinigame : MonoBehaviour
 	public static QualityMinigame Instance;
 
 	public Slider qualitySlider;
+	public Transform gradePopups;
 
 	private static bool gameStarted = false;
 	private static bool sliderLeft = true;
+	private static bool showedGrade = false;
 
 	private float swingValue = 0;
 	private static List<int> swingGrades = new List<int>();
@@ -27,17 +29,11 @@ public class QualityMinigame : MonoBehaviour
 	void Start ()
 	{
 		Instance = this;
-		
-		// qualitySlider.value = 0f;
-		// timer = 0f;
 	}
 
 	void OnEnable()
 	{
 		if (Instance == null) Instance = this;
-
-		// qualitySlider.value = 0f;
-		// timer = 0f;
 	}
 	
 	void Update ()
@@ -65,17 +61,24 @@ public class QualityMinigame : MonoBehaviour
 
 	void GetGradeFromSliderValue()
 	{
-		swingValue = qualitySlider.value < 0.5f ?
-		Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
-		Mathf.Ceil(qualitySlider.value * 100) / 100 : 0.5f;
-		
-		int gradeInt = FloatToGradeInt(swingValue, LoggingActivityPlayerBehavior.GetCurrentActivity());
+		if (!showedGrade)
+		{
+			swingValue = qualitySlider.value < 0.5f ?
+			Mathf.Floor(qualitySlider.value * 100) / 100 : swingValue = qualitySlider.value != 0.5f ? 
+			Mathf.Ceil(qualitySlider.value * 100) / 100 : 0.5f;
+			
+			int gradeInt = FloatToGradeInt(swingValue, LoggingActivityPlayerBehavior.GetCurrentActivity());
 
-		swingGrades.Add(gradeInt);
+			swingGrades.Add(gradeInt);
+			ShowGradePopup(gradeInt);
+			Debug.Log("Slider to Grade");
 
-		// Debug.Log("Player Swing (Slider): " + qualitySlider.value);
-		// Debug.Log("Player Swing (Rounded): " + swingValue);
-		// Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
+			showedGrade = true;
+
+			// Debug.Log("Player Swing (Slider): " + qualitySlider.value);
+			// Debug.Log("Player Swing (Rounded): " + swingValue);
+			// Debug.Log("Player Swing (Grade): " + (QualityGrade)gradeInt);
+		}
 	}
 
 	int FloatToGradeInt(float swingVal, LoggingActivity activity)
@@ -151,6 +154,20 @@ public class QualityMinigame : MonoBehaviour
 		return avg;
 	}
 
+	void ShowGradePopup(int grade)
+	{
+		Debug.Log("Show Grade");
+		gradePopups.GetChild(grade).gameObject.SetActive(true);
+	}
+
+	void HideAllGradePopups()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			gradePopups.GetChild(i).gameObject.SetActive(false);
+		}
+	}
+
 	public static void StartGame() { if (!gameStarted) Instance.StartCoroutine(Instance.DelayGameStart(0.5f)); }
 
 	IEnumerator DelayGameStart(float delay)
@@ -159,12 +176,18 @@ public class QualityMinigame : MonoBehaviour
 		gameStarted = true;
 	}
 
-	public static void EndGame()
+	public static void EndGame() { Instance.StartCoroutine(Instance.DelayEndGame(1f)); }
+
+	IEnumerator DelayEndGame(float delay)
 	{
+		yield return new WaitForSeconds(delay);
+
+		Instance.HideAllGradePopups();
 		Instance.qualitySlider.value = 0f;
 		gameStarted = false;
 		timer = 0f;
 		sliderLeft = true;
+		showedGrade = false;
 	}
 
 	public static bool IsGradeListEmpty() { return swingGrades.Count == 0; }
