@@ -95,9 +95,7 @@ public class PlayerHud : MonoBehaviour
 
 		if (toolWheelIsOpen)
 		{
-			// toolWheelEquipIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
-			toolWheelEquipIndex = ToolManager.GetCurrentToolIndex(); // stops tool from switching to empty hands when nothing new is selected
-			Debug.Log("Wheel Current Index: " + toolWheelEquipIndex);
+			toolWheelEquipIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 		}
 		else
 		{
@@ -151,7 +149,6 @@ public class PlayerHud : MonoBehaviour
 
 	public void ToolWheelSwitchExecute()
 	{
-		Debug.Log("Call Tool Wheel Switch");
 		CharacterInputController.HandleToolInput(toolWheelEquipIndex);
 	} 
 

@@ -25,7 +25,6 @@ public class HoverTool : EventTrigger
 
         toolImage.color = selectedColors[0];
         iconBackground.color = selectedColors[1];
-        Debug.Log("To Equip Index: " + toolIndex);
     }
 
     public void DeselectTool()

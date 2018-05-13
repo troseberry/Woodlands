@@ -11,6 +11,8 @@ using Cinemachine;
 
 public class CharacterInputController : MonoBehaviour 
 {
+	public static CharacterInputController Instance;
+
 	private static CinemachineFreeLook characterCameraController;
 
 	float vertInput;
@@ -35,6 +37,8 @@ public class CharacterInputController : MonoBehaviour
 
 	void Start () 
 	{
+		Instance = this;
+
 		characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
 
 		vertInput = Input.GetAxisRaw("Vertical");
@@ -57,7 +61,6 @@ public class CharacterInputController : MonoBehaviour
 			tempToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 			HandleToolInput(0);
 			ChangeTool();
-			// Debug.Log("Last Tool Index (1): " + tempToolIndex);
 
 		}
 		else
@@ -67,7 +70,6 @@ public class CharacterInputController : MonoBehaviour
 				freeLookInputEnabled = true;
 				HandleToolInput(tempToolIndex);
 				ChangeTool();
-				// Debug.Log("Last Tool Index (2): " + tempToolIndex);
 			}
 		}
 		
@@ -112,10 +114,7 @@ public class CharacterInputController : MonoBehaviour
 		if (!toolsDisabled)
 		{
 			HandleToolInput();		
-			if (doChangeTool)
-			{
-				ChangeTool();
-			}
+			if (doChangeTool) ChangeTool();
 		}
 	}
 
@@ -153,7 +152,6 @@ public class CharacterInputController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Tool_01") && ToolManager.GetToolToEquipIndex() != 0)
 		{
-			Debug.Log("Tool 0");
 			ToolManager.SetToolToEquipIndex(0);
 			doChangeTool = true;
 		}
@@ -191,6 +189,8 @@ public class CharacterInputController : MonoBehaviour
 				ToolManager.SetScrollSwitch(true);
 			}
 		}
+
+		// if (doChangeTool) ChangeTool();
 	}
 
 	public static void HandleToolInput(int inputToolIndex)
@@ -199,6 +199,8 @@ public class CharacterInputController : MonoBehaviour
 		{
 			ToolManager.SetToolToEquipIndex(inputToolIndex);
 			doChangeTool = true;
+
+			Instance.ChangeTool();
 		}
 	}
 
@@ -219,6 +221,9 @@ public class CharacterInputController : MonoBehaviour
 			CharacterAnimator.SetSwitchToolAsAction();
 
 			PlayerHud.PlayerHudReference.ChangeToolIcon();
+
+			// Debug.Log("Start Loc: " + startLoc);
+			// Debug.Log("End Loc: " + endLoc);
 
 			doChangeTool = false;
 		}

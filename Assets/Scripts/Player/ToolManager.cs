@@ -20,6 +20,7 @@ public class ToolManager : MonoBehaviour
 	
 	void Update () 
 	{
+		DebugPanel.Log("To Equip Index: ", "Tool Manager", toolToEquipIndex);
 		if (doSwitch)
 		{
 			EnableTool();
