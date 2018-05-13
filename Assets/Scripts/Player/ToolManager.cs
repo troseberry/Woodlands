@@ -78,6 +78,8 @@ public class ToolManager : MonoBehaviour
 		if (doScrollSwitch) doScrollSwitch = false;
 	}
 
+	public static int GetCurrentToolIndex() { return currentToolIndex; }
+
 	public static bool GetDoSwitch() { return doSwitch; }
 
 	public static void SetToolToEquipIndex(int index) { toolToEquipIndex = index; }
