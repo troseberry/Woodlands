@@ -107,8 +107,7 @@ public class PlayerHud : MonoBehaviour
 
 		CharacterInputController.ToggleCameraTurn(!toolWheelIsOpen);
 
-		// if (executeToolSwitch) ToolWheelSwitchExecute();
-		Debug.Log("Tool Wheel 2");
+		if (executeToolSwitch) ToolWheelSwitchExecute();
 	}
 
 	public void CallForToolSwitch()
@@ -148,7 +147,6 @@ public class PlayerHud : MonoBehaviour
 	public void ToolWheelSwitchExecute()
 	{
 		CharacterInputController.HandleToolInput(toolWheelEquipIndex);
-		Debug.Log("Change Tool 4");
 	} 
 
 

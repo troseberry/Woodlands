@@ -31,6 +31,8 @@ public class CharacterInputController : MonoBehaviour
 	private static bool characterInputEnabled = true;
 	private static bool freeLookInputEnabled = true;
 
+	private string lastScene = "";
+
 	void Start () 
 	{
 		characterCameraController = GameObject.Find("CM_FreeLookCam").GetComponent<CinemachineFreeLook>();
@@ -55,13 +57,21 @@ public class CharacterInputController : MonoBehaviour
 			tempToolIndex = PlayerTools.GetCurrentlyEquippedToolIndex();
 			HandleToolInput(0);
 			ChangeTool();
+			// Debug.Log("Last Tool Index (1): " + tempToolIndex);
+
 		}
 		else
 		{
-			freeLookInputEnabled = true;
-			HandleToolInput(tempToolIndex);
-			ChangeTool();
+			if (lastScene.Equals("MainCabin"))
+			{
+				freeLookInputEnabled = true;
+				HandleToolInput(tempToolIndex);
+				ChangeTool();
+				// Debug.Log("Last Tool Index (2): " + tempToolIndex);
+			}
 		}
+		
+		lastScene = scene.name;
 	}
 
 	void OnDisable()
@@ -189,7 +199,6 @@ public class CharacterInputController : MonoBehaviour
 		{
 			ToolManager.SetToolToEquipIndex(inputToolIndex);
 			doChangeTool = true;
-			Debug.Log("Change Tool Implicit");
 		}
 	}
 

@@ -27,7 +27,7 @@ public class MenuManager : MonoBehaviour
 
 	void Update()
 	{
-		if (LoadingScreen.IsLoading()) CloseAllCanvases(true);
+		if (LoadingScreen.IsLoading()) CloseAllCanvases();
 	}
 
 	void Reset()
@@ -52,13 +52,13 @@ public class MenuManager : MonoBehaviour
 		if (SceneManager.GetActiveScene().name.Equals("Workshop")) workshopCanvas = GameObject.Find("UpgradeTools").GetComponent<KeyItemInteract>();
 	}
 	
-	public void CloseAllCanvases(bool executeToolSwitch)
+	public void CloseAllCanvases()
 	{
 		currentPauseMenu.CloseMenu();
 		currentGameMenu.ImmediatelyCloseMenu();
 		if (currentMailboxMenu) currentMailboxMenu.CloseMenu();
 
-		PlayerHud.PlayerHudReference.HideToolWheel(executeToolSwitch);
+		// PlayerHud.PlayerHudReference.HideToolWheel(executeToolSwitch);
 
 		if (bedCanvas) bedCanvas.CloseMenu();
 		if (kitchenCanvas) kitchenCanvas.CloseMenu();
