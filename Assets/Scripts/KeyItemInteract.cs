@@ -77,7 +77,7 @@ public class KeyItemInteract : MonoBehaviour
 	{	
 		if (itemSnapSpot) itemSnapSpot.SnapPlayer();
 
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(false);
 		for (int i = 0; i < generalElements.Length; i++)
 		{
 			generalElements[i].SetActive(true);

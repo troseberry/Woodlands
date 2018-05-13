@@ -117,7 +117,7 @@ public class SceneSaveHandler : MonoBehaviour
 				}
 			}
 		}
-		Debug.Log("Finished Scene Load (Save Handler)");
+		// Debug.Log("Finished Scene Load (Save Handler)");
 		hasFinishedLoading = true;
 	}
 

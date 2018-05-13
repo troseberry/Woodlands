@@ -23,7 +23,7 @@ public class SaveLoadScene
 
 		bf.Serialize(file, sceneData);
 		file.Close();
-		Debug.Log("Saved Scene: " + sceneData.sceneName);
+		// Debug.Log("Saved Scene: " + sceneData.sceneName);
 	}
 
 	public static void Load(string sceneToLoad)

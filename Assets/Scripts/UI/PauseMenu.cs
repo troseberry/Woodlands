@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
 
 	public void OpenMenu()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(false);
 		menuCanvas.enabled = true;
 		menuOpen = true;
 

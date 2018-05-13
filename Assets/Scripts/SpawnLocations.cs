@@ -8,7 +8,7 @@ public class SpawnLocations
 	//naming convention: currentScene_destinationScene
 
 	//homestead_homestead
-	private static Vector3 homestead_mainCabin = new Vector3(1f, 0, -4f);
+	private static Vector3 homestead_mainCabin = new Vector3(1f, 0, -3f);
 	private static Vector3 homestead_workshop = new Vector3(0.25f, 0, -2.5f);
 	private static Vector3 homestead_forest = new Vector3(35f, 1.5f, 5f);
 	private static Vector3 homestead_lumberYard = new Vector3(-17.5f, 0, -2.5f);

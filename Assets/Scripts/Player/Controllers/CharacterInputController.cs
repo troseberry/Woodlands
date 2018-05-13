@@ -102,7 +102,10 @@ public class CharacterInputController : MonoBehaviour
 		if (!toolsDisabled)
 		{
 			HandleToolInput();		
-			if (doChangeTool) ChangeTool();
+			if (doChangeTool)
+			{
+				ChangeTool();
+			}
 		}
 	}
 
@@ -140,6 +143,7 @@ public class CharacterInputController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Tool_01") && ToolManager.GetToolToEquipIndex() != 0)
 		{
+			Debug.Log("Tool 0");
 			ToolManager.SetToolToEquipIndex(0);
 			doChangeTool = true;
 		}
@@ -185,6 +189,7 @@ public class CharacterInputController : MonoBehaviour
 		{
 			ToolManager.SetToolToEquipIndex(inputToolIndex);
 			doChangeTool = true;
+			Debug.Log("Change Tool Implicit");
 		}
 	}
 

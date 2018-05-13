@@ -90,6 +90,7 @@ public class TravelInteractPrompt : MonoBehaviour
 				GameSceneNavigation.ToLumberYard();
 				break;
 			case "ToTopFloor":
+			Debug.Log("Go Upstairs");
 				GameSceneNavigation.ToTopFloor();
 				break;
 			case "ToBottomFloor":

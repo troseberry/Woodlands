@@ -100,14 +100,15 @@ public class PlayerHud : MonoBehaviour
 		}
 	}
 
-	public void HideToolWheel()
+	public void HideToolWheel(bool executeToolSwitch)
 	{
 		toolWheelIsOpen = false;
 		toolWheelGroup.gameObject.SetActive(toolWheelIsOpen);
 
 		CharacterInputController.ToggleCameraTurn(!toolWheelIsOpen);
 
-		ToolWheelSwitchExecute();
+		// if (executeToolSwitch) ToolWheelSwitchExecute();
+		Debug.Log("Tool Wheel 2");
 	}
 
 	public void CallForToolSwitch()
@@ -147,7 +148,8 @@ public class PlayerHud : MonoBehaviour
 	public void ToolWheelSwitchExecute()
 	{
 		CharacterInputController.HandleToolInput(toolWheelEquipIndex);
-	}
+		Debug.Log("Change Tool 4");
+	} 
 
 
 	public static void SetInteractText(string toDisplay)

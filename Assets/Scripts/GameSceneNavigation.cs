@@ -10,7 +10,7 @@ public static class GameSceneNavigation
 
 	public static void ToHomestead()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(true);
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Homestead");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Homestead");
@@ -20,7 +20,7 @@ public static class GameSceneNavigation
 
 	public static void ToMainCabin()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(true);
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("MainCabin");
 		PlayerManager.SetSpawnLocation(currentSceneName, "MainCabin");
@@ -30,7 +30,7 @@ public static class GameSceneNavigation
 
 	public static void ToWorkshop()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(true);
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Workshop");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Workshop");
@@ -40,7 +40,7 @@ public static class GameSceneNavigation
 
 	public static void ToForest()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(true);
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("Forest");
 		PlayerManager.SetSpawnLocation(currentSceneName, "Forest");
@@ -50,7 +50,7 @@ public static class GameSceneNavigation
 
 	public static void ToLumberYard()
 	{
-		MenuManager.currentMenuManager.CloseAllCanvases();
+		MenuManager.currentMenuManager.CloseAllCanvases(true);
 		currentSceneName = SceneManager.GetActiveScene().name;
 		SceneManager.LoadScene("LumberYard");
 		PlayerManager.SetSpawnLocation(currentSceneName, "LumberYard");
